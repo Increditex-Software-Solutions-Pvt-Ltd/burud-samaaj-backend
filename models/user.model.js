@@ -1,7 +1,13 @@
 const {sequelize} = require('../index');
 const {DataTypes} = require('sequelize');
 
-const User = sequelize.define("user",{
+const User = sequelize.define('user',{
+    id:{
+        type:DataTypes.INTEGER,
+        autoIncrement:true,
+        primaryKey:true,
+        allowNull:false
+    },
     firstname:{
         type:DataTypes.STRING,
         allowNull:true
@@ -15,7 +21,7 @@ const User = sequelize.define("user",{
         allowNull:true
     },
     phone:{
-        type:DataTypes.NUMBER,
+        type:DataTypes.INTEGER,
         allowNull:true
     },
     gender:{
