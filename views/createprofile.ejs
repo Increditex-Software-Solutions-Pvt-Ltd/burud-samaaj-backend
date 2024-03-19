@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-step Form</title>
+<link rel="stylesheet" href="css/registration.css">
+
+</head>
+<body>
+    <form id="multi-step-form" class="Form_main">
+        <!-- Step 1: Personal Information -->
+        <div class="form-step active" id="step1">
+            <h2>Step 1: Personal Information</h2>
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="fullname" required><br>
+
+            <label for="city">City:</label>
+            <select id="city" name="city" required>
+                <option value="">Select</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Pune">Pune</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                <option value="Chalisgaon">Chalisgaon</option>
+
+            </select><br>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dateofbirth" required><br>
+
+            <label for="income">Income:</label>
+            <input type="number" id="income" name="income" required><br>
+
+            <label for="education">Education:</label>
+            <select id="education" name="education" required>
+                <option value="">Select</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Master Degree">Master Degree</option>
+                <option value="Graduation">Graduation</option>
+                <option value="12Th">12Th</option>
+                <option value="10Th">10Th</option>
+                <option value="Chalisgaon">Engineering</option>
+
+            </select><br>
+
+
+            <label for="blood-group">Blood Group:</label>
+            <select id="blood-group" name="bloodgroup" required>
+                <option value="">Select</option>
+                <option value="A positive (A+)">A positive (A+)</option>
+                <option value="A negative (A-)">A negative (A-)</option>
+                <option value="B positive (B+)">B positive (B+)</option>
+                <option value="B negative (B-)">B negative (B-)</option>
+                <option value="AB positive (AB+)">AB positive (AB+)</option>
+                <option value="AB negative (AB-)">AB negative (AB-)</option>
+                <option value="O positive (O+)">O positive (O+)</option>
+                <option value="O positive (O+)">O negative (O-)</option>
+
+            </select><br>
+
+            <label for="spectacles">Spectacles:(Yes/No) </label>
+            <select id="spectacles" name="spectacles" required>
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              
+
+            </select><br>
+
+            <label for="gotra-devak">Gotra & Devak:</label>
+            <input type="text" id="gotra-devak" name="gotra" required><br>
+
+            <label for="birth-place">Birth Place:</label>
+            <input type="text" id="birth-place" name="birthplace" required><br>
+
+            <label for="occupation">Occupation:</label>
+            <input type="text" id="occupation" name="occupation" required><br>
+
+            <label for="marital-status">Marital Status:</label>
+            <select id="marital-status" name="maritalstatus" required>
+                <option value="">Select</option>
+                <option value="single">Single</option>
+                <option value="divorced">Divorced</option>
+            </select><br>
+
+            <label for="height">Height:</label>
+            <input type="number" id="height" name="height" required><br>
+
+            <label for="occupation-city">Occupation (City):</label>
+            <input type="text" id="occupation-city" name="occupationcity" required><br>
+
+            <label for="complexion">Complexion:</label>
+            <input type="text" id="complexion" name="complexion" required><br>
+
+            <label for="mangal">Mangal:</label>
+            <input type="text" id="mangal" name="mangal" required><br>
+
+            <label for="horo-image">Horo Image (file type):</label>
+            <input type="file" id="horo-image" name="horoimage" accept="image/*" required><br>
+
+            <label for="resident-city">Resident City:</label>
+            <select id="resident-city" name="residentcity" required>
+                <option value="">Select</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Pune">Pune</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                <option value="Chalisgaon">Chalisgaon</option>
+
+            </select><br><br>
+
+            <button onclick="nextStep(1)">Next</button>
+        </div>
+
+         <!-- Step 2: Family Background -->
+        <div class="form-step" id="step2">
+            <h2>Step 2: Family Background</h2>
+            <label for="father-name">Father's Name:</label>
+            <input type="text" id="father-name" name="father-name" required><br>
+
+            <label for="mother-name">Mother's Name:</label>
+            <input type="text" id="mother-name" name="mother-name" required><br>
+
+            <label for="maternal-uncle">Maternal Uncle:</label>
+            <input type="text" id="maternal-uncle" name="maternal-uncle" required><br>
+
+            <label for="native-place">Native Place:</label>
+            <input type="text" id="native-place" name="native-place" required><br>
+
+            <label for="family-wealth">Family Wealth:</label>
+            <select id="city" name="city" required>
+                <option value="">Select</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Pune">Pune</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                <option value="Chalisgaon">Chalisgaon</option>
+
+            </select><br>
+
+            <label for="parents-residing-in">Parents Residing In (City):</label>
+             <select id="parents-residing-in" name="city" required>
+                <option value="">Select</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Pune">Pune</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                <option value="Chalisgaon">Chalisgaon</option>
+
+            </select><br><br>
+
+            <label for="sister">Sister:(Yes/No) </label>
+            <select id="sister" name="sister" required>
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select><br><br>
+
+            <button onclick="prevStep(2)">Previous</button>
+            <button onclick="nextStep(2)">Next</button>
+        </div>
+
+        <!-- Step 3: Expectations -->
+        <div class="form-step" id="step3">
+            <h2>Step 3: Expectations</h2>
+            <label for="age-difference">Age Difference Upto:(In Year) </label>
+            <input type="text" id="age-difference" name="ageDifference" required><br>
+
+            <label for="preferred-city">Preferred City:</label>
+            <select id="preferred-city" name="city" required>
+                <option value="">Select</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Pune">Pune</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                <option value="Chalisgaon">Chalisgaon</option>
+
+            </select><br><br>
+
+            <label for="expected-height">Expected Height:</label>
+            <input type="number" id="expected-height" name="expectedHeight" required><br>
+
+            <label for="education-dropdown">Education:</label>
+            <select id="education" name="education" required>
+                <option value="">Select</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Master Degree">Master Degree</option>
+                <option value="Graduation">Graduation</option>
+                <option value="12Th">12Th</option>
+                <option value="10Th">10Th</option>
+                <option value="Chalisgaon">Engineering</option>
+
+            </select><br>
+
+            <label for="occupations">Occupations:</label>
+            <input type="text" id="occupations" name="occupation" required><br>
+
+            <label for="parent-residing-in">Parent Residing In: (City)</label>
+            <input type="text" id="parent-residing-in" name="parentResidingIn" required><br><br>
+
+            <button onclick="prevStep(3)">Previous</button>
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+
+
+    <script src="js/registration.js"></script>
+</body>
+</html>

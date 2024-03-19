@@ -1,0 +1,43 @@
+
+.video-wrapper h4:hover{
+ color: red;
+ 
+}
+.video-wrapper h4:hover {
+    animation: colorChange 2s forwards; /* Use animation for color change with specified duration */
+}
+
+
+@keyframes colorChange {
+    0% {color: blue;}
+    50% {color: red;}
+    100% {color: green;}
+}
+.videos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .video-wrapper {
+    width: calc(33.33% - 10px); /* Adjust margin as needed */
+    margin-bottom: 20px; /* Adjust margin as needed */
+  }
+  
+  .video-wrapper iframe {
+    width: 100%;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media only screen and (max-width: 768px) {
+    .video-wrapper {
+      width: calc(50% - 10px); /* Adjust margin as needed */
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .video-wrapper {
+      width: 100%;
+    }
+  }
+  

@@ -1,0 +1,60 @@
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* CSS for styling the form */
+  .form-step {
+    display: none;
+    max-width: 500px; /* Limit the maximum width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 1px 2px 9px white;
+}
+
+.form-step h2{
+    text-align:center;
+}
+.Form_main{
+    background-color: rgb(247, 72, 72);
+    color: white;
+    
+}
+
+.form-step.active {
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    /* Adjust form layout for smaller screens */
+    .form-step {
+        padding: 10px;
+    }
+}

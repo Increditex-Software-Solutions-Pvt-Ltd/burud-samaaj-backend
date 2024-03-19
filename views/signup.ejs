@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06aa5e">
+
+    <meta name="msapplication-navbutton-color" content="#06aa5e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <title>burud samaj vadhu-var suchak samiti</title>
+
+    
+
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/signup.css">
+    
+    
+</head>
+<body>
+    <div class="" style="position: absolute; top: 0; right: 0; padding: 10px;margin-top: 10px; z-index: 99; border: 1px solid #ccc; box-shadow: 2px 2px 10px rgba(0, 0,0,0.9); color: red;">
+        <% if (messages.error && messages.error.length > 0) { %>
+            <% messages.error.forEach((item, index) => { %>
+                <div class="toast fade text-bg-danger show" id="alert-<%= index %>" role="alert">
+                    <div class="toast-header py-1">
+                        <strong class="me-auto"></strong>
+                        <button class="btn-close btn-sm" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body"><%- item %></div>
+                </div>
+            <% }); %>
+        <% } %>
+      
+        <% if (messages.success && messages.success.length > 0) { %>
+            <% messages.success.forEach((item, index) => { %>
+                <div class="toast fade  text-success show" style="z-index: 999;" id="alert-<%= index %>" role="alert">
+                    <div class="toast-header py-1">
+                        <strong class="me-auto"></strong>
+                        <button class="btn-close btn-sm" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body"><%- item %></div>
+                </div>
+            <% }); %>
+        <% } %>
+      </div>
+    <main class="card-container slideUp-animation">
+        
+        <div class="image-container">
+            <h1 class="company"> Welcome to Burud bandhan</h1>
+            <img src="./assets/images/signUp.svg" class="illustration" alt="">
+            <div>
+                <img src="./img/signup form bird.png" alt="" height="500">
+            </div>
+            
+        </div>
+        <form class="js-validate needs-validation" novalidate id="register-form" action="/signup"  method="post">
+           
+          
+            <div class="form-container slideRight-animation">
+    
+                <div class="input-container">
+                    <label for="f-name"></label>
+                    <input type="text" name="firstname" id="f-name" required>
+                    <span>
+                        First name
+                    </span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="l-name"></label>
+                    <input type="text" name="lastname" id="l-name" required>
+                    <span>
+                        Last name
+                    </span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="mail">
+                    </label>
+                    <input type="email" name="email" id="mail" required>
+                    <span>
+                        E-mail
+                    </span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="phone">
+                    </label>
+                    <input type="number" name="phone" id="phone" required>
+                    <span>Phone</span>
+                    <div class="error"></div>
+                </div>
+                <div class="input-container">
+                    <label for="l-name"></label>
+                    
+                    <input type="text" name="gender" id="gender" required>
+                    <span>
+                       gender
+                    </span>
+                    <div class="error"></div>
+                </div>
+                <div class="input-container">
+                    <label for="l-name"></label>
+                    <input type="text" name="city" id="city" required>
+                    <span>
+                        Select Resident City
+                    </span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="user-password"></label>
+                    <input type="password" name="password" id="user-password" class="user-password" required>
+                    <span>Password</span>
+                    <div class="error"></div>
+                </div>
+
+                <div class="input-container">
+                    <label for="user-password-confirm"></label>
+                    <input type="password" name="confirmpassword" id="user-password-confirm" class="password-confirmation" required>
+                    <span>
+                        Confirm Password
+                    </span>
+                    <div class="error"></div>
+                </div>
+                 <div class="input-container">
+                   
+                    <input type="date" name="dateofbirth" style="width: 15em; border: 1px solid gray;">
+                    <div class="error"></div>
+                 </div>
+      
+            <button style="height: 40px; width: 200px; background-color: rgb(225, 14, 14); border: none; color: white; border-radius: 6px;">click Here to generate otp</button>
+            <div class="d-grid gap-2">
+              <button type="submit" name="register" class="btn btn-dark btn-lg">Create an account</button>
+            </div>
+          </form>
+     
+    </main>
+    <section class="outro-overlay disabled slideUp-animation">
+        <h1 class="company">burud bhandhan <sup>&trade;</sup></h1>
+        <h1 class="outro-greeting">Thank's for signing up..!</h1>
+        <img src="./assets/images/shape.svg" alt="" class="shape">
+        <img src="./assets/images/signedUp.svg" alt="" id="signedUp-illustration" class="slideRight-animation">
+        <div class="author-link">
+            &copy;&nbsp;
+            <a href="https://www.0xabdulkhalid.ml/">0xabdulkhalid</a> |
+            <a href="https://www.github.com/0xabdulkhalid/basket-sign-up-form/">Source Code</a>
+        </div>
+    </section>
+
+
+    <script src="/js/signup.js" defer></script>
+</body>
+</html>
