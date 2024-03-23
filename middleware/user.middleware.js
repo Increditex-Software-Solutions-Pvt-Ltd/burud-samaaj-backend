@@ -19,12 +19,12 @@ const userActions={
     },
     checkLogged:async(req,res,next)=>{
         try {
-            const id = req.params.id;
+            // const id = req.params.id;
 
             const token = req.cookies.userJwt;
         
             if(token){
-                res.cookie('profileId', id, { httpOnly: true, secure: true });
+                // res.cookie('profileId', id, { httpOnly: true, secure: true });
                 next();
             }
             else{

@@ -208,7 +208,7 @@ async function displayProfiles(pageNumber, category) {
                                           <img src="https://static.toiimg.com/imagenext/toiblogs/photo/readersblog/wp-content/uploads/2020/04/Indian-Bride-Feature-Image.jpg"
                                               alt="Lights" style="width:100%" class="img rounded-5">
                                           <div class="text-center">
-                                              <h4 class=" p-2">${profile.fullname}</h4>
+                                              <h5 class=" p-2">${profile.fullname}</h5>
                                               <p> <button class="btn btn-danger">${profile.city}</button>
                                                   <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
                                                       data-bs-target="#staticBackdrop${profile.id}">

@@ -76,8 +76,22 @@ const userController = {
             res.status(500).send('Internal Server Error');
         }
     },
-    getdetailprofile: (req, res) => {
-        return res.render('detailprofile');
+    getdetailprofile: async(req, res) => {
+        try {
+            const profileId = req.params.id;
+
+            const profile = await Userprofile.findByPk(profileId);
+          
+            if(!profile){
+                return res.status(404).send('Profile not found');
+            }
+            else{
+                return res.render('detailprofile',{profile});
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+            res.status(500).send('Internal Server Error');
+        }
     },
   
     getserach: async(req, res) => {

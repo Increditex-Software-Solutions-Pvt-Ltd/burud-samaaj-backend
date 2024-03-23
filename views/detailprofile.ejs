@@ -57,13 +57,13 @@
             <div class="p-3 text-center ">
 
                 <div class="p-3 text-center ">
-                    <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;">profile Details</h1>
+                    <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;" class="display-5">profile Details</h1>
                 </div>
                 <div>
-                    <div class="row m-0  ">
+                    <div class="row m-0  d-flex align-items-center justify-content-center">
                         <div class="col-md-6">
                             <div class="row m-0 ">
-                                <div class="col-md-6 text-center d-flex justify-content-center ">
+                                <div class="col-md-6 ">
                                     <div class=" main_img">
                                         <img src="https://i.pinimg.com/550x/37/83/3c/37833cb606e529cbed1088c7824cb4e5.jpg"
                                             class="rounded-circle" id="myImg" alt="Cinque Terre" width="220"
@@ -78,15 +78,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mt-5 text-center">
-                                        <h1>Sarita Bhole</h1>
+                                        <h3 class="text-dark fs-5"><%= profile.fullname %></h3>
                                         <p class="db">DOB:30/08/2002</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 ">
-                            <div class="text-center mt-5">
-                                <h1>City:Nashik</h1>
+                            <div class="text-center">
+                                <h3>City:<%= profile.city %></h3>
                             </div>
                         </div>
                     </div>
