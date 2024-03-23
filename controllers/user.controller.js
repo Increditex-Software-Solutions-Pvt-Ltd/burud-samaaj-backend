@@ -11,27 +11,27 @@ const userController = {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
-          
+
             if (token) {
                 try {
-                  
+
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     console.log(decoded);
                     const userId = decoded.userId;
-                    
-                    
+
+
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({where:{userId}})        
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
-                     
-                        return res.render('index', { user,userprofile });
+
+                        return res.render('index', { user, userprofile });
                     }
                 } catch (err) {
-                  
+
                     console.error('Token verification error:', err);
                 }
             }
-      
+
             return res.render('index', { user: null }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
@@ -45,31 +45,31 @@ const userController = {
     getloginform: (req, res) => {
         return res.render('login');
     },
-    getprofilepage: async(req, res) => {
+    getprofilepage: async (req, res) => {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
-          
+
             if (token) {
                 try {
-                  
+
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     console.log(decoded);
                     const userId = decoded.userId;
-                    
+
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({where:{userId}}) 
-                    
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
+
                     if (user) {
-                     
-                        return res.render('profile', { user,userprofile });
+
+                        return res.render('profile', { user, userprofile });
                     }
                 } catch (err) {
-                  
+
                     console.error('Token verification error:', err);
                 }
             }
-      
+
             return res.render('profile', { user: null }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
@@ -79,125 +79,125 @@ const userController = {
     getdetailprofile: (req, res) => {
         return res.render('detailprofile');
     },
-  
-    getserach: async(req, res) => {
+
+    getserach: async (req, res) => {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
-          
+
             if (token) {
                 try {
-                  
+
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     console.log(decoded);
                     const userId = decoded.userId;
-                    
-                    
+
+
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
-                     
-                        return res.render('search', { user,userprofile });
+
+                        return res.render('search', { user, userprofile });
                     }
                 } catch (err) {
-                  
+
                     console.error('Token verification error:', err);
                 }
             }
-      
+
             return res.render('search', { user: null }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
         }
     },
-    getsuccessStories: async(req, res) => {
+    getsuccessStories: async (req, res) => {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
-          
+
             if (token) {
                 try {
-                  
+
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     console.log(decoded);
                     const userId = decoded.userId;
-                    
-                    
+
+
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
-                     
-                        return res.render('success-stories', { user,userprofile });
+
+                        return res.render('success-stories', { user, userprofile });
                     }
                 } catch (err) {
-                  
+
                     console.error('Token verification error:', err);
                 }
             }
-      
+
             return res.render('success-stories', { user: null }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
         }
     },
-    getsuccessVideos: async(req, res) => {
+    getsuccessVideos: async (req, res) => {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
-          
+
             if (token) {
                 try {
-                  
+
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     console.log(decoded);
                     const userId = decoded.userId;
-                    
-                    
+
+
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
-                     
-                        return res.render('success-videos', { user,userprofile });
+
+                        return res.render('success-videos', { user, userprofile });
                     }
                 } catch (err) {
-                  
+
                     console.error('Token verification error:', err);
                 }
             }
-      
+
             return res.render('success-videos', { user: null }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
         }
     },
-    getaboutpage: async(req, res) => {
+    getaboutpage: async (req, res) => {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
-          
+
             if (token) {
                 try {
-                  
+
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     console.log(decoded);
                     const userId = decoded.userId;
-                    
-                    
+
+
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
-                     
-                        return res.render('about', { user,userprofile });
+
+                        return res.render('about', { user, userprofile });
                     }
                 } catch (err) {
-                  
+
                     console.error('Token verification error:', err);
                 }
             }
-      
+
             return res.render('about', { user: null }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
@@ -258,43 +258,43 @@ const userController = {
     login: async (req, res) => {
         try {
             let credentials = req.body;
-    
+
             // Taking user info from DB
             let userInDb = await User.findOne({ where: { email: credentials.email } });
-    
+
             // Checking whether the user exists in the database
             if (!userInDb) {
                 // Redirect to login page with an error message
                 req.flash("error", "User not found");
                 return res.redirect('/login');
             }
-    
-            
+
+
             bcrypt.compare(credentials.password, userInDb.password, function (err, result) {
                 if (result) {
-                 
+
                     let token = jwt.sign({ userId: userInDb.id }, `${process.env.user_secret_key}`);
-                     
+
                     res.cookie('userJwt', token, { httpOnly: true, secure: true });
                     res.cookie('userId', userInDb.id, { httpOnly: true, secure: true });
-                   
+
                     return res.redirect('/');
                 } else {
-                  
+
                     req.flash("error", "Login failed");
                     return res.redirect('/login');
                 }
             });
         } catch (error) {
             // Redirect to login page with an error message
-           
+
             return res.redirect('/login');
         }
     },
-    userlogout:(req,res)=>{
-        res.clearCookie('userJwt'); 
+    userlogout: (req, res) => {
+        res.clearCookie('userJwt');
         res.clearCookie('userId');
-        res.redirect('/'); 
+        res.redirect('/');
     }
 }
 
