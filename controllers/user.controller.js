@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const { Userprofile } = require('../models/userprofile.model');
+const { use } = require('bcrypt/promises');
 
 const userController = {
     gethome: async (req, res) => {
@@ -16,7 +17,6 @@ const userController = {
                 try {
 
                     const decoded = jwt.verify(token, process.env.user_secret_key);
-                    console.log(decoded);
                     const userId = decoded.userId;
 
 
@@ -54,7 +54,6 @@ const userController = {
                 try {
 
                     const decoded = jwt.verify(token, process.env.user_secret_key);
-                    console.log(decoded);
                     const userId = decoded.userId;
 
                     const user = await User.findOne({ where: { id: userId } });
@@ -76,17 +75,17 @@ const userController = {
             res.status(500).send('Internal Server Error');
         }
     },
-    getdetailprofile: async(req, res) => {
+    getdetailprofile: async (req, res) => {
         try {
             const profileId = req.params.id;
 
             const profile = await Userprofile.findByPk(profileId);
-          
-            if(!profile){
+
+            if (!profile) {
                 return res.status(404).send('Profile not found');
             }
-            else{
-                return res.render('detailprofile',{profile});
+            else {
+                return res.render('detailprofile', { profile });
             }
         } catch (error) {
             console.error('Error fetching profile:', error);
@@ -103,7 +102,6 @@ const userController = {
                 try {
 
                     const decoded = jwt.verify(token, process.env.user_secret_key);
-                    console.log(decoded);
                     const userId = decoded.userId;
 
 
@@ -134,7 +132,6 @@ const userController = {
                 try {
 
                     const decoded = jwt.verify(token, process.env.user_secret_key);
-                    console.log(decoded);
                     const userId = decoded.userId;
 
 
@@ -165,7 +162,6 @@ const userController = {
                 try {
 
                     const decoded = jwt.verify(token, process.env.user_secret_key);
-                    console.log(decoded);
                     const userId = decoded.userId;
 
 
@@ -196,7 +192,6 @@ const userController = {
                 try {
 
                     const decoded = jwt.verify(token, process.env.user_secret_key);
-                    console.log(decoded);
                     const userId = decoded.userId;
 
 
@@ -309,6 +304,36 @@ const userController = {
         res.clearCookie('userJwt');
         res.clearCookie('userId');
         res.redirect('/');
+    },
+    sendRequest: async (req, res) => {
+        const userId = req.cookies.userId;
+        const profileId = req.cookies.profileId
+
+        const sender = await User.findByPk(userId)
+        const receiver = await User.findByPk(profileId)
+
+
+
+        if (receiver.friendRequests['received'] === undefined) {
+            if (receiver.friendLists['list'] === undefined) {
+                let sendReq = {
+                    ...receiver.friendRequests,
+                    received: (receiver.friendRequests.received || []).push(userId)
+                }
+                console.log(sendReq, "req")
+                let updatedReceiver = {
+                    ...receiver,
+                    friendRequests: sendReq
+                }
+                console.log(updatedReceiver, "Updated")
+            }
+
+        }
+
+        // let updatingReceiver = User.findAndUpdateById
+
+
+        res.send({ "message": "Request Sent Successfully" })
     }
 }
 

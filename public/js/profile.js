@@ -1,180 +1,25 @@
-
-
-
-// const backendData = [{
-//   id: '01',
-//   name: "Nishant",
-//   city: "Nashik",
-//   occupation: "Software developer",
-//   education: "BE",
-//   dob: "8-10-2000",
-//   profilePic: "www.image.com",
-//   groomOrBride: "groom" // Added groomOrBride key
-// },
-// {
-//   id: "02",
-//   name: "Rohan",
-//   city: "Mumbai",
-//   occupation: "Data Scientist",
-//   education: "MS",
-//   dob: "12-05-1995",
-//   profilePic: "www.image2.com",
-//   groomOrBride: "groom" // Added groomOrBride key
-// },
-// {
-//   id: "03",
-//   name: "Priya",
-//   city: "Pune",
-//   occupation: "Doctor",
-//   education: "MBBS",
-//   dob: "04-08-1988",
-//   profilePic: "www.image3.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: "04",
-//   name: "Amit",
-//   city: "Delhi",
-//   occupation: "Lawyer",
-//   education: "LLB",
-//   dob: "20-11-1979",
-//   profilePic: "www.image4.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: "05",
-//   name: "suresh",
-//   city: "kolhapur",
-//   occupation: "Engineer",
-//   education: "B.Tech",
-//   dob: "15-03-1990",
-//   profilePic: "www.image5.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: "06",
-//   name: "Suresh",
-//   city: "Kolhapur",
-//   occupation: "Teacher",
-//   education: "B.Ed",
-//   dob: "28-07-1985",
-//   profilePic: "www.image6.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: '07',
-//   name: "Nishant",
-//   city: "Nashik",
-//   occupation: "Software developer",
-//   education: "BE",
-//   dob: "8-10-2000",
-//   profilePic: "www.image.com",
-//   groomOrBride: "groom" // Added groomOrBride key
-// },
-// {
-//   id: "08",
-//   name: "Rohan",
-//   city: "Mumbai",
-//   occupation: "Data Scientist",
-//   education: "MS",
-//   dob: "12-05-1995",
-//   profilePic: "www.image2.com",
-//   groomOrBride: "groom" // Added groomOrBride key
-// },
-// {
-//   id: "09",
-//   name: "Priya",
-//   city: "Pune",
-//   occupation: "Doctor",
-//   education: "MBBS",
-//   dob: "04-08-1988",
-//   profilePic: "www.image3.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: "10",
-//   name: "Amit",
-//   city: "Delhi",
-//   occupation: "Lawyer",
-//   education: "LLB",
-//   dob: "20-11-1979",
-//   profilePic: "www.image4.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: "11",
-//   name: "suresh",
-//   city: "kolhapur",
-//   occupation: "Engineer",
-//   education: "B.Tech",
-//   dob: "15-03-1990",
-//   profilePic: "www.image5.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: "12",
-//   name: "Amey",
-//   city: "Kolhapur",
-//   occupation: "Teacher",
-//   education: "B.Ed",
-//   dob: "28-07-1985",
-//   profilePic: "www.image6.com",
-//   groomOrBride: "bride" // Added groomOrBride key
-// },
-// {
-//   id: "13",
-//   name: "Amit",
-//   city: "Delhi",
-//   occupation: "Lawyer",
-//   education: "LLB",
-//   dob: "20-11-1979",
-//   profilePic: "www.image4.com",
-//   groomOrBride: "disabled" // Added groomOrBride key
-// },
-// {
-//   id: "14",
-//   name: "suresh",
-//   city: "kolhapur",
-//   occupation: "Engineer",
-//   education: "B.Tech",
-//   dob: "15-03-1990",
-//   profilePic: "www.image5.com",
-//   groomOrBride: "disabled" // Added groomOrBride key
-// },
-// {
-//   id: "15",
-//   name: "Amey",
-//   city: "Kolhapur",
-//   occupation: "Teacher",
-//   education: "B.Ed",
-//   dob: "28-07-1985",
-//   profilePic: "www.image6.com",
-//   groomOrBride: "disabled" // Added groomOrBride key
-// }
-// ];
-
 // const backendData = getDataFromBackend();
 
-async function getDataFromBackend(){
+async function getDataFromBackend() {
   let profiles
   await $.ajax({
     type: 'GET',
     url: '/allprofiles', // Update the URL with your server endpoint
     success: function (response) {
-        // Handle success response
-        if (response.profiles) {
-           profiles =  [...response.profiles];
-        }
-        else {
-            profiles = [];
-        }
+      // Handle success response
+      if (response.profiles) {
+        profiles = [...response.profiles];
+      }
+      else {
+        profiles = [];
+      }
     },
     error: function (xhr, status, error) {
-        // Handle error
-        console.error(error);
+      // Handle error
+      console.error(error);
     }
-});
-return profiles
+  });
+  return profiles
 }
 
 const pageSize = 6;
@@ -199,7 +44,7 @@ async function displayProfiles(pageNumber, category) {
   const profileContainer = document.getElementById('profileContainer');
   profileContainer.innerHTML = '';
 
-  if(profiles.length){
+  if (profiles.length) {
     profiles.forEach(profile => {
       let user = `
                  <div class="col-md-4 mt-3">
@@ -277,11 +122,11 @@ async function displayProfiles(pageNumber, category) {
       profileContainer.innerHTML += user
     });
   }
- else{
-  profileContainer.innerHTML+=`
+  else {
+    profileContainer.innerHTML += `
   <h2 class='text-center mt-3'>No Data to Display</h2>
   `
- }
+  }
 
   displayPagination(pageNumber);
 }
@@ -289,7 +134,7 @@ async function displayProfiles(pageNumber, category) {
 // Function to display pagination buttons
 async function displayPagination() {
 
-  let backendData = await getFilteredData().then((res)=> {
+  let backendData = await getFilteredData().then((res) => {
     return res
   })
   const totalPages = Math.ceil(backendData / pageSize);
@@ -372,24 +217,24 @@ displayProfiles(1, "all");
 
 async function addProfile() {
   await $.ajax({
-      type: 'GET',
-      url: '/checkprofile', // Update the URL with your server endpoint
-      success: function (response) {
-          // Handle success response
-          if (response.message === 'User Profile Found') {
-              $('#basicInfoAddModal').modal('hide');
-              console.log("send request");
-          }
-          else {
-              $('#basicInfo-form').trigger('reset');
-              $('#basicInfoAddModal').modal('show');
-
-          }
-      },
-      error: function (xhr, status, error) {
-          // Handle error
-          console.error(error);
+    type: 'GET',
+    url: '/checkprofile', // Update the URL with your server endpoint
+    success: function (response) {
+      // Handle success response
+      if (response.message === 'User Profile Found') {
+        $('#basicInfoAddModal').modal('hide');
+        console.log("send request");
       }
+      else {
+        $('#basicInfo-form').trigger('reset');
+        $('#basicInfoAddModal').modal('show');
+
+      }
+    },
+    error: function (xhr, status, error) {
+      // Handle error
+      console.error(error);
+    }
   });
 
 }
@@ -480,28 +325,28 @@ function updateNextbuttonstate() {
 
 
   if (
-      profilefor &&
-      fullname &&
-      city &&
-      dob &&
-      income &&
-      education &&
-      bloodgroup &&
-      spectacles &&
-      gotradevak &&
-      birthplace &&
-      occupation &&
-      maritalstatus &&
-      height &&
-      occupationcity &&
-      complexion &&
-      mangal &&
-      horoimage &&
-      residentcity
+    profilefor &&
+    fullname &&
+    city &&
+    dob &&
+    income &&
+    education &&
+    bloodgroup &&
+    spectacles &&
+    gotradevak &&
+    birthplace &&
+    occupation &&
+    maritalstatus &&
+    height &&
+    occupationcity &&
+    complexion &&
+    mangal &&
+    horoimage &&
+    residentcity
   ) {
-      $('#proceedToSecondModal').prop('disabled', false);
+    $('#proceedToSecondModal').prop('disabled', false);
   } else {
-      $('#proceedToSecondModal').prop('disabled', true);
+    $('#proceedToSecondModal').prop('disabled', true);
   }
 }
 
@@ -524,42 +369,42 @@ function addFamilyBackground() {
 function submitFormData() {
 
   const basicInfo = {
-      profilefor: document.getElementById('profileforinput').value,
-      fullname: document.getElementById('fullnameinput').value,
-      city: document.getElementById("cityinput").value,
-      dateofbirth: document.getElementById("dobinput").value,
-      income: document.getElementById("incomeinput").value,
-      education: document.getElementById("educationinput").value,
-      bloodgroup: document.getElementById("bloodgroupinput").value,
-      spectacles: document.getElementById("spectaclesinput").value,
-      gotra: document.getElementById("gotrainput").value,
-      birthplace: document.getElementById("birthplaceinput").value,
-      occupation: document.getElementById("occupationinput").value,
-      complexion: document.getElementById("complexioninput").value,
-      maritalstatus: document.getElementById("maritalstatusinput").value,
-      height: document.getElementById("heightinput").value,
-      occupationcity: document.getElementById("occupationcityinput").value,
-      mangal: document.getElementById("mangalinput").value,
-      horoimage: document.getElementById("horoimageinput").value,
-      residentcity: document.getElementById("residentcityinput").value,
+    profilefor: document.getElementById('profileforinput').value,
+    fullname: document.getElementById('fullnameinput').value,
+    city: document.getElementById("cityinput").value,
+    dateofbirth: document.getElementById("dobinput").value,
+    income: document.getElementById("incomeinput").value,
+    education: document.getElementById("educationinput").value,
+    bloodgroup: document.getElementById("bloodgroupinput").value,
+    spectacles: document.getElementById("spectaclesinput").value,
+    gotra: document.getElementById("gotrainput").value,
+    birthplace: document.getElementById("birthplaceinput").value,
+    occupation: document.getElementById("occupationinput").value,
+    complexion: document.getElementById("complexioninput").value,
+    maritalstatus: document.getElementById("maritalstatusinput").value,
+    height: document.getElementById("heightinput").value,
+    occupationcity: document.getElementById("occupationcityinput").value,
+    mangal: document.getElementById("mangalinput").value,
+    horoimage: document.getElementById("horoimageinput").value,
+    residentcity: document.getElementById("residentcityinput").value,
   };
 
   // Gather data from the second modal
   const familyInfo = {
-      fathername: document.getElementById('fathername').value,
-      mothername: document.getElementById('mothername').value,
-      maternaluncle: document.getElementById('maternaluncle').value,
-      nativeplace: document.getElementById('nativeplace').value,
-      citywealth: document.getElementById('citywealth').value,
-      parentcity: document.getElementById('parentcity').value,
-      sister: document.getElementById('sister').value,
-      agedifference: document.getElementById('agedifference').value,
-      preferredcity: document.getElementById('preferredcity').value,
-      expectedheight: document.getElementById('expectedheight').value,
-      herhiseducation: document.getElementById('herhiseducation').value,
-      herhisoccupation: document.getElementById('herhisoccupation').value,
-      herhisparentresidence: document.getElementById('herhisparentresidence').value,
-      // Add other fields as needed
+    fathername: document.getElementById('fathername').value,
+    mothername: document.getElementById('mothername').value,
+    maternaluncle: document.getElementById('maternaluncle').value,
+    nativeplace: document.getElementById('nativeplace').value,
+    citywealth: document.getElementById('citywealth').value,
+    parentcity: document.getElementById('parentcity').value,
+    sister: document.getElementById('sister').value,
+    agedifference: document.getElementById('agedifference').value,
+    preferredcity: document.getElementById('preferredcity').value,
+    expectedheight: document.getElementById('expectedheight').value,
+    herhiseducation: document.getElementById('herhiseducation').value,
+    herhisoccupation: document.getElementById('herhisoccupation').value,
+    herhisparentresidence: document.getElementById('herhisparentresidence').value,
+    // Add other fields as needed
   };
 
   // Combine data from both modals
@@ -567,20 +412,19 @@ function submitFormData() {
 
   // Send data to the server using AJAX
   $.ajax({
-      type: 'POST',
-      url: '/addprofile', // Update the URL with your server endpoint
-      data: formData,
-      success: function (response) {
-          // Handle success response
-          console.log(response);
-          $('#basicInfoAddModal').modal('hide');
-          $('#familyinfoAddModal').modal('hide');
-          $('.toast').toast('show');
-      },
-      error: function (xhr, status, error) {
-          // Handle error
-          console.error(error);
-      }
+    type: 'POST',
+    url: '/addprofile', // Update the URL with your server endpoint
+    data: formData,
+    success: function (response) {
+      // Handle success response
+      $('#basicInfoAddModal').modal('hide');
+      $('#familyinfoAddModal').modal('hide');
+      $('.toast').toast('show');
+    },
+    error: function (xhr, status, error) {
+      // Handle error
+      console.error(error);
+    }
   });
 }
 

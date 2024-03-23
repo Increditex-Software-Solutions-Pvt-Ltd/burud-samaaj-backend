@@ -200,7 +200,6 @@ function submitFormData() {
         data: formData,
         success: function (response) {
             // Handle success response
-            console.log(response);
             $('#basicInfoAddModal').modal('hide');
             $('#familyinfoAddModal').modal('hide');
             $('.toast').toast('show');

@@ -73,7 +73,6 @@ async function saveUserProfile(req, res) {
             herhisparentresidence,
             userId
         });
-        console.log(userProfile)
         // Send a success response
         res.status(201).json({ message: 'User profile saved successfully', data: userProfile });
     } catch (error) {
@@ -86,31 +85,32 @@ async function saveUserProfile(req, res) {
 const checkProfile = async (req, res) => {
     try {
         let userId = req.cookies.userId;
-        let findProfile = await Userprofile.findOne({where:{userId}})
-        if(findProfile){
-            res.send({ "message": 'User Profile Found', userId,findProfile })
-            console.log(userId,findProfile);
+        let findProfile = await Userprofile.findOne({ where: { userId } })
+        if (findProfile) {
+            res.send({ "message": 'User Profile Found', userId, findProfile })
         }
-       else{
-        res.send({ "message": 'User Profile Not Found' })
-       }
+        else {
+            res.send({ "message": 'User Profile Not Found' })
+        }
     } catch (error) {
         console.error('Error finding user profile:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }
 
-const getAllProfiles=async(req,res)=>{
-   try {
-      const profiles = await Userprofile.findAll();
-      res.send({profiles});
-   } catch (error) {
-    console.error('Error getting user profiles:', error);
-    res.status(500).json({ message: 'Internal server error' });
-   }
+const getAllProfiles = async (req, res) => {
+    try {
+        const userId = req.cookies.userId
+        const profiles = await Userprofile.findAll();
+        const filteredData = profiles.filter((profile) => profile.userId != userId)
+        res.send({ profiles: filteredData });
+    } catch (error) {
+        console.error('Error getting user profiles:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 }
 
-const getSingleProfile=async(req,res)=>{
+const getSingleProfile = async (req, res) => {
     const id = req.cookies.profileId
     try {
         const profile = await Userprofile.findOne({
@@ -120,7 +120,7 @@ const getSingleProfile=async(req,res)=>{
         });
 
         if (profile) {
-            return res.status(201).send({profile})
+            return res.status(201).send({ profile })
         } else {
             return res.status(404).json({ error: 'profile not found' });
         }
@@ -130,4 +130,4 @@ const getSingleProfile=async(req,res)=>{
     }
 }
 
-module.exports = { saveUserProfile, checkProfile,getAllProfiles,getSingleProfile };
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile };
