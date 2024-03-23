@@ -74,25 +74,61 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="/" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="search.html" class="nav-item nav-link">search</a>
+
+                <a href="/about" class="nav-item nav-link">About</a>
+                <a href=" /search" class="nav-item nav-link">search</a>
 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Stories</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0" style="border-top: 1px solid blue;">
-                        <a href="suc_s.html" class="dropdown-item">Sucess Stories</a>
-                        <a href="suc_v.html" class="dropdown-item">Success vidios</a>
+                        <a href="/success-stories" class="dropdown-item">Sucess Stories</a>
+                        <a href="/success-videos" class="dropdown-item">Success videos</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="/profile" class="nav-item nav-link">profile</a>
                 </div>
-                <a href="about.html" class="nav-item nav-link">Resources</a>
-                <a href="/login" class="nav-item nav-link">Login</a>
+             
+                <% if (user) { %>
+                    <a href="/login" class="nav-item nav-link" style="display: none;">Login</a>
+                    <% } else { %>
+                        <a href="/login" class="nav-item nav-link">Login</a>
+                        <% } %>
             </div>
-            <a href="/signup" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">Register here<i
-                    class="fa fa-arrow-right ms-3"></i></a>
+
+
+            <div class="profile">
+                <% if (user) { %>
+                    <div class="dropdown d-none d-lg-block">
+                        <a href="#"
+                            class="btn btn-danger rounded-0 py-4 px-lg-5 d-flex align-items-center dropdown-toggle"
+                            data-bs-toggle="dropdown">
+                            <span class="me-2">
+                                <img src="/img/logo/avatar.svg" width="25px" class="img-fluid" alt="">
+                            </span>
+                            <%=user.firstname%>
+
+                        </a>
+                        <ul class="dropdown-menu shadow">
+                       
+                            <% if(userprofile){ %>
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i class="bi bi-person-circle"></i> Profile</a></li>
+                            <%} else{%>
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i class="bi bi-person-circle"></i> Create profile</a></li>
+                            <%}%>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <% } else { %>
+                        <a href="/signup" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">Register
+                            here<i class="fa fa-arrow-right ms-3"></i></a>
+                        <% } %>
+            </div>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -347,58 +383,60 @@
                                 <tr>
                                     <td>
                                         <button class="btn  btn-outline-danger " btn-md data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdrop" style="outline: none;">View profile</button>
+                                            data-bs-target="#staticBackdrop" style="outline: none;">View
+                                            profile</button>
                                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-scrollable">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Details</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div>
-                                                        <img src="https://i.pinimg.com/736x/c3/21/b4/c321b403c05ef0a241cb08f331868d87.jpg"
-                                                            alt="" style="height: 200px; width: 200px;">
-                                                        <div class="mt-2">
-                                                            <h6 class="text-center">Personal Information</h6>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <td>Name:</td>
-                                                                    <td>Priya</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Date Of Birth:</td>
-                                                                    <td>27/05/1998</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Occupation:</td>
-                                                                    <td>Self Buiseness(Agree Related)</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Education:</td>
-                                                                    <td>MA (Master In Arts)</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile
+                                                            Details</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                     </div>
-        
-        
-        
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-danger">
-                                                        <a href="profile_de.html" style="text-decoration: none;"
-                                                            class="text-white">Send Interest</a>
-                                                    </button>
+                                                    <div class="modal-body">
+                                                        <div>
+                                                            <img src="https://i.pinimg.com/736x/c3/21/b4/c321b403c05ef0a241cb08f331868d87.jpg"
+                                                                alt="" style="height: 200px; width: 200px;">
+                                                            <div class="mt-2">
+                                                                <h6 class="text-center">Personal Information</h6>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <td>Name:</td>
+                                                                        <td>Priya</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Date Of Birth:</td>
+                                                                        <td>27/05/1998</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Occupation:</td>
+                                                                        <td>Self Buiseness(Agree Related)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Education:</td>
+                                                                        <td>MA (Master In Arts)</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-danger">
+                                                            <a href="profile_de.html" style="text-decoration: none;"
+                                                                class="text-white">Send Interest</a>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </td>
                                 </tr>
                             </table>
@@ -753,117 +791,135 @@
     <!--FAQs strat here -->
     <h1 class="text-center fs-3 mt-5">FAQs</h1>
     <div class="d-flex justify-content-center">
-    <div class="wrapper ">
-        <div class="container faq wow fadeInUp">
-            <div class="question">
-                "आकर्षक मंगळसूत्र भेट" हि ऑफर काय आहे?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                   
-                    आमच्या संस्थेतर्फे जी काही लग्न जुळली आहेत किंवा यापुढेही जुळतील अशा प्रत्येक जोडप्यास लग्नठरलें.कॉम तर्फे आकर्षक "सोन्याचे मंगळसूत्र" भेट म्हणून देण्यात येते<br><br>
+        <div class="wrapper ">
+            <div class="container faq wow fadeInUp">
+                <div class="question">
+                    "आकर्षक मंगळसूत्र भेट" हि ऑफर काय आहे?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
 
-                   
+                        आमच्या संस्थेतर्फे जी काही लग्न जुळली आहेत किंवा यापुढेही जुळतील अशा प्रत्येक जोडप्यास
+                        लग्नठरलें.कॉम तर्फे आकर्षक "सोन्याचे मंगळसूत्र" भेट म्हणून देण्यात येते<br><br>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container faq wow fadeInUp">
-            <div class="question">
-                मराठी कास्ट मधील लग्नासाठी स्थळे शोधण्याकरता सर्वात उत्तम आणि विश्वासू वेबसाइट कोणती आहे?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                    तुम्हाला इंटरनेट वर भरपूर पर्याय उपलब्ध आहेत. पण, Burud-bandan हि महाराष्ट्राची एक उत्तम व विश्वासू विवाह संस्था आहे. या संस्थेमध्ये १०,००० पेक्षा अधिक प्रोफाईल्स उपलब्ध असून या विवाह संस्थेद्वारे भरपूर लग्न जुळली आहेत.<br><br>
+            <div class="container faq wow fadeInUp">
+                <div class="question">
+                    मराठी कास्ट मधील लग्नासाठी स्थळे शोधण्याकरता सर्वात उत्तम आणि विश्वासू वेबसाइट कोणती आहे?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
+                        तुम्हाला इंटरनेट वर भरपूर पर्याय उपलब्ध आहेत. पण, Burud-bandan हि महाराष्ट्राची एक उत्तम व
+                        विश्वासू विवाह संस्था आहे. या संस्थेमध्ये १०,००० पेक्षा अधिक प्रोफाईल्स उपलब्ध असून या विवाह
+                        संस्थेद्वारे भरपूर लग्न जुळली आहेत.<br><br>
 
-                   
+
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container faq wow fadeInUp " data-wow-delay="0.1s">
-            <div class="question">
-                आपल्या येथे सर्वजातीय मराठी स्थळे उपलब्ध आहेत का?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                 
-                    हो. आमच्या येथे सर्वजातीय मराठी स्थळे उपलब्ध आहेत.<br><br>
+            <div class="container faq wow fadeInUp " data-wow-delay="0.1s">
+                <div class="question">
+                    आपल्या येथे सर्वजातीय मराठी स्थळे उपलब्ध आहेत का?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
+
+                        हो. आमच्या येथे सर्वजातीय मराठी स्थळे उपलब्ध आहेत.<br><br>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div  class="container faq wow fadeInUp " data-wow-delay="0.2s">
-            <div class="question">
-                burud-bandhen वेबसाइट/अँप चा वापर कसा करावा?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                  
-                    लग्नठरले.कॉम वेबसाइट वापरण्यासाठी अथवा नावनोंदणी करण्यासाठी आपण www.lagnatharle.com या संकेतस्थळावर (वेबसाइट वर) जाऊन भेट देऊ शकता. तसेच Googel Play Store वर जाऊन आमचा अँड्रॉइड अँप सुद्धा इन्स्टॉल करू शकता. 
+            <div class="container faq wow fadeInUp " data-wow-delay="0.2s">
+                <div class="question">
+                    burud-bandhen वेबसाइट/अँप चा वापर कसा करावा?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
 
+                        लग्नठरले.कॉम वेबसाइट वापरण्यासाठी अथवा नावनोंदणी करण्यासाठी आपण www.lagnatharle.com या
+                        संकेतस्थळावर (वेबसाइट वर) जाऊन भेट देऊ शकता. तसेच Googel Play Store वर जाऊन आमचा अँड्रॉइड अँप
+                        सुद्धा इन्स्टॉल करू शकता.
+
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div  class="container faq wow fadeInUp " data-wow-delay="0.3s">
-            <div class="question">
-                प्रोफाईल्स शोधण्याकरता "Simple Search Form" चा वापर कसा करावा?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                  
-                    वेबसाइट अथवा अँप वर तुम्हाला "Search" मेनू मध्ये "Simple Search Form" हा पर्याय दिसेल. त्यावर क्लिक करून तेथे दिलेल्या फॉर्म च्या आधारे तुम्ही आपल्या पसंती प्रमाणे प्रोफाईल्स पाहू शकता.<br><br>
+            <div class="container faq wow fadeInUp " data-wow-delay="0.3s">
+                <div class="question">
+                    प्रोफाईल्स शोधण्याकरता "Simple Search Form" चा वापर कसा करावा?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
 
-                    
+                        वेबसाइट अथवा अँप वर तुम्हाला "Search" मेनू मध्ये "Simple Search Form" हा पर्याय दिसेल. त्यावर
+                        क्लिक करून तेथे दिलेल्या फॉर्म च्या आधारे तुम्ही आपल्या पसंती प्रमाणे प्रोफाईल्स पाहू
+                        शकता.<br><br>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div  class="container faq wow fadeInUp " data-wow-delay="0.4s">
-            <div class="question">
-                 burud-bandhen वर नावनोंदणी कशी करावी?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                  
-                    लग्नठरले.कॉम वेबसाइट अथवा अँप वर गेल्यावर तुम्हाला "Register" चा पर्याय दिसेल. वेबसाइट वर हा पर्याय उजव्या बाजूस वरील कोपऱ्यात उपलब्ध आहे. तर अँप वर तुम्हाला हा पर्याय तुम्हाला स्क्रीन खाली पाहता येईल. हा पर्याय निवडल्यास तुमच्या समोर एक फॉर्म ओपन होईल. त्या फॉर्म मध्ये विचारलेली संपूर्ण माहिती भरून, आपला मोबाइल नंबर प्रविष्ट करून "Generate OTP" वर क्लिक करावे. तुम्ही प्रविष्ट केलेल्या मोबाइल नंबर वर OTP आल्यानंतर सदर OTP "Enter OTP" या बॉक्स मध्ये नमूद करून "Verify OTP" वर क्लिक करावे व नंतर "SUBMIT" बटण क्लिक करावे. अशाप्रकारे तुम्ही तुमचे रेजिस्ट्रेशन / नाव नोंदणी सहजरित्या करू शकता.<br><br>
+            <div class="container faq wow fadeInUp " data-wow-delay="0.4s">
+                <div class="question">
+                    burud-bandhen वर नावनोंदणी कशी करावी?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
 
-                    
+                        लग्नठरले.कॉम वेबसाइट अथवा अँप वर गेल्यावर तुम्हाला "Register" चा पर्याय दिसेल. वेबसाइट वर हा
+                        पर्याय उजव्या बाजूस वरील कोपऱ्यात उपलब्ध आहे. तर अँप वर तुम्हाला हा पर्याय तुम्हाला स्क्रीन खाली
+                        पाहता येईल. हा पर्याय निवडल्यास तुमच्या समोर एक फॉर्म ओपन होईल. त्या फॉर्म मध्ये विचारलेली
+                        संपूर्ण माहिती भरून, आपला मोबाइल नंबर प्रविष्ट करून "Generate OTP" वर क्लिक करावे. तुम्ही
+                        प्रविष्ट केलेल्या मोबाइल नंबर वर OTP आल्यानंतर सदर OTP "Enter OTP" या बॉक्स मध्ये नमूद करून
+                        "Verify OTP" वर क्लिक करावे व नंतर "SUBMIT" बटण क्लिक करावे. अशाप्रकारे तुम्ही तुमचे
+                        रेजिस्ट्रेशन / नाव नोंदणी सहजरित्या करू शकता.<br><br>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div  class="container faq wow fadeInUp " data-wow-delay="0.5s">
-            <div class="question">
-                ऍडमिनच्या अनुमतीशिवाय किंवा केवळ नावनोंदणी केल्यावर माझी प्रोफाइल सर्वासाठी खुली अथवा उपलब्ध होते का?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                   
-नाही. आमच्या वेबसाइट वर केवळ नावनोंदणी मोफत आहे. परंतु तुम्हाला तुमची प्रोफाइल सर्व युजर साठी उपलब्ध करायची असल्यास किंवा आमच्या वेबसाइटवर रजिस्टर असलेले इतर सदस्यांचे कॉन्टॅक्ट नंबर्स हवे असल्यास तुम्हाला आमची मेम्बरशिप प्लान घेणे अनिवार्य आहे.
-                  <br><br>
+            <div class="container faq wow fadeInUp " data-wow-delay="0.5s">
+                <div class="question">
+                    ऍडमिनच्या अनुमतीशिवाय किंवा केवळ नावनोंदणी केल्यावर माझी प्रोफाइल सर्वासाठी खुली अथवा उपलब्ध होते
+                    का?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
 
-                    
+                        नाही. आमच्या वेबसाइट वर केवळ नावनोंदणी मोफत आहे. परंतु तुम्हाला तुमची प्रोफाइल सर्व युजर साठी
+                        उपलब्ध करायची असल्यास किंवा आमच्या वेबसाइटवर रजिस्टर असलेले इतर सदस्यांचे कॉन्टॅक्ट नंबर्स हवे
+                        असल्यास तुम्हाला आमची मेम्बरशिप प्लान घेणे अनिवार्य आहे.
+                        <br><br>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div  class="container faq wow fadeInUp " data-wow-delay="0.6s">
-            <div class="question">
-                मोबाईल नंबर पाहण्याच्या संख्येत काही मर्यादा आहेत का?
-            </div>
-            <div class="answercont">
-                <div class="answer">
-                  
-                    हो. वेगवेगळ्या मेम्बरशिप प्लान मध्ये तुम्हाला प्लान नुसार मर्यादा राहतील. ३ महिन्यांच्या प्लान मध्ये तुम्ही ९० मोबाइल नंबर्स, ६ महिन्याच्या प्लान मध्ये २०० तर १ वर्षाच्या प्लान मध्ये तुम्ही ४५० यूजर्स चे मोबाइल क्रमांक पाहू शकता.
-                    
-                    <br><br>
+            <div class="container faq wow fadeInUp " data-wow-delay="0.6s">
+                <div class="question">
+                    मोबाईल नंबर पाहण्याच्या संख्येत काही मर्यादा आहेत का?
+                </div>
+                <div class="answercont">
+                    <div class="answer">
 
-                    
+                        हो. वेगवेगळ्या मेम्बरशिप प्लान मध्ये तुम्हाला प्लान नुसार मर्यादा राहतील. ३ महिन्यांच्या प्लान
+                        मध्ये तुम्ही ९० मोबाइल नंबर्स, ६ महिन्याच्या प्लान मध्ये २०० तर १ वर्षाच्या प्लान मध्ये तुम्ही
+                        ४५० यूजर्स चे मोबाइल क्रमांक पाहू शकता.
+
+                        <br><br>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 
 
 
@@ -1018,7 +1074,326 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
             class="bi bi-arrow-up"></i></a>
 
-
+            <div class="modal fade" id="basicInfoAddModal">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="text-dark">Add Personal Information</h6>
+                            <button type="button" class="close" data-bs-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row g-4" id="basicInfo-form">
+                                <div class="col-md-4">
+                                    <label for="">Create Profile for</label>
+                                    <select class="form-control" id="profilefor" name="profilefor" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="Groom">Groom</option>
+                                        <option value="Bride">Bride</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="full-name">Full Name</label>
+                                    <input class="form-control" type="text" id="fullname" name="fullname" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="city">City</label>
+                                    <select class="form-control" id="city" name="city" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="Nashik">Nashik</option>
+                                        <option value="Pune">Pune</option>
+                                        <option value="Jalgaon">Jalgaon</option>
+                                        <option value="Kolhapur">Kolhapur</option>
+                                        <option value="Sambhajinanagr">Sambhajinanagr</option>
+                                        <option value="Chalisgaon">Chalisgaon</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="dob">Date of Birth(जन्म तारीख)</label>
+                                    <input type="date" class="form-control" id="dob" name="dateofbirth" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="education">Education</label>
+                                    <select class="form-control" id="education" name="education" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="Diploma">Diploma</option>
+                                        <option value="Master Degree">Master Degree</option>
+                                        <option value="Graduation">Graduation</option>
+                                        <option value="12Th">12Th</option>
+                                        <option value="10Th">10Th</option>
+                                        <option value="Chalisgaon">Engineering</option>
+        
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="income">Income(वार्षिक उत्पन्न )</label>
+                                    <input type="number" class="form-control" id="income" name="income" placeholder="per annum"
+                                        required>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="blood-group">Blood Group</label>
+                                    <select class="form-control" id="bloodgroup" name="bloodgroup" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="A positive (A+)">A positive (A+)</option>
+                                        <option value="A negative (A-)">A negative (A-)</option>
+                                        <option value="B positive (B+)">B positive (B+)</option>
+                                        <option value="B negative (B-)">B negative (B-)</option>
+                                        <option value="AB positive (AB+)">AB positive (AB+)</option>
+                                        <option value="AB negative (AB-)">AB negative (AB-)</option>
+                                        <option value="O positive (O+)">O positive (O+)</option>
+                                        <option value="O positive (O+)">O negative (O-)</option>
+        
+                                    </select>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="spectacles">Spectacles (चष्मा )</label>
+                                    <select class="form-control" id="spectacles" name="spectacles" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="gotra-devak">Gotra & Devak (गोत्र/देवक) </label>
+                                    <input class="form-control" type="text" id="gotradevak" name="gotra" required>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="birth-place">Birth Place(जन्म ठिकाण )</label>
+                                    <input class="form-control" type="text" id="birthplace" name="birthplace" required>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="occupation">Occupation(व्यवसाय/नोकरी )</label>
+                                    <input class="form-control" type="text" id="occupation" name="occupation" required>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="marital-status">Marital Status</label>
+                                    <select class="form-control" id="maritalstatus" name="maritalstatus" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="single">Single</option>
+                                        <option value="divorced">Divorced</option>
+                                    </select>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="height">Height in cm (उंची सेंटी)</label>
+                                    <input class="form-control" type="number" id="height" name="height" required>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="occupation-city">Occupation City(व्यवसाय शहर )</label>
+                                    <input class="form-control" type="text" id="occupationcity" name="occupationcity" required>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="complexion">Complexion(वर्ण)</label>
+                                    <input class="form-control" type="text" id="complexion" name="complexion" required>
+                                </div>
+        
+                                <div class="col-md-4">
+                                    <label for="mangal">Mangal(मंगळ)</label>
+                                    <select class="form-control" id="mangal" name="mangal" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+        
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="resident-city">Resident City(राहते शहर )</label>
+                                    <select class="form-control" id="residentcity" name="residentcity" required>
+                                        <option disabled selected value="">Select</option>
+                                        <option value="Nashik">Nashik</option>
+                                        <option value="Pune">Pune</option>
+                                        <option value="Jalgaon">Jalgaon</option>
+                                        <option value="Kolhapur">Kolhapur</option>
+                                        <option value="Sambhajinanagr">Sambhajinanagr</option>
+                                        <option value="Chalisgaon">Chalisgaon</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="horo-image">Horo Image(आपला फोटो)</label>
+                                    <input class="form-control" type="file" id="horoimage" name="horoimage" accept="image/*"
+                                        required>
+                                </div>
+        
+        
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                            <button class="btn btn-primary" type="submit"
+                                onclick="captureBasicDetails(); addFamilyBackground();" id="proceedToSecondModal"
+                                disabled>next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="familyinfoAddModal">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="text-dark">Add Family Information & Expectations</h6>
+                            <button type="button" class="close" data-bs-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="" class="row" id="familyInfo-form" enctype="multipart/form-data">
+                                <div class="col-md-12">
+                                    <div class="row mb-4">
+                                        <input type="hidden" name="profilefor" id="profileforinput" value="">
+                                        <input type="hidden" name="fullname" id="fullnameinput" value="">
+                                        <input type="hidden" name="city" id="cityinput" value="">
+                                        <input type="hidden" name="dob" id="dobinput" value="">
+                                        <input type="hidden" name="income" id="incomeinput" value="">
+                                        <input type="hidden" name="education" id="educationinput" value="">
+                                        <input type="hidden" name="bloodgroup" id="bloodgroupinput" value="">
+                                        <input type="hidden" name="spectacles" id="spectaclesinput" value="">
+                                        <input type="hidden" name="gotra" id="gotrainput" value="">
+                                        <input type="hidden" name="birthplace" id="birthplaceinput" value="">
+                                        <input type="hidden" name="occupation" id="occupationinput" value="">
+                                        <input type="hidden" name="complexion" id="complexioninput" value="">
+                                        <input type="hidden" name="maritalstatus" id="maritalstatusinput" value="">
+                                        <input type="hidden" name="height" id="heightinput" value="">
+                                        <input type="hidden" name="occupationcity" id="occupationcityinput" value="">
+                                        <input type="hidden" name="mangal" id="mangalinput" value="">
+                                        <input type="hidden" name="horoimage" id="horoimageinput" value="">
+                                        <input type="hidden" name="residentcity" id="residentcityinput" value="">
+        
+                                        <div class="col-md-4">
+                                            <label for="father-name">Father's Name</label>
+                                            <input class="form-control" type="text" id="fathername" name="fathername" required>
+                                        </div>
+        
+                                        <div class="col-md-4">
+                                            <label for="mother-name">Mother's Name</label>
+                                            <input class="form-control" type="text" id="mothername" name="mothername" required>
+                                        </div>
+        
+                                        <div class="col-md-4">
+                                            <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
+                                            <input class="form-control" type="text" id="maternaluncle" name="maternaluncle"
+                                                required>
+                                        </div>
+        
+                                        <div class="col-md-4">
+                                            <label for="native-place">Native Place</label>
+                                            <input class="form-control" type="text" id="nativeplace" name="nativeplace"
+                                                required>
+                                        </div>
+        
+                                        <div class="col-md-4">
+                                            <label for="family-wealth">Family Wealth</label>
+                                            <select class="form-control" id="citywealth" name="citywealth" required>
+                                                <option disabled selected value="">Select</option>
+                                                <option value="Nashik">Nashik</option>
+                                                <option value="Pune">Pune</option>
+                                                <option value="Jalgaon">Jalgaon</option>
+                                                <option value="Kolhapur">Kolhapur</option>
+                                                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                                                <option value="Chalisgaon">Chalisgaon</option>
+        
+                                            </select>
+                                        </div>
+        
+                                        <div class="col-md-4">
+                                            <label for="parents-residing-in">Parents Residing In (City)</label>
+                                            <select class="form-control" id="parentcity" name="parentcity" required>
+                                                <option disabled selected value="">Select</option>
+                                                <option value="Nashik">Nashik</option>
+                                                <option value="Pune">Pune</option>
+                                                <option value="Jalgaon">Jalgaon</option>
+                                                <option value="Kolhapur">Kolhapur</option>
+                                                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                                                <option value="Chalisgaon">Chalisgaon</option>
+        
+                                            </select>
+                                        </div>
+        
+                                        <div class="col-md-4">
+                                            <label for="sister">Sister(Yes/No) </label>
+                                            <select class="form-control" id="sister" name="sister" required>
+                                                <option disabled selected value="">Select</option>
+                                                <option value="yes">Yes</option>
+                                                <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+        
+                                    <div class="row border-top">
+                                        <h6 class="text-dark p-3">Expectations</h6>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="age-difference">Age Difference Upto:(In Year) </label>
+                                                    <input class="form-control" type="text" id="agedifference"
+                                                        name="agedifference" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="preferred-city">Preferred City:</label>
+                                                    <select class="form-control" id="preferredcity" name="preferredcity"
+                                                        required>
+                                                        <option disabled selected value="">Select</option>
+                                                        <option value="Nashik">Nashik</option>
+                                                        <option value="Pune">Pune</option>
+                                                        <option value="Jalgaon">Jalgaon</option>
+                                                        <option value="Kolhapur">Kolhapur</option>
+                                                        <option value="Sambhajinanagr">Sambhajinanagr</option>
+                                                        <option value="Chalisgaon">Chalisgaon</option>
+        
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="expected-height">Expected Height:</label>
+                                                    <input class="form-control" type="number" id="expectedheight"
+                                                        name="expectedheight" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="education-dropdown">Education:</label>
+                                                    <select class="form-control" id="herhiseducation" name="herhiseducation"
+                                                        required>
+                                                        <option disabled selected value="">Select</option>
+                                                        <option value="Diploma">Diploma</option>
+                                                        <option value="Master Degree">Master Degree</option>
+                                                        <option value="Graduation">Graduation</option>
+                                                        <option value="12Th">12Th</option>
+                                                        <option value="10Th">10Th</option>
+                                                        <option value="Chalisgaon">Engineering</option>
+        
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="occupations">Occupations:</label>
+                                                    <input class="form-control" type="text" id="herhisoccupation"
+                                                        name="herhisoccupation" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="parent-residing-in">Parent Residing In: (City)</label>
+                                                    <input class="form-control" type="text" id="herhisparentresidence"
+                                                        name="herhisparentresidence" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+        
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                            <button class="btn btn-danger" type="submit" onclick="submitFormData();">submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

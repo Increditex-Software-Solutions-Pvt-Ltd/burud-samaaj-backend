@@ -8,261 +8,322 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="css/profile_de.css">
+    <!-- <link rel="stylesheet" href="css/profile_de.css"> -->
+    <style>
+        body {
+            background-color: rgb(245, 228, 231);
+        }
+
+        .db {
+            font-size: 20px;
+        }
+
+        .main_img {
+            height: 220px;
+            width: 230px;
+            box-shadow: 1px 2px 8px black;
+            border-radius: 20px;
+        }
+
+        .main_section {
+            box-shadow: 0px 0px 8px black;
+            padding: 25px 10px;
+            border-radius: 10px;
+        }
+
+        .carousel-inner {
+            height: 300px;
+            padding: 10px;
+            box-shadow: 1px 2px 5px black;
+
+        }
+
+        .bg-white {
+            border-radius: 15px;
+        }
+    </style>
+
+    <!-- font awesoome link put here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- font awesome end here -->
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js" defer></script>
 </head>
 
 <body>
-    <section class="container bg-light main_section">
-        <div class="p-3 text-center ">
-            <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;">profile Details</h1>
-        </div>
-        <div>
-            <div class="row m-0  ">
-                <div class="col-md-6">
-                    <div class="row m-0 ">
-                        <div class="col-md-6 text-center d-flex justify-content-center ">
-                            <div class=" main_img">
-                                <img src="https://i.pinimg.com/550x/37/83/3c/37833cb606e529cbed1088c7824cb4e5.jpg"
-                                    class="rounded-circle" alt="Cinque Terre" width="220" height="216">
-                            </div>
-                        </div>
+    <section id="htmlContent">
+        <section class="container bg-light p-2  ">
+
+
+            <div class="p-3 text-center ">
+
+                <div class="p-3 text-center ">
+                    <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;">profile Details</h1>
+                </div>
+                <div>
+                    <div class="row m-0  ">
                         <div class="col-md-6">
-                            <div class="mt-5 text-center">
-                                <h1>Sarita Bhole</h1>
-                                <p class="db">DOB:30/08/2002</p>
+                            <div class="row m-0 ">
+                                <div class="col-md-6 text-center d-flex justify-content-center ">
+                                    <div class=" main_img">
+                                        <img src="https://i.pinimg.com/550x/37/83/3c/37833cb606e529cbed1088c7824cb4e5.jpg"
+                                            class="rounded-circle" id="myImg" alt="Cinque Terre" width="220"
+                                            height="216">
+                                        <div id="myModal" class="modal">
+                                            <span class="close">&times;</span>
+                                            <img class="modal-content" id="img01">
+                                            <div id="caption"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mt-5 text-center">
+                                        <h1>Sarita Bhole</h1>
+                                        <p class="db">DOB:30/08/2002</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="text-center mt-5">
+                                <h1>City:Nashik</h1>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 ">
-                    <div class="text-center mt-5">
-                        <h1>City:Nashik</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br> <br>
-
-    <section class="container main_section">
-        <div class="row m-0 p-2">
-            <div class="col-md-4 mb-5">
-                <div class="bg-white p-3">
-                    <div id="demo" class="carousel slide" data-ride="carousel">
-
-                        <!-- Indicators -->
-                        <ul class="carousel-indicators">
-                            <li data-target="#demo" data-slide-to="0" class="active"></li>
-                            <li data-target="#demo" data-slide-to="1"></li>
-                            <li data-target="#demo" data-slide-to="2"></li>
-                        </ul>
-
-                        <!-- The slideshow -->
-                        <div class="carousel-inner mt-3 mb-5">
-                            <div class="carousel-item active">
-                                <img src="https://i.pinimg.com/736x/81/27/f3/8127f39490ad7dcfb567fa213d65a843.jpg" class="img-fluid object-fit-cover"
-                                    alt="Los Angeles" width="1100" height="500">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid object-fit-cover"
-                                    src="https://ik.imagekit.io/yfnz71p9w/wp-content/uploads/2022/05/groom-pose.png"
-                                    alt="Chicago" width="1100" height="500">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid object-fit-cover"
-                                    src="https://ik.imagekit.io/yfnz71p9w/wp-content/uploads/2022/05/groom-pose-with-accessories.png"
-                                    alt="New York" width="1100" height="500">
-                            </div>
-                            <div class="position-relative text-center" style="top:200px;">
-                                <button class="btn btn-danger">Burud-bandhan.com</button>
-                            </div>
-
+                    <!-- <div class="row m-0">
+                        <div class="col-md-6 mt-2">
+                            <button class="btn btn-primary side_button_2">
+                                <i class="fa fa-edit mr-1"></i>Edit Profile</button>
                         </div>
+                        <div class="col-md-6 mt-2">
+                            <button class="btn btn-danger side_button">
+                                <i class="fa fa-address-book mr-2" onclick="generatePdf()">Print PDF</i>
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
+        </section>
+        <br> <br>
 
-                        <!-- Left and right controls -->
-                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </a>
-                        <a class="carousel-control-next" href="#demo" data-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </a>
+        <section class="container main_section ">
+            <div class="row m-0 p-2">
+                <div class="col-md-4 mb-5">
+                    <div class="bg-white p-3">
+                        <div id="demo" class="carousel slide" data-ride="carousel">
+
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                <li data-target="#demo" data-slide-to="1"></li>
+                                <li data-target="#demo" data-slide-to="2"></li>
+                            </ul>
+
+                            <!-- The slideshow -->
+                            <div class="carousel-inner mt-3 mb-5">
+                                <div class="carousel-item active">
+                                    <img class="img-fluid object-fit-cover"
+                                        src="https://i.pinimg.com/736x/a0/f2/29/a0f22998d6b6b43d7d0a76404832794c.jpg"
+                                        alt="Los Angeles">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="img-fluid object-fit-cover"
+                                        src="https://ik.imagekit.io/yfnz71p9w/wp-content/uploads/2022/05/groom-pose.png"
+                                        alt="Chicago">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="img-fluid object-fit-cover"
+                                        src="https://ik.imagekit.io/yfnz71p9w/wp-content/uploads/2022/05/groom-pose-with-accessories.png"
+                                        alt="New York">
+                                </div>
+                                <div class="position-relative text-center" style="top:200px;">
+                                    <button class="btn btn-danger">Burud-bandhan.com</button>
+                                </div>
+
+                            </div>
+
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </a>
+                        </div>
+                        <p class="text-center">
+                            <a onclick="addProfile()" class="btn btn-outline-danger">Send Interest
+                                to view contact
+                                info</a>
+                        </p>
                     </div>
-                    <p class="text-center">
+                </div>
+
+                <div class="col-md-8" id="main_section">
+                    <div class="bg-white p-1">
+                        <h3 class="text-center">Personal detail(वैयक्तिक माहिती):</h3>
+                        <table class="table  table-striped table-striped table-hover p-2">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        DATE OF BIRTH (जन्म तारीख) :</td>
+                                    <td> 30/8/1997</td>
+                                </tr>
+                                <tr>
+                                    <td>INCOME (मिळकतीची माहिती) :</td>
+                                    <td>Rs. - / 0</td>
+                                </tr>
+                                <tr>
+                                    <td>EDUCATION (शिक्षण) :</td>
+                                    <td>Graduate/B.E/B.tech</td>
+                                </tr>
+                                <tr>
+                                    <td>EDUCATION DETAILS (शैक्षणिक तपशील) :</td>
+                                    <td>M.COM&MBA-FINANCE</td>
+                                </tr>
+                                <tr>
+                                    <td>BLOOD GROUP/WEIGHT (रक्तगट / वजन ) :</td>
+                                    <td>B+ / 0 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>SPECTACLE/LENS (चष्मा / लेन्स ) </td>
+                                    <td>NO/NO</td>
+                                </tr>
+                                <tr>
+                                    <td>GOTRA & DEVAK (गोत्र / देवक) :</td>
+                                    <td>-/ pachpalvi</td>
+                                </tr>
+                                <tr>
+                                    <td>BIRTH PLACE/Time (जन्म वेळ / ठिकाण ):</td>
+                                    <td>satara(karad) 3:40:PM</td>
+                                </tr>
+                                <tr>
+                                    <td>OCCUPATION CITY (व्यवसायाचे शहर):</td>
+                                    <td>Mumbai</td>
+                                </tr>
+                                <tr>
+                                    <td>MARITAL STATUS (वैवाहिक स्थिती):</td>
+                                    <td>unmarried_girl</td>
+                                </tr>
+                                <tr>
+                                    <td>HEIGHT (उंची):</td>
+                                    <td>5'4"</td>
+                                </tr>
+                                <tr>
+                                    <td>OCCUPATION (व्यवसाय):</td>
+                                    <td>Punch Fabricators Engineers & Contractors (Account Executive), Sakinaka, Andheri
+                                        East</td>
+                                </tr>
+                                <tr>
+                                    <td>COMPLEXION (वर्ण):</td>
+                                    <td>Fair</td>
+                                </tr>
+                                <tr>
+                                    <td>MANGAL (मंगळ):</td>
+                                    <td>NO</td>
+                                </tr>
+                                <tr>
+                                    <td>HORO DETAILS (कुंडलीची माहिती):</td>
+                                    <td>Cancer (Karka)/4 / Madhya / Dev</td>
+                                </tr>
+                                <tr>
+                                    <td>RESIDENT CITY (राहण्याचे शहर):</td>
+                                    <td>Thane</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> <br>
+
+                    <div class="bg-white p-1">
+                        <h3 class="text-center">Family Background (कुटुंबाचा तपशील)</h3>
+                        <table class="table  table-striped table-striped table-hover p-2">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        FATHER (वडील):</td>
+                                    <td>YES</td>
+                                </tr>
+                                <tr>
+                                    <td>MAMA (मामाचे आडनाव):</td>
+                                    <td>Rs. - / 0</td>
+                                </tr>
+                                <tr>
+                                    <td>NATIVE PLACE (गाव):</td>
+                                    <td>khatav Satara</td>
+                                </tr>
+                                <tr>
+                                    <td>FAMILY WEALTH (कौटुंबिक मालमत्ता):</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>MOTHER (आई):</td>
+                                    <td>YES</td>
+                                </tr>
+                                <tr>
+                                    <td>RELATIVES (नातेवाईक):</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>PARENTS RESIDING IN (पालक राहत असलेले शहर):</td>
+                                    <td>Mumbai</td>
+                                </tr>
+                                <tr>
+                                    <td>SISTER (बहीण):</td>
+                                    <td>1</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="bg-white p-1">
+                        <h3 class="text-center">Expectation (अपेक्षा)</h3>
+                        <table class="table  table-striped table-striped table-hover p-2">
+                            <tbody>
+                                <tr>
+                                    <td>
+
+                                        AGE DIFFERENCE UPTO (वयातील अधिकतम अंतर)::</td>
+                                    <td>3 Years</td>
+                                </tr>
+                                <tr>
+                                    <td>PREFERRED CITY (अपेक्षित शहर):</td>
+                                    <td> Mumbai,Satara,Thane,Palghr,</td>
+                                </tr>
+                                <tr>
+                                    <td>EXPECTED HEIGHT (अपेक्षित उंची):</td>
+                                    <td>5-5</td>
+                                </tr>
+                                <tr>
+                                    <td>EDUCATION (शैक्षणिक अपेक्षा):</td>
+                                    <td>B.E/MBA</td>
+                                </tr>
+                                <tr>
+                                    <td>OCCUPATION (व्यावसायिक व पगाराची अपेक्षा):</td>
+                                    <td>nirvhayasni,swattache ghar,nokari</td>
+                                </tr>
+                                <tr>
+                                    <td>PARENTS RESIDING IN (पालक राहत असलेले शहर):</td>
+                                    <td>Mumbai</td>
+                                </tr>
+                                <tr>
+                                    <td>SISTER (बहीण):</td>
+                                    <td>1</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="text-center">
 
                         <a href="javascript:void(0)" onclick="addProfile()" class="btn btn-outline-danger">Send Interest
                             to view contact
                             info</a>
-                    </p>
+                    </div>
                 </div>
+                <!-- new section put here -->
+
             </div>
-
-            <div class="col-md-8">
-                <div class="bg-white p-1">
-                    <h3 class="text-center">Personal detail(वैयक्तिक माहिती):</h3>
-                    <table class="table  table-striped table-striped table-hover p-2">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    DATE OF BIRTH (जन्म तारीख) :</td>
-                                <td> 30/8/1997</td>
-                            </tr>
-                            <tr>
-                                <td>INCOME (मिळकतीची माहिती) :</td>
-                                <td>Rs. - / 0</td>
-                            </tr>
-                            <tr>
-                                <td>EDUCATION (शिक्षण) :</td>
-                                <td>Graduate/B.E/B.tech</td>
-                            </tr>
-                            <tr>
-                                <td>EDUCATION DETAILS (शैक्षणिक तपशील) :</td>
-                                <td>M.COM&MBA-FINANCE</td>
-                            </tr>
-                            <tr>
-                                <td>BLOOD GROUP/WEIGHT (रक्तगट / वजन ) :</td>
-                                <td>B+ / 0 kg</td>
-                            </tr>
-                            <tr>
-                                <td>SPECTACLE/LENS (चष्मा / लेन्स ) </td>
-                                <td>NO/NO</td>
-                            </tr>
-                            <tr>
-                                <td>GOTRA & DEVAK (गोत्र / देवक) :</td>
-                                <td>-/ pachpalvi</td>
-                            </tr>
-                            <tr>
-                                <td>BIRTH PLACE/Time (जन्म वेळ / ठिकाण ):</td>
-                                <td>satara(karad) 3:40:PM</td>
-                            </tr>
-                            <tr>
-                                <td>OCCUPATION CITY (व्यवसायाचे शहर):</td>
-                                <td>Mumbai</td>
-                            </tr>
-                            <tr>
-                                <td>MARITAL STATUS (वैवाहिक स्थिती):</td>
-                                <td>unmarried_girl</td>
-                            </tr>
-                            <tr>
-                                <td>HEIGHT (उंची):</td>
-                                <td>5'4"</td>
-                            </tr>
-                            <tr>
-                                <td>OCCUPATION (व्यवसाय):</td>
-                                <td>Punch Fabricators Engineers & Contractors (Account Executive), Sakinaka, Andheri
-                                    East</td>
-                            </tr>
-                            <tr>
-                                <td>COMPLEXION (वर्ण):</td>
-                                <td>Fair</td>
-                            </tr>
-                            <tr>
-                                <td>MANGAL (मंगळ):</td>
-                                <td>NO</td>
-                            </tr>
-                            <tr>
-                                <td>HORO DETAILS (कुंडलीची माहिती):</td>
-                                <td>Cancer (Karka)/4 / Madhya / Dev</td>
-                            </tr>
-                            <tr>
-                                <td>RESIDENT CITY (राहण्याचे शहर):</td>
-                                <td>Thane</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <br>
-
-                <div class="bg-white p-1">
-                    <h3 class="text-center">Family Background (कुटुंबाचा तपशील)</h3>
-                    <table class="table  table-striped table-striped table-hover p-2">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    FATHER (वडील):</td>
-                                <td>YES</td>
-                            </tr>
-                            <tr>
-                                <td>MAMA (मामाचे आडनाव):</td>
-                                <td>Rs. - / 0</td>
-                            </tr>
-                            <tr>
-                                <td>NATIVE PLACE (गाव):</td>
-                                <td>khatav Satara</td>
-                            </tr>
-                            <tr>
-                                <td>FAMILY WEALTH (कौटुंबिक मालमत्ता):</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>MOTHER (आई):</td>
-                                <td>YES</td>
-                            </tr>
-                            <tr>
-                                <td>RELATIVES (नातेवाईक):</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>PARENTS RESIDING IN (पालक राहत असलेले शहर):</td>
-                                <td>Mumbai</td>
-                            </tr>
-                            <tr>
-                                <td>SISTER (बहीण):</td>
-                                <td>1</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="bg-white p-1">
-                    <h3 class="text-center">Expectation (अपेक्षा)</h3>
-                    <table class="table  table-striped table-striped table-hover p-2">
-                        <tbody>
-                            <tr>
-                                <td>
-
-                                    AGE DIFFERENCE UPTO (वयातील अधिकतम अंतर)::</td>
-                                <td>3 Years</td>
-                            </tr>
-                            <tr>
-                                <td>PREFERRED CITY (अपेक्षित शहर):</td>
-                                <td> Mumbai,Satara,Thane,Palghr,</td>
-                            </tr>
-                            <tr>
-                                <td>EXPECTED HEIGHT (अपेक्षित उंची):</td>
-                                <td>5-5</td>
-                            </tr>
-                            <tr>
-                                <td>EDUCATION (शैक्षणिक अपेक्षा):</td>
-                                <td>B.E/MBA</td>
-                            </tr>
-                            <tr>
-                                <td>OCCUPATION (व्यावसायिक व पगाराची अपेक्षा):</td>
-                                <td>nirvhayasni,swattache ghar,nokari</td>
-                            </tr>
-                            <tr>
-                                <td>RELATIVES (नातेवाईक):</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>PARENTS RESIDING IN (पालक राहत असलेले शहर):</td>
-                                <td>Mumbai</td>
-                            </tr>
-                            <tr>
-                                <td>SISTER (बहीण):</td>
-                                <td>1</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="text-center">
-                    <button class="btn btn-outline-danger">
-                        <a href="/createprofile" style="text-decoration: none; color: black;">Send Interest to view
-                            contact info</a></button>
-                </div>
-            </div>
-        </div>
+        </section>
     </section>
 
     <div class="modal fade" id="basicInfoAddModal">
@@ -275,38 +336,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" class="row" id="basicInfo-form">
+                    <form class="row g-4" id="basicInfo-form">
+                        <div class="col-md-4">
+                            <label for="">Create Profile for</label>
+                            <select class="form-control" id="profilefor" name="profilefor" required>
+                                <option disabled selected value="">Select</option>
+                                <option value="Groom">Groom</option>
+                                <option value="Bride">Bride</option>
+                            </select>
+                        </div>
                         <div class="col-md-4">
                             <label for="full-name">Full Name</label>
-                            <input class="form-control" type="text" id="fullname" name="fullname" required><br>
+                            <input class="form-control" type="text" id="fullname" name="fullname" required>
                         </div>
                         <div class="col-md-4">
                             <label for="city">City</label>
                             <select class="form-control" id="city" name="city" required>
-                                <option value="">Select</option>
+                                <option disabled selected value="">Select</option>
                                 <option value="Nashik">Nashik</option>
                                 <option value="Pune">Pune</option>
                                 <option value="Jalgaon">Jalgaon</option>
                                 <option value="Kolhapur">Kolhapur</option>
                                 <option value="Sambhajinanagr">Sambhajinanagr</option>
                                 <option value="Chalisgaon">Chalisgaon</option>
-
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="dob">Date of Birth</label>
+                            <label for="dob">Date of Birth(जन्म तारीख)</label>
                             <input type="date" class="form-control" id="dob" name="dateofbirth" required>
                         </div>
-
-                        <div class="col-md-4">
-                            <label for="income">Income</label>
-                            <input type="number" class="form-control" id="income" name="income" required>
-                        </div>
-
                         <div class="col-md-4">
                             <label for="education">Education</label>
                             <select class="form-control" id="education" name="education" required>
-                                <option value="">Select</option>
+                                <option disabled selected value="">Select</option>
                                 <option value="Diploma">Diploma</option>
                                 <option value="Master Degree">Master Degree</option>
                                 <option value="Graduation">Graduation</option>
@@ -316,11 +378,16 @@
 
                             </select>
                         </div>
+                        <div class="col-md-4">
+                            <label for="income">Income(वार्षिक उत्पन्न )</label>
+                            <input type="number" class="form-control" id="income" name="income" placeholder="per annum"
+                                required>
+                        </div>
 
                         <div class="col-md-4">
                             <label for="blood-group">Blood Group</label>
                             <select class="form-control" id="bloodgroup" name="bloodgroup" required>
-                                <option value="">Select</option>
+                                <option disabled selected value="">Select</option>
                                 <option value="A positive (A+)">A positive (A+)</option>
                                 <option value="A negative (A-)">A negative (A-)</option>
                                 <option value="B positive (B+)">B positive (B+)</option>
@@ -334,68 +401,66 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="spectacles">Spectacles(Yes/No) </label>
+                            <label for="spectacles">Spectacles (चष्मा )</label>
                             <select class="form-control" id="spectacles" name="spectacles" required>
-                                <option value="">Select</option>
+                                <option disabled selected value="">Select</option>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="gotra-devak">Gotra & Devak</label>
+                            <label for="gotra-devak">Gotra & Devak (गोत्र/देवक) </label>
                             <input class="form-control" type="text" id="gotradevak" name="gotra" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="birth-place">Birth Place</label>
+                            <label for="birth-place">Birth Place(जन्म ठिकाण )</label>
                             <input class="form-control" type="text" id="birthplace" name="birthplace" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="occupation">Occupation</label>
+                            <label for="occupation">Occupation(व्यवसाय/नोकरी )</label>
                             <input class="form-control" type="text" id="occupation" name="occupation" required>
                         </div>
 
                         <div class="col-md-4">
                             <label for="marital-status">Marital Status</label>
                             <select class="form-control" id="maritalstatus" name="maritalstatus" required>
-                                <option value="">Select</option>
+                                <option disabled selected value="">Select</option>
                                 <option value="single">Single</option>
                                 <option value="divorced">Divorced</option>
                             </select>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="height">Height</label>
+                            <label for="height">Height in cm (उंची सेंटी)</label>
                             <input class="form-control" type="number" id="height" name="height" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="occupation-city">Occupation (City)</label>
+                            <label for="occupation-city">Occupation City(व्यवसाय शहर )</label>
                             <input class="form-control" type="text" id="occupationcity" name="occupationcity" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="complexion">Complexion</label>
+                            <label for="complexion">Complexion(वर्ण)</label>
                             <input class="form-control" type="text" id="complexion" name="complexion" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="mangal">Mangal</label>
-                            <input class="form-control" type="text" id="mangal" name="mangal" required>
-                        </div>
+                            <label for="mangal">Mangal(मंगळ)</label>
+                            <select class="form-control" id="mangal" name="mangal" required>
+                                <option disabled selected value="">Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
 
-                        <div class="col-md-4">
-                            <label for="horo-image">Horo Image (file type)</label>
-                            <input class="form-control" type="file" id="horoimage" name="horoimage" accept="image/*"
-                                required>
+                            </select>
                         </div>
-
                         <div class="col-md-4">
-                            <label for="resident-city">Resident City</label>
-                            <select class="form-control" id="residentcity" name="resident-city" required>
-                                <option value="">Select</option>
+                            <label for="resident-city">Resident City(राहते शहर )</label>
+                            <select class="form-control" id="residentcity" name="residentcity" required>
+                                <option disabled selected value="">Select</option>
                                 <option value="Nashik">Nashik</option>
                                 <option value="Pune">Pune</option>
                                 <option value="Jalgaon">Jalgaon</option>
@@ -404,12 +469,20 @@
                                 <option value="Chalisgaon">Chalisgaon</option>
                             </select>
                         </div>
+                        <div class="col-md-4">
+                            <label for="horo-image">Horo Image(आपला फोटो)</label>
+                            <input class="form-control" type="file" id="horoimage" name="horoimage" accept="image/*"
+                                required>
+                        </div>
+
+
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                    <button class="btn btn-dark" type="submit"
-                        onclick="captureBasicDetails(); addFamilyBackground();">next</button>
+                    <button class="btn btn-primary" type="submit"
+                        onclick="captureBasicDetails(); addFamilyBackground();" id="proceedToSecondModal"
+                        disabled>next</button>
                 </div>
             </div>
         </div>
@@ -424,9 +497,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" class="row" id="familyInfo-form">
+                    <form action="" method="" class="row" id="familyInfo-form" enctype="multipart/form-data">
                         <div class="col-md-12">
                             <div class="row mb-4">
+                                <input type="hidden" name="profilefor" id="profileforinput" value="">
                                 <input type="hidden" name="fullname" id="fullnameinput" value="">
                                 <input type="hidden" name="city" id="cityinput" value="">
                                 <input type="hidden" name="dob" id="dobinput" value="">
@@ -456,7 +530,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="maternal-uncle">Maternal Uncle</label>
+                                    <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
                                     <input class="form-control" type="text" id="maternaluncle" name="maternaluncle"
                                         required>
                                 </div>
@@ -470,7 +544,7 @@
                                 <div class="col-md-4">
                                     <label for="family-wealth">Family Wealth</label>
                                     <select class="form-control" id="citywealth" name="citywealth" required>
-                                        <option value="">Select</option>
+                                        <option disabled selected value="">Select</option>
                                         <option value="Nashik">Nashik</option>
                                         <option value="Pune">Pune</option>
                                         <option value="Jalgaon">Jalgaon</option>
@@ -484,7 +558,7 @@
                                 <div class="col-md-4">
                                     <label for="parents-residing-in">Parents Residing In (City)</label>
                                     <select class="form-control" id="parentcity" name="parentcity" required>
-                                        <option value="">Select</option>
+                                        <option disabled selected value="">Select</option>
                                         <option value="Nashik">Nashik</option>
                                         <option value="Pune">Pune</option>
                                         <option value="Jalgaon">Jalgaon</option>
@@ -498,58 +572,64 @@
                                 <div class="col-md-4">
                                     <label for="sister">Sister(Yes/No) </label>
                                     <select class="form-control" id="sister" name="sister" required>
-                                        <option value="">Select</option>
+                                        <option disabled selected value="">Select</option>
                                         <option value="yes">Yes</option>
                                         <option value="no">No</option>
                                     </select>
                                 </div>
                             </div>
-                          
+
                             <div class="row border-top">
                                 <h6 class="text-dark p-3">Expectations</h6>
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="age-difference">Age Difference Upto:(In Year) </label>
-                                            <input class="form-control" type="text" id="age-difference" name="ageDifference" required>
+                                            <input class="form-control" type="text" id="agedifference"
+                                                name="agedifference" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="preferred-city">Preferred City:</label>
-                                            <select class="form-control" id="preferred-city" name="city" required>
-                                                <option value="">Select</option>
+                                            <select class="form-control" id="preferredcity" name="preferredcity"
+                                                required>
+                                                <option disabled selected value="">Select</option>
                                                 <option value="Nashik">Nashik</option>
                                                 <option value="Pune">Pune</option>
                                                 <option value="Jalgaon">Jalgaon</option>
                                                 <option value="Kolhapur">Kolhapur</option>
                                                 <option value="Sambhajinanagr">Sambhajinanagr</option>
                                                 <option value="Chalisgaon">Chalisgaon</option>
-            
+
                                             </select>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="expected-height">Expected Height:</label>
-                                            <input class="form-control" type="number" id="expected-height" name="expectedHeight" required>
+                                            <input class="form-control" type="number" id="expectedheight"
+                                                name="expectedheight" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="education-dropdown">Education:</label>
-                                            <select class="form-control" id="education" name="education" required>
-                                                <option value="">Select</option>
+                                            <select class="form-control" id="herhiseducation" name="herhiseducation"
+                                                required>
+                                                <option disabled selected value="">Select</option>
                                                 <option value="Diploma">Diploma</option>
                                                 <option value="Master Degree">Master Degree</option>
                                                 <option value="Graduation">Graduation</option>
                                                 <option value="12Th">12Th</option>
                                                 <option value="10Th">10Th</option>
                                                 <option value="Chalisgaon">Engineering</option>
-            
+
                                             </select>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="occupations">Occupations:</label>
-                                            <input class="form-control" type="text" id="occupations" name="occupation" required>
+                                            <input class="form-control" type="text" id="herhisoccupation"
+                                                name="herhisoccupation" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="parent-residing-in">Parent Residing In: (City)</label>
-                                            <input class="form-control" type="text" id="parent-residing-in" name="parentResidingIn" required>
+                                            <input class="form-control" type="text" id="herhisparentresidence"
+                                                name="herhisparentresidence" required>
                                         </div>
                                     </div>
                                 </div>
@@ -561,14 +641,260 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                    <button class="btn btn-danger" type="submit" form="familyInfo-form">submit</button>
+                    <button class="btn btn-danger" type="submit" onclick="submitFormData();">submit</button>
                 </div>
             </div>
         </div>
     </div>
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/registration.js"></script>
+    <!-- <script src="js/registration.js"></script> -->
+
+    <!-- registeration and send request script -->
+    <script>
+        async function getDataFromBackend() {
+            let profile
+            await $.ajax({
+                type: 'GET',
+                url: '/getsingleprofile',
+                success: function (response) {
+                    // Handle success response
+                    if (response.profile) {
+                        profile = response.profile;
+                    }
+                    else {
+                        profile = [];
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(error);
+                }
+            });
+            console.log(profile);
+            return profile
+        }
+
+        getDataFromBackend()
+
+        async function addProfile() {
+            await $.ajax({
+                type: 'GET',
+                url: '/checkprofile', // Update the URL with your server endpoint
+                success: function (response) {
+                    // Handle success response
+                    if (response.message === 'User Profile Found') {
+                        $('#basicInfoAddModal').modal('hide');
+                        console.log("send request");
+                    }
+                    else {
+                        $('#basicInfo-form').trigger('reset');
+                        $('#basicInfoAddModal').modal('show');
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(error);
+                }
+            });
+
+        }
+
+        function captureBasicDetails() {
+            const profilefor = document.getElementById('profilefor').value;
+            //  basicDetails['profilefor']=profilefor
+            const fullname = document.getElementById('fullname').value;
+            //  basicDetails['fullname']=fullname
+            const city = document.getElementById('city').value;
+            //  basicDetails['city']=city
+            const dob = document.getElementById('dob').value;
+            //  basicDetails['dob']=dob
+            const income = document.getElementById('income').value;
+            //  basicDetails['income']=income
+            const education = document.getElementById('education').value;
+            //  basicDetails['education']=education
+            const bloodgroup = document.getElementById('bloodgroup').value;
+            //  basicDetails['bloodgroup']=bloodgroup
+            const spectacles = document.getElementById('spectacles').value;
+            //  basicDetails['spectacles']=spectacles
+            const gotradevak = document.getElementById('gotradevak').value;
+            //  basicDetails['gotradevak']=gotradevak
+            const birthplace = document.getElementById('birthplace').value;
+            //  basicDetails['birthplace']=birthplace
+            const occupation = document.getElementById('occupation').value;
+            //  basicDetails['occupation']=occupation
+            const maritalstatus = document.getElementById('maritalstatus').value;
+            //  basicDetails['maritalstatus']=maritalstatus
+            const height = document.getElementById('height').value;
+            //  basicDetails['height']=height
+            const occupationcity = document.getElementById('occupationcity').value;
+            //  basicDetails['occupationcity']=occupationcity
+            const complexion = document.getElementById('complexion').value;
+            //  basicDetails['complexion']=complexion
+            const mangal = document.getElementById('mangal').value;
+            //  basicDetails['mangal']=mangal
+            const horoimage = document.getElementById('horoimage').value;
+            //  basicDetails['horoimage']=horoimage
+            const residentcity = document.getElementById('residentcity').value;
+            //  basicDetails['residentcity']=residentcity
+
+
+
+            document.getElementById("profileforinput").value = profilefor;
+            document.getElementById("fullnameinput").value = fullname;
+            document.getElementById("cityinput").value = city;
+            document.getElementById("dobinput").value = dob;
+            document.getElementById("incomeinput").value = income;
+            document.getElementById("educationinput").value = education;
+            document.getElementById("bloodgroupinput").value = bloodgroup;
+            document.getElementById("spectaclesinput").value = spectacles;
+            document.getElementById("gotrainput").value = gotradevak;
+            document.getElementById("birthplaceinput").value = birthplace;
+            document.getElementById("occupationinput").value = occupation;
+            document.getElementById("complexioninput").value = complexion;
+            document.getElementById("maritalstatusinput").value = maritalstatus;
+            document.getElementById("heightinput").value = height;
+            document.getElementById("occupationcityinput").value = occupationcity;
+            document.getElementById("mangalinput").value = mangal;
+            document.getElementById("horoimageinput").value = horoimage;
+            document.getElementById("residentcityinput").value = residentcity;
+
+
+
+        }
+
+        // Function to update the Next button state
+        function updateNextbuttonstate() {
+            const profilefor = $('#profilefor').val();
+            const fullname = $('#fullname').val();
+            const city = $('#city').val();
+            const dob = $('#dob').val();
+            const income = $('#income').val();
+            const education = $('#education').val();
+            const bloodgroup = $('#bloodgroup').val();
+            const spectacles = $('#spectacles').val();
+            const gotradevak = $('#gotradevak').val();
+            const birthplace = $('#birthplace').val();
+            const occupation = $('#occupation').val();
+            const maritalstatus = $('#maritalstatus').val();
+            const height = $('#height').val();
+            const occupationcity = $('#occupationcity').val();
+            const complexion = $('#complexion').val();
+            const mangal = $('#mangal').val();
+            const horoimage = $('#horoimage').val();
+            const residentcity = $('#residentcity').val();
+
+
+            if (
+                profilefor &&
+                fullname &&
+                city &&
+                dob &&
+                income &&
+                education &&
+                bloodgroup &&
+                spectacles &&
+                gotradevak &&
+                birthplace &&
+                occupation &&
+                maritalstatus &&
+                height &&
+                occupationcity &&
+                complexion &&
+                mangal &&
+                horoimage &&
+                residentcity
+            ) {
+                $('#proceedToSecondModal').prop('disabled', false);
+            } else {
+                $('#proceedToSecondModal').prop('disabled', true);
+            }
+        }
+
+
+        $('#basicInfoAddModal').on('show.bs.modal', function () {
+            $('#proceedToSecondModal').prop('disabled', true);
+        });
+
+
+        $('#basicInfo-form input, #basicInfo-form select').on('input change', function () {
+            updateNextbuttonstate();
+        });
+
+
+        function addFamilyBackground() {
+            $('#familyInfo-form').trigger('reset');
+            $('#familyinfoAddModal').modal('show');
+        }
+
+        function submitFormData() {
+
+            const basicInfo = {
+                profilefor: document.getElementById('profileforinput').value,
+                fullname: document.getElementById('fullnameinput').value,
+                city: document.getElementById("cityinput").value,
+                dateofbirth: document.getElementById("dobinput").value,
+                income: document.getElementById("incomeinput").value,
+                education: document.getElementById("educationinput").value,
+                bloodgroup: document.getElementById("bloodgroupinput").value,
+                spectacles: document.getElementById("spectaclesinput").value,
+                gotra: document.getElementById("gotrainput").value,
+                birthplace: document.getElementById("birthplaceinput").value,
+                occupation: document.getElementById("occupationinput").value,
+                complexion: document.getElementById("complexioninput").value,
+                maritalstatus: document.getElementById("maritalstatusinput").value,
+                height: document.getElementById("heightinput").value,
+                occupationcity: document.getElementById("occupationcityinput").value,
+                mangal: document.getElementById("mangalinput").value,
+                horoimage: document.getElementById("horoimageinput").value,
+                residentcity: document.getElementById("residentcityinput").value,
+            };
+
+            // Gather data from the second modal
+            const familyInfo = {
+                fathername: document.getElementById('fathername').value,
+                mothername: document.getElementById('mothername').value,
+                maternaluncle: document.getElementById('maternaluncle').value,
+                nativeplace: document.getElementById('nativeplace').value,
+                citywealth: document.getElementById('citywealth').value,
+                parentcity: document.getElementById('parentcity').value,
+                sister: document.getElementById('sister').value,
+                agedifference: document.getElementById('agedifference').value,
+                preferredcity: document.getElementById('preferredcity').value,
+                expectedheight: document.getElementById('expectedheight').value,
+                herhiseducation: document.getElementById('herhiseducation').value,
+                herhisoccupation: document.getElementById('herhisoccupation').value,
+                herhisparentresidence: document.getElementById('herhisparentresidence').value,
+                // Add other fields as needed
+            };
+
+            // Combine data from both modals
+            const formData = { ...basicInfo, ...familyInfo };
+
+            // Send data to the server using AJAX
+            $.ajax({
+                type: 'POST',
+                url: '/addprofile', // Update the URL with your server endpoint
+                data: formData,
+                success: function (response) {
+                    // Handle success response
+                    console.log(response);
+                    $('#basicInfoAddModal').modal('hide');
+                    $('#familyinfoAddModal').modal('hide');
+                    $('.toast').toast('show');
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(error);
+                }
+            });
+        }
+
+    </script>
 </body>
+
 
 </html>

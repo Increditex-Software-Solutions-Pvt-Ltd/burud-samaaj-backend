@@ -1,5 +1,7 @@
 const {sequelize} = require('../index');
 const {DataTypes} = require('sequelize');
+const { Userprofile } = require('./userprofile.model');
+
 
 const User = sequelize.define('user',{
     id:{
@@ -39,6 +41,14 @@ const User = sequelize.define('user',{
     dateofbirth:{
         type:DataTypes.DATE,
         allowNull:true
+    },
+    friendRequests: {
+        type: DataTypes.JSON,
+        defaultValue: {"sent": [], "received": []} 
+    },
+    friendLists: {
+        type: DataTypes.JSON,
+        defaultValue: [] 
     }
 
 })

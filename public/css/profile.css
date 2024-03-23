@@ -1,14 +1,13 @@
+ body{
+  overflow-x: hidden;
+ }
 
- 
-  
   /* Center website */
   .main {
-    max-width:1300px;
+    max-width:100%;
     margin: auto;
   }
-  
- 
-  
+
   .row {
     margin: 10px -16px;
   }
@@ -20,9 +19,9 @@
   }
   
   /* Create three equal columns that floats next to each other */
-  .column {
+  .image_body {
     float: left;
-    width: 33.33%;
+    width:100%;
     display: none; /* Hide all elements by default */
   }
   
@@ -54,12 +53,12 @@
     cursor: pointer;
   }
   
- 
-  
   .btn.active {
-    background-color:rgb(205, 71, 71);
-    color: white;
+    border: none;
+    outline: none;
+    background-color: red;
   }
+
  .content img{
     height: 450px;
     object-fit: cover;
@@ -74,3 +73,47 @@
  a{
   text-decoration: none;
  }
+
+
+ /* pagination buttons */
+ #pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+#pagination button:hover {
+  background-color: #e0e0e0;
+}
+
+#pagination button.active {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+}
+
+/* filter button */
+#filters {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#filters button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+#filters button.active {
+  background-color: red;
+  color: white;
+}

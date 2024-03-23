@@ -1,49 +1,231 @@
+require('dotenv').config();
 const { User } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const { Userprofile } = require('../models/userprofile.model');
 
 const userController = {
-    gethome:(req,res)=>{
-        return res.render('index');
+    gethome: async (req, res) => {
+
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+          
+            if (token) {
+                try {
+                  
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    console.log(decoded);
+                    const userId = decoded.userId;
+                    
+                    
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({where:{userId}})        
+                    if (user) {
+                     
+                        return res.render('index', { user,userprofile });
+                    }
+                } catch (err) {
+                  
+                    console.error('Token verification error:', err);
+                }
+            }
+      
+            return res.render('index', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+
     },
-    getsignupform:(req,res)=>{
+    getsignupform: (req, res) => {
         return res.render('signup');
     },
-    getloginform:(req,res)=>{
+    getloginform: (req, res) => {
         return res.render('login');
     },
-    getprofilepage:(req,res)=>{
-         return res.render('profile');
+    getprofilepage: async(req, res) => {
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+          
+            if (token) {
+                try {
+                  
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    console.log(decoded);
+                    const userId = decoded.userId;
+                    
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    
+                    if (user) {
+                     
+                        return res.render('profile', { user,userprofile });
+                    }
+                } catch (err) {
+                  
+                    console.error('Token verification error:', err);
+                }
+            }
+      
+            return res.render('profile', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
     },
-    getdetailprofile:(req,res)=>{
+    getdetailprofile: (req, res) => {
         return res.render('detailprofile');
     },
-    getcreateprofile:(req,res)=>{
-        return res.render('createprofile');
+  
+    getserach: async(req, res) => {
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+          
+            if (token) {
+                try {
+                  
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    console.log(decoded);
+                    const userId = decoded.userId;
+                    
+                    
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    if (user) {
+                     
+                        return res.render('search', { user,userprofile });
+                    }
+                } catch (err) {
+                  
+                    console.error('Token verification error:', err);
+                }
+            }
+      
+            return res.render('search', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+    getsuccessStories: async(req, res) => {
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+          
+            if (token) {
+                try {
+                  
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    console.log(decoded);
+                    const userId = decoded.userId;
+                    
+                    
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    if (user) {
+                     
+                        return res.render('success-stories', { user,userprofile });
+                    }
+                } catch (err) {
+                  
+                    console.error('Token verification error:', err);
+                }
+            }
+      
+            return res.render('success-stories', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+    getsuccessVideos: async(req, res) => {
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+          
+            if (token) {
+                try {
+                  
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    console.log(decoded);
+                    const userId = decoded.userId;
+                    
+                    
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    if (user) {
+                     
+                        return res.render('success-videos', { user,userprofile });
+                    }
+                } catch (err) {
+                  
+                    console.error('Token verification error:', err);
+                }
+            }
+      
+            return res.render('success-videos', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+    getaboutpage: async(req, res) => {
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+          
+            if (token) {
+                try {
+                  
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    console.log(decoded);
+                    const userId = decoded.userId;
+                    
+                    
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({where:{userId}}) 
+                    if (user) {
+                     
+                        return res.render('about', { user,userprofile });
+                    }
+                } catch (err) {
+                  
+                    console.error('Token verification error:', err);
+                }
+            }
+      
+            return res.render('about', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
     },
     signup: async (req, res) => {
         let errorsArr = [];
 
-        if (!req.body.firstname ||!req.body.lastname ||  !req.body.email || !req.body.phone || !req.body.password || !req.body.confirmpassword ||!req.body.dateofbirth) {
-    
+        if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.phone || !req.body.password || !req.body.confirmpassword || !req.body.dateofbirth) {
+
             req.flash("error", "All fields are required");
             return res.redirect('/signup');
         }
-    
+
         let validationError = validationResult(req);
         if (!validationError.isEmpty()) {
             let error = Object.values(validationError.mapped());
-    
+
             error.forEach((item) => {
                 errorsArr.push(item.msg);
             })
             req.flash("error", errorsArr);
-    
+
         }
         try {
             const data = req.body;
-           
+
             const userExist = await User.findOne({
                 where: {
                     email: data.email
@@ -66,34 +248,53 @@ const userController = {
             }
 
         } catch (error) {
-           
+
             res.status(404).send({ "message": "Error", error })
         }
 
-      
-       
+
+
     },
     login: async (req, res) => {
         try {
-            const { email, password } = req.body;
-            const existingUser = await User.findOne({ where: { email } });
-            if (existingUser) {
-                const matchPass = await bcrypt.compare(password, existingUser.password)
-                if (matchPass) {
-                    // Creating the token for user
-                    const token = jwt.sign({ existingUser: existingUser.id }, process.env.user_secret_key);
-
-                    res.cookie('userJwt', token, { httpOnly: true, secure: true });
-                   
-                  
-                    return res.redirect('/');
-                }
-                else res.send({ "message": "Invalid credentials" })
+            let credentials = req.body;
+    
+            // Taking user info from DB
+            let userInDb = await User.findOne({ where: { email: credentials.email } });
+    
+            // Checking whether the user exists in the database
+            if (!userInDb) {
+                // Redirect to login page with an error message
+                req.flash("error", "User not found");
+                return res.redirect('/login');
             }
+    
+            
+            bcrypt.compare(credentials.password, userInDb.password, function (err, result) {
+                if (result) {
+                 
+                    let token = jwt.sign({ userId: userInDb.id }, `${process.env.user_secret_key}`);
+                     
+                    res.cookie('userJwt', token, { httpOnly: true, secure: true });
+                    res.cookie('userId', userInDb.id, { httpOnly: true, secure: true });
+                   
+                    return res.redirect('/');
+                } else {
+                  
+                    req.flash("error", "Login failed");
+                    return res.redirect('/login');
+                }
+            });
         } catch (error) {
-            req.flash("error", "user login failed");
+            // Redirect to login page with an error message
+           
             return res.redirect('/login');
         }
+    },
+    userlogout:(req,res)=>{
+        res.clearCookie('userJwt'); 
+        res.clearCookie('userId');
+        res.redirect('/'); 
     }
 }
 

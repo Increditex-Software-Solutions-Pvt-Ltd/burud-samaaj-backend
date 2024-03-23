@@ -23,3 +23,4 @@ kofiWidgetOverlay.draw('mohamedghulam', {
   'floating-chat.donateButton.background-color': '#323842',
   'floating-chat.donateButton.text-color': '#fff'
 });
+

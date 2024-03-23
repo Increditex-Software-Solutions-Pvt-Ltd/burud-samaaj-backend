@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const userRouter = require("./routes/user.router");
 const configViewEngine = require("./viewEngine");
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const port = process.env.PORT;
 
@@ -19,6 +20,7 @@ const twilioClient = twilio(accountSid, authToken);
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 
 app.post('/send-otp', (req, res) => {
