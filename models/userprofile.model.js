@@ -146,4 +146,7 @@ const Userprofile = sequelize.define('userprofile',{
     }
 })
 
+Userprofile.belongsTo(Userphoto,{foreignKey:'userphoto',targetKey:'id',as:'userImage'})
+Userphoto.hasMany(Userprofile,{foreignKey:'userphoto',sourceKey:'id',as:'imageUser'})
+
 module.exports = {Userprofile}

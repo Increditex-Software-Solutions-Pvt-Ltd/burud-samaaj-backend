@@ -1,6 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user.controller");
-const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages } = require("../controllers/userprofile.controller");
+const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics } = require("../controllers/userprofile.controller");
 const { userActions } = require("../middleware/user.middleware");
 const userRouter = express.Router();
 
@@ -27,6 +27,8 @@ userRouter.post('/addimages', saveUserImages);
 userRouter.get('/checkprofile', checkProfile);
 userRouter.get('/allprofiles', getAllProfiles);
 userRouter.get('/getsingleprofile', getSingleProfile);
+userRouter.get('/getuserphotos', getAllUserpics);
+
 
 userRouter.put('/sendRequest', userController.sendRequest)
 

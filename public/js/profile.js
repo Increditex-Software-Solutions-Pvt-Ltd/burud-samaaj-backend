@@ -45,12 +45,34 @@ async function displayProfiles(pageNumber, category) {
   profileContainer.innerHTML = '';
 
   if (profiles.length) {
-    profiles.forEach(profile => {
+    profiles.forEach(async(profile) => {
+      console.log("userphotos",profile.userphoto);
+      let profilepics;
+      await $.ajax({
+        type: 'GET',
+        url: '/getuserphotos', 
+        data: profile.userphoto,
+        
+        success: function (response) {
+          // Handle success response
+          if (response.pics) {
+            profilepics = [...response.pics];
+          }
+          else {
+            profilepics = [];
+          }
+        },
+        error: function (xhr, status, error) {
+          // Handle error
+          console.error(error);
+        }
+      });
+      console.log(profile);
       let user = `
                  <div class="col-md-4 mt-3">
                   <div class="image_body ${profile.profilefor} show">
                                       <div class="content">
-                                          <img src="${profile.profilepic}"
+                                          <img src="${profilepics.profilepic}"
                                               alt="Lights" style="width:100%" class="img rounded-5">
                                           <div class="text-center">
                                               <h5 class=" p-2">${profile.fullname}</h5>

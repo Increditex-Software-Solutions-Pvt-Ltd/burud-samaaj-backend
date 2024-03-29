@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const { Userprofile } = require('../models/userprofile.model');
-const { use } = require('bcrypt/promises');
+const { Userphoto } = require('../models/userphotos.model');
 
 const userController = {
     gethome: async (req, res) => {
@@ -89,9 +89,17 @@ const userController = {
                     const user = await User.findOne({ where: { id: userId } });
                     const userprofile = await Userprofile.findOne({ where: { userId } })
 
+                    const userRecords = await Userprofile.findAll({
+                        include:[
+                            {
+                                model:Userphoto,
+                                as:'userImage'
+                            }
+                        ]
+                    })
                     if (user) {
 
-                        return res.render('profile', { user, userprofile });
+                        return res.render('profile', { user, userprofile,userRecords });
                     }
                 } catch (err) {
 
@@ -365,11 +373,7 @@ const userController = {
             res.status(500).send({ "error": "Internal Server Error" });
         }
     }
-    
-    
-    
-    
-    
+        
 }
 
 module.exports = userController;

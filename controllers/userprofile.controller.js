@@ -138,10 +138,32 @@ const checkProfile = async (req, res) => {
     }
 }
 
+const getAllUserpics=async(req,res)=>{
+   try {
+      const id = req.body;
+      console.log("this is body",req.body);
+    
+
+      const pics = await Userphoto.findOne({id});
+      console.log(pics);
+      if (pics) {
+        return res.status(201).send({ pics })
+    } else {
+        return res.status(404).json({ error: 'profile images not found' });
+    }
+      
+
+   } catch (error) {
+    console.error('Error getting user profilepics:', error);
+        res.status(500).json({ message: 'Internal server error' });
+   }
+}
+
 const getAllProfiles = async (req, res) => {
     try {
         const userId = req.cookies.userId
         const profiles = await Userprofile.findAll();
+        const profilephoto = await Userphoto.findAll();
         const filteredData = profiles.filter((profile) => profile.userId != userId)
         res.send({ profiles: filteredData });
     } catch (error) {
@@ -170,4 +192,4 @@ const getSingleProfile = async (req, res) => {
     }
 }
 
-module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile,saveUserImages };
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile,saveUserImages,getAllUserpics };
