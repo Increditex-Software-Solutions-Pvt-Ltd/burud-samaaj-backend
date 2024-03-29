@@ -10,7 +10,7 @@ userRouter.get('/detailprofile/:id', userActions.checkLogged, userController.get
 // userRouter.get('/createprofile',userController.getcreateprofile);
 userRouter.get('/search', userController.getserach);
 userRouter.get('/about', userController.getaboutpage);
-userRouter.get('/uploadphoto',userController.getUploadphotopage)
+userRouter.get('/uploadphoto', userController.getUploadphotopage)
 userRouter.get('/success-stories', userController.getsuccessStories);
 userRouter.get('/success-videos', userController.getsuccessVideos);
 
@@ -31,5 +31,7 @@ userRouter.get('/getuserphotos', getAllUserpics);
 
 
 userRouter.put('/sendRequest', userController.sendRequest)
+userRouter.post('/sendOtp', userController.sendOtp, userController.getOtpform)
+userRouter.post('/verifyOtp', userActions.verifyOtp)
 
 module.exports = userRouter;

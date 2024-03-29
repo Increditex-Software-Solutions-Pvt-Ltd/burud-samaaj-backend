@@ -35,6 +35,23 @@ const userActions = {
             res.status(500).send('Internal Server Error');
         }
 
+    },
+    verifyOtp: async (req, res, next) => {
+        try {
+            const otp = req.cookies.signupOtp;
+            const userEntered = req.body
+            console.log(otp, userEntered);
+            if (otp === userEntered) {
+                return res.redirect('/');
+            }
+            else {
+                return res.redirect('/login')
+            }
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            return res.status(500).send('Internal Server Error');
+        }
+
     }
 
 }

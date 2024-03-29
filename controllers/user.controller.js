@@ -5,6 +5,8 @@ const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const { Userprofile } = require('../models/userprofile.model');
 const { Userphoto } = require('../models/userphotos.model');
+const { otpGen } = require('otp-gen-agent');
+const nodemailer = require('nodemailer');
 
 const userController = {
     gethome: async (req, res) => {
@@ -45,7 +47,7 @@ const userController = {
     getloginform: (req, res) => {
         return res.render('login');
     },
-    getUploadphotopage: async(req, res) => {
+    getUploadphotopage: async (req, res) => {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
@@ -90,16 +92,16 @@ const userController = {
                     const userprofile = await Userprofile.findOne({ where: { userId } })
 
                     const userRecords = await Userprofile.findAll({
-                        include:[
+                        include: [
                             {
-                                model:Userphoto,
-                                as:'userImage'
+                                model: Userphoto,
+                                as: 'userImage'
                             }
                         ]
                     })
                     if (user) {
 
-                        return res.render('profile', { user, userprofile,userRecords });
+                        return res.render('profile', { user, userprofile, userRecords });
                     }
                 } catch (err) {
 
@@ -347,33 +349,81 @@ const userController = {
         try {
             const userId = req.cookies.userId;
             const profileId = req.cookies.profileId;
-    
+
             // Find the sender and receiver users in the database
             const sender = await User.findByPk(userId);
             const receiver = await User.findByPk(profileId);
-    
+
             if (!sender || !receiver) {
                 throw new Error('Sender or receiver not found');
             }
-    
-          
+
+
             // Initialize receiver's friendRequests object if not already initialized
             receiver.friendRequests = receiver.friendRequests || { sent: [], received: [] };
-    
+
             // Add sender's ID to receiver's friendRequests.received array if not already present
             if (!receiver.friendRequests.received.includes(userId)) {
                 receiver.friendRequests.received.push(userId);
                 // Save changes to the receiver user in the database
                 await receiver.save();
             }
-    
+
             res.send({ "message": "Friend request sent successfully" });
         } catch (error) {
             console.error('Error sending friend request:', error);
             res.status(500).send({ "error": "Internal Server Error" });
         }
+    },
+    sendOtp: async (req, res, next) => {
+        try {
+            const { email } = req.body;
+
+            const user = await User.findOne({ email: email })
+
+            const otp = await otpGen(); // '344156'  (OTP length is 6 digit by default)
+            if (user) {
+
+                const EMAIL_PASS = process.env.EMAIL_PASS;
+
+                const transporter = await nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'nishantphule12@gmail.com',
+                        pass: EMAIL_PASS
+                    }
+                });
+
+                const mailOptions = {
+                    from: 'nishantphule12@gmail.com', // sender address
+                    to: email, // list of receivers
+                    text: ` Your One Time Password for Registeration is ${otp}`,
+                };
+
+                await transporter.sendMail(mailOptions, function (err, info) {
+                    if (err)
+                        console.log(err)
+                    else
+                        console.log(info);
+                });
+
+                console.log(otp)
+                res.cookie('signupOtp', otp, { httpOnly: true, secure: true });
+                // res.status(201).json({ message: 'Check your email' });
+                next()
+            }
+            else {
+                res.status(504).json({ message: 'Invalid Email' });
+            }
+        } catch (error) {
+            res.status(504).json({ message: 'Internal Server Error' });
+        }
+
+    },
+    getOtpform: async (req, res) => {
+        return res.redirect('/otpform');
     }
-        
+
 }
 
 module.exports = userController;

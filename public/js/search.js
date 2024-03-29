@@ -1,188 +1,114 @@
-function submitForm(event) {
-	event.preventDefault(); // Prevent form from submitting normally
-
-	// Get form data
-	var formData = new FormData(document.getElementById("simpleForm"));
-
-	// Convert formData to JSON object
-	var jsonData = {};
-	formData.forEach(function (value, key) {
-		jsonData[key] = value;
-	});
-
-	// You can now use the jsonData object containing form data
-	simpleFilter(jsonData)
-	console.log(jsonData);
-
-
-	// Here you can perform further actions, like sending the data to a server via AJAX
-}
-
-function submitAdvForm(event) {
-	event.preventDefault(); // Prevent form from submitting normally
-
-	// Get form data
-	var formData = new FormData(document.getElementById("advanceForm"));
-
-	// Convert formData to JSON object
-	var jsonData = {};
-	formData.forEach(function (value, key) {
-		jsonData[key] = value;
-	});
-
-	// You can now use the jsonData object containing form data
-	advanceFilter(jsonData)
-	console.log(jsonData);
-
-
-	// Here you can perform further actions, like sending the data to a server via AJAX
-}
-
-async function getDataFromBackend(){
+async function getDataFromBackend() {
 	let profiles
 	await $.ajax({
-	  type: 'GET',
-	  url: '/allprofiles', // Update the URL with your server endpoint
-	  success: function (response) {
-		  // Handle success response
-		  if (response.profiles) {
-			 profiles =  [...response.profiles];
-		  }
-		  else {
-			  profiles = [];
-		  }
-	  },
-	  error: function (xhr, status, error) {
-		  // Handle error
-		  console.error(error);
-	  }
-  });
-  return profiles
-  }
-
-async function simpleFilter(data) {
-
-	const backendData = await getDataFromBackend();
-
-	const filteredData = backendData.filter(item => {
-		return item.fullname.toLowerCase() === data.name.toLowerCase() &&
-			item.city.toLowerCase() === data.city.toLowerCase();
+		type: 'GET',
+		url: '/allprofiles', // Update the URL with your server endpoint
+		success: function (response) {
+			// Handle success response
+			if (response.profiles) {
+				profiles = [...response.profiles];
+			}
+			else {
+				profiles = [];
+			}
+		},
+		error: function (xhr, status, error) {
+			// Handle error
+			console.error(error);
+		}
 	});
-
-	console.log(filteredData);
-
-	const filteredDataDiv = document.getElementById('filteredData');
-	const simpleInputForm = document.getElementById("description");
-	const filterContainer = document.getElementById("filterContainer")
-	simpleInputForm.style.display = "none"
-
-	filteredDataDiv.classList = ""
-	filterContainer.classList = "row m-0 mt-4"
-	filterContainer.innerHTML = ""
-
-	filteredData.forEach((item, i) => {
-		console.log(item.occupation)
-		let user = `
-		<div class="col-md-4 column nature">
-		<div class="image_body">
-			<div class="content">
-				<img src="https://static.toiimg.com/imagenext/toiblogs/photo/readersblog/wp-content/uploads/2020/04/Indian-Bride-Feature-Image.jpg"
-					alt="Lights" style="width:100%" class="img rounded-5">
-				<div class="text-center">
-					<h4 class=" p-2">${item.fullname}</h4>
-					<p> <button class="btn btn-danger">${item.city}</button>
-						<button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-							data-bs-target="#staticBackdrop${i}">
-							See Details
-						</button>
-					<div class="modal fade" id="staticBackdrop${i}" data-bs-backdrop="static"
-						data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-						aria-hidden="true">
-						<div class="modal-dialog modal-dialog-scrollable">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Details</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<div>
-										<img src="https://i.pinimg.com/736x/c3/21/b4/c321b403c05ef0a241cb08f331868d87.jpg"
-											alt="" style="height: 200px; width: 200px;">
-										<div class="mt-2">
-											<h6 class="text-center">Personal Information</h6>
-											<table class="table">
-												<h5 class="bg-danger text-white p-2"><b>${item.id}</b></h5>
-												<tr>
-													<td>Name:</td>
-													<td>${item.fullname}</td>
-												</tr>
-												<tr>
-													<td>Date Of Birth:</td>
-													<td>${item.dateofbirth.substring(0, 10)}</td>
-												</tr>
-												<tr>
-													<td>Occupation:</td>
-													<td>${item.occupation}</td>
-												</tr>
-												<tr>
-													<td>Education:</td>
-													<td>${item.education}</td>
-												</tr>
-											</table>
-										</div>
-									</div>
-
-
-
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary"
-										data-bs-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-danger">
-										<a href="/detailprofile/${item.id}" style="text-decoration: none;"
-											class="text-white">View Profile</a>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					</p>
-
-				</div>
-			</div>
-		</div>
-	</div>
-		`
-
-		filterContainer.innerHTML += user
-	});
+	return profiles
 }
+
+document.getElementById("searchButton").addEventListener("click", async function () {
+	var searchInput = document.getElementById("searchInput").value.split(" ").join("").trim().toLowerCase();
+
+	// Make sure search input is not empty
+	if (searchInput !== "") {
+		console.log(searchInput);
+		advanceFilter(searchInput)
+	} else {
+		// If search input is empty, clear search results
+		const filteredDataDiv = document.getElementById('filteredData');
+		const filterContainer = document.getElementById("filterContainer")
+		filteredDataDiv.classList = "mt-5"
+
+		filterContainer.innerHTML = ""
+		filterContainer.innerHTML += `<h1 class="text-center">Type something to search</h1>`
+
+	}
+});
+
+let searchFilterData
 
 async function advanceFilter(data) {
 	const backendData = await getDataFromBackend();
 
-	console.log(data.occupation, data.id)
-	const filteredData = backendData.filter(item => {
-		console.log(item.occupation, item.id)
-		return item.occupation.toLowerCase() === data.occupation.toLowerCase() &&
-			item.id === parseInt(data.id);
+	let filteredData = backendData.filter(item => {
+		return item.occupation.split(" ").join("").toLowerCase().includes(data) || item.city.split(" ").join("").toLowerCase().includes(data) || item.fullname.split(" ").join("").toLowerCase().includes(data) || item.education.split(" ").join("").toLowerCase().includes(data) || item.gotra.split(" ").join("").toLowerCase().includes(data) || item.birthplace.split(" ").join("").toLowerCase().includes(data) || item.fathername.split(" ").join("").toLowerCase().includes(data) || item.mothername.split(" ").join("").toLowerCase().includes(data)
+
+	});
+	searchFilterData = [...filteredData]
+	showProfiles(filteredData)
+}
+
+// Function to filter JSON data based on filter criteria
+function filterData() {
+	var ageMin = parseInt(document.getElementById("ageMin").value) || 0;
+	var ageMax = parseInt(document.getElementById("ageMax").value) || Infinity;
+	var heightMin = parseInt(document.getElementById("heightMin").value) || 0;
+	var heightMax = parseInt(document.getElementById("heightMax").value) || Infinity;
+	var city = document.getElementById("cityFilter").value;
+	var education = document.getElementById("educationFilter").value;
+	var profileFor = document.getElementById("profileForFilter").value;
+
+	var filteredData = searchFilterData.filter(function (item) {
+		return item.age >= ageMin &&
+			item.age <= ageMax &&
+			item.height >= heightMin &&
+			item.height <= heightMax &&
+			(city === "" || item.city === city) &&
+			(education === "" || item.education === education) &&
+			(profileFor === "" || item.profileFor === profileFor);
 	});
 
 	console.log(filteredData);
+	// Display filtered data
+	showProfiles(filteredData);
+}
 
+// Attach event listeners to filter inputs
+var filterInputs = document.querySelectorAll('.filters input, .filters select');
+filterInputs.forEach(function (input) {
+	console.log("Event added");
+	input.addEventListener("change", filterData);
+});
+
+function clearFilters() {
+	// Reset input values
+	document.getElementById("ageMin").value = "";
+	document.getElementById("ageMax").value = "";
+	document.getElementById("heightMin").value = "";
+	document.getElementById("heightMax").value = "";
+	document.getElementById("cityFilter").selectedIndex = 0; // Reset to the first option
+	document.getElementById("educationFilter").selectedIndex = 0; // Reset to the first option
+	document.getElementById("profileForFilter").selectedIndex = 0; // Reset to the first option
+
+	// Call the filter function to reapply default filters
+	showProfiles(searchFilterData)
+}
+
+function showProfiles(filteredData) {
 	const filteredDataDiv = document.getElementById('filteredData');
-	const simpleInputForm = document.getElementById("description");
 	const filterContainer = document.getElementById("filterContainer")
-	simpleInputForm.style.display = "none"
 
-	filteredDataDiv.classList = ""
-	filterContainer.classList = "row m-0 mt-4"
-	filterContainer.innerHTML = ""
+	if (filteredData.length > 0) {
+		filteredDataDiv.classList = "mt-5"
+		filterContainer.classList = "row m-0 mt-4"
+		filterContainer.innerHTML = ""
 
-	filteredData.forEach((item, i) => {
-		console.log(item.occupation)
-		let user = `
+		filteredData.forEach((item, i) => {
+			let user = `
 		<div class="col-md-4 column nature">
 		<div class="image_body">
 			<div class="content">
@@ -255,58 +181,47 @@ async function advanceFilter(data) {
 	</div>
 		`
 
-		filterContainer.innerHTML += user
-	});
-}
-
-function backBtn() {
-	const filteredDataDiv = document.getElementById('filteredData');
-	filteredDataDiv.classList = "row m-0 mt-4 d-none"
-	const simpleInputForm = document.getElementById("description");
-	simpleInputForm.style.display = "block"
-
-}
-
-
-
-async function addProfile() {
-	try {
-		await $.ajax({
-			type: 'GET',
-			url: '/checkprofile', // Endpoint to check user profile existence
-			success: async function (response) {
-				if (response.message === 'User Profile Found') {
-					$('#basicInfoAddModal').modal('hide');
-					console.log("send request");
-
-					// Add AJAX request to send friend request
-					await $.ajax({
-						type: 'PUT',
-						url: '/sendRequest', // Endpoint to send friend request
-						success: function (response) {
-							console.log('Friend request sent successfully');
-						},
-						error: function (xhr, status, error) {
-							console.error('Error sending friend request:', error);
-						}
-					});
-				} else {
-					$('#basicInfo-form').trigger('reset');
-					$('#basicInfoAddModal').modal('show');
-				}
-			},
-			error: function (xhr, status, error) {
-				console.error(error);
-			}
+			filterContainer.innerHTML += user
 		});
-	} catch (error) {
-		console.error('Error adding profile:', error);
+	}
+	else {
+		filteredDataDiv.classList = "mt-5"
+		filterContainer.innerHTML = ""
+		filterContainer.innerHTML += `<h1 class="text-center">No Data matched</h1>`
 	}
 }
 
+// function backBtn() {
+// 	const filteredDataDiv = document.getElementById('filteredData');
+// 	filteredDataDiv.classList = "row m-0 mt-4 d-none"
+// }
+
+
+async function addProfile() {
+	await $.ajax({
+		type: 'GET',
+		url: '/checkprofile', // Update the URL with your server endpoint
+		success: function (response) {
+			// Handle success response
+			if (response.message === 'User Profile Found') {
+				$('#basicInfoAddModal').modal('hide');
+				console.log("send request");
+			}
+			else {
+				$('#basicInfo-form').trigger('reset');
+				$('#basicInfoAddModal').modal('show');
+
+			}
+		},
+		error: function (xhr, status, error) {
+			// Handle error
+			console.error(error);
+		}
+	});
+
+}
+
 function captureBasicDetails() {
-
-
 	const profilefor = document.getElementById('profilefor').value;
 	//  basicDetails['profilefor']=profilefor
 	const fullname = document.getElementById('fullname').value;
@@ -339,11 +254,9 @@ function captureBasicDetails() {
 	//  basicDetails['complexion']=complexion
 	const mangal = document.getElementById('mangal').value;
 	//  basicDetails['mangal']=mangal
-
+	const horoimage = document.getElementById('horoimage').value;
 	//  basicDetails['horoimage']=horoimage
 	const residentcity = document.getElementById('residentcity').value;
-	const email = document.getElementById('email').value;
-	const mobile = document.getElementById('mobile').value;
 	//  basicDetails['residentcity']=residentcity
 
 
@@ -364,14 +277,15 @@ function captureBasicDetails() {
 	document.getElementById("heightinput").value = height;
 	document.getElementById("occupationcityinput").value = occupationcity;
 	document.getElementById("mangalinput").value = mangal;
+	document.getElementById("horoimageinput").value = horoimage;
 	document.getElementById("residentcityinput").value = residentcity;
-	document.getElementById("emailinput").value = email;
-	document.getElementById("mobileinput").value = mobile;
+
+
+
 }
 
 // Function to update the Next button state
 function updateNextbuttonstate() {
-
 	const profilefor = $('#profilefor').val();
 	const fullname = $('#fullname').val();
 	const city = $('#city').val();
@@ -388,10 +302,8 @@ function updateNextbuttonstate() {
 	const occupationcity = $('#occupationcity').val();
 	const complexion = $('#complexion').val();
 	const mangal = $('#mangal').val();
+	const horoimage = $('#horoimage').val();
 	const residentcity = $('#residentcity').val();
-	const email = $('#email').val();
-	const mobile = $('#mobile').val();
-
 
 
 	if (
@@ -411,9 +323,8 @@ function updateNextbuttonstate() {
 		occupationcity &&
 		complexion &&
 		mangal &&
-		residentcity &&
-		email &&
-		mobile
+		horoimage &&
+		residentcity
 	) {
 		$('#proceedToSecondModal').prop('disabled', false);
 	} else {
@@ -456,14 +367,12 @@ function submitFormData() {
 		height: document.getElementById("heightinput").value,
 		occupationcity: document.getElementById("occupationcityinput").value,
 		mangal: document.getElementById("mangalinput").value,
+		horoimage: document.getElementById("horoimageinput").value,
 		residentcity: document.getElementById("residentcityinput").value,
-		email: document.getElementById("emailinput").value,
-		mobile: document.getElementById("mobileinput").value,
 	};
 
 	// Gather data from the second modal
 	const familyInfo = {
-	   
 		fathername: document.getElementById('fathername').value,
 		mothername: document.getElementById('mothername').value,
 		maternaluncle: document.getElementById('maternaluncle').value,
@@ -479,6 +388,7 @@ function submitFormData() {
 		herhisparentresidence: document.getElementById('herhisparentresidence').value,
 		// Add other fields as needed
 	};
+
 	// Combine data from both modals
 	const formData = { ...basicInfo, ...familyInfo };
 
@@ -493,7 +403,6 @@ function submitFormData() {
 			$('#basicInfoAddModal').modal('hide');
 			$('#familyinfoAddModal').modal('hide');
 			$('.toast').toast('show');
-			window.location.href = '/uploadphoto';
 		},
 		error: function (xhr, status, error) {
 			// Handle error
