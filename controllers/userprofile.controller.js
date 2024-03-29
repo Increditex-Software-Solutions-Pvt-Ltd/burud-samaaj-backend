@@ -142,8 +142,6 @@ const getAllUserpics=async(req,res)=>{
    try {
       const id = req.body;
       console.log("this is body",req.body);
-    
-
       const pics = await Userphoto.findOne({id});
       console.log(pics);
       if (pics) {
