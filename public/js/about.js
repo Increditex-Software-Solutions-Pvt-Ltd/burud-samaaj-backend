@@ -1,28 +1,43 @@
 async function addProfile() {
-    await $.ajax({
-        type: 'GET',
-        url: '/checkprofile', // Update the URL with your server endpoint
-        success: function (response) {
-            // Handle success response
-            if (response.message === 'User Profile Found') {
-                $('#basicInfoAddModal').modal('hide');
-                console.log("send request");
-            }
-            else {
-                $('#basicInfo-form').trigger('reset');
-                $('#basicInfoAddModal').modal('show');
+    try {
+        await $.ajax({
+            type: 'GET',
+            url: '/checkprofile', // Endpoint to check user profile existence
+            success: async function (response) {
+                if (response.message === 'User Profile Found') {
+                    $('#basicInfoAddModal').modal('hide');
+                    console.log("send request");
 
+                    // Add AJAX request to send friend request
+                    await $.ajax({
+                        type: 'PUT',
+                        url: '/sendRequest', // Endpoint to send friend request
+                        success: function (response) {
+                            console.log('Friend request sent successfully');
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error sending friend request:', error);
+                        }
+                    });
+                } else {
+                    $('#basicInfo-form').trigger('reset');
+                    $('#basicInfoAddModal').modal('show');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
             }
-        },
-        error: function (xhr, status, error) {
-            // Handle error
-            console.error(error);
-        }
-    });
-
+        });
+    } catch (error) {
+        console.error('Error adding profile:', error);
+    }
 }
 
 function captureBasicDetails() {
+    const profilepic = document.getElementById('profilepic').value;
+    const biopic1 = document.getElementById('biopic1').value;
+    const biopic2 = document.getElementById('biopic2').value;
+
     const profilefor = document.getElementById('profilefor').value;
     //  basicDetails['profilefor']=profilefor
     const fullname = document.getElementById('fullname').value;
@@ -58,11 +73,15 @@ function captureBasicDetails() {
     const horoimage = document.getElementById('horoimage').value;
     //  basicDetails['horoimage']=horoimage
     const residentcity = document.getElementById('residentcity').value;
+    const email = document.getElementById('email').value;
+    const mobile = document.getElementById('mobile').value;
     //  basicDetails['residentcity']=residentcity
 
 
-
+    document.getElementById("profilepicinput").value = profilepic;
     document.getElementById("profileforinput").value = profilefor;
+    document.getElementById("biopicinput1").value = biopic1;
+    document.getElementById("biopicinput2").value = biopic2;
     document.getElementById("fullnameinput").value = fullname;
     document.getElementById("cityinput").value = city;
     document.getElementById("dobinput").value = dob;
@@ -80,6 +99,8 @@ function captureBasicDetails() {
     document.getElementById("mangalinput").value = mangal;
     document.getElementById("horoimageinput").value = horoimage;
     document.getElementById("residentcityinput").value = residentcity;
+    document.getElementById("emailinput").value = email;
+    document.getElementById("mobileinput").value = mobile;
 
 
 
@@ -87,6 +108,9 @@ function captureBasicDetails() {
 
 // Function to update the Next button state
 function updateNextbuttonstate() {
+    const profilepic = $('#profilepic').val();
+    const biopic1 = $('#biopic1').val();
+    const biopic2 = $('#biopic2').val();
     const profilefor = $('#profilefor').val();
     const fullname = $('#fullname').val();
     const city = $('#city').val();
@@ -105,10 +129,16 @@ function updateNextbuttonstate() {
     const mangal = $('#mangal').val();
     const horoimage = $('#horoimage').val();
     const residentcity = $('#residentcity').val();
+    const email = $('#email').val();
+    const mobile = $('#mobile').val();
 
+    console.log(profilepic);
 
     if (
+        profilepic &&
         profilefor &&
+        biopic1 &&
+        biopic2 &&
         fullname &&
         city &&
         dob &&
@@ -125,7 +155,9 @@ function updateNextbuttonstate() {
         complexion &&
         mangal &&
         horoimage &&
-        residentcity
+        residentcity &&
+        email &&
+        mobile 
     ) {
         $('#proceedToSecondModal').prop('disabled', false);
     } else {
@@ -152,6 +184,9 @@ function addFamilyBackground() {
 function submitFormData() {
 
     const basicInfo = {
+        profilepic: document.getElementById('profilepicinput').value,
+        biopic1 : document.getElementById('biopicinput1').value,
+        bioPic2: document.getElementById('biopicinput2').value,
         profilefor: document.getElementById('profileforinput').value,
         fullname: document.getElementById('fullnameinput').value,
         city: document.getElementById("cityinput").value,
@@ -200,6 +235,7 @@ function submitFormData() {
         data: formData,
         success: function (response) {
             // Handle success response
+            console.log(response);
             $('#basicInfoAddModal').modal('hide');
             $('#familyinfoAddModal').modal('hide');
             $('.toast').toast('show');
@@ -210,4 +246,3 @@ function submitFormData() {
         }
     });
 }
-

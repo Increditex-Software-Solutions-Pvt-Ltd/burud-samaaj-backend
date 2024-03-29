@@ -82,7 +82,9 @@
                                         <h3 class="text-dark fs-5">
                                             <%= profile.fullname %>
                                         </h3>
-                                        <p class="db">DOB:30/08/2002</p>
+                                        <p class="db">
+                                            DOB:<%= profile.dateofbirth %>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row m-0">
+                    <div class="row m-0">
                         <div class="col-md-6 mt-2">
                             <button class="btn btn-primary side_button_2">
                                 <i class="fa fa-edit mr-1"></i>Edit Profile</button>
@@ -104,7 +106,7 @@
                                 <i class="fa fa-address-book mr-2" onclick="generatePdf()">Print PDF</i>
                             </button>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
         </section>
         <br> <br>
@@ -341,6 +343,8 @@
                 </div>
                 <div class="modal-body">
                     <form class="row g-4" id="basicInfo-form">
+
+
                         <div class="col-md-4">
                             <label for="">Create Profile for</label>
                             <select class="form-control" id="profilefor" name="profilefor" required>
@@ -473,12 +477,22 @@
                                 <option value="Chalisgaon">Chalisgaon</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label for="horo-image">Horo Image(आपला फोटो)</label>
-                            <input class="form-control" type="file" id="horoimage" name="horoimage" accept="image/*"
-                                required>
-                        </div>
 
+                        <div class="row border-top">
+                            <h6 class="text-dark p-3">Your contact details</h6>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="age-difference"> Email id </label>
+                                        <input class="form-control" type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="age-difference">Mobile number</label>
+                                        <input class="form-control" type="number" id="mobile" name="mobile" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </form>
                 </div>
@@ -495,7 +509,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="text-dark">Add Family Information & Expectations</h6>
+                    <h6 class="text-dark">Add Family Information</h6>
                     <button type="button" class="close" data-bs-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -503,7 +517,8 @@
                 <div class="modal-body">
                     <form action="" method="" class="row" id="familyInfo-form" enctype="multipart/form-data">
                         <div class="col-md-12">
-                            <div class="row mb-4">
+                            <div class="row my-4">
+
                                 <input type="hidden" name="profilefor" id="profileforinput" value="">
                                 <input type="hidden" name="fullname" id="fullnameinput" value="">
                                 <input type="hidden" name="city" id="cityinput" value="">
@@ -520,23 +535,28 @@
                                 <input type="hidden" name="height" id="heightinput" value="">
                                 <input type="hidden" name="occupationcity" id="occupationcityinput" value="">
                                 <input type="hidden" name="mangal" id="mangalinput" value="">
-                                <input type="hidden" name="horoimage" id="horoimageinput" value="">
                                 <input type="hidden" name="residentcity" id="residentcityinput" value="">
+                                <input type="hidden" name="email" id="emailinput" value="">
+                                <input type="hidden" name="mobile" id="mobileinput" value="">
+
+
 
                                 <div class="col-md-4">
                                     <label for="father-name">Father's Name</label>
-                                    <input class="form-control" type="text" id="fathername" name="fathername" required>
+                                    <input class="form-control" type="text" id="fathername" name="fathername"
+                                        required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="mother-name">Mother's Name</label>
-                                    <input class="form-control" type="text" id="mothername" name="mothername" required>
+                                    <input class="form-control" type="text" id="mothername" name="mothername"
+                                        required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
-                                    <input class="form-control" type="text" id="maternaluncle" name="maternaluncle"
-                                        required>
+                                    <input class="form-control" type="text" id="maternaluncle"
+                                        name="maternaluncle" required>
                                 </div>
 
                                 <div class="col-md-4">
@@ -581,6 +601,7 @@
                                         <option value="no">No</option>
                                     </select>
                                 </div>
+
                             </div>
 
                             <div class="row border-top">
@@ -658,73 +679,44 @@
 
     <!-- registeration and send request script -->
     <script>
-        async function getDataFromBackend() {
-            let profile
-            await $.ajax({
-                type: 'GET',
-                url: '/getsingleprofile',
-                success: function (response) {
-                    // Handle success response
-                    if (response.profile) {
-                        profile = response.profile;
-                    }
-                    else {
-                        profile = [];
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // Handle error
-                    console.error(error);
-                }
-            });
-            console.log(profile);
-            return profile
-        }
-
-        getDataFromBackend()
-
         async function addProfile() {
-            await $.ajax({
-                type: 'GET',
-                url: '/checkprofile', // Update the URL with your server endpoint
-                success: async function (response) {
-                    // Handle success response
-                    if (response.message === 'User Profile Found') {
-                        $('#basicInfoAddModal').modal('hide');
-                        await $.ajax({
-                            type: 'PUT',
-                            url: '/sendRequest', // Update the URL with your server endpoint
-                            success: function (response) {
-                                // Handle success response
-                                if (response.message === 'Request Sent Successfully') {
-                                    console.log("Done");
+            try {
+                await $.ajax({
+                    type: 'GET',
+                    url: '/checkprofile', // Endpoint to check user profile existence
+                    success: async function (response) {
+                        if (response.message === 'User Profile Found') {
+                            $('#basicInfoAddModal').modal('hide');
+                            console.log("send request");
+
+                            // Add AJAX request to send friend request
+                            await $.ajax({
+                                type: 'PUT',
+                                url: '/sendRequest', // Endpoint to send friend request
+                                success: function (response) {
+                                    console.log('Friend request sent successfully');
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error('Error sending friend request:', error);
                                 }
-                                // else {
-                                //     $('#basicInfo-form').trigger('reset');
-                                //     $('#basicInfoAddModal').modal('show');
-                                // }
-                            },
-                            error: function (xhr, status, error) {
-                                // Handle error
-                                console.error(error);
-                            }
-                        })
+                            });
+                        } else {
+                            $('#basicInfo-form').trigger('reset');
+                            $('#basicInfoAddModal').modal('show');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
                     }
-                    else {
-                        $('#basicInfo-form').trigger('reset');
-                        $('#basicInfoAddModal').modal('show');
-
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // Handle error
-                    console.error(error);
-                }
-            });
-
+                });
+            } catch (error) {
+                console.error('Error adding profile:', error);
+            }
         }
 
         function captureBasicDetails() {
+
+
             const profilefor = document.getElementById('profilefor').value;
             //  basicDetails['profilefor']=profilefor
             const fullname = document.getElementById('fullname').value;
@@ -757,9 +749,11 @@
             //  basicDetails['complexion']=complexion
             const mangal = document.getElementById('mangal').value;
             //  basicDetails['mangal']=mangal
-            const horoimage = document.getElementById('horoimage').value;
+
             //  basicDetails['horoimage']=horoimage
             const residentcity = document.getElementById('residentcity').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
             //  basicDetails['residentcity']=residentcity
 
 
@@ -780,15 +774,14 @@
             document.getElementById("heightinput").value = height;
             document.getElementById("occupationcityinput").value = occupationcity;
             document.getElementById("mangalinput").value = mangal;
-            document.getElementById("horoimageinput").value = horoimage;
             document.getElementById("residentcityinput").value = residentcity;
-
-
-
+            document.getElementById("emailinput").value = email;
+            document.getElementById("mobileinput").value = mobile;
         }
 
         // Function to update the Next button state
         function updateNextbuttonstate() {
+
             const profilefor = $('#profilefor').val();
             const fullname = $('#fullname').val();
             const city = $('#city').val();
@@ -805,8 +798,10 @@
             const occupationcity = $('#occupationcity').val();
             const complexion = $('#complexion').val();
             const mangal = $('#mangal').val();
-            const horoimage = $('#horoimage').val();
             const residentcity = $('#residentcity').val();
+            const email = $('#email').val();
+            const mobile = $('#mobile').val();
+
 
 
             if (
@@ -826,8 +821,9 @@
                 occupationcity &&
                 complexion &&
                 mangal &&
-                horoimage &&
-                residentcity
+                residentcity &&
+                email &&
+                mobile
             ) {
                 $('#proceedToSecondModal').prop('disabled', false);
             } else {
@@ -870,12 +866,14 @@
                 height: document.getElementById("heightinput").value,
                 occupationcity: document.getElementById("occupationcityinput").value,
                 mangal: document.getElementById("mangalinput").value,
-                horoimage: document.getElementById("horoimageinput").value,
                 residentcity: document.getElementById("residentcityinput").value,
+                email: document.getElementById("emailinput").value,
+                mobile: document.getElementById("mobileinput").value,
             };
 
             // Gather data from the second modal
             const familyInfo = {
+               
                 fathername: document.getElementById('fathername').value,
                 mothername: document.getElementById('mothername').value,
                 maternaluncle: document.getElementById('maternaluncle').value,
@@ -891,7 +889,6 @@
                 herhisparentresidence: document.getElementById('herhisparentresidence').value,
                 // Add other fields as needed
             };
-
             // Combine data from both modals
             const formData = { ...basicInfo, ...familyInfo };
 
@@ -906,6 +903,7 @@
                     $('#basicInfoAddModal').modal('hide');
                     $('#familyinfoAddModal').modal('hide');
                     $('.toast').toast('show');
+                    window.location.href = '/uploadphoto';
                 },
                 error: function (xhr, status, error) {
                     // Handle error

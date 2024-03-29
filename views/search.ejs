@@ -109,15 +109,22 @@
 
                         </a>
                         <ul class="dropdown-menu shadow">
+                       
                             <% if(userprofile){ %>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i class="bi bi-person-circle me-1"></i> Profile</a></li>
+                                <li>
+                                    <a class="dropdown-item" href=""><i class="bi bi-app-indicator me-1"></i> Requests</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href=""><i class="bi bi-people me-1"></i>Connections</a>
+                                </li>
                             <%} else{%>
-                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i class="bi bi-person-circle"></i> Create profile</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i class="bi bi-person-circle me-1"></i> Create profile</a></li>
                             <%}%>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                            <li><a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-right me-1"></i> Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -178,13 +185,13 @@
                                             <div class="row g-3">
                                                 <div class="col-12 col-sm-6">
                                                     <label for="name"></label>
-                                                    <input type="text" class="form-control border-0"
+                                                    <input type="text" class="form-control border-0 rounded-3 shadow-sm"
                                                         placeholder="Search By Name" id="name" name="name" required=""
                                                         style="height: 55px;">
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <label for="city"></label>
-                                                    <select class="form-select border-0" id="city" name="city"
+                                                    <select class="form-select border-0 rounded-3 shadow-sm" id="city" name="city"
                                                         style="height: 55px;" required="">
                                                         <option selected>Search By City</option>
                                                         <option value="Nashik">Nashik</option>
@@ -236,11 +243,11 @@
                                         <form id="advanceForm" onsubmit="submitAdvForm(event)">
                                             <div class="row g-3">
                                                 <div class="col-12 col-sm-6">
-                                                    <input type="text" name="occupation" class="form-control border-0"
+                                                    <input type="text" name="occupation" class="form-control border-0 rounded-3 shadow-sm"
                                                         placeholder="Search By Occupation" style="height: 55px;">
                                                 </div>
                                                 <div class="col-12 col-sm-6">
-                                                    <input type="number" name="id" class="form-control border-0"
+                                                    <input type="number" name="id" class="form-control border-0 rounded-3 shadow-sm"
                                                         placeholder="Search By ID" style="height: 55px;">
                                                 </div>
 
@@ -414,6 +421,8 @@
                 </div>
                 <div class="modal-body">
                     <form class="row g-4" id="basicInfo-form">
+
+
                         <div class="col-md-4">
                             <label for="">Create Profile for</label>
                             <select class="form-control" id="profilefor" name="profilefor" required>
@@ -546,12 +555,22 @@
                                 <option value="Chalisgaon">Chalisgaon</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label for="horo-image">Horo Image(आपला फोटो)</label>
-                            <input class="form-control" type="file" id="horoimage" name="horoimage" accept="image/*"
-                                required>
-                        </div>
 
+                        <div class="row border-top">
+                            <h6 class="text-dark p-3">Your contact details</h6>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="age-difference"> Email id </label>
+                                        <input class="form-control" type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="age-difference">Mobile number</label>
+                                        <input class="form-control" type="number" id="mobile" name="mobile" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </form>
                 </div>
@@ -568,7 +587,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="text-dark">Add Family Information & Expectations</h6>
+                    <h6 class="text-dark">Add Family Information</h6>
                     <button type="button" class="close" data-bs-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -576,7 +595,8 @@
                 <div class="modal-body">
                     <form action="" method="" class="row" id="familyInfo-form" enctype="multipart/form-data">
                         <div class="col-md-12">
-                            <div class="row mb-4">
+                            <div class="row my-4">
+
                                 <input type="hidden" name="profilefor" id="profileforinput" value="">
                                 <input type="hidden" name="fullname" id="fullnameinput" value="">
                                 <input type="hidden" name="city" id="cityinput" value="">
@@ -593,23 +613,28 @@
                                 <input type="hidden" name="height" id="heightinput" value="">
                                 <input type="hidden" name="occupationcity" id="occupationcityinput" value="">
                                 <input type="hidden" name="mangal" id="mangalinput" value="">
-                                <input type="hidden" name="horoimage" id="horoimageinput" value="">
                                 <input type="hidden" name="residentcity" id="residentcityinput" value="">
+                                <input type="hidden" name="email" id="emailinput" value="">
+                                <input type="hidden" name="mobile" id="mobileinput" value="">
+
+
 
                                 <div class="col-md-4">
                                     <label for="father-name">Father's Name</label>
-                                    <input class="form-control" type="text" id="fathername" name="fathername" required>
+                                    <input class="form-control" type="text" id="fathername" name="fathername"
+                                        required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="mother-name">Mother's Name</label>
-                                    <input class="form-control" type="text" id="mothername" name="mothername" required>
+                                    <input class="form-control" type="text" id="mothername" name="mothername"
+                                        required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
-                                    <input class="form-control" type="text" id="maternaluncle" name="maternaluncle"
-                                        required>
+                                    <input class="form-control" type="text" id="maternaluncle"
+                                        name="maternaluncle" required>
                                 </div>
 
                                 <div class="col-md-4">
@@ -654,6 +679,7 @@
                                         <option value="no">No</option>
                                     </select>
                                 </div>
+
                             </div>
 
                             <div class="row border-top">

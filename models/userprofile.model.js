@@ -1,11 +1,20 @@
 const {sequelize} = require('../index');
 const {DataTypes} = require('sequelize');
+const { Userphoto } = require('./userphotos.model');
 
 const Userprofile = sequelize.define('userprofile',{
     id:{
         type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true,
+    },
+    userphoto:{
+       type:DataTypes.INTEGER,
+       references:{
+        model:Userphoto,
+        key:'id'
+       },
+       allowNull:true
     },
     profilefor:{
         type:DataTypes.STRING,
@@ -71,10 +80,6 @@ const Userprofile = sequelize.define('userprofile',{
         type:DataTypes.STRING,
         allowNull:true
     },
-    horoimage:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
     fathername:{
         type:DataTypes.STRING,
         allowNull:true
@@ -124,6 +129,14 @@ const Userprofile = sequelize.define('userprofile',{
         allowNull:true
     },
     herhisparentresidence:{
+        type:DataTypes.STRING,
+        allowNull:true
+    },
+    email:{
+        type:DataTypes.STRING,
+        allowNull:true
+    },
+    mobile:{
         type:DataTypes.STRING,
         allowNull:true
     },

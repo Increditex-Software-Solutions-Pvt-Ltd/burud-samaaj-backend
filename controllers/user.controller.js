@@ -45,6 +45,36 @@ const userController = {
     getloginform: (req, res) => {
         return res.render('login');
     },
+    getUploadphotopage: async(req, res) => {
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+
+            if (token) {
+                try {
+
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    const userId = decoded.userId;
+
+
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    if (user) {
+
+                        return res.render('uploadphoto', { user, userprofile });
+                    }
+                } catch (err) {
+
+                    console.error('Token verification error:', err);
+                }
+            }
+
+            return res.render('uploadphoto', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
     getprofilepage: async (req, res) => {
         try {
             // Check if the user is authenticated
@@ -274,7 +304,7 @@ const userController = {
             // Checking whether the user exists in the database
             if (!userInDb) {
                 // Redirect to login page with an error message
-                req.flash("error", "User not found");
+                req.flash("error", "User not found with this email");
                 return res.redirect('/login');
             }
 
@@ -290,7 +320,7 @@ const userController = {
                     return res.redirect('/');
                 } else {
 
-                    req.flash("error", "Login failed");
+                    req.flash("error", "Invalid credentials");
                     return res.redirect('/login');
                 }
             });
@@ -306,35 +336,40 @@ const userController = {
         res.redirect('/');
     },
     sendRequest: async (req, res) => {
-        const userId = req.cookies.userId;
-        const profileId = req.cookies.profileId
-
-        const sender = await User.findByPk(userId)
-        const receiver = await User.findByPk(profileId)
-
-
-
-        if (receiver.friendRequests['received'] === undefined) {
-            if (receiver.friendLists['list'] === undefined) {
-                let sendReq = {
-                    ...receiver.friendRequests,
-                    received: (receiver.friendRequests.received || []).push(userId)
-                }
-                console.log(sendReq, "req")
-                let updatedReceiver = {
-                    ...receiver,
-                    friendRequests: sendReq
-                }
-                console.log(updatedReceiver, "Updated")
+        try {
+            const userId = req.cookies.userId;
+            const profileId = req.cookies.profileId;
+    
+            // Find the sender and receiver users in the database
+            const sender = await User.findByPk(userId);
+            const receiver = await User.findByPk(profileId);
+    
+            if (!sender || !receiver) {
+                throw new Error('Sender or receiver not found');
             }
-
+    
+          
+            // Initialize receiver's friendRequests object if not already initialized
+            receiver.friendRequests = receiver.friendRequests || { sent: [], received: [] };
+    
+            // Add sender's ID to receiver's friendRequests.received array if not already present
+            if (!receiver.friendRequests.received.includes(userId)) {
+                receiver.friendRequests.received.push(userId);
+                // Save changes to the receiver user in the database
+                await receiver.save();
+            }
+    
+            res.send({ "message": "Friend request sent successfully" });
+        } catch (error) {
+            console.error('Error sending friend request:', error);
+            res.status(500).send({ "error": "Internal Server Error" });
         }
-
-        // let updatingReceiver = User.findAndUpdateById
-
-
-        res.send({ "message": "Request Sent Successfully" })
     }
+    
+    
+    
+    
+    
 }
 
 module.exports = userController;

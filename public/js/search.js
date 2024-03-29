@@ -268,31 +268,45 @@ function backBtn() {
 }
 
 
+
 async function addProfile() {
-	await $.ajax({
-		type: 'GET',
-		url: '/checkprofile', // Update the URL with your server endpoint
-		success: function (response) {
-			// Handle success response
-			if (response.message === 'User Profile Found') {
-				$('#basicInfoAddModal').modal('hide');
-				console.log("send request");
-			}
-			else {
-				$('#basicInfo-form').trigger('reset');
-				$('#basicInfoAddModal').modal('show');
+	try {
+		await $.ajax({
+			type: 'GET',
+			url: '/checkprofile', // Endpoint to check user profile existence
+			success: async function (response) {
+				if (response.message === 'User Profile Found') {
+					$('#basicInfoAddModal').modal('hide');
+					console.log("send request");
 
+					// Add AJAX request to send friend request
+					await $.ajax({
+						type: 'PUT',
+						url: '/sendRequest', // Endpoint to send friend request
+						success: function (response) {
+							console.log('Friend request sent successfully');
+						},
+						error: function (xhr, status, error) {
+							console.error('Error sending friend request:', error);
+						}
+					});
+				} else {
+					$('#basicInfo-form').trigger('reset');
+					$('#basicInfoAddModal').modal('show');
+				}
+			},
+			error: function (xhr, status, error) {
+				console.error(error);
 			}
-		},
-		error: function (xhr, status, error) {
-			// Handle error
-			console.error(error);
-		}
-	});
-
+		});
+	} catch (error) {
+		console.error('Error adding profile:', error);
+	}
 }
 
 function captureBasicDetails() {
+
+
 	const profilefor = document.getElementById('profilefor').value;
 	//  basicDetails['profilefor']=profilefor
 	const fullname = document.getElementById('fullname').value;
@@ -325,9 +339,11 @@ function captureBasicDetails() {
 	//  basicDetails['complexion']=complexion
 	const mangal = document.getElementById('mangal').value;
 	//  basicDetails['mangal']=mangal
-	const horoimage = document.getElementById('horoimage').value;
+
 	//  basicDetails['horoimage']=horoimage
 	const residentcity = document.getElementById('residentcity').value;
+	const email = document.getElementById('email').value;
+	const mobile = document.getElementById('mobile').value;
 	//  basicDetails['residentcity']=residentcity
 
 
@@ -348,15 +364,14 @@ function captureBasicDetails() {
 	document.getElementById("heightinput").value = height;
 	document.getElementById("occupationcityinput").value = occupationcity;
 	document.getElementById("mangalinput").value = mangal;
-	document.getElementById("horoimageinput").value = horoimage;
 	document.getElementById("residentcityinput").value = residentcity;
-
-
-
+	document.getElementById("emailinput").value = email;
+	document.getElementById("mobileinput").value = mobile;
 }
 
 // Function to update the Next button state
 function updateNextbuttonstate() {
+
 	const profilefor = $('#profilefor').val();
 	const fullname = $('#fullname').val();
 	const city = $('#city').val();
@@ -373,8 +388,10 @@ function updateNextbuttonstate() {
 	const occupationcity = $('#occupationcity').val();
 	const complexion = $('#complexion').val();
 	const mangal = $('#mangal').val();
-	const horoimage = $('#horoimage').val();
 	const residentcity = $('#residentcity').val();
+	const email = $('#email').val();
+	const mobile = $('#mobile').val();
+
 
 
 	if (
@@ -394,8 +411,9 @@ function updateNextbuttonstate() {
 		occupationcity &&
 		complexion &&
 		mangal &&
-		horoimage &&
-		residentcity
+		residentcity &&
+		email &&
+		mobile
 	) {
 		$('#proceedToSecondModal').prop('disabled', false);
 	} else {
@@ -438,12 +456,14 @@ function submitFormData() {
 		height: document.getElementById("heightinput").value,
 		occupationcity: document.getElementById("occupationcityinput").value,
 		mangal: document.getElementById("mangalinput").value,
-		horoimage: document.getElementById("horoimageinput").value,
 		residentcity: document.getElementById("residentcityinput").value,
+		email: document.getElementById("emailinput").value,
+		mobile: document.getElementById("mobileinput").value,
 	};
 
 	// Gather data from the second modal
 	const familyInfo = {
+	   
 		fathername: document.getElementById('fathername').value,
 		mothername: document.getElementById('mothername').value,
 		maternaluncle: document.getElementById('maternaluncle').value,
@@ -459,7 +479,6 @@ function submitFormData() {
 		herhisparentresidence: document.getElementById('herhisparentresidence').value,
 		// Add other fields as needed
 	};
-
 	// Combine data from both modals
 	const formData = { ...basicInfo, ...familyInfo };
 
@@ -474,6 +493,7 @@ function submitFormData() {
 			$('#basicInfoAddModal').modal('hide');
 			$('#familyinfoAddModal').modal('hide');
 			$('.toast').toast('show');
+			window.location.href = '/uploadphoto';
 		},
 		error: function (xhr, status, error) {
 			// Handle error

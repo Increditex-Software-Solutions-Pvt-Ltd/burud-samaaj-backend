@@ -1,6 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user.controller");
-const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile } = require("../controllers/userprofile.controller");
+const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages } = require("../controllers/userprofile.controller");
 const { userActions } = require("../middleware/user.middleware");
 const userRouter = express.Router();
 
@@ -10,6 +10,7 @@ userRouter.get('/detailprofile/:id', userActions.checkLogged, userController.get
 // userRouter.get('/createprofile',userController.getcreateprofile);
 userRouter.get('/search', userController.getserach);
 userRouter.get('/about', userController.getaboutpage);
+userRouter.get('/uploadphoto',userController.getUploadphotopage)
 userRouter.get('/success-stories', userController.getsuccessStories);
 userRouter.get('/success-videos', userController.getsuccessVideos);
 
@@ -22,6 +23,7 @@ userRouter.post('/login', userController.login);
 userRouter.get('/logout', userController.userlogout);
 
 userRouter.post('/addprofile', saveUserProfile);
+userRouter.post('/addimages', saveUserImages);
 userRouter.get('/checkprofile', checkProfile);
 userRouter.get('/allprofiles', getAllProfiles);
 userRouter.get('/getsingleprofile', getSingleProfile);
