@@ -380,14 +380,17 @@ const userController = {
             res.status(500).send({ "error": "Internal Server Error" });
         }
     },
+    getOtpform: async (req, res) => {
+        return res.render('otpform');
+    },
     sendOtp: async (req, res, next) => {
         try {
             const { email } = req.body;
 
-            const user = await User.findOne({ email: email })
+            // const user = await User.findOne({ email: email })
 
             const otp = await otpGen(); // '344156'  (OTP length is 6 digit by default)
-            if (user) {
+            if (email) {
 
                 const EMAIL_PASS = process.env.EMAIL_PASS;
 
@@ -415,7 +418,8 @@ const userController = {
                 console.log(otp)
                 res.cookie('signupOtp', otp, { httpOnly: true, secure: true });
                 // res.status(201).json({ message: 'Check your email' });
-                next()
+                // next()
+                return res.redirect('/otpform')
             }
             else {
                 res.status(504).json({ message: 'Invalid Email' });
@@ -425,9 +429,7 @@ const userController = {
         }
 
     },
-    getOtpform: async (req, res) => {
-        return res.redirect('/otpform');
-    }
+   
 
 }
 

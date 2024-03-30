@@ -123,6 +123,7 @@ async function formDataValidation(event) {
             success: function (response) {
                 // Handle success response
                 console.log(response);
+                window.location.href = "/otpform"
             },
             error: function (xhr, status, error) {
                 // Handle error

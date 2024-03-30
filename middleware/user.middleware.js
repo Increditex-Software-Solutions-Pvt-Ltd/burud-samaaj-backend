@@ -39,7 +39,7 @@ const userActions = {
     verifyOtp: async (req, res, next) => {
         try {
             const otp = req.cookies.signupOtp;
-            const userEntered = req.body
+            const userEntered = req.body.enteredOtp
             console.log(otp, userEntered);
             if (otp === userEntered) {
                 return res.redirect('/');

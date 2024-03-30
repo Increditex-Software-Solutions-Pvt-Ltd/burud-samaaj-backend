@@ -53,13 +53,13 @@ window.addEventListener("load", () => inputs[0].focus());
 verifyBtn.addEventListener('click', async () => {
     let enteredOtp = ''
     inputs.forEach((inp) => {
-        enteredOtp += inp
+        enteredOtp += inp.value
     })
-    console.log(enteredOtp);
+    console.log(enteredOtp,"Verifying otp");
     $.ajax({
         type: 'POST',
         url: '/verifyOtp', // Update the URL with your server endpoint
-        data: enteredOtp,
+        data: {enteredOtp},
         success: function (response) {
             // Handle success response
             console.log(response);

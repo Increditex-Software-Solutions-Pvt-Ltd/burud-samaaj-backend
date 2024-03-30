@@ -32,6 +32,7 @@ userRouter.get('/getuserphotos', getAllUserpics);
 
 userRouter.put('/sendRequest', userController.sendRequest)
 userRouter.post('/sendOtp', userController.sendOtp, userController.getOtpform)
+userRouter.get('/otpform', userController.getOtpform)
 userRouter.post('/verifyOtp', userActions.verifyOtp)
 
 module.exports = userRouter;
