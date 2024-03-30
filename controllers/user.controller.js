@@ -119,7 +119,12 @@ const userController = {
         try {
             const profileId = req.params.id;
 
-            const profile = await Userprofile.findByPk(profileId);
+            const profile = await Userprofile.findByPk(profileId, {
+                include: {
+                    model: Userphoto,
+                    as: 'userImage' 
+                }
+            });
 
             if (!profile) {
                 return res.status(404).send('Profile not found');

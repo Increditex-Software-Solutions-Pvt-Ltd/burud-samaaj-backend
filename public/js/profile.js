@@ -45,113 +45,108 @@ async function displayProfiles(pageNumber, category) {
   profileContainer.innerHTML = '';
 
   if (profiles.length) {
-    profiles.forEach(async(profile) => {
-      console.log("userphotos",profile.userphoto);
+    for (const profile of profiles) {
+     
+      let picId = {id:profile.userphoto}
+      console.log("userphotos", picId);
       let profilepics;
-      await $.ajax({
-        type: 'GET',
-        url: '/getuserphotos', 
-        data: profile.userphoto,
-        
-        success: function (response) {
-          // Handle success response
-          if (response.pics) {
-            profilepics = [...response.pics];
-          }
-          else {
-            profilepics = [];
-          }
-        },
-        error: function (xhr, status, error) {
-          // Handle error
-          console.error(error);
+      try {
+        const response = await $.ajax({
+          type: 'GET',
+          url: '/getuserphotos',
+          data: picId
+        });
+        if (response.pics) {
+          profilepics = response.pics;
+        } else {
+          profilepics = [];
         }
-      });
+      } catch (error) {
+        console.error(error);
+        profilepics = [];
+      }
+
       console.log(profile);
       let user = `
-                 <div class="col-md-4 mt-3">
-                  <div class="image_body ${profile.profilefor} show">
-                                      <div class="content">
-                                          <img src="${profilepics.profilepic}"
-                                              alt="Lights" style="width:100%" class="img rounded-5">
-                                          <div class="text-center">
-                                              <h5 class=" p-2">${profile.fullname}</h5>
-                                              <p> <button class="btn btn-danger">${profile.city}</button>
-                                                  <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                                                      data-bs-target="#staticBackdrop${profile.id}">
-                                                      See Details
-                                                  </button>
-                                              <div class="modal fade" id="staticBackdrop${profile.id}" data-bs-backdrop="static"
-                                                  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                                  aria-hidden="true">
-                                                  <div class="modal-dialog modal-dialog-scrollable">
-                                                      <div class="modal-content">
-                                                          <div class="modal-header">
-                                                              <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Details</h1>
-                                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                  aria-label="Close"></button>
-                                                          </div>
-                                                          <div class="modal-body">
-                                                              <div>
-                                                                  <img src="https://cdn.shopify.com/s/files/1/0683/1800/3511/files/white_saree_bride_480x480.jpg?v=1691565347"
-                                                                      alt="" style="height: 200px; width: 200px;" class="rounded-4">
-                                                                  <div class="mt-2">
-                                                                      <h6 class="text-center">Personal Information</h6>
-                                                                      <table class="table">
-                                                                          <h5 class="bg-danger text-white p-2"><b>${profile.id}</b></h5>
-                                                                          <tr>
-                                                                              <td>Name:</td>
-                                                                              <td>${profile.fullname}</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <td>Date Of Birth:</td>
-                                                                              <td>${profile.dateofbirth.substring(0, 10)}</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <td>Occupation:</td>
-                                                                              <td>${profile.occupation}</td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <td>Education:</td>
-                                                                              <td>${profile.education}</td>
-                                                                          </tr>
-                                                                      </table>
-                                                                  </div>
-                                                              </div>
-                  
-                  
-                  
-                                                          </div>
-                                                          <div class="modal-footer">
-                                                              <button type="button" class="btn btn-secondary"
-                                                                  data-bs-dismiss="modal">Close</button>
-                                                            
-                                                                  <a href="/detailprofile/${profile.id}"
-                                                                      class="btn btn-danger">View Profile</a>
-                                                            
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              </p>
-                  
-                                          </div>
-                                      </div>
-                                  </div>
-                                  </div>
-                                
-                  `;
-      profileContainer.innerHTML += user
-    });
-  }
-  else {
+        <div class="col-md-4 mt-3">
+          <div class="image_body ${profile.profilefor} show">
+            <div class="content">
+              <img src="${profilepics.profilepic.replace(/\\/g, '/')}"
+                alt="Lights" style="width:100%" class="img rounded-5">
+              <div class="text-center">
+                <h5 class=" p-2">${profile.fullname}</h5>
+                <p> <button class="btn btn-danger">${profile.city}</button>
+                  <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop${profile.id}">
+                    See Details
+                  </button>
+                  <div class="modal fade" id="staticBackdrop${profile.id}" data-bs-backdrop="static"
+                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Details</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div>
+                            <img src="${profilepics.profilepic.replace(/\\/g, '/')}"
+                              alt="" style="height: 200px; width: 200px;" class="rounded-4">
+                            <div class="mt-2">
+                              <h6 class="text-center">Personal Information</h6>
+                              <table class="table">
+                                <h5 class="bg-danger text-white p-2"><b>${profile.id}</b></h5>
+                                <tr>
+                                  <td>Name:</td>
+                                  <td>${profile.fullname}</td>
+                                </tr>
+                                <tr>
+                                  <td>Date Of Birth:</td>
+                                  <td>${profile.dateofbirth.substring(0, 10)}</td>
+                                </tr>
+                                <tr>
+                                  <td>Occupation:</td>
+                                  <td>${profile.occupation}</td>
+                                </tr>
+                                <tr>
+                                  <td>Education:</td>
+                                  <td>${profile.education}</td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+
+                          <a href="/detailprofile/${profile.id}"
+                            class="btn btn-danger">View Profile</a>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      profileContainer.innerHTML += user;
+    }
+  } else {
     profileContainer.innerHTML += `
-  <h2 class='text-center mt-3'>No Data to Display</h2>
-  `
+      <h2 class='text-center mt-3'>No Data to Display</h2>
+    `;
   }
 
   displayPagination(pageNumber);
 }
+
 
 // Function to display pagination buttons
 async function displayPagination() {
@@ -236,6 +231,7 @@ filterButtons.forEach(button => {
 
 // Initial display
 displayProfiles(1, "all");
+
 
 
 async function addProfile() {
