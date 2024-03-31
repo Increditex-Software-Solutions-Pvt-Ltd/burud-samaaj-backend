@@ -47,6 +47,7 @@ const userController = {
     getloginform: (req, res) => {
         return res.render('login');
     },
+   
     getUploadphotopage: async (req, res) => {
         try {
             // Check if the user is authenticated
@@ -136,6 +137,37 @@ const userController = {
             console.error('Error fetching profile:', error);
             res.status(500).send('Internal Server Error');
         }
+    },
+    getEditProfilepage: async (req, res) => {
+        try {
+            // Check if the user is authenticated
+            const token = req.cookies.userJwt;
+
+            if (token) {
+                try {
+
+                    const decoded = jwt.verify(token, process.env.user_secret_key);
+                    const userId = decoded.userId;
+
+
+                    const user = await User.findOne({ where: { id: userId } });
+                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    if (user) {
+
+                        return res.render('editprofile', { user, userprofile });
+                    }
+                } catch (err) {
+
+                    console.error('Token verification error:', err);
+                }
+            }
+
+            return res.render('editprofile', { user: null }); // Render without user information
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+
     },
 
     getserach: async (req, res) => {

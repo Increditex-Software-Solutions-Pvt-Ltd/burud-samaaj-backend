@@ -1,6 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user.controller");
-const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics } = require("../controllers/userprofile.controller");
+const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform } = require("../controllers/userprofile.controller");
 const { userActions } = require("../middleware/user.middleware");
 const userRouter = express.Router();
 
@@ -12,6 +12,7 @@ userRouter.get('/search', userController.getserach);
 userRouter.get('/about', userController.getaboutpage);
 userRouter.get('/uploadphoto', userController.getUploadphotopage)
 userRouter.get('/success-stories', userController.getsuccessStories);
+userRouter.get('/profiles/:id', userController.getEditProfilepage);
 userRouter.get('/success-videos', userController.getsuccessVideos);
 
 
@@ -30,8 +31,8 @@ userRouter.get('/getsingleprofile', getSingleProfile);
 userRouter.get('/getuserphotos', getAllUserpics);
 
 
-userRouter.put('/sendRequest', userController.sendRequest)
-userRouter.post('/sendOtp', userController.sendOtp, userController.getOtpform)
+userRouter.put('/sendRequest', userController.sendRequest);
+userRouter.post('/sendOtp', userController.sendOtp, userController.getOtpform);
 userRouter.get('/otpform', userController.getOtpform)
 userRouter.post('/verifyOtp', userActions.verifyOtp)
 

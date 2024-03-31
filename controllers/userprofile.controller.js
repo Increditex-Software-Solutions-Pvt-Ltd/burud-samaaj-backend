@@ -190,4 +190,20 @@ const getSingleProfile = async (req, res) => {
     }
 }
 
-module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile,saveUserImages,getAllUserpics };
+const getProfileUpdateform =async(req,res)=>{
+    const {id} = req.params;
+    try {
+        const userprofileId = await Userprofile.findByPk(id);
+        if (userprofileId) {
+            res.json({ success: true, data: userprofileId })
+        }
+        else {
+            res.json({ success: false, messae: "user profile not Found" });
+        }
+    } catch (error) {
+        console.error('Error retrieving profile:', error);
+        res.status(500).json({ success: false, message: 'Failed to retrieve profile' });
+    }
+}
+
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile,saveUserImages,getAllUserpics,getProfileUpdateform };

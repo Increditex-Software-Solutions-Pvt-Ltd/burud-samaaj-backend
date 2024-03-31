@@ -154,7 +154,7 @@ function showProfiles(filteredData) {
 								<div class="modal-body">
 									<div>
 										<img src="${profilepics.profilepic.replace(/\\/g, '/')}"
-											alt="" style="height: 200px; width: 200px;">
+											alt="" style="height: 200px; width: 200px;object-fit:cover">
 										<div class="mt-2">
 											<h6 class="text-center">Personal Information</h6>
 											<table class="table">

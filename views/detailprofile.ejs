@@ -66,9 +66,9 @@
                             <div class="row m-0 ">
                                 <div class="col-md-6 ">
                                     <div class=" main_img">
-                                        <img src="http://localhost:5000/<%= profile.userImage.profilepic.replace(/\\/g, '/')%>"
-                                            class="" style="border-radius: 16px; object-fit: cover;" id="myImg" alt="Cinque Terre" width="220"
-                                            height="216">
+                                        <img src="http://localhost:5000/<%= profile.userImage.biopic1.replace(/\\/g, '/')%>"
+                                            class="" style="border-radius: 16px; object-fit: cover;" id="myImg"
+                                            alt="Cinque Terre" width="220" height="216">
                                         <div id="myModal" class="modal">
                                             <span class="close">&times;</span>
                                             <img class="modal-content" id="img01">
@@ -77,13 +77,15 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 d-flex align-items-center">
                                     <div class="mt-5 text-center">
                                         <h3 class="text-dark fs-5">
                                             <%= profile.fullname %>
                                         </h3>
                                         <p class="db">
-                                            DOB:<%= profile.dateofbirth %>
+                                            <span class="text-danger">DOB:</span>
+                                            <%= profile.dateofbirth ? profile.dateofbirth.toISOString().substring(0, 10)
+                                                : '' %>
                                         </p>
                                     </div>
                                 </div>
@@ -96,7 +98,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row m-0">
+                    <!-- <div class="row m-0">
                         <div class="col-md-6 mt-2">
                             <button class="btn btn-primary side_button_2">
                                 <i class="fa fa-edit mr-1"></i>Edit Profile</button>
@@ -106,7 +108,7 @@
                                 <i class="fa fa-address-book mr-2" onclick="generatePdf()">Print PDF</i>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
         </section>
         <br> <br>
@@ -114,7 +116,7 @@
         <section class="container main_section ">
             <div class="row m-0 p-2">
                 <div class="col-md-4 mb-5">
-                    <div class="bg-white p-3">
+                    <div class="bg-white p-3 position-sticky" style="top: 30px;">
                         <div id="demo" class="carousel slide" data-ride="carousel">
 
                             <!-- Indicators -->
@@ -128,7 +130,7 @@
                             <div class="carousel-inner mt-3 mb-5">
                                 <div class="carousel-item active">
                                     <img class="img-fluid object-fit-cover"
-                                        src="http://localhost:5000/<%= profile.userImage.biopic1.replace(/\\/g, '/')%>"
+                                        src="http://localhost:5000/<%= profile.userImage.biopic2.replace(/\\/g, '/')%>"
                                         alt="Los Angeles">
                                 </div>
                                 <div class="carousel-item">
@@ -154,7 +156,7 @@
                             <a class="carousel-control-next" href="#demo" data-slide="next">
                                 <span class="carousel-control-next-icon"></span>
                             </a>
-                            
+
                         </div>
                         <p class="text-center">
                             <a onclick="addProfile()" class="btn btn-outline-danger">Send Interest
@@ -171,65 +173,117 @@
                             <tbody>
                                 <tr>
                                     <td>
+                                        FULL NAME (पूर्ण नाव )
+                                    </td>
+                                    <td>
+                                        <%= profile.fullname%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        BIRTH NAME (जन्म नाव )
+                                    </td>
+                                    <td> name input remaining</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        BIRTH PLACE (जन्म ठिकाण ) :</td>
+                                    <td>
+                                        <%= profile.birthplace%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         DATE OF BIRTH (जन्म तारीख) :</td>
-                                    <td> 30/8/1997</td>
+                                    <td>
+                                        <%= profile.dateofbirth ? profile.dateofbirth.toISOString().substring(0, 10)
+                                            : '' %>
+                                    </td>
                                 </tr>
+
                                 <tr>
-                                    <td>INCOME (मिळकतीची माहिती) :</td>
-                                    <td>Rs. - / 0</td>
-                                </tr>
-                                <tr>
-                                    <td>EDUCATION (शिक्षण) :</td>
-                                    <td>Graduate/B.E/B.tech</td>
-                                </tr>
-                                <tr>
-                                    <td>EDUCATION DETAILS (शैक्षणिक तपशील) :</td>
-                                    <td>M.COM&MBA-FINANCE</td>
-                                </tr>
-                                <tr>
-                                    <td>BLOOD GROUP/WEIGHT (रक्तगट / वजन ) :</td>
-                                    <td>B+ / 0 kg</td>
-                                </tr>
-                                <tr>
-                                    <td>SPECTACLE/LENS (चष्मा / लेन्स ) </td>
-                                    <td>NO/NO</td>
-                                </tr>
-                                <tr>
-                                    <td>GOTRA & DEVAK (गोत्र / देवक) :</td>
-                                    <td>-/ pachpalvi</td>
-                                </tr>
-                                <tr>
-                                    <td>BIRTH PLACE/Time (जन्म वेळ / ठिकाण ):</td>
-                                    <td>satara(karad) 3:40:PM</td>
-                                </tr>
-                                <tr>
-                                    <td>OCCUPATION CITY (व्यवसायाचे शहर):</td>
-                                    <td>Mumbai</td>
-                                </tr>
-                                <tr>
-                                    <td>MARITAL STATUS (वैवाहिक स्थिती):</td>
-                                    <td>unmarried_girl</td>
+                                    <td>
+                                        TIME OF BIRTH (जन्म वेळ ) :</td>
+                                    <td>input is remaining </td>
                                 </tr>
                                 <tr>
                                     <td>HEIGHT (उंची):</td>
-                                    <td>5'4"</td>
-                                </tr>
-                                <tr>
-                                    <td>OCCUPATION (व्यवसाय):</td>
-                                    <td>Punch Fabricators Engineers & Contractors (Account Executive), Sakinaka, Andheri
-                                        East</td>
+                                    <td style="display: none;">
+                                        <% const heightInCm=profile.height; const totalInches=heightInCm * 0.393701;
+                                            const feet=Math.floor(totalInches / 12); const inches=Math.round(totalInches
+                                            % 12); %>
+                                    <td>
+                                        <%= feet %> ' <%= inches %> ''<span class="ml-3">(<%= profile.height%>
+                                                        &nbsp;cm)</span>
+                                    </td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>COMPLEXION (वर्ण):</td>
-                                    <td>Fair</td>
+                                    <td>
+                                        <%= profile.complexion%>
+                                    </td>
                                 </tr>
+
+                                <tr>
+                                    <td>EDUCATION (शिक्षण) :</td>
+                                    <td>
+                                        <%= profile.education%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>OCCUPATION / JOB (व्यवसाय / नोकरी ):</td>
+                                    <td>
+                                        <%= profile.occupation%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ANNUL INCOME (वार्षिक उत्पन्न ) :</td>
+                                    <td>Rs. - / 0</td>
+                                </tr>
+                                <tr>
+                                    <td>BLOOD GROUP(रक्तगट) :</td>
+                                    <td>
+                                        <%= profile.bloodgroup%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>SPECTACLE(चष्मा) </td>
+                                    <td>
+                                        <%= profile.spectacles%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>GOTRA & DEVAK (गोत्र / देवक) :</td>
+                                    <td>
+                                        <%= profile.gotra%>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>OCCUPATION CITY (व्यवसायाचे शहर):</td>
+                                    <td>
+                                        <%= profile.occupationcity%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>MARITAL STATUS (वैवाहिक स्थिती):</td>
+                                    <td>
+                                        <%= profile.maritalstatus%>
+                                    </td>
+                                </tr>
+
+
+
                                 <tr>
                                     <td>MANGAL (मंगळ):</td>
-                                    <td>NO</td>
+                                    <td>
+                                        <%= profile.mangal%>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>HORO DETAILS (कुंडलीची माहिती):</td>
-                                    <td>Cancer (Karka)/4 / Madhya / Dev</td>
+                                    <td>MAMA (मामाचे आडनाव):</td>
+                                    <td>Rs. - / 0</td>
                                 </tr>
                                 <tr>
                                     <td>RESIDENT CITY (राहण्याचे शहर):</td>
@@ -245,13 +299,32 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        FATHER (वडील):</td>
+                                        FATHER FULL NAME (वडिलांचे संपूर्ण नाव ):</td>
+                                    <td>
+                                        <%= profile.fathername%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>MOTHER FULL NAME (आई):</td>
                                     <td>YES</td>
                                 </tr>
                                 <tr>
-                                    <td>MAMA (मामाचे आडनाव):</td>
-                                    <td>Rs. - / 0</td>
+                                    <td>FATHER/MOTHER OCCUPATION (वडील व्यावसाय/नोकरी ):</td>
+                                    <td>Input is remaining</td>
                                 </tr>
+                                <tr>
+                                    <td>PARENTS ADDRESS (पालकांचा पत्ता ):</td>
+                                    <td>Mumbai</td>
+                                </tr>
+                                <tr>
+                                    <td>FAMILY MEMBERS (कुटुंबातील सदस्य ):</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>SISTER (बहीण):</td>
+                                    <td>1</td>
+                                </tr>
+
                                 <tr>
                                     <td>NATIVE PLACE (गाव):</td>
                                     <td>khatav Satara</td>
@@ -260,22 +333,10 @@
                                     <td>FAMILY WEALTH (कौटुंबिक मालमत्ता):</td>
                                     <td>-</td>
                                 </tr>
-                                <tr>
-                                    <td>MOTHER (आई):</td>
-                                    <td>YES</td>
-                                </tr>
-                                <tr>
-                                    <td>RELATIVES (नातेवाईक):</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>PARENTS RESIDING IN (पालक राहत असलेले शहर):</td>
-                                    <td>Mumbai</td>
-                                </tr>
-                                <tr>
-                                    <td>SISTER (बहीण):</td>
-                                    <td>1</td>
-                                </tr>
+
+
+
+
 
                             </tbody>
                         </table>
@@ -544,20 +605,18 @@
 
                                 <div class="col-md-4">
                                     <label for="father-name">Father's Name</label>
-                                    <input class="form-control" type="text" id="fathername" name="fathername"
-                                        required>
+                                    <input class="form-control" type="text" id="fathername" name="fathername" required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="mother-name">Mother's Name</label>
-                                    <input class="form-control" type="text" id="mothername" name="mothername"
-                                        required>
+                                    <input class="form-control" type="text" id="mothername" name="mothername" required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
-                                    <input class="form-control" type="text" id="maternaluncle"
-                                        name="maternaluncle" required>
+                                    <input class="form-control" type="text" id="maternaluncle" name="maternaluncle"
+                                        required>
                                 </div>
 
                                 <div class="col-md-4">
@@ -874,7 +933,7 @@
 
             // Gather data from the second modal
             const familyInfo = {
-               
+
                 fathername: document.getElementById('fathername').value,
                 mothername: document.getElementById('mothername').value,
                 maternaluncle: document.getElementById('maternaluncle').value,
