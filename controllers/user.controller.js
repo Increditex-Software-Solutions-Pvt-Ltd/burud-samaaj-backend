@@ -47,7 +47,7 @@ const userController = {
     getloginform: (req, res) => {
         return res.render('login');
     },
-   
+
     getUploadphotopage: async (req, res) => {
         try {
             // Check if the user is authenticated
@@ -123,7 +123,7 @@ const userController = {
             const profile = await Userprofile.findByPk(profileId, {
                 include: {
                     model: Userphoto,
-                    as: 'userImage' 
+                    as: 'userImage'
                 }
             });
 
@@ -291,27 +291,27 @@ const userController = {
         }
     },
     signup: async (req, res) => {
-        let errorsArr = [];
+        // let errorsArr = [];
 
-        if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.phone || !req.body.password || !req.body.confirmpassword || !req.body.dateofbirth) {
+        // if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.phone || !req.body.password || !req.body.confirmpassword || !req.body.dateofbirth) {
 
-            req.flash("error", "All fields are required");
-            return res.redirect('/signup');
-        }
+        //     // req.flash("error", "All fields are required");
+        //     return res.redirect('/signup');
+        // }
 
-        let validationError = validationResult(req);
-        if (!validationError.isEmpty()) {
-            let error = Object.values(validationError.mapped());
+        // let validationError = validationResult(req);
+        // if (!validationError.isEmpty()) {
+        //     let error = Object.values(validationError.mapped());
 
-            error.forEach((item) => {
-                errorsArr.push(item.msg);
-            })
-            req.flash("error", errorsArr);
+        //     error.forEach((item) => {
+        //         errorsArr.push(item.msg);
+        //     })
+        //     req.flash("error", errorsArr);
 
-        }
+        // }
         try {
-            const data = req.body;
-
+            const data = JSON.parse(sessionStorage.getItem("signupObj"));
+            console.log(data);
             const userExist = await User.findOne({
                 where: {
                     email: data.email
@@ -329,7 +329,7 @@ const userController = {
                 }
                 const newuser = await User.create(createUser);
                 // res.status(200).send({ "message": "New user created", newuser })
-                req.flash("success", "Registration successfull! Please log in.");
+                req.flash("success", "Registration successfull! Please log in.", newuser);
                 return res.redirect('/login');
             }
 
@@ -419,6 +419,8 @@ const userController = {
         try {
             const { email } = req.body;
 
+            const userData = req.body
+            console.log(userData);
             // const user = await User.findOne({ email: email })
 
             const otp = await otpGen(); // '344156'  (OTP length is 6 digit by default)
@@ -449,9 +451,10 @@ const userController = {
 
                 console.log(otp)
                 res.cookie('signupOtp', otp, { httpOnly: true, secure: true });
-                // res.status(201).json({ message: 'Check your email' });
+                // sessionStorage.setItem("signupObj", JSON.stringify(req.body))
+                return res.status(201).json({ message: 'Check your email', userData });
                 // next()
-                return res.redirect('/otpform')
+                // return res.redirect('/otpform')
             }
             else {
                 res.status(504).json({ message: 'Invalid Email' });
@@ -461,7 +464,7 @@ const userController = {
         }
 
     },
-   
+
 
 }
 

@@ -109,7 +109,7 @@ async function formDataValidation(event) {
     }
 
     inputs.forEach((input) => {
-        if (input.value !== "") {
+        if (input.value !== "" && input.name !== "confirmpassword") {
             userObj[input.name] = input.value
         }
     })
@@ -122,7 +122,7 @@ async function formDataValidation(event) {
             data: userObj,
             success: function (response) {
                 // Handle success response
-                console.log(response);
+                sessionStorage.setItem("signupObj", JSON.stringify(response.userData))
                 window.location.href = "/otpform"
             },
             error: function (xhr, status, error) {

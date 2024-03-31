@@ -14,6 +14,10 @@ const User = sequelize.define('user', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    middlename: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     lastname: {
         type: DataTypes.STRING,
         allowNull: true
@@ -30,7 +34,31 @@ const User = sequelize.define('user', {
         type: DataTypes.STRING,
         allowNull: true
     },
-    city: {
+    address: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    state: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    district: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    taluka: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    town: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    postalcode: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    country: {
         type: DataTypes.STRING,
         allowNull: true
     },

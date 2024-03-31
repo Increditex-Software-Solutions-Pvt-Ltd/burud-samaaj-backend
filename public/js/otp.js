@@ -50,23 +50,42 @@ inputs.forEach((input, index1) => {
 window.addEventListener("load", () => inputs[0].focus());
 
 
-verifyBtn.addEventListener('click', async () => {
+async function verifyOtp(event) {
+    event.preventDefault()
     let enteredOtp = ''
     inputs.forEach((inp) => {
         enteredOtp += inp.value
     })
-    console.log(enteredOtp,"Verifying otp");
-    $.ajax({
+    console.log(enteredOtp, "Verifying otp");
+    await $.ajax({
         type: 'POST',
         url: '/verifyOtp', // Update the URL with your server endpoint
-        data: {enteredOtp},
-        success: function (response) {
+        data: { enteredOtp },
+        success: async function (response) {
             // Handle success response
-            console.log(response);
+            console.log(response.message);
+            if (response.message === "Verified Successfully") {
+                let data = sessionStorage.getItem("signupObj")
+                console.log(data);
+                await $.ajax({
+                    type: 'POST',
+                    url: '/signup', // Update the URL with your server endpoint
+                    data: JSON.parse(data),
+                    success: function (response) {
+                        // Handle success response
+                        console.log("Succesfull Signup");
+                        window.location.href = "/"
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.error(error);
+                    }
+                })
+            }
         },
         error: function (xhr, status, error) {
             // Handle error
             console.error(error);
         }
     });
-})
+}

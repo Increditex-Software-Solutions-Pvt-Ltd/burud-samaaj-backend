@@ -32,7 +32,7 @@ userRouter.get('/getuserphotos', getAllUserpics);
 
 
 userRouter.put('/sendRequest', userController.sendRequest);
-userRouter.post('/sendOtp', userController.sendOtp, userController.getOtpform);
+userRouter.post('/sendOtp', userController.sendOtp);
 userRouter.get('/otpform', userController.getOtpform)
 userRouter.post('/verifyOtp', userActions.verifyOtp)
 

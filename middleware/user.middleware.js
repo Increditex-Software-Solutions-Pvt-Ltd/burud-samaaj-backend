@@ -40,12 +40,14 @@ const userActions = {
         try {
             const otp = req.cookies.signupOtp;
             const userEntered = req.body.enteredOtp
-            console.log(otp, userEntered);
+            console.log(otp, userEntered, otp === userEntered);
             if (otp === userEntered) {
-                return res.redirect('/');
+                res.send({ message: "Verified Successfully" });
+                // next();
             }
             else {
-                return res.redirect('/login')
+                // return res.send({ message: "Invalid Otp" });
+                return res.redirect('/otpform');
             }
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
