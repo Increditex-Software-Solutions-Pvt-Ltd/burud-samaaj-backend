@@ -142,6 +142,7 @@ const userController = {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
+            const id = req.params.id
 
             if (token) {
                 try {
@@ -151,7 +152,7 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    const userprofile = await Userprofile.findByPk(id)
                     if (user) {
 
                         return res.render('editprofile', { user, userprofile });
@@ -310,7 +311,7 @@ const userController = {
 
         // }
         try {
-            const data = JSON.parse(sessionStorage.getItem("signupObj"));
+            const data = req.body;
             console.log(data);
             const userExist = await User.findOne({
                 where: {

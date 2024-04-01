@@ -24,6 +24,10 @@ const Userprofile = sequelize.define('userprofile',{
         type:DataTypes.STRING,
         allowNull:true
     },
+    birthname:{
+        type:DataTypes.STRING,
+        allowNull:true
+    },
     city:{
         type:DataTypes.STRING,
         allowNull:true
@@ -32,8 +36,16 @@ const Userprofile = sequelize.define('userprofile',{
         type:DataTypes.DATE,
         allowNull:true
     },
+    timeofbirth:{
+        type:DataTypes.TIME,
+        allowNull:true
+    },
     education:{
         type:DataTypes.STRING,
+        allowNull:true
+    },
+    income:{
+        type:DataTypes.BIGINT,
         allowNull:true
     },
     bloodgroup:{
@@ -44,15 +56,15 @@ const Userprofile = sequelize.define('userprofile',{
         type:DataTypes.STRING,
         allowNull:true
     },
-    gotra:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
     birthplace:{
         type:DataTypes.STRING,
         allowNull:true
     },
     occupation:{
+        type:DataTypes.STRING,
+        allowNull:true
+    },
+    hudda:{
         type:DataTypes.STRING,
         allowNull:true
     },
@@ -72,11 +84,11 @@ const Userprofile = sequelize.define('userprofile',{
         type:DataTypes.STRING,
         allowNull:true
     },
-    mangal:{
-        type:DataTypes.STRING,
+    address:{
+        type:DataTypes.TEXT,
         allowNull:true
     },
-    residentcity:{
+    disabled:{
         type:DataTypes.STRING,
         allowNull:true
     },
@@ -88,48 +100,44 @@ const Userprofile = sequelize.define('userprofile',{
         type:DataTypes.STRING,
         allowNull:true
     },
+    fatheroccupation:{
+        type:DataTypes.STRING,
+        allowNull:true
+    },
+    motheroccupation:{
+        type:DataTypes.STRING,
+        allowNull:true
+    },
     maternaluncle:{
         type:DataTypes.STRING,
         allowNull:true
     },
-    nativeplace:{
-        type:DataTypes.STRING,
+    parentaddress:{
+        type:DataTypes.TEXT,
         allowNull:true
     },
-    citywealth:{
-        type:DataTypes.STRING,
+    familymembers:{
+        type:DataTypes.INTEGER,
         allowNull:true
     },
-    parentcity:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    sister:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    agedifference:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    preferredcity:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    expectedheight:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    herhiseducation:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    herhisoccupation:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    herhisparentresidence:{
-        type:DataTypes.STRING,
+    // agedifference:{
+    //     type:DataTypes.STRING,
+    //     allowNull:true
+    // },
+    // preferredcity:{
+    //     type:DataTypes.STRING,
+    //     allowNull:true
+    // },
+    // expectedheight:{
+    //     type:DataTypes.STRING,
+    //     allowNull:true
+    // },
+    // herhiseducation:{
+    //     type:DataTypes.STRING,
+    //     allowNull:true
+    // },
+    expectation:{
+        type:DataTypes.TEXT,
         allowNull:true
     },
     email:{

@@ -1,4 +1,4 @@
- body{
+body{
   overflow-x: hidden;
  }
 
@@ -102,7 +102,6 @@
 /* filter button */
 #filters {
   text-align: center;
-  margin-top: 20px;
 }
 
 #filters button {

@@ -66,7 +66,7 @@ async function verifyOtp(event) {
             console.log(response.message);
             if (response.message === "Verified Successfully") {
                 let data = sessionStorage.getItem("signupObj")
-                console.log(data);
+                console.log(JSON.parse(data));
                 await $.ajax({
                     type: 'POST',
                     url: '/signup', // Update the URL with your server endpoint
@@ -74,7 +74,7 @@ async function verifyOtp(event) {
                     success: function (response) {
                         // Handle success response
                         console.log("Succesfull Signup");
-                        window.location.href = "/"
+                        window.location.href = "/login"
                     },
                     error: function (xhr, status, error) {
                         // Handle error

@@ -61,10 +61,10 @@
                     </h1>
                 </div>
                 <div>
-                    <div class="row m-0  d-flex align-items-center justify-content-center">
+                    <div class="row m-0  d-flex align-items-start justify-content-center">
                         <div class="col-md-6">
                             <div class="row m-0 ">
-                                <div class="col-md-6 ">
+                                <div class="col-md-4 ">
                                     <div class=" main_img">
                                         <img src="http://localhost:5000/<%= profile.userImage.biopic1.replace(/\\/g, '/')%>"
                                             class="" style="border-radius: 16px; object-fit: cover;" id="myImg"
@@ -77,24 +77,23 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-6 d-flex align-items-center">
-                                    <div class="mt-5 text-center">
-                                        <h3 class="text-dark fs-5">
-                                            <%= profile.fullname %>
-                                        </h3>
-                                        <p class="db">
-                                            <span class="text-danger">DOB:</span>
-                                            <%= profile.dateofbirth ? profile.dateofbirth.toISOString().substring(0, 10)
-                                                : '' %>
-                                        </p>
-                                    </div>
+                                <div class="col-md-8 d-flex align-items-center">
+                                   
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 ">
+                        <div class="col-md-6">
                             <div class="text-center">
-                                <h3>City:<%= profile.city %>
-                                </h3>
+                                <div class="mt-5 text-center">
+                                    <h3 class="text-dark fs-5">
+                                        <%= profile.fullname %>
+                                    </h3>
+                                    <h5>City:<%= profile.city %>
+                                    </h5>
+                                    <button class="btn btn-danger side_button mt-3" onclick="generatePdf()">
+                                        <i class="fa fa-address-book mr-2"></i>Print PDF
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -183,7 +182,7 @@
                                     <td>
                                         BIRTH NAME (जन्म नाव )
                                     </td>
-                                    <td> name input remaining</td>
+                                    <td><%= profile.birthname%></td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -204,7 +203,7 @@
                                 <tr>
                                     <td>
                                         TIME OF BIRTH (जन्म वेळ ) :</td>
-                                    <td>input is remaining </td>
+                                    <td><%= profile.timeofbirth%> </td>
                                 </tr>
                                 <tr>
                                     <td>HEIGHT (उंची):</td>
@@ -239,7 +238,7 @@
                                 </tr>
                                 <tr>
                                     <td>ANNUL INCOME (वार्षिक उत्पन्न ) :</td>
-                                    <td>Rs. - / 0</td>
+                                    <td><%= profile.income%></td>
                                 </tr>
                                 <tr>
                                     <td>BLOOD GROUP(रक्तगट) :</td>
@@ -247,16 +246,11 @@
                                         <%= profile.bloodgroup%>
                                     </td>
                                 </tr>
+                                
                                 <tr>
-                                    <td>SPECTACLE(चष्मा) </td>
+                                    <td>HUDDA(हुद्दा ) </td>
                                     <td>
-                                        <%= profile.spectacles%>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>GOTRA & DEVAK (गोत्र / देवक) :</td>
-                                    <td>
-                                        <%= profile.gotra%>
+                                        <%= profile.hudda%>
                                     </td>
                                 </tr>
 
@@ -272,22 +266,9 @@
                                         <%= profile.maritalstatus%>
                                     </td>
                                 </tr>
-
-
-
                                 <tr>
-                                    <td>MANGAL (मंगळ):</td>
-                                    <td>
-                                        <%= profile.mangal%>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>MAMA (मामाचे आडनाव):</td>
-                                    <td>Rs. - / 0</td>
-                                </tr>
-                                <tr>
-                                    <td>RESIDENT CITY (राहण्याचे शहर):</td>
-                                    <td>Thane</td>
+                                    <td>ADDRESS (पत्ता ):</td>
+                                    <td><%= profile.address%></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -305,8 +286,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>MOTHER FULL NAME (आई):</td>
-                                    <td>YES</td>
+                                    <td>MOTHER MAHER FULL NAME (आईचे माहेरचे  पूर्ण नाव ):</td>
+                                    <td><%= profile.mothername%></td>
                                 </tr>
                                 <tr>
                                     <td>FATHER/MOTHER OCCUPATION (वडील व्यावसाय/नोकरी ):</td>
@@ -314,26 +295,15 @@
                                 </tr>
                                 <tr>
                                     <td>PARENTS ADDRESS (पालकांचा पत्ता ):</td>
-                                    <td>Mumbai</td>
+                                    <td><%= profile.parentaddress%></td>
                                 </tr>
                                 <tr>
                                     <td>FAMILY MEMBERS (कुटुंबातील सदस्य ):</td>
-                                    <td>-</td>
+                                    <td><%= profile.familymembers%></td>
                                 </tr>
-                                <tr>
-                                    <td>SISTER (बहीण):</td>
-                                    <td>1</td>
-                                </tr>
+                              
 
-                                <tr>
-                                    <td>NATIVE PLACE (गाव):</td>
-                                    <td>khatav Satara</td>
-                                </tr>
-                                <tr>
-                                    <td>FAMILY WEALTH (कौटुंबिक मालमत्ता):</td>
-                                    <td>-</td>
-                                </tr>
-
+                               
 
 
 
@@ -364,18 +334,9 @@
                                     <td>EDUCATION (शैक्षणिक अपेक्षा):</td>
                                     <td>B.E/MBA</td>
                                 </tr>
-                                <tr>
-                                    <td>OCCUPATION (व्यावसायिक व पगाराची अपेक्षा):</td>
-                                    <td>nirvhayasni,swattache ghar,nokari</td>
-                                </tr>
-                                <tr>
-                                    <td>PARENTS RESIDING IN (पालक राहत असलेले शहर):</td>
-                                    <td>Mumbai</td>
-                                </tr>
-                                <tr>
-                                    <td>SISTER (बहीण):</td>
-                                    <td>1</td>
-                                </tr>
+                               
+                               
+                              
 
                             </tbody>
                         </table>
@@ -739,6 +700,13 @@
 
     <!-- registeration and send request script -->
     <script>
+        function generatePdf(){
+    const element = document.getElementById("main_section")
+  
+    html2pdf()
+    .from(element)
+    .save()
+  }
         async function addProfile() {
             try {
                 await $.ajax({

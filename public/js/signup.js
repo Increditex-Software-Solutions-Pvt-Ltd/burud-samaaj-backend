@@ -109,7 +109,8 @@ async function formDataValidation(event) {
     }
 
     inputs.forEach((input) => {
-        if (input.value !== "" && input.name !== "confirmpassword") {
+        if (input.value !== "") {
+            console.log(input.name);
             userObj[input.name] = input.value
         }
     })

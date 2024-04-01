@@ -12,71 +12,77 @@ async function saveUserProfile(req, res) {
         const {
             profilefor,
             fullname,
+            birthname,
+            birthplace,
             city,
             dateofbirth,
+            timeofbirth,
+            address,
             income,
             education,
             bloodgroup,
             spectacles,
-            gotra,
-            birthplace,
+            disabled,
             occupation,
             maritalstatus,
             height,
             occupationcity,
             complexion,
-            mangal,
-            residentcity,
             fathername,
             mothername,
             maternaluncle,
-            nativeplace,
-            citywealth,
-            parentcity,
-            sister,
-            agedifference,
-            preferredcity,
-            expectedheight,
-            herhiseducation,
-            herhisoccupation,
-            herhisparentresidence,
+            parentaddress,
+            expectation,
+            familymembers,
+            hudda,
+            fatheroccupation,
+            motheroccupation,
             email,
             mobile
         } = req.body;
 
-
+        function capitalizeFirstLetters(str) {
+            // Split the string into an array of words
+            const words = str.split(" ");
+        
+            // Iterate through each word in the array
+            const capitalizedWords = words.map(word => {
+                // Capitalize the first letter of each word and lowercase the rest
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            });
+        
+            // Join the capitalized words back into a single string
+            return capitalizedWords.join(" ");
+        }
         // Save the user profile data to the database
         const userProfile = await Userprofile.create({
             profilefor,
-            fullname,
+            fullname:capitalizeFirstLetters(fullname),
+            birthname,
+            birthplace,
             city,
             dateofbirth,
+            timeofbirth,
+            address,
             income,
+            disabled,
             education,
             bloodgroup,
             spectacles,
-            gotra,
-            birthplace,
             occupation,
             maritalstatus,
             height,
             occupationcity,
             complexion,
-            mangal,
-            residentcity,
             fathername,
             mothername,
             maternaluncle,
-            nativeplace,
-            citywealth,
-            parentcity,
-            sister,
-            agedifference,
-            preferredcity,
-            expectedheight,
-            herhiseducation,
-            herhisoccupation,
-            herhisparentresidence,
+            parentaddress,
+            expectation,
+            familymembers,
+            hudda,
+            fatheroccupation,
+            motheroccupation,
             email,
             mobile,
             userId
