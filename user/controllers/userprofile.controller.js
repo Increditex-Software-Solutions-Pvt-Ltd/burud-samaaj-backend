@@ -1,4 +1,4 @@
-const { upload } = require('../config/multerconfig');
+const { upload } = require('../../config/multerconfig');
 const { Userphoto } = require('../models/userphotos.model');
 const { Userprofile } = require('../models/userprofile.model');
 
