@@ -71,19 +71,19 @@
             <h4 class="text-dark text-center mb-5">Edit profile</h4>
             <div class="box shadow">
                 <div class="">
-                    <form class="row g-3" id="profileForm">
+                    <form class="row g-4" id="profileForm">
                         <div class="col-md-4">
                             <label for="">Create Profile for</label>
                             <select disabled class="form-control" id="profilefor" name="profilefor" required>
                                 <option disabled selected value="<%= userprofile.profilefor%>">
-                                    <%= userprofile.profilefor%> Selected
+                                    <%= userprofile.profilefor%>
                                 </option>
                                 <option value="Groom">Groom</option>
                                 <option value="Bride">Bride</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="full-name">Full Name</label>
+                            <label for="fullname">Full Name</label>
                             <input disabled class="form-control" type="text" id="fullname" name="fullname"
                                 value="<%= userprofile.fullname%>" required>
                         </div>
@@ -96,7 +96,7 @@
                             <label for="city">City</label>
                             <select disabled class="form-control" id="city" name="city" required>
                                 <option disabled selected value="<%= userprofile.city%>">
-                                    <%= userprofile.city%> Selected
+                                    <%= userprofile.city%>
                                 </option>
                                 <option value="Nashik">Nashik</option>
                                 <option value="Pune">Pune</option>
@@ -121,7 +121,7 @@
                             <label for="education">Education</label>
                             <select disabled class="form-control" id="education" name="education" required>
                                 <option disabled selected value="<%= userprofile.education%>">
-                                    <%= userprofile.education%> Selected
+                                    <%= userprofile.education%>
                                 </option>
                                 <option value="Diploma">Diploma</option>
                                 <option value="Master Degree">Master Degree</option>
@@ -133,16 +133,21 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="income">Income(वार्षिक उत्पन्न )</label>
+                            <label for="income">Annual Income(वार्षिक उत्पन्न )</label>
                             <input disabled type="number" value="<%= userprofile.income%>" class="form-control"
                                 id="income" name="income" placeholder="per annum" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="income">Hudda(हुद्दा )</label>
+                            <input disabled type="text" value="<%= userprofile.hudda%>" class="form-control" id="hudda"
+                                name="hudda" required>
                         </div>
 
                         <div class="col-md-4">
                             <label for="blood-group">Blood Group</label>
                             <select disabled class="form-control" id="bloodgroup" name="bloodgroup" required>
                                 <option disabled selected value="<%= userprofile.bloodgroup%>">
-                                    <%= userprofile.bloodgroup%> Selected
+                                    <%= userprofile.bloodgroup%>
                                 </option>
                                 <option value="A positive (A+)">A positive (A+)</option>
                                 <option value="A negative (A-)">A negative (A-)</option>
@@ -160,7 +165,7 @@
                             <label for="spectacles">Spectacles (चष्मा )</label>
                             <select disabled class="form-control" id="spectacles" name="spectacles" required>
                                 <option disabled selected value="<%= userprofile.spectacles%>">
-                                    <%= userprofile.spectacles%> Selected
+                                    <%= userprofile.spectacles%>
                                 </option>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
@@ -185,7 +190,7 @@
                             <label for="marital-status">Marital Status</label>
                             <select disabled class="form-control" id="maritalstatus" name="maritalstatus" required>
                                 <option disabled selected value="<%= userprofile.maritalstatus%>">
-                                    <%= userprofile.maritalstatus%> Selected
+                                    <%= userprofile.maritalstatus%>
                                 </option>
                                 <option value="single">Single</option>
                                 <option value="divorced">Divorced</option>
@@ -210,7 +215,11 @@
                                 id="complexion" name="complexion" required>
                         </div>
 
-
+                        <div class="col-md-12">
+                            <label for="">Address</label>
+                            <textarea disabled name="address" class="form-control"
+                                rows="3"><%= userprofile.address%></textarea>
+                        </div>
                         <div class="row mt-3">
 
                             <div class="col-md-12 mb-4">
@@ -242,6 +251,18 @@
                                             value="<%= userprofile.mothername%>" id="mothername" name="mothername"
                                             required>
                                     </div>
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Father's occupation</label>
+                                        <input disabled class="form-control" type="text"
+                                            value="<%= userprofile.fatheroccupation%>" id="fatheroccupation"
+                                            name="fatheroccupation" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Mother's occupation</label>
+                                        <input disabled class="form-control" type="text"
+                                            value="<%= userprofile.motheroccupation%>" id="motheroccupation"
+                                            name="motheroccupation" required>
+                                    </div>
 
                                     <div class="col-md-4">
                                         <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
@@ -263,17 +284,23 @@
                                     <h6 class="text-dark p-3">Expectations</h6>
                                     <div class="col-md-12">
                                         <label for="maternal-uncle">Expectations</label>
-                                        <textarea disabled name="expectations" class="form-control"
+                                        <textarea disabled name="expectation" class="form-control"
                                             rows="3"><%= userprofile.expectation%></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-4 position-sticky bg-white w-100" style="bottom: 10px;">
-                            <div class="border-top" style="text-align: end;">
-                                <button id="editBtn" class="btn btn-lg btn-secondary mt-4">Edit</button>
-                                <button id="saveBtn" class="btn btn-lg btn-dark mt-4 ms-3">save</button>
+                        <div class="mt-4 position-sticky bg-white w-100" style="bottom: 0px;">
+                            <div class="border-top d-flex justify-content-between">
+                                <div>
+                                    <a href="/" class="btn btn-lg btn-primary mt-4">Back</a>
+                                </div>
+                                <div>
+                                    <button id="editBtn" class="btn btn-lg btn-secondary mt-4">Edit</button>
+                                    <button id="saveBtn" class="btn btn-lg btn-dark mt-4 ms-3"
+                                        style="display: none;">Save</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -313,39 +340,10 @@
 
 
     <script>
-        function fetchUserProfile(userId) {
-            $.ajax({
-                url: `/profiles/${userId}`, // Endpoint to fetch user profile data
-                method: 'GET',
-                success: function (response) {
-                    if (response.userprofile) {
-                        const userprofile = response.userprofile;
 
-                        // Populate input fields with fetched data
-                        $('#fullname').val(userprofile.fullname);
-                        // $('#city').val(userprofile.city);
-                        // $('#dob').val(userprofile.dateOfBirth);
-                        // Populate other input and select fields in a similar manner
-
-                        // Show the form after populating data
-
-                    } else {
-                        console.error('User profile data not found');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error fetching user profile data:', error);
-                }
-            });
-        }
-        $(document).ready(function () {
-
-            fetchUserProfile(userId);
-        });
-
-
-
-        document.getElementById("editBtn").addEventListener("click", function (event) {
+        let editBtn = document.getElementById("editBtn")
+        let saveBtn = document.getElementById("saveBtn")
+        editBtn.addEventListener("click", function (event) {
             event.preventDefault(); // Prevent default form submission behavior
             var formElements = document.getElementById("profileForm").elements;
             for (var i = 0; i < formElements.length; i++) {
@@ -355,18 +353,42 @@
                     element.removeAttribute("disabled");
                 }
             }
+            editBtn.style.display = "none"
+            saveBtn.style.display = "inline-block"
         });
 
-        document.getElementById("saveBtn").addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default form submission behavior
 
+        saveBtn.addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            saveBtn.style.display = "none"
+            editBtn.style.display = "inline-block"
             var object = {};
             var formElements = document.getElementById("profileForm").elements;
             for (var i = 0; i < formElements.length; i++) {
                 var element = formElements[i];
+                function capitalizeFirstLetters(str) {
+                    // Split the string into an array of words
+                    const words = str.split(" ");
+
+                    // Iterate through each word in the array
+                    const capitalizedWords = words.map(word => {
+                        // Capitalize the first letter of each word and lowercase the rest
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    });
+
+                    // Join the capitalized words back into a single string
+                    return capitalizedWords.join(" ");
+                }
                 // Remove disabled attribute from input, select, and textarea elements
                 if (element.tagName === "INPUT" || element.tagName === "SELECT" || element.tagName === "TEXTAREA") {
-                    object[element.name] = element.value
+                    if (element.name === "fullname") {
+
+                        object[element.name] = capitalizeFirstLetters(element.value)
+                    }
+                    else {
+                        object[element.name] = element.value
+                    }
+
                 }
             }
 
@@ -379,10 +401,24 @@
                     element.setAttribute("disabled", "disabled");
                 }
             }
+
             console.log(object);
 
             // Send the data to the backend using AJAX
+            await $.ajax({
+                type: 'POST',
+                url: '/editprofile', // Update the URL with your server endpoint
+                data: object,
+                success: function (response) {
+                    // Handle success response
+                    console.log(response);
 
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(error);
+                }
+            });
         });
 
 

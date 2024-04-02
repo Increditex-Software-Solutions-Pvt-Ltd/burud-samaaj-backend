@@ -357,14 +357,13 @@ const userController = {
             }
 
 
-            bcrypt.compare(credentials.password, userInDb.password, function (err, result) {
+            bcrypt.compare(credentials.password, userInDb.password,async function (err, result) {
                 if (result) {
-
+                    
                     let token = jwt.sign({ userId: userInDb.id }, `${process.env.user_secret_key}`);
-
+       
                     res.cookie('userJwt', token, { httpOnly: true, secure: true });
                     res.cookie('userId', userInDb.id, { httpOnly: true, secure: true });
-
                     return res.redirect('/');
                 } else {
 
@@ -381,7 +380,10 @@ const userController = {
     userlogout: (req, res) => {
         res.clearCookie('userJwt');
         res.clearCookie('userId');
+        res.clearCookie('userProfileId');
+
         res.redirect('/');
+
     },
     sendRequest: async (req, res) => {
         try {

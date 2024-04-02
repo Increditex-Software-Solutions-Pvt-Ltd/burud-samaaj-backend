@@ -4,7 +4,7 @@ const userActions = {
     checkLoggedIn: async (req, res, next) => {
         try {
             const token = req.cookies.userJwt;
-
+            
             if (token) {
                 res.redirect('/')
             }

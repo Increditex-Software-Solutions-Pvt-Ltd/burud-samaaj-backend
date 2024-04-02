@@ -1,11 +1,11 @@
-const {upload} = require('../config/multerconfig');
+const { upload } = require('../config/multerconfig');
 const { Userphoto } = require('../models/userphotos.model');
 const { Userprofile } = require('../models/userprofile.model');
 
 
 async function saveUserProfile(req, res) {
     try {
-        let userId = req.cookies.userId;
+        let userId = req.params.id;
 
 
         // Extract data from the request body
@@ -44,20 +44,20 @@ async function saveUserProfile(req, res) {
         function capitalizeFirstLetters(str) {
             // Split the string into an array of words
             const words = str.split(" ");
-        
+
             // Iterate through each word in the array
             const capitalizedWords = words.map(word => {
                 // Capitalize the first letter of each word and lowercase the rest
                 return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
             });
-        
+
             // Join the capitalized words back into a single string
             return capitalizedWords.join(" ");
         }
         // Save the user profile data to the database
         const userProfile = await Userprofile.create({
             profilefor,
-            fullname:capitalizeFirstLetters(fullname),
+            fullname: capitalizeFirstLetters(fullname),
             birthname,
             birthplace,
             city,
@@ -98,11 +98,31 @@ async function saveUserProfile(req, res) {
     }
 }
 
+async function editUserProfile(req, res) {
+    try {
+        let userId = req.cookies.userId
+      
+        let userprofile = await Userprofile.findOne({
+            where:{userId}})
+        console.log(userprofile.id,"profile id for update");
+        
+        const updateuserProfile = await userprofile.update(req.body);
+        updateuserProfile.save()
+       
+        return res.redirect('/uploadphoto');
+
+    } catch (error) {
+        // Handle errors
+        console.error('Error editing user profile:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 const saveUserImages = async (req, res) => {
     try {
         let userId = req.cookies.userId;
         // Handle profile picture upload
-        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopic1', maxCount: 1 },{ name: 'biopic2', maxCount: 1 },{ name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
+        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopic1', maxCount: 1 }, { name: 'biopic2', maxCount: 1 }, { name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
             if (err) {
                 return res.status(400).json({ message: 'Files upload failed.' });
             }
@@ -112,11 +132,11 @@ const saveUserImages = async (req, res) => {
             const horoimage = req.files['horoimage'] ? req.files['horoimage'][0].path : null;
 
             const newImage = await Userphoto.create({
-                profilepic,biopic1,biopic2,horoimage
+                profilepic, biopic1, biopic2, horoimage
             })
 
             const userPhotoId = newImage.id;
-            await Userprofile.update({userphoto:userPhotoId},{ where: { userId }})
+            await Userprofile.update({ userphoto: userPhotoId }, { where: { userId } })
 
             return res.redirect('/');
         });
@@ -144,24 +164,24 @@ const checkProfile = async (req, res) => {
     }
 }
 
-const getAllUserpics=async(req,res)=>{
+const getAllUserpics = async (req, res) => {
     try {
-       const id = parseInt(req.query.id);
-       console.log("this is id",id);     
-       const pics = await Userphoto.findByPk(id);
-     console.log(pics);
-       if (pics) {
-         return res.status(201).send({ pics })
-     } else {
-         return res.status(404).json({ error: 'profile images not found' });
-     }
-       
- 
+        const id = parseInt(req.query.id);
+        console.log("this is id", id);
+        const pics = await Userphoto.findByPk(id);
+        console.log(pics);
+        if (pics) {
+            return res.status(201).send({ pics })
+        } else {
+            return res.status(404).json({ error: 'profile images not found' });
+        }
+
+
     } catch (error) {
-     console.error('Error getting user profilepics:', error);
-         res.status(500).json({ message: 'Internal server error' });
+        console.error('Error getting user profilepics:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
- }
+}
 
 const getAllProfiles = async (req, res) => {
     try {
@@ -196,8 +216,8 @@ const getSingleProfile = async (req, res) => {
     }
 }
 
-const getProfileUpdateform =async(req,res)=>{
-    const {id} = req.params;
+const getProfileUpdateform = async (req, res) => {
+    const { id } = req.params;
     try {
         const userprofileId = await Userprofile.findByPk(id);
         if (userprofileId) {
@@ -212,4 +232,4 @@ const getProfileUpdateform =async(req,res)=>{
     }
 }
 
-module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile,saveUserImages,getAllUserpics,getProfileUpdateform };
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile };
