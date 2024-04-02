@@ -152,7 +152,12 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findByPk(id)
+                    const userprofile = await Userprofile.findByPk(id, {
+                        include: {
+                            model: Userphoto,
+                            as: 'userImage'
+                        }
+                    })
                     if (user) {
 
                         return res.render('editprofile', { user, userprofile });

@@ -146,6 +146,51 @@ const saveUserImages = async (req, res) => {
     }
 };
 
+const updateProfilephotos = async (req, res) => {
+    try {
+        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopic1', maxCount: 1 },{ name: 'biopic2', maxCount: 1 },{ name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
+            if (err) {
+                return res.status(400).json({ message: 'File upload failed.' });
+            }
+
+            const profileId = req.params.id;
+            const profilepic = req.files['profilepic'] ? req.files['profilepic'][0].path : null;
+            const biopic1 = req.files['biopic1'] ? req.files['biopic1'][0].path : null;
+            const biopic2 = req.files['biopic2'] ? req.files['biopic2'][0].path : null;
+            const horoimage = req.files['horoimage'] ? req.files['horoimage'][0].path : null;
+
+            const profilephoto = await Userphoto.findByPk(profileId);
+            console.log(profilephoto);
+
+            if (!profilephoto) {
+                return res.status(404).json({ message: 'Profile images not found' });
+            }
+
+          
+
+            if (profilepic) {
+                profilephoto.profilepic = profilepic;
+            }
+
+            if (biopic1) {
+                profilephoto.biopic1 = biopic1;
+            }
+            if (biopic2) {
+                profilephoto.biopic2 = biopic2;
+            }
+            if (horoimage) {
+                profilephoto.horoimage = horoimage;
+            }
+
+            await profilephoto.save();
+
+            return res.redirect('/');
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to update profile pics' });
+    }
+};
 
 
 const checkProfile = async (req, res) => {
@@ -232,4 +277,4 @@ const getProfileUpdateform = async (req, res) => {
     }
 }
 
-module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile };
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile ,updateProfilephotos};
