@@ -31,12 +31,30 @@ async function showLatestProfiles() {
     profileLatest.innerHTML = ""
 
     for (const profile of profiles) {
+        let picId = { id: profile.userphoto }
+        console.log("userphotos", picId);
+        let profilepics;
+        try {
+            const response = await $.ajax({
+                type: 'GET',
+                url: '/getuserphotos',
+                data: picId
+            });
+            if (response.pics) {
+                profilepics = response.pics;
+            } else {
+                profilepics = [];
+            }
+        } catch (error) {
+            console.error(error);
+            profilepics = [];
+        }
         let user = `
     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item position-relative rounded overflow-hidden">
                         <div class="overflow-hidden text-center" style="height:200px;">
                             <img class="img-fluid"
-                                src="https://www.shutterstock.com/image-photo/male-mugshot-passport-serious-portrait-260nw-2227218717.jpg"
+                                src="${profilepics.profilepic.replace(/\\/g, '/')}"
                                 alt="" style="object-fit: cover;">
                         </div>
                         <div class="team-text bg-light text-center p-4">

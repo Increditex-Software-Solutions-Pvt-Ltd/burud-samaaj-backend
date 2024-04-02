@@ -232,7 +232,7 @@ const getAllProfiles = async (req, res) => {
     try {
         const userId = req.cookies.userId
         const profiles = await Userprofile.findAll();
-        const profilephoto = await Userphoto.findAll();
+        // const profilephoto = await Userphoto.findAll();
         const filteredData = profiles.filter((profile) => profile.userId != userId)
         res.send({ profiles: filteredData });
     } catch (error) {
