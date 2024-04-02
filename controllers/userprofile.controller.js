@@ -5,7 +5,7 @@ const { Userprofile } = require('../models/userprofile.model');
 
 async function saveUserProfile(req, res) {
     try {
-        let userId = req.params.id;
+        let userId = req.cookies.userId;
 
 
         // Extract data from the request body

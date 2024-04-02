@@ -13,6 +13,7 @@ userRouter.get('/about', userController.getaboutpage);
 userRouter.get('/uploadphoto', userController.getUploadphotopage)
 userRouter.get('/success-stories', userController.getsuccessStories);
 userRouter.get('/profiles/:id', userController.getEditProfilepage);
+userRouter.get('/photos/:id', userController.getEditPhotospage);
 userRouter.get('/success-videos', userController.getsuccessVideos);
 
 
