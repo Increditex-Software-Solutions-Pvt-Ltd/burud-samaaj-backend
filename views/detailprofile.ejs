@@ -290,8 +290,12 @@
                                     <td><%= profile.mothername%></td>
                                 </tr>
                                 <tr>
-                                    <td>FATHER/MOTHER OCCUPATION (वडील व्यावसाय/नोकरी ):</td>
-                                    <td>Input is remaining</td>
+                                    <td>FATHER OCCUPATION (वडील व्यावसाय/नोकरी ):</td>
+                                    <td><%= profile.fatheroccupation%></td>
+                                </tr>
+                                <tr>
+                                    <td>MOTHER OCCUPATION (आई  व्यावसाय/नोकरी ):</td>
+                                    <td><%= profile.motheroccupation%></td>
                                 </tr>
                                 <tr>
                                     <td>PARENTS ADDRESS (पालकांचा पत्ता ):</td>
@@ -301,12 +305,6 @@
                                     <td>FAMILY MEMBERS (कुटुंबातील सदस्य ):</td>
                                     <td><%= profile.familymembers%></td>
                                 </tr>
-                              
-
-                               
-
-
-
 
                             </tbody>
                         </table>
@@ -318,26 +316,11 @@
                             <tbody>
                                 <tr>
                                     <td>
-
-                                        AGE DIFFERENCE UPTO (वयातील अधिकतम अंतर)::</td>
-                                    <td>3 Years</td>
-                                </tr>
-                                <tr>
-                                    <td>PREFERRED CITY (अपेक्षित शहर):</td>
-                                    <td> Mumbai,Satara,Thane,Palghr,</td>
-                                </tr>
-                                <tr>
-                                    <td>EXPECTED HEIGHT (अपेक्षित उंची):</td>
-                                    <td>5-5</td>
-                                </tr>
-                                <tr>
-                                    <td>EDUCATION (शैक्षणिक अपेक्षा):</td>
-                                    <td>B.E/MBA</td>
+                                        <%= profile.expectation%>
+                                        </td>
+                                  
                                 </tr>
                                
-                               
-                              
-
                             </tbody>
                         </table>
                     </div>

@@ -1071,7 +1071,14 @@
                                     <label for="mother-name">Parents Address</label>
                                     <textarea name="parentaddress" id="parentaddress" class="form-control"></textarea>
                                 </div>
-
+                                <div class="col-md-4">
+                                    <label for="mother-name">Profile Visibility</label>
+                                    <select name="profilevisibility" class="form-control" id="profilevisibility">
+                                        <option selected disabled value="">Select</option>
+                                        <option  value="private">Private</option>
+                                        <option  value="public">Public</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="row border-top">
@@ -1369,6 +1376,7 @@
                 hudda: document.getElementById('hudda').value,
                 fatheroccupation: document.getElementById('fatheroccupation').value,
                 motheroccupation: document.getElementById('motheroccupation').value,
+                profilevisibility:document.getElementById("profilevisibility").value,
                 expectation: document.getElementById('expectation').value,
                 // agedifference: document.getElementById('agedifference').value,
                 // preferredcity: document.getElementById('preferredcity').value,

@@ -34,6 +34,7 @@ async function saveUserProfile(req, res) {
             parentaddress,
             expectation,
             familymembers,
+            profilevisibility,
             hudda,
             fatheroccupation,
             motheroccupation,
@@ -83,6 +84,7 @@ async function saveUserProfile(req, res) {
             hudda,
             fatheroccupation,
             motheroccupation,
+            profilevisibility,
             email,
             mobile,
             userId
@@ -212,7 +214,6 @@ const checkProfile = async (req, res) => {
 const getAllUserpics = async (req, res) => {
     try {
         const id = parseInt(req.query.id);
-        console.log("this is id", id);
         const pics = await Userphoto.findByPk(id);
         console.log(pics);
         if (pics) {
@@ -233,7 +234,7 @@ const getAllProfiles = async (req, res) => {
         const userId = req.cookies.userId
         const profiles = await Userprofile.findAll();
         // const profilephoto = await Userphoto.findAll();
-        const filteredData = profiles.filter((profile) => profile.userId != userId)
+        const filteredData = profiles.filter((profile) => profile.userId != userId && profile.profilevisibility === "public")
         res.send({ profiles: filteredData });
     } catch (error) {
         console.error('Error getting user profiles:', error);

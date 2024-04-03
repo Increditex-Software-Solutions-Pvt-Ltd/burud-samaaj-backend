@@ -7,6 +7,7 @@ const { Userprofile } = require('../models/userprofile.model');
 const { Userphoto } = require('../models/userphotos.model');
 const { otpGen } = require('otp-gen-agent');
 const nodemailer = require('nodemailer');
+const { UserApproval } = require('../../admin/models/Userapproval.model');
 
 const userController = {
     gethome: async (req, res) => {
@@ -328,24 +329,7 @@ const userController = {
         }
     },
     signup: async (req, res) => {
-        // let errorsArr = [];
-
-        // if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.phone || !req.body.password || !req.body.confirmpassword || !req.body.dateofbirth) {
-
-        //     // req.flash("error", "All fields are required");
-        //     return res.redirect('/signup');
-        // }
-
-        // let validationError = validationResult(req);
-        // if (!validationError.isEmpty()) {
-        //     let error = Object.values(validationError.mapped());
-
-        //     error.forEach((item) => {
-        //         errorsArr.push(item.msg);
-        //     })
-        //     req.flash("error", errorsArr);
-
-        // }
+       
         try {
             const data = req.body;
             console.log(data);
@@ -364,7 +348,9 @@ const userController = {
                     ...data,
                     password: hashPassword
                 }
-                const newuser = await User.create(createUser);
+
+                // change made User->UserApproval for approving
+                const newuser = await UserApproval.create(createUser);
                 // res.status(200).send({ "message": "New user created", newuser })
                 req.flash("success", "Registration successfull! Please log in.", newuser);
                 return res.redirect('/login');

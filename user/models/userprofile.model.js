@@ -116,6 +116,10 @@ const Userprofile = sequelize.define('userprofile',{
         type:DataTypes.TEXT,
         allowNull:true
     },
+    profilevisibility:{
+        type:DataTypes.STRING,
+        allowNull:true
+    },
     familymembers:{
         type:DataTypes.INTEGER,
         allowNull:true

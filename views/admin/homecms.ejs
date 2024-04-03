@@ -1,0 +1,92 @@
+<%- include('./header.ejs');%>
+
+	<div class="content container-fluid">
+		<!-- Page Header -->
+		<div class="page-header">
+			<div class="row align-items-center">
+				<div class="col">
+					<h1 class="page-header-title">
+						Home content management</h1>
+				</div>
+				<!-- End Col -->
+				<div class="col-auto">
+					<a class="btn btn-sm btn-primary" href="javascript:void(0)" onclick="addHomeCms()">
+						<i class="bi-plus-circle me-1"></i>
+						Add
+					</a>
+				</div>
+				<!-- End Col -->
+			</div>
+			<!-- End Row -->
+		</div>
+		<!-- End Page Header -->
+
+		<div class="menu-table-filters">
+			<div class="row g-3">
+				<div class="col-12 col-md-3">
+					<div class="input-group input-group-sm">
+						<div class="input-group-text">
+							<i class="bi-search"></i>
+						</div>
+						<input type="search" class="form-control menu-table-search" placeholder="Search here">
+					</div>
+				</div>
+				<div class="col-12 col-md-6 offset-md-3">
+					<div class="d-flex align-items-center gap-2">
+						<span class="ms-md-auto">Type</span>
+						<div>
+							<select class="form-select form-select-sm"
+								onchange="sowingListTable.column(2).search(this.value).draw()">
+								<option value="" selected>All</option>
+								<option value="cat">Catagory</option>
+							</select>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table id="menu-table" class="table table-bordered table-nowrap table-align-middle">
+				<thead class="thead-light" align="left">
+					<tr>
+					
+						<th>Action</th>
+						<th>
+							 MAINHEADING
+						</th>
+						<th>
+                            SERVICE HEADING							
+						</th>
+						<th>
+							SERVICE DESCRIPTION
+						</th>
+						<th>
+                           SERVICE SHORT INFO							
+						</th>
+						<th>
+                           POPULARDISHES							
+						</th>
+                         <th>
+							YOUTUBEIMAGE
+						 </th>
+                         <th>
+							YOUTUBELINK
+						 </th>						
+						
+					</tr>
+				</thead>
+		        <tbody>
+                    
+				</tbody>
+			</table>
+		</div>
+
+		<div class="menu-table-footer"></div>
+	</div>
+	<!-- End Content -->
+
+	<%- include('./footer.ejs');%>
+
+	
+	

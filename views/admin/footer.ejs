@@ -1,0 +1,795 @@
+<!-- Footer -->
+
+<div class="footer">
+	<div class="row justify-content-between align-items-center">
+		<div class="col-12">
+			<div class="d-flex justify-content-end">
+				<!-- List Separator -->
+				<ul class="list-inline list-separator">
+					<li class="list-inline-item">
+						<%= ('title') %> |
+							<span>
+								Mommy's
+							</span>
+					</li>
+				</ul>
+				<!-- End List Separator -->
+			</div>
+		</div>
+		<!-- End Col -->
+	</div>
+	<!-- End Row -->
+</div>
+<!-- End Footer -->
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+<!-- ========== SECONDARY CONTENTS ========== -->
+<!-- Activity -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasActivityStream"
+	aria-labelledby="offcanvasActivityStreamLabel">
+	<div class="offcanvas-header">
+		<h4 id="offcanvasActivityStreamLabel" class="mb-0">
+			<%= ('daily_activity') %>
+		</h4>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+		<!-- Step -->
+		<ul class="step step-icon-sm step-avatar-sm">
+		</ul>
+		<!-- End Step -->
+		<h5 class="text-center text-muted">No Activities performed yet.</h5>
+	</div>
+</div>
+<!-- End Activity -->
+<!-- All Modals -->
+
+
+
+
+<div class="modal fade" id="viewDetailUser" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+		<div class="modal-content border shadow-lg">
+			<div class="modal-header">
+				<h5 class="modal-title" id="">view details</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row gy-3">
+					<div class="col-md-4">
+						<label for="" class="form-label" id="firstname"></label>
+						<input class="form-control form-control-sm" id="firstname" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="middlename"></label>
+						<input class="form-control form-control-sm" id="middlename" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="lastname"></label>
+						<input class="form-control form-control-sm" id="lastname" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="email"></label>
+						<input class="form-control form-control-sm" id="email" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="phone"></label>
+						<input class="form-control form-control-sm" id="phone" disabled>
+					</div>
+					<div class="col-md-12">
+						<label for="" class="form-label" id="address"></label>
+						<textarea class="form-control form-control-sm" id="address" disabled></textarea>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="state"></label>
+						<input class="form-control form-control-sm" id="state" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="district"></label>
+						<input class="form-control form-control-sm" id="district" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="taluka"></label>
+						<input class="form-control form-control-sm" id="taluka" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="town"></label>
+						<input class="form-control form-control-sm" id="town" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="pincode"></label>
+						<input class="form-control form-control-sm" id="pincode" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="country"></label>
+						<input class="form-control form-control-sm" id="country" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="dob"></label>
+						<input class="form-control form-control-sm" id="dob" disabled>
+					</div>
+					<div class="col-md-4">
+						<label for="" class="form-label" id="gender"></label>
+						<input class="form-control form-control-sm" id="gender" disabled>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+		
+
+
+	</div>
+</div>
+
+
+<div class="modal fade " id="homecmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen">
+		<div class="modal-content border shadow-lg">
+			<div class="modal-header">
+				<h5 class="modal-title" id="homecmsAddModalLabel"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="admin/addhomecms" method="post" class="row" enctype="multipart/form-data"
+					id="home-cmsform">
+
+					<div class="col-md-6 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Main heading</label>
+							<input type="text" name="mainHeading" class="form-control form-control-sm"
+								placeholder="Enter main heading" required>
+						</div>
+					</div>
+					<div class="col-md-6 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Service heading</label>
+							<input type="text" name="serviceheading" class="form-control form-control-sm"
+								placeholder="Enter service heading" required>
+						</div>
+					</div>
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Service description</label>
+							<textarea name="servicedesc" rows="7" required class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Service short information</label>
+							<textarea name="serviceshort" rows="5" required class="form-control"></textarea>
+						</div>
+					</div>
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Explore dishes(Upload maximum 5 images)</label>
+							<input type="file" class="form-control form-control-sm " name="images" multiple
+								id="upload-img"  accept=".jpg, .png, .jpeg, image/jpeg, image/png">
+						</div>
+						<div class="mb-2">
+							<div class="img-thumbs img-thumbs-hidden" id="img-preview"></div>
+						</div>
+						<div id="uploadedImages"></div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer pt-0 border-top-0">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" form="home-cmsform" class="btn btn-dark prevent-default">post</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade " id="aboutcmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content border shadow-lg">
+			<div class="modal-header">
+				<h5 class="modal-title" id="aboutcmsModalLabel"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="admin/addabout" method="post" class="row" enctype="multipart/form-data"
+					id="about-cmsform">
+
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">About company</label>
+							<textarea class="form-control form-control-sm" rows="10" name="aboutCompany"></textarea>
+						</div>
+						
+					</div>
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Founder Image</label>
+							<input type="file"  accept=".jpg, .png, .jpeg, image/jpeg, image/png" class="form-control form-control-sm " name="founderImage">
+						</div>	
+					</div>
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">About founder</label>
+							<textarea class="form-control form-control-sm" rows="10" name="aboutFounder"></textarea>
+						</div>	
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer pt-0 border-top-0">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" form="about-cmsform" class="btn btn-dark prevent-default">post</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade " id="youtubecmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content border shadow-lg">
+			<div class="modal-header">
+				<h5 class="modal-title" id="youtubecmsModalLabel"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="admin/addyoutube" method="post" class="row" enctype="multipart/form-data"
+					id="youtube-cmsform">
+
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Youtube Thumbnail</label>
+							<input type="file"  accept=".jpg, .png, .jpeg, image/jpeg, image/png" class="form-control form-control-sm " name="youtubeThumbnail">
+						</div>
+						
+					</div>
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Youtube Link</label>
+							<input type="text" class="form-control form-control-sm " name="youtubeLink">
+						</div>
+						
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer pt-0 border-top-0">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" form="youtube-cmsform" class="btn btn-dark prevent-default">post</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="topdishAddModal" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content border shadow-lg">
+			<div class="modal-header">
+				<h5 class="modal-title" id="topdishAddModalLabel"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="admin/addtopdish" method="POST" class="row g-3" id="topdish-form"
+					enctype="multipart/form-data">
+					<div class="col-md-6">
+						<label for="" class="form-label required">Dish name</label>
+						<input type="text" name="dishname" class="form-control form-control-sm" required>
+					</div>
+					<div class="col-md-6">
+						<label for="" class="form-label required">Dish price</label>
+						<div class="input-group input-group-sm w-100">
+							<span class="input-group-text">₹</span>
+							<input type="number" name="dishprice" class="form-control px-2 text-center w-75"
+								placeholder="0.00">
+						</div>
+					</div>
+					
+					<div class="col-md-12">
+						<label for="" class="form-label required">Dish image</label>
+						<input type="file" name="dishimage" accept=".jpg, .png, .jpeg, image/jpeg, image/png"
+							class="form-control form-control-sm">
+						<div class="text-muted">
+							<span class="small">only jpg and png files</span>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer pt-0 border-top-0">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" form="topdish-form" class="btn btn-dark prevent-default">Post</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="categoryAddModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered modal-sm">
+		<div class="modal-content shadow border">
+			<div class="modal-header">
+				<h5 class="modal-title" id="categoryAddModalLabel">category</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="post" class="row g-3" id="category-form">
+					<div class="col-12">
+						<input type="hidden" id="category-form-action" name="add_category">
+						<label for="" class="form-label">Category name</label>
+						<input type="text" name="name" class="form-control" required>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer pt-0 border-top-0">
+				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="submit" form="category-form" class="btn btn-sm btn-dark prevent-default">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="viewMoreModal" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content border shadow-lg">
+			<div class="modal-header">
+				<h5 class="modal-title" id="">view more</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card shadow-sm">
+							<div class="card-header">
+								<h5 class="text-dark mb-0 fs-5">Menu image</h5>
+							</div>
+							<div class="card-body text-center">
+								<img id="menuImage" src="" alt="Menu Image" style="width: 100%; height: 270px;"
+									class="img-fluid">
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<label for="" class="form-label" id="menu_desc"></label>
+						<textarea class="form-control form-control-sm" id="menu_longdesc" disabled></textarea>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+
+
+	</div>
+</div>
+
+<div class="modal fade" id="viewExploreDishes" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content border shadow-lg">
+			<div class="modal-header">
+				<h5 class="modal-title" id="">view dishes</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card shadow-sm">
+							<div class="card-header">
+								<h5 class="text-dark mb-0 fs-5">Exploring Popular dishes</h5>
+							</div>
+							<div class="card-body text-center">
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+
+
+	</div>
+</div>
+<script>
+	function Alert(options = {}) {
+		const BSAction = {
+			success: '<i class="bi bi-check-circle display-1 text-success"></i>',
+			error: '<i class="bi bi-x-circle display-1 text-danger"></i>',
+			warning: '<i class="bi bi-exclamation-circle display-1 text-warning"></i>',
+			info: '<i class="bi bi-info-circle display-1 text-info"></i>',
+			question: '<i class="bi bi-question-circle display-1 text-muted"></i>',
+		}
+		const modal = $('#alertModal');
+		const icon = modal.find('.modal-title .alertIcon');
+		const text = modal.find('.modal-title .alertText');
+		const okBtn = modal.find('.modal-footer .alertOkBtn');
+		const cancelBtn = modal.find('.modal-footer .alertCancelBtn');
+		icon.html('');
+		text.html('');
+		cancelBtn.remove();
+		if (options.type && BSAction[options.type]) {
+			icon.html(BSAction[options.type]);
+		}
+		if ('string' === typeof options) {
+			text.html(options);
+		} else if ('object' === typeof options && options.text) {
+			text.html(options.text);
+		} else {
+			text.html(('alert'));
+		}
+		if (options.callback) {
+			okBtn.on('click', function (e) {
+				options.callback(e);
+				$(this).unbind("click");
+			})
+		}
+		if (options.confirmText) {
+			okBtn.text(options.confirmText);
+		} else {
+			okBtn.text(('ok'));
+		}
+		modal.modal('show');
+	}
+	async function Prompt(options = {}) {
+		const modal = $('#alertModal');
+		const icon = modal.find('.modal-title .alertIcon');
+		const text = modal.find('.modal-title .alertText');
+		const okBtn = modal.find('.modal-footer .alertOkBtn');
+		modal.find('.modal-footer .alertCancelBtn').remove();
+		icon.html('');
+		text.html('');
+		if ('string' === typeof options) {
+			icon.html(`<h5>${options}</h5>`);
+		} else if ('object' === typeof options && options.text) {
+			icon.html(`<h5>${options.text}</h5>`);
+		} else {
+			icon.html(`<h5>${('prompt')}</h5>`);
+		}
+		modal.find('.modal-footer').prepend(`<button type="button" data-bs-dismiss="modal" class="btn btn-sm alertCancelBtn btn-secondary">cancel</button>`);
+		text.html('<input type="text" class="form-control promptInput">');
+		const cancelBtn = modal.find('.modal-footer .alertCancelBtn');
+		modal.modal('show');
+		return await new Promise((resolve, reject) => {
+			okBtn.on('click', function () {
+				resolve(modal.find('.promptInput').val());
+				$(this).unbind('click');
+			});
+			cancelBtn.on('click', function () {
+				resolve(null);
+			});
+		});
+	}
+	async function Confirm(options = {}) {
+		const modal = $('#alertModal');
+		const icon = modal.find('.modal-title .alertIcon');
+		const text = modal.find('.modal-title .alertText');
+		const okBtn = modal.find('.modal-footer .alertOkBtn');
+		modal.find('.modal-footer .alertCancelBtn').remove();
+		icon.html('');
+		text.html('');
+		if ('string' === typeof options) {
+			icon.html(`<h5>${options}</h5>`);
+		} else if ('object' === typeof options && options.text) {
+			icon.html(`<h5>${options.text}</h5>`);
+		} else {
+			icon.html(`<h5>${('confirm')}</h5>`);
+		}
+		if (options.confirmText) {
+			okBtn.text(options.confirmText);
+		}
+		let cancelText = ('cancel');
+		if (options.cancelText) {
+			cancelText = options.cancelText;
+		}
+		modal.find('.modal-footer').prepend(`<button type="button" data-bs-dismiss="modal" class="btn btn-sm alertCancelBtn btn-secondary">${cancelText}</button>`);
+		const cancelBtn = modal.find('.modal-footer .alertCancelBtn');
+		modal.modal('show');
+		if (options.onOk || options.onCancel) {
+			if (options.onOk) {
+				okBtn.on('click', function (e) {
+					options.onOk(e);
+					$(this).unbind("click");
+				});
+			}
+			if (options.onCancel) {
+				cancelBtn.on('click', function (e) {
+					options.onCancel(e);
+					$(this).unbind("click");
+				});
+			}
+		} else {
+			return await new Promise((resolve, reject) => {
+				okBtn.on('click', function () {
+					resolve(true);
+					$(this).unbind('click');
+				});
+				cancelBtn.on('click', function () {
+					resolve(false);
+				});
+			});
+		}
+	}
+</script><!-- End Create a new user Modal -->
+<!-- ========== END SECONDARY CONTENTS ========== -->
+<!-- JS Implementing Plugins -->
+
+<script src="admin/js/vendor.min.js"></script>
+<script src="admin/js/moment.js"></script>
+<script src="admin/vendor/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"></script>
+<script src="https://kit.fontawesome.com/1c9005996e.js" crossorigin="anonymous"></script>
+<!-- JS Front -->
+<script src="admin/js/theme.min.js"></script>
+<script src="admin/js/hs.theme-appearance-charts.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.3/b-colvis-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rg-1.3.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/sr-1.2.0/datatables.min.js"></script>
+<script src="admin/js/vfs_fonts.js"></script>
+<script src="admin/js/jquery.validate.min.js"></script>
+<script src="admin/js/additional-methods.min.js"></script>
+<script src="admin/js/BSSelect.min.js"></script>
+<script src="admin/js/main.js"></script>
+<script>
+	$('.table-responsive').on('show.bs.dropdown', function () {
+		$(this).css('overflow', 'inherit');
+	});
+	$('.table-responsive').on('hide.bs.dropdown', function () {
+		$(this).css('overflow', 'auto');
+	});
+	$.fn.dataTable.Api.register('sum()', function () {
+		return this.flatten().reduce(function (a, b) {
+			if (typeof a === 'string') {
+				a = a.replace(/[^\d.-]/g, '') * 1;
+			}
+			if (typeof b === 'string') {
+				b = b.replace(/[^\d.-]/g, '') * 1;
+			}
+
+			return a + b;
+		}, 0);
+	}),
+		$.fn.dataTable.moment = function (format, locale) {
+			var types = $.fn.dataTable.ext.type;
+			// Add type detection
+			types.detect.unshift(function (d) {
+				return moment(d, format, locale, true).isValid() ?
+					'moment-' + format :
+					null;
+			});
+			// Add sorting method - use an integer for the sorting
+			types.order['moment-' + format + '-pre'] = function (d) {
+				return moment(d, format, locale, true).unix();
+			};
+		},
+		$.fn.dataTable.moment('DD MMM YYYY'),
+		$.fn.dataTable.defaults.aLengthMenu = [
+			[10, 25, 50, 100, 500, -1],
+			[10, 25, 50, 100, 500, ('all')],
+		]
+	const dtLang = $.fn.dataTable.defaults.oLanguage;
+	dtLang.sLengthMenu = 'Show _MENU_ entries',
+		dtLang.sLoadingRecords = ('loading'),
+		dtLang.sEmptyTable = dtLang.sZeroRecords = `<div class="text-center p-4"><img class="mb-3" src="admin/svg/illustrations/oc-error.svg" alt="Image Description" style="width: 10rem;" data-hs-theme-appearance="default"><img class="mb-3" src="admin/svg/illustrations-light/oc-error.svg" alt="Image Description" style="width: 10rem;" data-hs-theme-appearance="dark"><p class="mb-0">${('no data to show')}</p></div>`,
+		dtLang.sInfo = 'Showing page _PAGE_ of _PAGES_',
+		dtLang.sInfoEmpty = ('no data to show'),
+		dtLang.sInfoFiltered = ' - filtered from _MAX_ records',
+		dtLang.sSearch = ('search'),
+		dtLang.oPaginate = {
+			sFirst: ('first'),
+			sLast: ('last'),
+			sNext: ('next'),
+			sPrevious: ('previous')
+		},
+		dtLang.buttons = {
+			copySuccess: {
+				1: ('copied_one_row'),
+				_: ('copied_n_rows')
+			},
+			copyTitle: ('copy_to_clipboard')
+		},
+		$.fn.dataTableExt.buttons.csvHtml5.charset = 'UTF-8',
+		$.fn.dataTableExt.buttons.csvHtml5.bom = true;
+	const pdf = $.fn.dataTableExt.buttons.pdfHtml5;
+	pdf.footer = true,
+		pdf.orientation = 'landscape',
+		pdf.exportOptions = {
+			// columns: ':visible',
+			search: 'applied',
+			order: 'applied'
+		},
+		$.fn.dataTableExt.buttons.print.footer = true,
+		// to print current page only
+		$.fn.dataTableExt.buttons.print.exportOptions = {
+			modifier: {
+				page: 'current'
+			}
+		},
+		pdf.customize = function (doc) {
+			doc.defaultStyle.font = 'NotoSans';
+			doc.pageMargins = [20, 40, 20, 40];
+			doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+			const body = doc.content[1].table.body;
+			for (let i = 0; i < Object.values(body).length; i++) {
+				for (let j = 0; j < Object.values(body[i]).length; j++) {
+					// body[i][j].color = '#000'; // change font color
+					// body[i][j].fillColor = '#fff'; // change background color of cell
+					body[i][j].alignment = 'left'; // text alignment
+				}
+			}
+		};
+	$(document).ready(function () {
+		// const excel = $.fn.dataTableExt.buttons.excelHtml5;
+		// const csv = $.fn.dataTableExt.buttons.csvHtml5;
+		// const print = $.fn.dataTableExt.buttons.print;
+		$.fn.startLoading = function (e) {
+			let spinner = `<span class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">${('saving')}...</span></span> `;
+			if (undefined === e) {
+				e = spinner + ('saving');
+			} else {
+				e = spinner + e;
+			}
+			return this.html(e).prop('disabled', true);
+		}
+		$.fn.stopLoading = function (e) {
+			if (undefined === e) {
+				e = ('save');
+			}
+			return this.html(e).prop('disabled', false);
+		}
+	});
+	(function () {
+		localStorage.removeItem('hs_theme');
+		window.addEventListener('load', function () {
+
+			// INITIALIZATION OF BOOTSTRAP DROPDOWN
+			// =======================================================
+			// HSBsDropdown.init()
+
+
+			// INITIALIZATION OF SELECT
+			// =======================================================
+			HSCore.components.HSTomSelect.init('.js-select')
+
+
+			// INITIALIZATION OF INPUT MASK
+			// =======================================================
+			HSCore.components.HSMask.init('.js-input-mask')
+
+
+			// INITIALIZATION OF FILE ATTACHMENT
+			// =======================================================
+			new HSFileAttach('.js-file-attach')
+
+
+			// INITIALIZATION OF STICKY BLOCKS
+			// =======================================================
+			new HSStickyBlock('.js-sticky-block', {
+				targetSelector: document.getElementById('header').classList.contains('navbar-fixed') ? '#header' : null
+			})
+
+
+			// SCROLLSPY
+			// =======================================================
+			new bootstrap.ScrollSpy(document.body, {
+				target: '#navbarSettings',
+				offset: 100
+			})
+			if (document.querySelector('#navbarVerticalNavMenu')) {
+				new HSScrollspy('#navbarVerticalNavMenu', {
+					breakpoint: 'lg',
+					scrollOffset: -20
+				})
+			}
+			let page = location.pathname.split('/').slice(-1)[0];
+			if (page === '') {
+				page = './';
+			}
+			document.querySelectorAll('#navbarVerticalMenu .nav-link').forEach(el => {
+				el.classList.remove('active');
+			});
+			const active = document.querySelector('#navbarVerticalMenu a[href="' + page + '"]');
+			if (active) {
+				active.classList.add('active');
+				if (active.parentNode.classList.contains('collapse')) {
+					active.parentNode.classList.add('show');
+				} else if (active.closest('.collapse')) {
+					active.closest('.collapse').classList.add('show');
+				}
+			}
+
+			new HSSideNav('.js-navbar-vertical-aside').init();
+			const HSFormSearchInstance = new HSFormSearch('.js-form-search')
+			if (HSFormSearchInstance.collection.length) {
+				HSFormSearchInstance.getItem(1).on('close', function (el) {
+					el.classList.remove('top-0');
+				})
+				document.querySelector('.js-form-search-mobile-toggle').addEventListener('click', e => {
+					let dataOptions = JSON.parse(e.currentTarget.getAttribute('data-hs-form-search-options')),
+						$menu = document.querySelector(dataOptions.dropMenuElement)
+					$menu.classList.add('top-0')
+					$menu.style.left = 0
+				})
+			}
+		});
+		const $dropdownBtn = document.getElementById('selectThemeDropdown') // Dropdowon trigger
+		const $variants = document.querySelectorAll(`[aria-labelledby="selectThemeDropdown"] [data-icon]`) // All items of the dropdown
+
+		// Function to set active style in the dorpdown menu and set icon for dropdown trigger
+		const setActiveStyle = function () {
+			$variants.forEach($item => {
+				if ($item.getAttribute('data-value') === HSThemeAppearance.getOriginalAppearance()) {
+					$dropdownBtn.innerHTML = `<i class="${$item.getAttribute('data-icon')}" />`
+					return $item.classList.add('active')
+				}
+				$item.classList.remove('active')
+			});
+		}
+
+		// Add a click event to all items of the dropdown to set the style
+		$variants.forEach(function ($item) {
+			$item.addEventListener('click', function () {
+				HSThemeAppearance.setAppearance($item.getAttribute('data-value'))
+			});
+		})
+
+		// Call the setActiveStyle on load page
+		setActiveStyle()
+
+		// Add event listener on change style to call the setActiveStyle function
+		window.addEventListener('on-hs-appearance-change', function () {
+			setActiveStyle()
+		})
+		if ($('.js-flatpickr').length) {
+			HSCore.components.HSFlatpickr.init('.js-flatpickr');
+		}
+	})();
+
+	//stockitem add form total calculation
+
+</script>
+<script>
+	var imgUpload = document.getElementById('upload-img');
+	var imgPreview = document.getElementById('img-preview');
+	var imguploadForm = document.getElementById('home-cmsform');
+	var totalFiles, previewTitle, previewTitleText, img;
+
+	imgUpload.addEventListener("change", previewImgs, true);
+
+	function previewImgs(event) {
+		totalFiles = imgUpload.files.length;
+
+		if (!!totalFiles) {
+			imgPreview.classList.remove('img-thumbs-hidden');
+		}
+
+		for (var i = 0; i < totalFiles; i++) {
+			wrapper = document.createElement('div');
+			wrapper.classList.add('wrapper-thumb');
+			removeBtn = document.createElement("span");
+			nodeRemove = document.createTextNode('x');
+			removeBtn.classList.add('remove-btn');
+			removeBtn.appendChild(nodeRemove);
+			img = document.createElement('img');
+			img.src = URL.createObjectURL(event.target.files[i]);
+			img.classList.add('img-preview-thumb');
+			wrapper.appendChild(img);
+			wrapper.appendChild(removeBtn);
+			imgPreview.appendChild(wrapper);
+
+			$('.remove-btn').click(function () {
+				$(this).parent('.wrapper-thumb').remove();
+			});
+
+		}
+
+
+	}
+</script>
+
+</body>
+
+</html>
