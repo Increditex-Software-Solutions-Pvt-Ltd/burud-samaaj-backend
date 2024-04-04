@@ -74,6 +74,10 @@
 									mobile number
 								</th>
 								<th>
+									status
+								</th>
+
+								<th>
 									action
 								</th>
 
@@ -98,11 +102,166 @@
 										<%= item.phone%>
 									</td>
 									<td>
-										<button onclick="handleApprove('<%= item.id%>')" class="btn btn-sm btn-success"><span
-												class="text-white me-1"><i
+										<span class="badge rounded-pill text-bg-warning">Pending</span>
+									</td>
+									<td>
+										<button onclick="handleApprove('<%= item.id%>')"
+											class="btn btn-sm btn-success"><span class="text-white me-1"><i
 													class="bi bi-check-lg"></i></span>Approve</button>
-										<button class="btn btn-sm btn-danger"><span class="text-white me-1"><i
+										<button onclick="handleReject('<%= item.id%>')"
+											class="btn btn-sm btn-danger"><span class="text-white me-1"><i
 													class="bi bi-x"></i></span> Reject</button>
+									</td>
+								</tr>
+								<%})%>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="pending-table-footer"></div>
+			</div>
+			<div class="tab-pane fade" id="approved-tab-pane" tabindex="0">
+				<div class="approved-table-filters">
+					<div class="row g-3">
+						<div class="col-12 col-md-3">
+							<div class="input-group input-group-sm">
+								<div class="input-group-text">
+									<i class="bi-search"></i>
+								</div>
+								<input type="search" class="form-control approved-table-search"
+									placeholder="Search here">
+							</div>
+						</div>
+						<div class="col-12 col-md-6 offset-md-3">
+							<div class="d-flex align-items-center gap-2">
+								<span class="ms-md-auto">Type</span>
+								<div>
+									<select class="form-select form-select-sm"
+										onchange="sowingListTable.column(2).search(this.value).draw()">
+										<option value="" selected>All</option>
+										<option value="cat">Catagory</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table id="approved-table" class="table table-bordered table-nowrap table-align-middle">
+						<thead class="thead-light" align="left">
+							<tr>
+								<th>
+									Full name
+								</th>
+								<th>
+									email
+								</th>
+								<th>
+									mobile number
+								</th>
+								<th>
+									status
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<%approvedusers.forEach((item)=>{%>
+								<tr class="menu-row">
+
+									<td>
+										<%= item.firstname%>
+										<%= item.middlename%>
+											<%= item.lastname%>
+									</td>
+									<td>
+										<%= item.email%>
+									</td>
+									<td>
+										<%= item.phone%>
+									</td>
+									
+									<td>
+										<span class="badge rounded-pill text-bg-success">Approved</span>
+									</td>
+								</tr>
+								<%})%>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="approved-table-footer"></div>
+			</div>
+			<div class="tab-pane fade" id="reject-tab-pane" tabindex="0">
+				<div class="rejected-table-filters">
+					<div class="row g-3">
+						<div class="col-12 col-md-3">
+							<div class="input-group input-group-sm">
+								<div class="input-group-text">
+									<i class="bi-search"></i>
+								</div>
+								<input type="search" class="form-control rejected-table-search"
+									placeholder="Search here">
+							</div>
+						</div>
+						<div class="col-12 col-md-6 offset-md-3">
+							<div class="d-flex align-items-center gap-2">
+								<span class="ms-md-auto">Type</span>
+								<div>
+									<select class="form-select form-select-sm"
+										onchange="sowingListTable.column(2).search(this.value).draw()">
+										<option value="" selected>All</option>
+										<option value="cat">Catagory</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table id="rejected-table" class="table table-bordered table-nowrap table-align-middle">
+						<thead class="thead-light" align="left">
+							<tr>
+								<th>
+									Full name
+								</th>
+								<th>
+									email
+								</th>
+								<th>
+									mobile number
+								</th>
+								<th>
+									rejection reason
+								</th>
+								<th>
+									action
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<%rejecteduser.forEach((item)=>{%>
+								<tr class="menu-row">
+
+									<td>
+										<%= item.firstname%>
+												<%= item.middlename%>
+													<%= item.lastname%>
+									</td>
+									<td>
+										<%= item.email%>
+									</td>
+									<td>
+										<%= item.phone%>
+									</td>
+									<td>
+										<%= item.reason%>
+									</td>
+									<td>
+										<span class="badge rounded-pill text-bg-danger">Rejected</span>
 
 
 									</td>
@@ -114,10 +273,8 @@
 					</table>
 				</div>
 
-				<div class="pending-table-footer"></div>
+				<div class="rejected-table-footer"></div>
 			</div>
-			<div class="tab-pane fade" id="approved-tab-pane" tabindex="0">...</div>
-			<div class="tab-pane fade" id="reject-tab-pane" tabindex="0">...</div>
 
 		</div>
 
@@ -128,7 +285,7 @@
 
 		<script>
 
-						let customerListTable = false;
+			let customerListTable = false;
 			customerListTable = $('#pending-table').DataTable({
 				lengthChange: true,
 				columnDefs: [{
@@ -148,6 +305,108 @@
 					});
 					this.api().table().buttons().container().find('.btn-secondary').removeClass('btn-secondary');
 					this.api().table().buttons().container().appendTo($('.pending-table-filters .export-buttons'));
+				},
+				buttons: [{
+					extend: 'collection',
+					text: '<i class="bi bi-cloud-download-fill"></i>',
+					className: 'btn-sm btn-outline-primary',
+					buttons: [{
+						extend: 'copy',
+						text: '<i class="bi-clipboard2-check dropdown-item-icon"></i> Copy'
+					},
+					{
+						extend: 'excel',
+						text: '<i class="bi-filetype-xlsx dropdown-item-icon"></i> Excel'
+					},
+					{
+						extend: 'csv',
+						text: '<i class="bi-filetype-csv dropdown-item-icon"></i> CSV'
+					},
+					{
+						extend: 'pdf',
+						text: '<i class="bi-filetype-pdf dropdown-item-icon"></i> PDF'
+					},
+					{
+						extend: 'print',
+						text: '<i class="bi-printer dropdown-item-icon"></i> Print'
+					}
+					]
+				}],
+			});
+		</script>
+		<script>
+
+			let approvedTable = false;
+			approvedTable = $('#approved-table').DataTable({
+				lengthChange: true,
+				columnDefs: [{
+					targets: [0,],
+					orderable: false,
+				}],
+				order: [
+					[1, 'desc'],
+					[0, 'desc']
+				],
+				initComplete: function (settings, json) {
+					$('.dataTables_filter').hide();
+					$('.approved-table-footer').append($('#approved-table_wrapper .row:last-child()')).find('.previous').addClass('ms-md-auto');
+					$('.dataTables_info').before($('.dataTables_length').find('label').attr('class', 'd-inline-flex text-nowrap align-items-center gap-2'));
+					$('.approved-table-search').on('input', function () {
+						approvedTable.search(this.value).draw();
+					});
+					this.api().table().buttons().container().find('.btn-secondary').removeClass('btn-secondary');
+					this.api().table().buttons().container().appendTo($('.approved-table-filters .export-buttons'));
+				},
+				buttons: [{
+					extend: 'collection',
+					text: '<i class="bi bi-cloud-download-fill"></i>',
+					className: 'btn-sm btn-outline-primary',
+					buttons: [{
+						extend: 'copy',
+						text: '<i class="bi-clipboard2-check dropdown-item-icon"></i> Copy'
+					},
+					{
+						extend: 'excel',
+						text: '<i class="bi-filetype-xlsx dropdown-item-icon"></i> Excel'
+					},
+					{
+						extend: 'csv',
+						text: '<i class="bi-filetype-csv dropdown-item-icon"></i> CSV'
+					},
+					{
+						extend: 'pdf',
+						text: '<i class="bi-filetype-pdf dropdown-item-icon"></i> PDF'
+					},
+					{
+						extend: 'print',
+						text: '<i class="bi-printer dropdown-item-icon"></i> Print'
+					}
+					]
+				}],
+			});
+		</script>
+		<script>
+
+			let rejectedTable = false;
+			rejectedTable = $('#rejected-table').DataTable({
+				lengthChange: true,
+				columnDefs: [{
+					targets: [0,],
+					orderable: false,
+				}],
+				order: [
+					[1, 'desc'],
+					[0, 'desc']
+				],
+				initComplete: function (settings, json) {
+					$('.dataTables_filter').hide();
+					$('.rejected-table-footer').append($('#rejected-table_wrapper .row:last-child()')).find('.previous').addClass('ms-md-auto');
+					$('.dataTables_info').before($('.dataTables_length').find('label').attr('class', 'd-inline-flex text-nowrap align-items-center gap-2'));
+					$('.rejected-table-search').on('input', function () {
+						rejectedTable.search(this.value).draw();
+					});
+					this.api().table().buttons().container().find('.btn-secondary').removeClass('btn-secondary');
+					this.api().table().buttons().container().appendTo($('.rejected-table-filters .export-buttons'));
 				},
 				buttons: [{
 					extend: 'collection',

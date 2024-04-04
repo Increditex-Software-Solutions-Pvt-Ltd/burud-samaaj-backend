@@ -1,19 +1,43 @@
 'use strict';
 
-async function handleApprove(userObj) {
-	console.log(userObj,"user obj");
-	let userId = {id:userObj}
-	await $.ajax({
+function handleApprove(userId) {
+	// Make an AJAX request to your server
+	alert("Approval in process")
+	$.ajax({
 		type: 'POST',
-		url: '/approveuser', // Update the URL with your server endpoint
-		data: userId,
+		url: '/admin/approveuser',
+		data: { userId }, // Pass the user ID to the server
 		success: function (response) {
-			// Handle success response
-			console.log("User Approved");
+			// Handle success response from the server
+			alert('User approved successfully');
+			window.location.href="/admin/users"
+			// You can perform additional actions here if needed
 		},
 		error: function (xhr, status, error) {
-			// Handle error
-			console.error(error);
+			// Handle error response from the server
+			alert('Error approving user');
+			console.error('Error:', error);
+		}
+	});
+}
+async function handleReject(userId) {
+	// Make an AJAX request to your server
+	let reason = await prompt("Enter reason for rejection")
+	alert("Rejection in process")
+	await $.ajax({
+		type: 'POST',
+		url: '/admin/rejectuser',
+		data: { userId,reason }, // Pass the user ID to the server
+		success: function (response) {
+			// Handle success response from the server
+			alert('User Rejected successfully');
+			window.location.href="/admin/users"
+			// You can perform additional actions here if needed
+		},
+		error: function (xhr, status, error) {
+			// Handle error response from the server
+			alert('Error rejecting user');
+			console.error('Error:', error);
 		}
 	});
 }
@@ -29,35 +53,35 @@ function viewUserdetail(id) {
 				console.log(res);
 				const parent = $('#viewDetailUser');
 				$('[id="firstname"]', parent).text('firstname');
-			    $('[id="firstname"]', parent).val(res.firstname);
+				$('[id="firstname"]', parent).val(res.firstname);
 				$('[id="middlename"]', parent).text('middlename');
-			    $('[id="middlename"]', parent).val(res.middlename);
+				$('[id="middlename"]', parent).val(res.middlename);
 				$('[id="lastname"]', parent).text('lastname');
-			    $('[id="lastname"]', parent).val(res.lastname);
+				$('[id="lastname"]', parent).val(res.lastname);
 				$('[id="email"]', parent).text('email');
-			    $('[id="email"]', parent).val(res.email);
+				$('[id="email"]', parent).val(res.email);
 				$('[id="phone"]', parent).text('phone');
-			    $('[id="phone"]', parent).val(res.phone);
+				$('[id="phone"]', parent).val(res.phone);
 				$('[id="address"]', parent).text('address');
-			    $('[id="address"]', parent).val(res.address);
+				$('[id="address"]', parent).val(res.address);
 				$('[id="state"]', parent).text('state');
-			    $('[id="state"]', parent).val(res.state);
+				$('[id="state"]', parent).val(res.state);
 				$('[id="district"]', parent).text('district');
-			    $('[id="district"]', parent).val(res.district);
+				$('[id="district"]', parent).val(res.district);
 				$('[id="taluka"]', parent).text('taluka');
-			    $('[id="taluka"]', parent).val(res.taluka);
+				$('[id="taluka"]', parent).val(res.taluka);
 				$('[id="town"]', parent).text('town');
-			    $('[id="town"]', parent).val(res.town);
+				$('[id="town"]', parent).val(res.town);
 				$('[id="pincode"]', parent).text('pincode');
-			    $('[id="pincode"]', parent).val(res.postalcode);
+				$('[id="pincode"]', parent).val(res.postalcode);
 				$('[id="country"]', parent).text('country');
-			    $('[id="country"]', parent).val(res.country);
+				$('[id="country"]', parent).val(res.country);
 				$('[id="dob"]', parent).text('dob');
-			    $('[id="dob"]', parent).val(res.dateofbirth.substring(0,10));
+				$('[id="dob"]', parent).val(res.dateofbirth.substring(0, 10));
 				$('[id="gender"]', parent).text('gender');
-			    $('[id="gender"]', parent).val(res.gender);
+				$('[id="gender"]', parent).val(res.gender);
 
-				
+
 
 				parent.modal('show');
 			} else {

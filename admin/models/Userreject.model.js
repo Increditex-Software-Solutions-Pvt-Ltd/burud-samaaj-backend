@@ -60,24 +60,14 @@ const UserReject = sequelize.define("userreject",{
         type: DataTypes.STRING,
         allowNull: true
     },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
     dateofbirth: {
         type: DataTypes.DATE,
         allowNull: true
     },
-    friendRequests: {
-        type: DataTypes.JSON,
-        defaultValue: { "sent": [], "received": [] }
+    reason: {
+        type: DataTypes.STRING,
+        allowNull: true
     },
-    friendLists: {
-        type: DataTypes.JSON,
-        defaultValue: { "list": [] }
-    }
-
-  
 })
 
 
