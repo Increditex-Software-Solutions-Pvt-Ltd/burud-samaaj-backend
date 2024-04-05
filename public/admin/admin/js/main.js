@@ -211,75 +211,71 @@ async function deleteMember(memberId) {
 	}
 }
 
-function editAboutDetail(about_id) {
-	resetAboutCmsForm();
 
-	$('#about-cmsform').attr('action', '/admin/aboutrecord/' + about_id);
+
+function resetStoryForm() {
+	$('#successStoryAddModalLabel').text('add success story');
+	$('#successstory-form').trigger('reset');
+}
+
+function addSuccessStory() {
+	resetStoryForm();
+	$('#successStoryAddModal').modal('show');
+}
+
+function editSuccessStory(story_id) {
+	resetStoryForm();
+
+	$('#successstory-form').attr('action', '/admin/story/' + story_id);
 	$.ajax({
-		url: '/admin/aboutrecord/' + about_id,
+		url: '/admin/story/' + story_id,
 		method: 'GET',
 		success: function (res) {
 			console.log(res);
 			if (res.success) {
-				const aboutrecord = res.data;
-				const parent = $('#aboutcmsModal');
-				$('#aboutcmsModalLabel').text("update about records");
-				$('[name="aboutCompany"]', parent).val(aboutrecord.aboutCompany);
-				$('[name="aboutFounder"]', parent).val(aboutrecord.aboutFounder);
-
-
-				parent.modal('show');
-			}
-			else {
-				console.error('Failed to retrieve aboutRecord:', res.message);
-			}
-		},
-		error: function (xhr, status, error) {
-			console.error('Error retrieving menu:', error);
-		}
-	})
-}
-
-function resetMenuForm() {
-	$('#menuAddModalLabel').text('add menu');
-	$('#menu-form-action').attr('name', 'add menu');
-	$('#menu-form').trigger('reset');
-}
-
-function addMenu() {
-	resetMenuForm();
-	$('#menuAddModal').modal('show');
-}
-
-function editMenu(menu_id) {
-	resetMenuForm();
-
-	$('#menu-form').attr('action', '/admin/menu/' + menu_id);
-	$.ajax({
-		url: '/admin/menu/' + menu_id,
-		method: 'GET',
-		success: function (res) {
-			console.log(res);
-			if (res.success) {
-				const menu = res.data;
-				const parent = $('#menuAddModal');
-				$('#menuAddModalLabel').text("update menu");
-				$('[name="name"]', parent).val(menu.name);
-				$('[name="price"]', parent).val(menu.price);
-				$('[name="menutype"]', parent).val(menu.menutype);
-				$('[name="category"]', parent).val(menu.category);
-				$('[name="description"]', parent).val(menu.description);
+				const story = res.data;
+				const parent = $('#successStoryAddModal');
+				$('#successStoryAddModalLabel').text("update success story");
+				$('[name="bridename"]', parent).val(story.bridename);
+				$('[name="groomname"]', parent).val(story.groomname);
+				$('[name="city"]', parent).val(story.city);
+				$('[name="description"]', parent).val(story.description);
 
 				parent.modal('show');
 			}
 			else {
-				console.error('Failed to retrieve menu:', res.message);
+				console.error('Failed to retrieve story:', res.message);
 			}
 		},
 		error: function (xhr, status, error) {
-			console.error('Error retrieving menu:', error);
+			console.error('Error retrieving story:', error);
 		}
 	})
+}
+
+function confirmDeleteStory(storyId) {
+	if (confirm('Are you sure you want to delete this success story?')) {
+		deleteStory(storyId);
+	}
+}
+
+async function deleteStory(storyId) {
+	try {
+
+		const response = await fetch(`/admin/delete-story/${storyId}`, {
+			method: 'POST',
+		});
+
+		if (response.ok) {
+
+			window.location.href = '/admin/cms';
+		} else {
+
+			console.error('Error deleting story:', response.statusText);
+		}
+	} catch (error) {
+		console.error('Error deleting story:', error);
+	}
 }
 
 function resetTopdishForm() {

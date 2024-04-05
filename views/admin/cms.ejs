@@ -63,7 +63,7 @@
 							<div class="col-md-12 col-sm-6 col-12">
 								<div class="card">
 									<div class="card-header bg-light">
-										<h4 class="text-dark fw-semibold">About website</h4>
+										<h6 class="text-dark fw-semibold">About website</h6>
 									</div>
 									<div class="card-body">	<%- item.aboutwebsite%></div>
 								</div>
@@ -71,7 +71,7 @@
 							<div class="col-md-6 col-sm-6 col-12">
 								<div class="card">
 									<div class="card-header bg-light">
-										<h4 class="text-dark fw-semibold">President speech</h4>
+										<h6 class="text-dark fw-semibold">President speech</h6>
 									</div>
 									<div class="card-body"><%- item.adhykshmanogat%></div>
 								</div>
@@ -79,7 +79,7 @@
 							<div class="col-md-6 col-sm-6 col-12">
 								<div class="card">
 									<div class="card-header bg-light">
-										<h4 class="text-dark fw-semibold">Sachiv speech</h4>
+										<h6 class="text-dark fw-semibold">Sachiv speech</h6>
 									</div>
 									<div class="card-body"><%- item.sachivmanogat%></div>
 								</div>
@@ -100,6 +100,7 @@
 									Members
 								</h1>
 							</div>
+							
 							<!-- End Col -->
 							
 							<!-- End Col -->
@@ -203,21 +204,27 @@
 								Success stories</h1>
 						</div>
 						<!-- End Col -->
-					
+						<div class="col-auto">
+						
+							<a class="btn btn-sm btn-success ms-2" href="javascript:void(0)" onclick="addSuccessStory()">
+								<i class="bi-plus-circle me-1"></i>
+								Add Success stories
+							</a>
+						</div>
 								<!-- End Col -->
 					</div>
 					<!-- End Row -->
 				</div>
 				<!-- End Page Header -->
 
-				<div class="sowing-table-filters">
+				<div class="successstory-table-filters">
 					<div class="row g-3 ">
 						<div class="col-12 col-md-3">
 							<div class="input-group input-group-sm">
 								<div class="input-group-text">
 									<i class="bi-search"></i>
 								</div>
-								<input type="search" class="form-control add-sowing-table-search"
+								<input type="search" class="form-control add-successstory-table-search"
 									placeholder="Search here">
 							</div>
 						</div>
@@ -225,21 +232,68 @@
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table id="sowing-table" class="table table-bordered  table-nowrap table-align-middle">
+					<table id="successstory-table" class="table table-bordered  table-nowrap table-align-middle">
 						<thead class="thead-light " align="left">
 							<tr>
 								<th>Action</th>
-								<th>YoutubeThumbnail</th>
-								<th>YoutubeLink</th>
+								<th>wedding photo</th>
+								<th>bride name</th>
+								<th>groom name</th>
+								<th>city</th>
+								<th>wedding Information</th>
 
 							</tr>
 						</thead>
-					     <tbody>
+					    <tbody>
+							<%stories.forEach((item)=>{%>
+								<tr class="menu-row">
+									<td>
+										
+											<button class="btn btn-dark text-center p-2"
+												onclick="editSuccessStory('<%-item.id%>')">
+												<i class="bi-pencil-square mx-1"></i>Edit
+											</button>
+											<button class="btn btn-danger text-center p-2"
+												onclick="confirmDeleteStory('<%-item.id%>')">
+												<i class="bi-trash mx-1"></i> Delete
+											</button>
+										
 
-						 </tbody>
+									</td>
+									<td>
+										 <img src="http://localhost:5000/<%= item.weddingpic.replace(/\\/g, '/')%>" class="img-fluid" height="200" width="170" alt="">
+									</td>
+									<td>
+										<h5 class="text-danger">
+											<%= item.bridename%>
+										</h5>
+									</td>
+									<td>
+										<h5 class="text-danger">
+											<%= item.groomname%>
+										</h5>
+									</td>
+									<td>
+										<h5 class="text-secondary">
+											<%= item.city%>
+										</h5>
+									</td>
+									<td class="w-50">
+									   <div class="card w-100">
+                                            <div class="card-body">
+												<%= item.description%>
+											</div>
+									   </div>
+										
+									</td>
+									
+								
+								</tr>
+								<%})%>
+						</tbody>
 					</table>
 				</div>
-				<div class="sowing-table-footer"></div>
+				<div class="successstory-table-footer"></div>
 			</div>
 			<div class="tab-pane" id="bef-germination" role="tabpanel" aria-labelledby="bef-germination-tab">
 				<!-- Page Header -->
@@ -351,14 +405,16 @@
 				}],
 			});
 		</script>
-
 		<script>
-			let befGerminationListTable = false;
-			befGerminationListTable = $('#bef-germination-table').DataTable({
+			let storyTable = false;
+			storyTable = $('#successstory-table').DataTable({
 				lengthChange: true,
 				columnDefs: [{
-					// targets: [0,],
-					// orderable: false,
+					columnDefs: [{ width: 200, targets: 0 }],
+					fixedColumns: true,
+					paging: false,
+					scrollCollapse: true,
+					scrollX: true,
 				}],
 				order: [
 					[1, 'desc'],
@@ -366,13 +422,13 @@
 				],
 				initComplete: function (settings, json) {
 					$('.dataTables_filter').hide();
-					$('.bef-germination-table-footer').append($('#bef-germination-table_wrapper .row:last-child()')).find('.previous').addClass('ms-md-auto');
+					$('.successstory-table-footer').append($('#successstory-table_wrapper .row:last-child()')).find('.previous').addClass('ms-md-auto');
 					$('.dataTables_info').before($('.dataTables_length').find('label').attr('class', 'd-inline-flex text-nowrap align-items-center gap-2'));
-					$('.purchase-table-search').on('input', function () {
-						befGerminationListTable.search(this.value).draw();
+					$('.successstory-table-search').on('input', function () {
+						storyTable.search(this.value).draw();
 					});
 					this.api().table().buttons().container().find('.btn-secondary').removeClass('btn-secondary');
-					this.api().table().buttons().container().appendTo($('.purchase-table-filters .export-buttons'));
+					this.api().table().buttons().container().appendTo($('.successstory-table-filters .export-buttons'));
 				},
 				buttons: [{
 					extend: 'collection',
@@ -402,6 +458,8 @@
 				}],
 			});
 		</script>
+
+		
 		<script>
 			let supplierListTable = false;
 			supplierListTable = $('#after-germination-table').DataTable({

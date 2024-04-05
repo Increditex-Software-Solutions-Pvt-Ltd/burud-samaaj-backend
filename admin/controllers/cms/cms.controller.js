@@ -1,6 +1,7 @@
 const { uploadMember } = require("../../../config/multerconfig");
 const { About } = require("../../models/Aboutcms.model");
 const { Member } = require("../../models/Membercms.model");
+const { Successstory } = require("../../models/Successstory.model");
 
 const addAboutpage=async(req,res)=>{
     try { 
@@ -149,4 +150,105 @@ const deleteMember=async(req,res)=>{
      res.status(500).json({ success: false, message: 'Failed to delete member' });
    }
  }
- module.exports = {addAboutpage,getAboutUpdateForm,addMember,getMemberUpdateForm,updateMember,updateAbout,deleteMember}
+
+
+ const addSuccessStory=async(req,res)=>{
+   try {
+      uploadMember.single('weddingpic')(req, res, async function (err) {
+              if (err) {
+                  return res.status(400).json({ message: 'wedding pic upload failed' });
+              }
+  
+          
+              const { groomname,bridename,city,description } = req.body;
+              const weddingpic = req.file ? req.file.path : null;
+  
+              const newStory = await Successstory.create({
+                 groomname,bridename,city,description,weddingpic
+              });
+  
+              return res.redirect('/admin/cms'); 
+          });
+      } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Failed to add Success story' });
+      }
+ }
+
+ const getStoryUpdateForm=async(req,res)=>{
+
+   const {id} = req.params;
+  try {
+      const stories = await Successstory.findByPk(id);
+      
+      if(stories){
+        res.json({success:true,data:stories})
+      }
+      else{
+       res.json({success:false,message:"success story not found"});
+      }
+  } catch (error) {
+   console.error('Error updating story', error);
+   res.status(500).json({ success: false, message: 'Failed to update story' });
+  }
+}
+
+
+const updateStory = async (req, res) => {
+   try {
+      const storyId = req.params.id;
+
+      // Assuming you have a function like `findById` to find the YouTube video by ID
+      const existingStory = await Successstory.findByPk(storyId);
+
+      if (!existingStory) {
+          return res.status(404).json({ message: 'story not found' });
+      }
+
+      uploadMember.single('weddingpic')(req, res, async function (err) {
+          if (err) {
+              return res.status(400).json({ message: 'file upload failed' });
+          }
+
+          const { bridename,groomname,city,description } = req.body;
+
+          // Check if a new thumbnail file is uploaded
+          if (req.file) {
+              existingStory.weddingpic = req.file.path;
+          }
+
+          existingStory.bridename = bridename;
+          existingStory.groomname = groomname;
+          existingStory.city = city;
+          existingStory.description = description;
+
+          await existingStory.save();
+
+          return res.redirect('/admin/cms'); // Redirect to appropriate page
+      });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to update member video' });
+  }
+}
+
+const deleteStory=async(req,res)=>{
+   try {
+       const storyId = req.params.id;
+ 
+       const story = await Successstory.findByPk(storyId);
+ 
+       if(!story){
+         return res.status(404).json({ success: false, message: 'story not found'});
+       }
+ 
+       await story.destroy();
+ 
+       return res.redirect("/admin/cms")
+   } catch (error) {
+     console.error('Error deleting story:', error);
+     res.status(500).json({ success: false, message: 'Failed to delete story' });
+   }
+ }
+
+ module.exports = {addAboutpage,getAboutUpdateForm,addMember,getMemberUpdateForm,updateMember,updateAbout,deleteMember,addSuccessStory,getStoryUpdateForm,updateStory,deleteStory}

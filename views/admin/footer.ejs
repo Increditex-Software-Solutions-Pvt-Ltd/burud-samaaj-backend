@@ -47,85 +47,7 @@
 
 
 
-<div class="modal fade" id="viewDetailUser" data-bs-backdrop="static" data-bs-keyboard="false">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-		<div class="modal-content border shadow-lg">
-			<div class="modal-header">
-				<h5 class="modal-title" id="">view details</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<div class="row gy-3">
-					<div class="col-md-4">
-						<label for="" class="form-label" id="firstname"></label>
-						<input class="form-control form-control-sm" id="firstname" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="middlename"></label>
-						<input class="form-control form-control-sm" id="middlename" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="lastname"></label>
-						<input class="form-control form-control-sm" id="lastname" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="email"></label>
-						<input class="form-control form-control-sm" id="email" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="phone"></label>
-						<input class="form-control form-control-sm" id="phone" disabled>
-					</div>
-					<div class="col-md-12">
-						<label for="" class="form-label" id="address"></label>
-						<textarea class="form-control form-control-sm" id="address" disabled></textarea>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="state"></label>
-						<input class="form-control form-control-sm" id="state" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="district"></label>
-						<input class="form-control form-control-sm" id="district" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="taluka"></label>
-						<input class="form-control form-control-sm" id="taluka" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="town"></label>
-						<input class="form-control form-control-sm" id="town" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="pincode"></label>
-						<input class="form-control form-control-sm" id="pincode" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="country"></label>
-						<input class="form-control form-control-sm" id="country" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="dob"></label>
-						<input class="form-control form-control-sm" id="dob" disabled>
-					</div>
-					<div class="col-md-4">
-						<label for="" class="form-label" id="gender"></label>
-						<input class="form-control form-control-sm" id="gender" disabled>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			</div>
-		</div>
-		
 
-
-	</div>
-</div>
 
 
 <div class="modal fade " id="aboutcmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -219,67 +141,54 @@
 	</div>
 </div>
 
-<div class="modal fade" id="topdishAddModal" data-bs-backdrop="static" data-bs-keyboard="false">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-		<div class="modal-content border shadow-lg">
-			<div class="modal-header">
-				<h5 class="modal-title" id="topdishAddModalLabel"></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form action="admin/addtopdish" method="POST" class="row g-3" id="topdish-form"
-					enctype="multipart/form-data">
-					<div class="col-md-6">
-						<label for="" class="form-label required">Dish name</label>
-						<input type="text" name="dishname" class="form-control form-control-sm" required>
-					</div>
-					<div class="col-md-6">
-						<label for="" class="form-label required">Dish price</label>
-						<div class="input-group input-group-sm w-100">
-							<span class="input-group-text">₹</span>
-							<input type="number" name="dishprice" class="form-control px-2 text-center w-75"
-								placeholder="0.00">
-						</div>
-					</div>
-					
-					<div class="col-md-12">
-						<label for="" class="form-label required">Dish image</label>
-						<input type="file" name="dishimage" accept=".jpg, .png, .jpeg, image/jpeg, image/png"
-							class="form-control form-control-sm">
-						<div class="text-muted">
-							<span class="small">only jpg and png files</span>
-						</div>
-					</div>
 
-				</form>
-			</div>
-			<div class="modal-footer pt-0 border-top-0">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="submit" form="topdish-form" class="btn btn-dark prevent-default">Post</button>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="modal fade" id="categoryAddModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-	<div class="modal-dialog modal-dialog-centered modal-sm">
+<div class="modal fade" id="successStoryAddModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
 		<div class="modal-content shadow border">
 			<div class="modal-header">
-				<h5 class="modal-title" id="categoryAddModalLabel">category</h5>
+				<h5 class="modal-title" id="successStoryAddModalLabel"></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="" method="post" class="row g-3" id="category-form">
-					<div class="col-12">
-						<input type="hidden" id="category-form-action" name="add_category">
-						<label for="" class="form-label">Category name</label>
-						<input type="text" name="name" class="form-control" required>
+				<form action="/admin/addstory" method="post" class="row g-3" id="successstory-form" enctype="multipart/form-data">
+					<div class="col-md-6 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">wedding photo(any 1)</label>
+							<input type="file"  accept=".jpg, .png, .jpeg, image/jpeg, image/png" class="form-control form-control-sm " name="weddingpic">
+						</div>
+						
 					</div>
+					<div class="col-md-6 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Groom name</label>
+							<input type="text" class="form-control form-control-sm " name="groomname">
+						</div>
+					</div>
+					<div class="col-md-6 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Bride name</label>
+							<input type="text" class="form-control form-control-sm " name="bridename">
+						</div>
+					</div>
+					<div class="col-md-6 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">City</label>
+							<input type="text" class="form-control form-control-sm " name="city">
+						</div>
+					</div>
+					<div class="col-md-12 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">some wedding description</label>
+							<textarea name="description" class="form-control" id=""  rows="6"></textarea>
+						</div>
+					</div>
+
 				</form>
 			</div>
 			<div class="modal-footer pt-0 border-top-0">
 				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="submit" form="category-form" class="btn btn-sm btn-dark prevent-default">Save</button>
+				<button type="submit" form="successstory-form" class="btn btn-sm btn-dark">Save</button>
 			</div>
 		</div>
 	</div>

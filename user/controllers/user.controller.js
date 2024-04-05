@@ -450,6 +450,27 @@ const userController = {
                     friendRequestsReceived: receiverArr
                 }
                 const updatereceiver = await receiver.update(createReceived)
+                const EMAIL_PASS = process.env.EMAIL_PASS;
+
+                const transporter = await nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'nishantphule12@gmail.com',
+                        pass: EMAIL_PASS
+                    }
+                });
+
+                const mailOptions = {
+                    from: 'nishantphule12@gmail.com', // sender address
+                    to: receiver.email, // list of receivers
+                    text: `${sender.firstname} ${sender.lastname} has sent you request`,
+                };
+                await transporter.sendMail(mailOptions, function (err, info) {
+                    if (err)
+                        console.log(err)
+                    else
+                        console.log(info);
+                });
                 await updatereceiver.save()
                 console.log(createReceived.friendRequestsReceived, `${receiver.firstname} received`);
             }
@@ -459,6 +480,28 @@ const userController = {
                     friendRequestsReceived: receiver.friendRequestsReceived += ` ${sender.id}`
                 }
                 const updatereceiver = await receiver.update(createReceived)
+                const EMAIL_PASS = process.env.EMAIL_PASS;
+
+                const transporter = await nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'nishantphule12@gmail.com',
+                        pass: EMAIL_PASS
+                    }
+                });
+
+                const mailOptions = {
+                    from: 'nishantphule12@gmail.com', // sender address
+                    to: receiver.email, // list of receivers
+                    text: `${sender.firstname} ${sender.lastname} has sent you Request`,
+                };
+                await transporter.sendMail(mailOptions, function (err, info) {
+                    if (err)
+                        console.log(err)
+                    else
+                        console.log(info);
+                });
+
                 await updatereceiver.save()
                 console.log(createReceived.friendRequestsReceived, `${receiver.firstname} received`);
             }
@@ -585,9 +628,34 @@ const userController = {
                     friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter((id) => id != receiver.id).join(" "),
                     friendLists: sender.friendLists += ` ${receiver.id}`
                 }
-                console.log(editSender, "updated sender");
+
                 let updateSender = await sender.update(editSender)
+
+                const EMAIL_PASS = process.env.EMAIL_PASS;
+
+                const transporter = await nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'nishantphule12@gmail.com',
+                        pass: EMAIL_PASS
+                    }
+                });
+
+                const mailOptions = {
+                    from: 'nishantphule12@gmail.com', // sender address
+                    to: updateSender.email, // list of receivers
+                    text: `${receiver.firstname} ${receiver.lastname} has accepted your Request`,
+                };
+
+                await transporter.sendMail(mailOptions, function (err, info) {
+                    if (err)
+                        console.log(err)
+                    else
+                        console.log(info);
+                });
+
                 await updateSender.save()
+
             } else {
                 let friendListsArr = ""
                 friendListsArr += ` ${receiver.id}`
@@ -598,6 +666,28 @@ const userController = {
                 }
                 console.log(editSender, "updated sender");
                 let updateSender = await sender.update(editSender)
+
+                const EMAIL_PASS = process.env.EMAIL_PASS;
+
+                const transporter = await nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'nishantphule12@gmail.com',
+                        pass: EMAIL_PASS
+                    }
+                });
+
+                const mailOptions = {
+                    from: 'nishantphule12@gmail.com', // sender address
+                    to: updateSender.email, // list of receivers
+                    text: `${receiver.firstname} ${receiver.lastname} has accepted your Request`,
+                };
+                await transporter.sendMail(mailOptions, function (err, info) {
+                    if (err)
+                        console.log(err)
+                    else
+                        console.log(info);
+                });
                 await updateSender.save()
             }
 
@@ -633,26 +723,48 @@ const userController = {
             console.log("From handle reject controller");
             const userId = parseInt(req.cookies.userId);
             const profileId = parseInt(req.cookies.profileId);
-console.log(userId,profileId,"checking ids from cookies");
+            console.log(userId, profileId, "checking ids from cookies");
             // Find the sender and receiver users in the database
             const sender = await User.findOne({ where: { id: profileId } });
             const receiver = await User.findOne({ where: { id: userId } });
 
-            console.log(sender.firstname,receiver.firstname,"Checking all details for rejection");
+            console.log(sender.firstname, receiver.firstname, "Checking all details for rejection");
 
             let editSenderRej = {
                 ...sender,
                 friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter(id => id != receiver.id).join(" ")
             }
-            console.log(editSenderRej,"Sender");
+            console.log(editSenderRej, "Sender");
             let updateSender = await sender.update(editSenderRej)
+            const EMAIL_PASS = process.env.EMAIL_PASS;
+
+                const transporter = await nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'nishantphule12@gmail.com',
+                        pass: EMAIL_PASS
+                    }
+                });
+
+                const mailOptions = {
+                    from: 'nishantphule12@gmail.com', // sender address
+                    to: updateSender.email, // list of receivers
+                    text: `${receiver.firstname} ${receiver.lastname} has rejected your Request`,
+                };
+
+                await transporter.sendMail(mailOptions, function (err, info) {
+                    if (err)
+                        console.log(err)
+                    else
+                        console.log(info);
+                });
             await updateSender.save()
 
             let editReceiverRej = {
                 ...receiver,
                 friendRequestsReceived: receiver.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(id => id != sender.id).join(" ")
             }
-            console.log(editReceiverRej,"Receiver");
+            console.log(editReceiverRej, "Receiver");
             let updateReceiver = await receiver.update(editReceiverRej)
             await updateReceiver.save()
 
