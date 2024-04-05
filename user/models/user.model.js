@@ -70,13 +70,17 @@ const User = sequelize.define('user', {
         type: DataTypes.DATE,
         allowNull: true
     },
-    friendRequests: {
+    friendRequestsSent: {
         type: DataTypes.JSON,
-        defaultValue: { "sent": [], "received": [] }
+        allowNull: true
+    },
+    friendRequestsReceived: {
+        type: DataTypes.JSON,
+        allowNull: true
     },
     friendLists: {
         type: DataTypes.JSON,
-        defaultValue: { "list": [] }
+        allowNull:true
     }
 
 })

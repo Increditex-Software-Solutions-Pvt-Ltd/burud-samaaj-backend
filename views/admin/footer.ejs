@@ -128,94 +128,36 @@
 </div>
 
 
-<div class="modal fade " id="homecmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen">
-		<div class="modal-content border shadow-lg">
-			<div class="modal-header">
-				<h5 class="modal-title" id="homecmsAddModalLabel"></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form action="admin/addhomecms" method="post" class="row" enctype="multipart/form-data"
-					id="home-cmsform">
-
-					<div class="col-md-6 col-12">
-						<div class="mb-3">
-							<label for="" class="form-label">Main heading</label>
-							<input type="text" name="mainHeading" class="form-control form-control-sm"
-								placeholder="Enter main heading" required>
-						</div>
-					</div>
-					<div class="col-md-6 col-12">
-						<div class="mb-3">
-							<label for="" class="form-label">Service heading</label>
-							<input type="text" name="serviceheading" class="form-control form-control-sm"
-								placeholder="Enter service heading" required>
-						</div>
-					</div>
-					<div class="col-md-12 col-12">
-						<div class="mb-3">
-							<label for="" class="form-label">Service description</label>
-							<textarea name="servicedesc" rows="7" required class="form-control"></textarea>
-						</div>
-					</div>
-					<div class="col-md-12 col-12">
-						<div class="mb-3">
-							<label for="" class="form-label">Service short information</label>
-							<textarea name="serviceshort" rows="5" required class="form-control"></textarea>
-						</div>
-					</div>
-					<div class="col-md-12 col-12">
-						<div class="mb-3">
-							<label for="" class="form-label">Explore dishes(Upload maximum 5 images)</label>
-							<input type="file" class="form-control form-control-sm " name="images" multiple
-								id="upload-img"  accept=".jpg, .png, .jpeg, image/jpeg, image/png">
-						</div>
-						<div class="mb-2">
-							<div class="img-thumbs img-thumbs-hidden" id="img-preview"></div>
-						</div>
-						<div id="uploadedImages"></div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer pt-0 border-top-0">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="submit" form="home-cmsform" class="btn btn-dark prevent-default">post</button>
-			</div>
-		</div>
-	</div>
-</div>
-
 <div class="modal fade " id="aboutcmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		<div class="modal-content border shadow-lg">
 			<div class="modal-header">
-				<h5 class="modal-title" id="aboutcmsModalLabel"></h5>
+				<h5 class="modal-title" id="aboutcmsAddModalLabel"></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="admin/addabout" method="post" class="row" enctype="multipart/form-data"
+				<form action="/admin/addabout" method="post" class="row"
 					id="about-cmsform">
 
 					<div class="col-md-12 col-12">
 						<div class="mb-3">
-							<label for="" class="form-label">About company</label>
-							<textarea class="form-control form-control-sm" rows="10" name="aboutCompany"></textarea>
+							<label for="" class="form-label">About this website(पोर्टल बद्दल माहिती )</label>
+							 <textarea name="aboutwebsite" class="form-control" placeholder="Enter around 100+ words here..."  rows="5"></textarea>
 						</div>
-						
 					</div>
 					<div class="col-md-12 col-12">
 						<div class="mb-3">
-							<label for="" class="form-label">Founder Image</label>
-							<input type="file"  accept=".jpg, .png, .jpeg, image/jpeg, image/png" class="form-control form-control-sm " name="founderImage">
-						</div>	
+							<label for="" class="form-label">president speech(अध्यक्ष मनोगत )</label>
+							<textarea name="adhykshmanogat" class="form-control" placeholder="Enter around 70+ words here..."  rows="5"></textarea>
+						</div>
 					</div>
 					<div class="col-md-12 col-12">
 						<div class="mb-3">
-							<label for="" class="form-label">About founder</label>
-							<textarea class="form-control form-control-sm" rows="10" name="aboutFounder"></textarea>
-						</div>	
+							<label for="" class="form-label">sachiv speech(सचिव  मनोगत )</label>
+							<textarea name="sachivmanogat" class="form-control" placeholder="Enter around 70+ words here..."  rows="5"></textarea>
+						</div>
 					</div>
+					
 				</form>
 			</div>
 			<div class="modal-footer pt-0 border-top-0">
@@ -225,6 +167,8 @@
 		</div>
 	</div>
 </div>
+
+
 <div class="modal fade " id="youtubecmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 		<div class="modal-content border shadow-lg">

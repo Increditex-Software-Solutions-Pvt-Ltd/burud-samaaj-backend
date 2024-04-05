@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 d-flex align-items-center">
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -157,11 +157,10 @@
                             </a>
 
                         </div>
-                        <p class="text-center">
-                            <a onclick="addProfile()" class="btn btn-outline-danger">Send Interest
-                                to view contact
-                                info</a>
-                        </p>
+                        <div class="ProfileBtn text-center">
+
+
+                        </div>
                     </div>
                 </div>
 
@@ -182,7 +181,9 @@
                                     <td>
                                         BIRTH NAME (जन्म नाव )
                                     </td>
-                                    <td><%= profile.birthname%></td>
+                                    <td>
+                                        <%= profile.birthname%>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -203,7 +204,9 @@
                                 <tr>
                                     <td>
                                         TIME OF BIRTH (जन्म वेळ ) :</td>
-                                    <td><%= profile.timeofbirth%> </td>
+                                    <td>
+                                        <%= profile.timeofbirth%>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>HEIGHT (उंची):</td>
@@ -238,7 +241,9 @@
                                 </tr>
                                 <tr>
                                     <td>ANNUL INCOME (वार्षिक उत्पन्न ) :</td>
-                                    <td><%= profile.income%></td>
+                                    <td>
+                                        <%= profile.income%>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>BLOOD GROUP(रक्तगट) :</td>
@@ -246,7 +251,7 @@
                                         <%= profile.bloodgroup%>
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>HUDDA(हुद्दा ) </td>
                                     <td>
@@ -268,7 +273,9 @@
                                 </tr>
                                 <tr>
                                     <td>ADDRESS (पत्ता ):</td>
-                                    <td><%= profile.address%></td>
+                                    <td>
+                                        <%= profile.address%>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -286,24 +293,34 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>MOTHER MAHER FULL NAME (आईचे माहेरचे  पूर्ण नाव ):</td>
-                                    <td><%= profile.mothername%></td>
+                                    <td>MOTHER MAHER FULL NAME (आईचे माहेरचे पूर्ण नाव ):</td>
+                                    <td>
+                                        <%= profile.mothername%>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>FATHER OCCUPATION (वडील व्यावसाय/नोकरी ):</td>
-                                    <td><%= profile.fatheroccupation%></td>
+                                    <td>
+                                        <%= profile.fatheroccupation%>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>MOTHER OCCUPATION (आई  व्यावसाय/नोकरी ):</td>
-                                    <td><%= profile.motheroccupation%></td>
+                                    <td>MOTHER OCCUPATION (आई व्यावसाय/नोकरी ):</td>
+                                    <td>
+                                        <%= profile.motheroccupation%>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>PARENTS ADDRESS (पालकांचा पत्ता ):</td>
-                                    <td><%= profile.parentaddress%></td>
+                                    <td>
+                                        <%= profile.parentaddress%>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>FAMILY MEMBERS (कुटुंबातील सदस्य ):</td>
-                                    <td><%= profile.familymembers%></td>
+                                    <td>
+                                        <%= profile.familymembers%>
+                                    </td>
                                 </tr>
 
                             </tbody>
@@ -317,19 +334,17 @@
                                 <tr>
                                     <td>
                                         <%= profile.expectation%>
-                                        </td>
-                                  
+                                    </td>
+
                                 </tr>
-                               
+
                             </tbody>
                         </table>
                     </div>
                     <br>
-                    <div class="text-center">
+                    <div class="ProfileBtn text-center">
 
-                        <a href="javascript:void(0)" onclick="addProfile()" class="btn btn-outline-danger">Send Interest
-                            to view contact
-                            info</a>
+
                     </div>
                 </div>
                 <!-- new section put here -->
@@ -656,13 +671,119 @@
 
     <!-- registeration and send request script -->
     <script>
-        function generatePdf(){
-    const element = document.getElementById("main_section")
-  
-    html2pdf()
-    .from(element)
-    .save()
-  }
+
+
+        async function checkReq() {
+            // send request validation
+            const profileBtn = document.querySelectorAll(".ProfileBtn")
+            
+            let message
+            await $.ajax({
+                type: 'GET',
+                url: '/checkfriendrequests',
+                success: function (response) {
+                    message = response.message
+                    console.log(response.message);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error sending friend request:', error);
+                }
+
+            })
+            console.log(message);
+            profileBtn.forEach((profile) => {
+                profile.innerHTML=""
+                if (message === "Request already sent") {
+                    let atag = document.createElement("a")
+                    atag.href = "javascript:void(0)"
+                    atag.classList = "btn btn-outline-success"
+                    atag.innerText = "Request Already Sent"
+                    profile.appendChild(atag)
+                }
+                else if (message === "User already added") {
+                    let atag = document.createElement("a")
+                    atag.href = "javascript:void(0)"
+
+                    atag.classList = "btn btn-outline-danger"
+                    atag.innerText = "Show Contact Form"
+                    profile.appendChild(atag)
+                }
+                else if (message === "User has sent you Friend Request") {
+                    let smsTag = document.createElement("h5")
+                    smsTag.classList = "mb-3"
+                    smsTag.innerText = "Request Received"
+
+                    // Reject Button
+                    let rejecttag = document.createElement("a")
+                    rejecttag.addEventListener("click", async () => {
+                        await $.ajax({
+                            type: 'POST',
+                            url: '/handleReject',
+                            success: function (response) {
+                                console.log(response.message);
+                                alert("Friend Request Rejected")
+                                checkReq()
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Error sending friend request:', error);
+                            }
+
+                        })
+                    })
+                    rejecttag.href = "javascript:void(0)"
+                    rejecttag.classList = "btn btn-outline-danger"
+                    rejecttag.innerText = "Reject Request"
+
+                    // Accept Button
+                    let accepttag = document.createElement("a")
+                    accepttag.addEventListener("click", async () => {
+                        await $.ajax({
+                            type: 'POST',
+                            url: '/handleAccept',
+                            success: function (response) {
+                                console.log(response.message);
+                                alert("Friend Request Accepted")
+                                checkReq()
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Error sending friend request:', error);
+                            }
+
+                        })
+                    })
+                    accepttag.href = "javascript:void(0)"
+                    accepttag.classList = "btn ml-3 btn-outline-success"
+                    accepttag.innerText = "Accept Request"
+
+                    profile.append(smsTag, rejecttag, accepttag)
+
+                }
+                else {
+                    let atag = document.createElement("a")
+                    atag.href = "javascript:void(0)"
+                    atag.addEventListener("click", () => {
+                        addProfile()
+                        checkReq()
+                    })
+                    atag.classList = "btn btn-outline-danger"
+                    atag.innerText = "Send Interest to view contact info"
+                    profile.appendChild(atag)
+                }
+
+            })
+        }
+
+        checkReq()
+
+        // generate pdf
+        function generatePdf() {
+            const element = document.getElementById("main_section")
+
+            html2pdf()
+                .from(element)
+                .save()
+        }
+       
         async function addProfile() {
             try {
                 await $.ajax({
@@ -704,10 +825,15 @@
             const profilefor = document.getElementById('profilefor').value;
             //  basicDetails['profilefor']=profilefor
             const fullname = document.getElementById('fullname').value;
+            const birthname = document.getElementById('birthname').value;
+            const birthplace = document.getElementById('birthplace').value;
+            const disabled = document.getElementById('disabled').value;
+            const address = document.getElementById('address').value;
             //  basicDetails['fullname']=fullname
             const city = document.getElementById('city').value;
             //  basicDetails['city']=city
             const dob = document.getElementById('dob').value;
+            const tob = document.getElementById('tob').value;
             //  basicDetails['dob']=dob
             const income = document.getElementById('income').value;
             //  basicDetails['income']=income
@@ -717,9 +843,9 @@
             //  basicDetails['bloodgroup']=bloodgroup
             const spectacles = document.getElementById('spectacles').value;
             //  basicDetails['spectacles']=spectacles
-            const gotradevak = document.getElementById('gotradevak').value;
+
             //  basicDetails['gotradevak']=gotradevak
-            const birthplace = document.getElementById('birthplace').value;
+
             //  basicDetails['birthplace']=birthplace
             const occupation = document.getElementById('occupation').value;
             //  basicDetails['occupation']=occupation
@@ -731,11 +857,11 @@
             //  basicDetails['occupationcity']=occupationcity
             const complexion = document.getElementById('complexion').value;
             //  basicDetails['complexion']=complexion
-            const mangal = document.getElementById('mangal').value;
+
             //  basicDetails['mangal']=mangal
 
             //  basicDetails['horoimage']=horoimage
-            const residentcity = document.getElementById('residentcity').value;
+
             const email = document.getElementById('email').value;
             const mobile = document.getElementById('mobile').value;
             //  basicDetails['residentcity']=residentcity
@@ -744,21 +870,23 @@
 
             document.getElementById("profileforinput").value = profilefor;
             document.getElementById("fullnameinput").value = fullname;
+            document.getElementById("birthnameinput").value = birthname;
+            document.getElementById("birthplaceinput").value = birthplace;
             document.getElementById("cityinput").value = city;
             document.getElementById("dobinput").value = dob;
+            document.getElementById("tobinput").value = tob;
+            document.getElementById("disabledinput").value = disabled;
+            document.getElementById("addressinput").value = address;
             document.getElementById("incomeinput").value = income;
             document.getElementById("educationinput").value = education;
             document.getElementById("bloodgroupinput").value = bloodgroup;
             document.getElementById("spectaclesinput").value = spectacles;
-            document.getElementById("gotrainput").value = gotradevak;
             document.getElementById("birthplaceinput").value = birthplace;
             document.getElementById("occupationinput").value = occupation;
             document.getElementById("complexioninput").value = complexion;
             document.getElementById("maritalstatusinput").value = maritalstatus;
             document.getElementById("heightinput").value = height;
             document.getElementById("occupationcityinput").value = occupationcity;
-            document.getElementById("mangalinput").value = mangal;
-            document.getElementById("residentcityinput").value = residentcity;
             document.getElementById("emailinput").value = email;
             document.getElementById("mobileinput").value = mobile;
         }
@@ -768,21 +896,23 @@
 
             const profilefor = $('#profilefor').val();
             const fullname = $('#fullname').val();
+            const birthname = $('#birthname').val();
+            const birthplace = $('#birthplace').val();
             const city = $('#city').val();
             const dob = $('#dob').val();
+            const tob = $('#tob').val();
+            const disabled = $('#disabled').val();
+            const address = $('#address').val();
             const income = $('#income').val();
             const education = $('#education').val();
             const bloodgroup = $('#bloodgroup').val();
             const spectacles = $('#spectacles').val();
-            const gotradevak = $('#gotradevak').val();
-            const birthplace = $('#birthplace').val();
             const occupation = $('#occupation').val();
             const maritalstatus = $('#maritalstatus').val();
             const height = $('#height').val();
             const occupationcity = $('#occupationcity').val();
             const complexion = $('#complexion').val();
-            const mangal = $('#mangal').val();
-            const residentcity = $('#residentcity').val();
+
             const email = $('#email').val();
             const mobile = $('#mobile').val();
 
@@ -791,21 +921,23 @@
             if (
                 profilefor &&
                 fullname &&
+                birthname &&
+                birthplace &&
                 city &&
                 dob &&
+                tob &&
+                disabled &&
+                address &&
                 income &&
                 education &&
                 bloodgroup &&
                 spectacles &&
-                gotradevak &&
                 birthplace &&
                 occupation &&
                 maritalstatus &&
                 height &&
                 occupationcity &&
                 complexion &&
-                mangal &&
-                residentcity &&
                 email &&
                 mobile
             ) {
@@ -836,41 +968,42 @@
             const basicInfo = {
                 profilefor: document.getElementById('profileforinput').value,
                 fullname: document.getElementById('fullnameinput').value,
+                birthname: document.getElementById('birthnameinput').value,
+                birthplace: document.getElementById("birthplaceinput").value,
                 city: document.getElementById("cityinput").value,
                 dateofbirth: document.getElementById("dobinput").value,
+                timeofbirth: document.getElementById("tobinput").value,
+                disabled: document.getElementById("disabledinput").value,
+                address: document.getElementById("addressinput").value,
                 income: document.getElementById("incomeinput").value,
                 education: document.getElementById("educationinput").value,
                 bloodgroup: document.getElementById("bloodgroupinput").value,
                 spectacles: document.getElementById("spectaclesinput").value,
-                gotra: document.getElementById("gotrainput").value,
-                birthplace: document.getElementById("birthplaceinput").value,
                 occupation: document.getElementById("occupationinput").value,
                 complexion: document.getElementById("complexioninput").value,
                 maritalstatus: document.getElementById("maritalstatusinput").value,
                 height: document.getElementById("heightinput").value,
                 occupationcity: document.getElementById("occupationcityinput").value,
-                mangal: document.getElementById("mangalinput").value,
-                residentcity: document.getElementById("residentcityinput").value,
                 email: document.getElementById("emailinput").value,
                 mobile: document.getElementById("mobileinput").value,
             };
 
             // Gather data from the second modal
             const familyInfo = {
-
                 fathername: document.getElementById('fathername').value,
                 mothername: document.getElementById('mothername').value,
                 maternaluncle: document.getElementById('maternaluncle').value,
-                nativeplace: document.getElementById('nativeplace').value,
-                citywealth: document.getElementById('citywealth').value,
-                parentcity: document.getElementById('parentcity').value,
-                sister: document.getElementById('sister').value,
-                agedifference: document.getElementById('agedifference').value,
-                preferredcity: document.getElementById('preferredcity').value,
-                expectedheight: document.getElementById('expectedheight').value,
-                herhiseducation: document.getElementById('herhiseducation').value,
-                herhisoccupation: document.getElementById('herhisoccupation').value,
-                herhisparentresidence: document.getElementById('herhisparentresidence').value,
+                parentaddress: document.getElementById('parentaddress').value,
+                familymembers: document.getElementById('familymembers').value,
+                hudda: document.getElementById('hudda').value,
+                fatheroccupation: document.getElementById('fatheroccupation').value,
+                motheroccupation: document.getElementById('motheroccupation').value,
+                profilevisibility:document.getElementById("profilevisibility").value,
+                expectation: document.getElementById('expectation').value,
+                // agedifference: document.getElementById('agedifference').value,
+                // preferredcity: document.getElementById('preferredcity').value,
+                // expectedheight: document.getElementById('expectedheight').value,
+                // herhiseducation: document.getElementById('herhiseducation').value,
                 // Add other fields as needed
             };
             // Combine data from both modals
@@ -895,6 +1028,7 @@
                 }
             });
         }
+
 
     </script>
 </body>

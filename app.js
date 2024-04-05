@@ -9,6 +9,7 @@ const configViewEngine = require("./viewEngine");
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const { adminRouter } = require("./admin/routes/admin.router");
+const { cmsRouter } = require("./admin/routes/cms.router");
 
 const port = process.env.PORT;
 
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 
 app.use('/',userRouter)
 app.use('/admin',adminRouter);
+app.use('/admin',cmsRouter);
 
 app.listen(port,()=>{
     console.log(`app is running on http://localhost:${port}`);

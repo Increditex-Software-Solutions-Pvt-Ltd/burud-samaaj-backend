@@ -329,7 +329,7 @@ const userController = {
         }
     },
     signup: async (req, res) => {
-       
+
         try {
             const data = req.body;
             console.log(data);
@@ -379,11 +379,11 @@ const userController = {
             }
 
 
-            bcrypt.compare(credentials.password, userInDb.password,async function (err, result) {
+            bcrypt.compare(credentials.password, userInDb.password, async function (err, result) {
                 if (result) {
-                    
+
                     let token = jwt.sign({ userId: userInDb.id }, `${process.env.user_secret_key}`);
-       
+
                     res.cookie('userJwt', token, { httpOnly: true, secure: true });
                     res.cookie('userId', userInDb.id, { httpOnly: true, secure: true });
                     return res.redirect('/');
@@ -409,31 +409,109 @@ const userController = {
     },
     sendRequest: async (req, res) => {
         try {
-            const userId = req.cookies.userId;
-            const profileId = req.cookies.profileId;
+            const userId = parseInt(req.cookies.userId);
+            const profileId = parseInt(req.cookies.profileId);
 
+            console.log(userId, profileId, "Ids");
             // Find the sender and receiver users in the database
-            const sender = await User.findByPk(userId);
-            const receiver = await User.findByPk(profileId);
+            const sender = await User.findOne({ where: { id: userId } });
+            const receiver = await User.findOne({ where: { id: profileId } });
+            console.log(sender.friendRequestsSent, receiver.friendRequestsReceived, "Profiles found");
 
             if (!sender || !receiver) {
                 throw new Error('Sender or receiver not found');
             }
 
-
-            // Initialize receiver's friendRequests object if not already initialized
-            receiver.friendRequests = receiver.friendRequests || { sent: [], received: [] };
-
-            // Add sender's ID to receiver's friendRequests.received array if not already present
-            if (!receiver.friendRequests.received.includes(userId)) {
-                receiver.friendRequests.received.push(userId);
-                // Save changes to the receiver user in the database
-                await receiver.save();
+            if (sender.friendRequestsSent === null) {
+                let senderArr = ""
+                senderArr+=` ${receiver.id}`
+                const createSent = {
+                    ...sender,
+                    friendRequestsSent: senderArr
+                }
+                const updatesender = await sender.update(createSent)
+                await updatesender.save()
+                console.log(createSent.friendRequestsSent, `${sender.firstname} sent`);
             }
+            else {
+                const createSent = {
+                    ...sender,
+                    friendRequestsSent: sender.friendRequestsSent+=` ${receiver.id}`
+                }
+                const updatesender = await sender.update(createSent)
+                await updatesender.save()
+                console.log(createSent.friendRequestsSent,`${sender.firstname} sent`);
+            }
+            if (receiver.friendRequestsReceived === null) {
+                let receiverArr = ""
+                receiverArr+=` ${sender.id}`
+                const createReceived = {
+                    ...receiver,
+                    friendRequestsReceived: receiverArr
+                }
+                const updatereceiver = await receiver.update(createReceived)
+                await updatereceiver.save()
+                console.log(createReceived.friendRequestsReceived, `${receiver.firstname} received`);
+            }
+            else {
+                const createReceived = {
+                    ...receiver,
+                    friendRequestsReceived: receiver.friendRequestsReceived+=` ${sender.id}`
+                }
+                const updatereceiver = await receiver.update(createReceived)
+                await updatereceiver.save()
+                console.log(createReceived.friendRequestsReceived, `${receiver.firstname} received`);
+            }
+
 
             res.send({ "message": "Friend request sent successfully" });
         } catch (error) {
             console.error('Error sending friend request:', error);
+            res.status(500).send({ "error": "Internal Server Error" });
+        }
+    },
+    checkFriendRequests: async (req, res) => {
+        try {
+            const profileId = parseInt(req.cookies.profileId)
+            const userId = parseInt(req.cookies.userId)
+            const profile = await User.findOne({ where: { id: profileId } })
+
+            console.log(profileId, userId,profile.firstname, "checking ids");
+            
+            let sms = "You can send request"
+            if (profile.friendLists !== null) {
+                console.log(profile.friendLists);
+                let checkFriendList = profile.friendLists.replace(/["\\/]/g, '').split(" ").filter((friend) => friend == userId)
+                console.log(checkFriendList.length, "checking");
+                if (checkFriendList.length) {
+                    sms="User already added"
+                }
+            }
+
+            if (profile.friendRequestsReceived !== null) {
+                let checkReceived = profile.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter((friend) => friend == userId)
+                console.log(checkReceived,"checkRecevied");
+                if (checkReceived.length) {
+                    sms="Request already sent"
+                }
+            }
+            if (profile.friendRequestsSent !== null) {
+                console.log(profile.friendRequestsSent,"request sent by profile");
+                let checkSent = profile.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter((friend) => {
+                    return friend == userId})
+                console.log(checkSent,"check sent");
+                if (checkSent.length) {
+                    sms="User has sent you Friend Request"
+                }
+
+            }
+
+            console.log(sms,"sms sending");
+            return res.send({ message:sms  })
+
+
+        } catch (error) {
+            console.error('Error getting friend request and send requests:', error);
             res.status(500).send({ "error": "Internal Server Error" });
         }
     },
@@ -489,7 +567,94 @@ const userController = {
         }
 
     },
+    handleReqAccept: async (req, res) => {
+        try {
+            const userId = parseInt(req.cookies.userId);
+            const profileId = parseInt(req.cookies.profileId);
 
+            // Find the sender and receiver users in the database
+            const sender = await User.findOne({ where: { id: profileId } });
+            const receiver = await User.findOne({ where: { id: userId } });
+console.log(sender.friendRequestsSent,"checking sender sent list");
+            if (sender.friendLists !== null) {
+                let editSender = {
+                    ...sender,
+                    friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter((id) => id != receiver.id).join(" "),
+                    friendLists: sender.friendLists+=` ${receiver.id}`
+                }
+                console.log(editSender,"updated sender");
+                let updateSender = await sender.update(editSender)
+                await updateSender.save()
+            } else {
+                let friendListsArr = ""
+                friendListsArr+=` ${receiver.id}`
+                let editSender = {
+                    ...sender,
+                    friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter((id) => id != receiver.id).join(" "),
+                    friendLists: friendListsArr
+                }
+                console.log(editSender,"updated sender");
+                let updateSender = await sender.update(editSender)
+                await updateSender.save()
+            }
+
+            if (receiver.friendLists !== null) {
+                let editReceiver = {
+                    ...receiver,
+                    friendRequestsReceived: receiver.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(id => id != sender.id).join(" "),
+                    friendLists: receiver.friendLists+=` ${sender.id}`
+                }
+                console.log(editReceiver,"updated receiver");
+                let updateReceiver = await receiver.update(editReceiver)
+                await updateReceiver.save()
+            } else {
+                let friendListsArr = ""
+                friendListsArr+=` ${sender.id}`
+                let editReceiver = {
+                    ...receiver,
+                    friendRequestsReceived: receiver.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(id => id != sender.id).join(" "),
+                    friendLists: friendListsArr
+                }
+                console.log(editReceiver,"updated receiver");
+                let updateReceiver = await receiver.update(editReceiver)
+                await updateReceiver.save()
+            }
+
+            res.send({ message: "Request accepted Successfully" })
+        } catch (error) {
+            res.status(504).json({ message: 'Internal Server Error' });
+        }
+    },
+    handleReqReject: async (req, res) => {
+        try {
+            const userId = parseInt(req.cookies.userId);
+            const profileId = parseInt(req.cookies.profileId);
+
+            // Find the sender and receiver users in the database
+            const sender = await User.findOne({ where: { id: profileId } });
+            const receiver = await User.findOne({ where: { id: userId } });
+
+            let editSender = {
+                ...sender,
+                friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').filter((id) => id != receiver.id).join(" ")
+            }
+            let updateSender = await sender.update(editSender)
+            await updateSender.save()
+
+            let editReceiver = {
+                ...receiver,
+                friendRequestsReceived: receiver.friendRequestsReceived.replace(/["\\/]/g, '').filter(id => id != sender.id).join(" ")
+            }
+            let updateReceiver = await receiver.update(editReceiver)
+            await updateReceiver.save()
+
+            res.send({ message: "Request rejected Successfully" })
+        } catch (error) {
+            res.status(504).json({ message: 'Internal Server Error' });
+        }
+
+
+    }
 
 }
 

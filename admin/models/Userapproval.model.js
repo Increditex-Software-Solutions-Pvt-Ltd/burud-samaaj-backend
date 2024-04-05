@@ -67,17 +67,7 @@ const UserApproval = sequelize.define("userapproval",{
     dateofbirth: {
         type: DataTypes.DATE,
         allowNull: true
-    },
-    friendRequests: {
-        type: DataTypes.JSON,
-        defaultValue: { "sent": [], "received": [] }
-    },
-    friendLists: {
-        type: DataTypes.JSON,
-        defaultValue: { "list": [] }
     }
-
-  
 })
 
 

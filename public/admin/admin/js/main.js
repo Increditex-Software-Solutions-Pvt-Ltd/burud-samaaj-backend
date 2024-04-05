@@ -94,101 +94,45 @@ function viewUserdetail(id) {
 	});
 }
 
-function resethomecmsForm() {
-	$('#homecmsAddModalLabel').text('add home content');
-	$('#home-cmsform').trigger('reset');
+function resetaboutcmsForm() {
+	$('#aboutcmsAddModalLabel').text('add about content');
+	$('#about-cmsform').trigger('reset');
 }
 
-function addHomeCms() {
-	resethomecmsForm();
-	$('#homecmsModal').modal('show');
+function addAboutCms() {
+	resetaboutcmsForm();
+	$('#aboutcmsModal').modal('show');
 
 }
-function editHomeForm(home_id) {
-	resethomecmsForm();
+function editAboutForm(about_id) {
+	resetaboutcmsForm();
 
-	$('#home-cmsform').attr('action', '/admin/home-content/' + home_id);
+	$('#about-cmsform').attr('action', '/admin/edit-about/' + about_id);
 	$.ajax({
-		url: '/admin/home-content/' + home_id,
+		url: '/admin/edit-about/' + about_id,
 		method: 'GET',
 		success: function (res) {
 			console.log(res);
 			if (res.success) {
 				const menu = res.data;
-				const parent = $('#homecmsModal');
-				$('#homecmsAddModalLabel').text("update home record");
-				$('[name="mainHeading"]', parent).val(menu.mainHeading);
-				$('[name="serviceheading"]', parent).val(menu.serviceHeading);
-				$('[name="servicedesc"]', parent).val(menu.serviceDescription);
-				$('[name="serviceshort"]', parent).val(menu.serviceShortInfo);
+				const parent = $('#aboutcmsModal');
+				$('#aboutcmsAddModalLabel').text("update about record");
+				$('[name="aboutwebsite"]', parent).val(menu.aboutwebsite);
+				$('[name="adhykshmanogat"]', parent).val(menu.adhykshmanogat);
+				$('[name="sachivmanogat"]', parent).val(menu.sachivmanogat);
+			
 
 				// Clear previous images
-				$('#uploadedImages').html('');
-
+			
 				// Handle populardish as a string or array
-				if (typeof menu.populardish === 'string') {
-					const imagePathArray = menu.populardish.replace(/\[|\]|"/g, '').replace(/\\/g, '/').replace(/\/\//g, '/').split(',');
-
-					// Create a new row
-					const rowDiv = $('<div>', {
-						class: 'row',
-					});
-
-					// Add images to the row with .col-md-4 class
-					if (imagePathArray.length > 0) {
-						imagePathArray.forEach(imagePath => {
-							// Prepend the base URL to each image path
-							const fullImagePath = 'http://localhost:8000/' + imagePath.trim();
-
-							const colDiv = $('<div>', {
-								class: 'col-md-4 mb-3',
-							});
-
-							const imgElement = $('<img>', {
-								src: fullImagePath,
-								class: 'img-fluid mb-3',
-								alt: 'Uploaded Image',
-								style: 'width: 100%; height: 300px;',
-							});
-
-							colDiv.append(imgElement);
-							rowDiv.append(colDiv);
-						});
-
-						// Append the row to the parent container
-						$('#uploadedImages', parent).append(rowDiv);
-					}
-				} else if (Array.isArray(menu.populardish)) {
-					// Handle populardish as an array of image paths
-					menu.populardish.forEach(imagePath => {
-						// Prepend the base URL to each image path
-						const fullImagePath = 'http://localhost:8000/' + imagePath.trim();
-
-						const colDiv = $('<div>', {
-							class: 'col-md-4 mb-3',
-						});
-
-						const imgElement = $('<img>', {
-							src: fullImagePath,
-							class: 'img-fluid mb-3',
-							alt: 'Uploaded Image',
-							style: 'width: 100%; height: 200px;',
-						});
-
-						colDiv.append(imgElement);
-						$('#uploadedImages', parent).append(colDiv);
-					});
-				} else {
-					console.error('populardish is not a string or array:', menu.populardish);
-				}
-
+				
 				parent.modal('show');
 			} else {
-				console.error('Failed to retrieve menu:', res.message);
+				console.error('Failed to retrieve about:', res.message);
 			}
 		},
 		error: function (xhr, status, error) {
-			console.error('Error retrieving menu:', error);
+			console.error('Error retrieving about:', error);
 		}
 	});
 }

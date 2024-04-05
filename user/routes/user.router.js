@@ -37,6 +37,9 @@ userRouter.post('/editphotos/:id',updateProfilephotos);
 userRouter.put('/sendRequest', userController.sendRequest);
 userRouter.post('/sendOtp', userController.sendOtp);
 userRouter.get('/otpform', userController.getOtpform)
-userRouter.post('/verifyOtp', userActions.verifyOtp)
+userRouter.post('/verifyOtp', userActions.verifyOtp);
+userRouter.get('/checkfriendrequests', userController.checkFriendRequests);
+userRouter.post('/handleAccept', userController.handleReqAccept);
+userRouter.post('/handleReject', userController.handleReqReject);
 
 module.exports = userRouter;

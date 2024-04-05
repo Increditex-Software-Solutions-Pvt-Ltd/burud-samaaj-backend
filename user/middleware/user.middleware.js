@@ -1,4 +1,6 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { User } = require('../models/user.model');
+const { Userprofile } = require('../models/userprofile.model');
 
 const userActions = {
     checkLoggedIn: async (req, res, next) => {
@@ -20,11 +22,11 @@ const userActions = {
     checkLogged: async (req, res, next) => {
         try {
             const id = req.params.id;
-
+            const user = await Userprofile.findOne({where:{id}})
             const token = req.cookies.userJwt;
 
             if (token) {
-                res.cookie('profileId', id, { httpOnly: true, secure: true });
+                res.cookie('profileId', user.userId, { httpOnly: true, secure: true });
                 next();
             }
             else {
