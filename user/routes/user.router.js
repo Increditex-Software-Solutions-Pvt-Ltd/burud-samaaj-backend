@@ -15,6 +15,7 @@ userRouter.get('/success-stories', userController.getsuccessStories);
 userRouter.get('/profiles/:id', userController.getEditProfilepage);
 userRouter.get('/photos/:id', userController.getEditPhotospage);
 userRouter.get('/success-videos', userController.getsuccessVideos);
+userRouter.get("/requests", userController.getRequestsPage)
 
 
 userRouter.get('/signup', userActions.checkLoggedIn, userController.getsignupform);
@@ -30,8 +31,8 @@ userRouter.get('/checkprofile', checkProfile);
 userRouter.get('/allprofiles', getAllProfiles);
 userRouter.get('/getsingleprofile', getSingleProfile);
 userRouter.get('/getuserphotos', getAllUserpics);
-userRouter.post('/editprofile',editUserProfile);
-userRouter.post('/editphotos/:id',updateProfilephotos);
+userRouter.post('/editprofile', editUserProfile);
+userRouter.post('/editphotos/:id', updateProfilephotos);
 
 
 userRouter.put('/sendRequest', userController.sendRequest);
@@ -41,5 +42,6 @@ userRouter.post('/verifyOtp', userActions.verifyOtp);
 userRouter.get('/checkfriendrequests', userController.checkFriendRequests);
 userRouter.post('/handleAccept', userController.handleReqAccept);
 userRouter.post('/handleReject', userController.handleReqReject);
+userRouter.get('/getListofRequests', userController.getListofRequests);
 
 module.exports = userRouter;

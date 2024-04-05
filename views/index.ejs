@@ -114,9 +114,10 @@
                             <% if(userprofile){ %>
                                 <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
                                             class="bi bi-person-circle me-1"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i class="bi bi-image-fill me-1"></i> Profile photos</a></li>
+                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
+                                            class="bi bi-image-fill me-1"></i> Profile photos</a></li>
                                 <li>
-                                    <a class="dropdown-item" href=""><i class="bi bi-app-indicator me-1"></i>
+                                    <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
                                         Requests</a>
                                 </li>
                                 <li>
@@ -1075,8 +1076,8 @@
                                     <label for="mother-name">Profile Visibility</label>
                                     <select name="profilevisibility" class="form-control" id="profilevisibility">
                                         <option selected disabled value="">Select</option>
-                                        <option  value="private">Private</option>
-                                        <option  value="public">Public</option>
+                                        <option value="private">Private</option>
+                                        <option value="public">Public</option>
                                     </select>
                                 </div>
                             </div>
@@ -1376,7 +1377,7 @@
                 hudda: document.getElementById('hudda').value,
                 fatheroccupation: document.getElementById('fatheroccupation').value,
                 motheroccupation: document.getElementById('motheroccupation').value,
-                profilevisibility:document.getElementById("profilevisibility").value,
+                profilevisibility: document.getElementById("profilevisibility").value,
                 expectation: document.getElementById('expectation').value,
                 // agedifference: document.getElementById('agedifference').value,
                 // preferredcity: document.getElementById('preferredcity').value,
@@ -1406,7 +1407,6 @@
                 }
             });
         }
-
 
     </script>
 

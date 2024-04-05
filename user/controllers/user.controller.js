@@ -328,6 +328,61 @@ const userController = {
             res.status(500).send('Internal Server Error');
         }
     },
+    getRequestsPage: async (req, res) => {
+        try {
+            return res.render('requestsPage');
+
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+    getListofRequests: async (req, res) => {
+        try {
+            let userId = req.cookies.userId;
+
+            let user = await User.findOne({ where: { id: userId } })
+
+            let sentReq = []
+            let receivedReq = []
+
+            if (user.friendRequestsSent !== null) {
+                sentReq = [...user.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter(num => num !== "")]
+            }
+
+            if (user.friendRequestsReceived !== null) {
+                receivedReq = [...user.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(num => num !== "")]
+            }
+
+            console.log(sentReq, receivedReq, "list of requests of user");
+
+            let sentArr = [];
+            let receivedArr = [];
+
+            if (sentReq.length) {
+                sentArr = await Promise.all(sentReq.map(async (req) => {
+                    let id = parseInt(req);
+                    let user = await User.findOne({ where: { id } });
+                    return user.dataValues;
+                }));
+            }
+
+            if (receivedReq.length) {
+                receivedArr = await Promise.all(receivedReq.map(async (req) => {
+                    let id = parseInt(req);
+                    let user = await User.findOne({ where: { id } });
+                    return { ...user.dataValues };
+                }));
+            }
+
+            console.log(sentArr, receivedArr, "Users info got in arr");
+            return res.send({ message: "list of requests", sentArr, receivedArr });
+
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
     signup: async (req, res) => {
 
         try {
@@ -738,26 +793,26 @@ const userController = {
             let updateSender = await sender.update(editSenderRej)
             const EMAIL_PASS = process.env.EMAIL_PASS;
 
-                const transporter = await nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: 'nishantphule12@gmail.com',
-                        pass: EMAIL_PASS
-                    }
-                });
+            const transporter = await nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'nishantphule12@gmail.com',
+                    pass: EMAIL_PASS
+                }
+            });
 
-                const mailOptions = {
-                    from: 'nishantphule12@gmail.com', // sender address
-                    to: updateSender.email, // list of receivers
-                    text: `${receiver.firstname} ${receiver.lastname} has rejected your Request`,
-                };
+            const mailOptions = {
+                from: 'nishantphule12@gmail.com', // sender address
+                to: updateSender.email, // list of receivers
+                text: `${receiver.firstname} ${receiver.lastname} has rejected your Request`,
+            };
 
-                await transporter.sendMail(mailOptions, function (err, info) {
-                    if (err)
-                        console.log(err)
-                    else
-                        console.log(info);
-                });
+            await transporter.sendMail(mailOptions, function (err, info) {
+                if (err)
+                    console.log(err)
+                else
+                    console.log(info);
+            });
             await updateSender.save()
 
             let editReceiverRej = {
