@@ -169,28 +169,43 @@
 </div>
 
 
-<div class="modal fade " id="youtubecmsModal" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade " id="memberAddModal" data-bs-backdrop="static" data-bs-keyboard="false">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 		<div class="modal-content border shadow-lg">
 			<div class="modal-header">
-				<h5 class="modal-title" id="youtubecmsModalLabel"></h5>
+				<h5 class="modal-title" id="memberAddModalLabel"></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="admin/addyoutube" method="post" class="row" enctype="multipart/form-data"
-					id="youtube-cmsform">
+				<form action="/admin/addmember" method="post" class="row" enctype="multipart/form-data"
+					id="member-cmsform">
 
-					<div class="col-md-12 col-12">
+					<div class="col-md-6 col-12">
 						<div class="mb-3">
-							<label for="" class="form-label">Youtube Thumbnail</label>
-							<input type="file"  accept=".jpg, .png, .jpeg, image/jpeg, image/png" class="form-control form-control-sm " name="youtubeThumbnail">
+							<label for="" class="form-label">Member pic(कार्याध्यक्ष  फोटो) </label>
+							<input type="file"  accept=".jpg, .png, .jpeg, image/jpeg, image/png" class="form-control form-control-sm " name="memberpic">
+						</div>
+						
+					</div>
+					<div class="col-md-6 col-12">
+						<div class="mb-3">
+							<label for="" class="form-label">Member name(कार्याध्यक्ष नाव) </label>
+							<input type="text" class="form-control form-control-sm " name="membername">
 						</div>
 						
 					</div>
 					<div class="col-md-12 col-12">
 						<div class="mb-3">
-							<label for="" class="form-label">Youtube Link</label>
-							<input type="text" class="form-control form-control-sm " name="youtubeLink">
+							<label for="" class="form-label">Member position(कार्याध्यक्ष)</label>
+						     <select name="position" class="form-control form-control-sm">
+								  <option disabled selected value="">select</option>
+								  <option value="अध्यक्ष ">अध्यक्ष</option>
+								  <option value="कार्याध्यक्ष">कार्याध्यक्ष</option>
+								  <option value="उपाध्यक्ष">उपाध्यक्ष</option>
+								  <option value="कार्याध्यक्ष">कार्याध्यक्ष</option>
+								  <option value="सचिव">सचिव</option>
+								  <option value="सदस्य">सदस्य</option>
+							 </select>
 						</div>
 						
 					</div>
@@ -198,7 +213,7 @@
 			</div>
 			<div class="modal-footer pt-0 border-top-0">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="submit" form="youtube-cmsform" class="btn btn-dark prevent-default">post</button>
+				<button type="submit" form="member-cmsform" class="btn btn-dark prevent-default">post</button>
 			</div>
 		</div>
 	</div>

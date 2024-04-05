@@ -40,7 +40,7 @@
 								Add Content
 							</a>
 							<%}%>
-							<a class="btn btn-sm btn-success ms-2" href="javascript:void(0)" onclick="addHomeCms()">
+							<a class="btn btn-sm btn-success ms-2" href="javascript:void(0)" onclick="addMember()">
 								<i class="bi-plus-circle me-1"></i>
 								Add Members
 							</a>
@@ -63,7 +63,7 @@
 							<div class="col-md-12 col-sm-6 col-12">
 								<div class="card">
 									<div class="card-header bg-light">
-										<h6 class="text-dark fw-semibold">About website</h6>
+										<h4 class="text-dark fw-semibold">About website</h4>
 									</div>
 									<div class="card-body">	<%- item.aboutwebsite%></div>
 								</div>
@@ -71,7 +71,7 @@
 							<div class="col-md-6 col-sm-6 col-12">
 								<div class="card">
 									<div class="card-header bg-light">
-										<h6 class="text-dark fw-semibold">President speech</h6>
+										<h4 class="text-dark fw-semibold">President speech</h4>
 									</div>
 									<div class="card-body"><%- item.adhykshmanogat%></div>
 								</div>
@@ -79,7 +79,7 @@
 							<div class="col-md-6 col-sm-6 col-12">
 								<div class="card">
 									<div class="card-header bg-light">
-										<h6 class="text-dark fw-semibold">Sachiv speech</h6>
+										<h4 class="text-dark fw-semibold">Sachiv speech</h4>
 									</div>
 									<div class="card-body"><%- item.sachivmanogat%></div>
 								</div>
@@ -91,6 +91,106 @@
 					<%}) %>
 				</div>
 			
+				<div class="content container-fluid">
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row align-items-center">
+							<div class="col">
+								<h1 class="page-header-title">
+									Members
+								</h1>
+							</div>
+							<!-- End Col -->
+							
+							<!-- End Col -->
+						</div>
+						<!-- End Row -->
+					</div>
+					<!-- End Page Header -->
+			
+					<div class="member-table-filters">
+						<div class="row g-3">
+							<div class="col-12 col-md-3">
+								<div class="input-group input-group-sm">
+									<div class="input-group-text">
+										<i class="bi-search"></i>
+									</div>
+									<input type="search" class="form-control member-table-search" placeholder="Search here">
+								</div>
+							</div>
+							<div class="col-12 col-md-6 offset-md-3">
+								<div class="d-flex align-items-center gap-2">
+									<span class="ms-md-auto">Type</span>
+									<div>
+										<select class="form-select form-select-sm"
+											onchange="sowingListTable.column(2).search(this.value).draw()">
+											<option value="" selected>All</option>
+											<option value="cat">Catagory</option>
+										</select>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="table-responsive">
+						<table id="member-table" class="table table-bordered table-nowrap table-align-middle">
+							<thead class="thead-light" align="left">
+								<tr>
+								
+									<th>Action</th>
+									
+									<th>
+										member photo						
+									</th>
+									<th>
+										member name
+									</th>
+									<th>
+									   member position							
+									</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<%members.forEach((item)=>{%>
+									<tr class="menu-row">
+										<td>
+											
+												<button class="btn btn-dark text-center p-2"
+													onclick="editMembers('<%-item.id%>')">
+													<i class="bi-pencil-square mx-1"></i>Edit
+												</button>
+												<button class="btn btn-danger text-center p-2"
+													onclick="confirmDeleteMember('<%-item.id%>')">
+													<i class="bi-trash mx-1"></i> Delete
+												</button>
+											
+	
+										</td>
+										<td>
+										     <img src="http://localhost:5000/<%= item.memberpic.replace(/\\/g, '/')%>" class="img-fluid" height="200" width="170" alt="">
+										</td>
+										<td>
+											<h5 class="text-dark">
+												<%= item.membername%>
+											</h5>
+										</td>
+										<td>
+											<h5 class="text-danger">
+												<%= item.position%>
+											</h5>
+										</td>
+										
+									
+									</tr>
+									<%})%>
+							</tbody>
+						</table>
+					</div>
+			
+					<div class="member-table-footer"></div>
+				</div>
 
 				
 			</div>
@@ -353,3 +453,53 @@
 				}]
 			});
 		</script>
+			<script>
+				let memberTable = false;
+				memberTable = $('#member-table').DataTable({
+					lengthChange: true,
+					columnDefs: [{
+						targets: [0,],
+						orderable: false,
+					}],
+					order: [
+						[1, 'desc'],
+						[0, 'desc']
+					],
+					initComplete: function (settings, json) {
+						$('.dataTables_filter').hide();
+						$('.member-table-footer').append($('#member-table_wrapper .row:last-child()')).find('.previous').addClass('ms-md-auto');
+						$('.dataTables_info').before($('.dataTables_length').find('label').attr('class', 'd-inline-flex text-nowrap align-items-center gap-2'));
+						$('.member-table-search').on('input', function () {
+							memberTable.search(this.value).draw();
+						});
+						this.api().table().buttons().container().find('.btn-secondary').removeClass('btn-secondary');
+						this.api().table().buttons().container().appendTo($('.enquiry-table-filters .export-buttons'));
+					},
+					buttons: [{
+						extend: 'collection',
+						text: '<i class="bi bi-cloud-download-fill"></i>',
+						className: 'btn-sm btn-outline-primary',
+						buttons: [{
+							extend: 'copy',
+							text: '<i class="bi-clipboard2-check dropdown-item-icon"></i> Copy'
+						},
+						{
+							extend: 'excel',
+							text: '<i class="bi-filetype-xlsx dropdown-item-icon"></i> Excel'
+						},
+						{
+							extend: 'csv',
+							text: '<i class="bi-filetype-csv dropdown-item-icon"></i> CSV'
+						},
+						{
+							extend: 'pdf',
+							text: '<i class="bi-filetype-pdf dropdown-item-icon"></i> PDF'
+						},
+						{
+							extend: 'print',
+							text: '<i class="bi-printer dropdown-item-icon"></i> Print'
+						}
+						]
+					}],
+				});
+			</script>

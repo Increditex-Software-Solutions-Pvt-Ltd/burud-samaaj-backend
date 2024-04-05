@@ -8,6 +8,7 @@ const { UserReject } = require("../models/Userreject.model");
 const nodemailer = require('nodemailer');
 const { assign } = require("nodemailer/lib/shared");
 const { About } = require("../models/Aboutcms.model");
+const { Member } = require("../models/Membercms.model");
 
 const adminController = {
     getDashboardpage: async (req, res) => {
@@ -16,8 +17,9 @@ const adminController = {
     getCmspage: async (req, res) => {
         try {
             const aboutRecords = await About.findAll();
+            const members = await Member.findAll();
             const hasAboutRecords = aboutRecords.length > 0;
-            return res.render('admin/cms',{aboutRecords,hasAboutRecords})
+            return res.render('admin/cms',{aboutRecords,hasAboutRecords,members})
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');

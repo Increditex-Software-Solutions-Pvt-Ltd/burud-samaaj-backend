@@ -1,4 +1,6 @@
+const { uploadMember } = require("../../../config/multerconfig");
 const { About } = require("../../models/Aboutcms.model");
+const { Member } = require("../../models/Membercms.model");
 
 const addAboutpage=async(req,res)=>{
     try { 
@@ -35,5 +37,116 @@ const addAboutpage=async(req,res)=>{
     res.status(500).json({ success: false, message: 'Failed to update aboutcontent' });
    }
 }
+const updateAbout = async (req, res) => {
+   let aboutId = req.params.id;
+   try {
+       const about = await About.findByPk(aboutId);
+       if (about) {
+           const updatedAbout = await about.update(req.body);
+           updatedAbout.save();
+           res.redirect('/admin/cms');
+       }
+       else {
+           res.json({ success: false, message: 'about not found' });
+       }
+   } catch (error) {
+       console.error('Error updating about:', error);
+       res.status(500).json({ success: false, message: 'Failed to update about' });
+   }
+}
+ const getMemberUpdateForm=async(req,res)=>{
 
- module.exports = {addAboutpage,getAboutUpdateForm}
+    const {id} = req.params;
+   try {
+       const members = await Member.findByPk(id);
+       
+       if(members){
+         res.json({success:true,data:members})
+       }
+       else{
+        res.json({success:false,message:"member not found"});
+       }
+   } catch (error) {
+    console.error('Error updating member', error);
+    res.status(500).json({ success: false, message: 'Failed to update member' });
+   }
+}
+
+
+const addMember=async(req,res)=>{
+   try {
+      uploadMember.single('memberpic')(req, res, async function (err) {
+              if (err) {
+                  return res.status(400).json({ message: 'member pic upload failed' });
+              }
+  
+          
+              const { membername,position } = req.body;
+              const memberpic = req.file ? req.file.path : null;
+  
+              const newMember = await Member.create({
+                 membername,memberpic,position
+              });
+  
+              return res.redirect('/admin/cms'); 
+          });
+      } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Failed to add YouTube video' });
+      }
+}
+const updateMember = async (req, res) => {
+   try {
+      const memberId = req.params.id;
+
+      // Assuming you have a function like `findById` to find the YouTube video by ID
+      const existingMember = await Member.findByPk(memberId);
+
+      if (!existingMember) {
+          return res.status(404).json({ message: 'member not found' });
+      }
+
+      uploadMember.single('memberpic')(req, res, async function (err) {
+          if (err) {
+              return res.status(400).json({ message: 'file upload failed' });
+          }
+
+          const { membername,position } = req.body;
+
+          // Check if a new thumbnail file is uploaded
+          if (req.file) {
+              existingMember.memberpic = req.file.path;
+          }
+
+          existingMember.membername = membername;
+          existingMember.position = position;
+
+          await existingMember.save();
+
+          return res.redirect('/admin/cms'); // Redirect to appropriate page
+      });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to update member video' });
+  }
+}
+
+const deleteMember=async(req,res)=>{
+   try {
+       const memberId = req.params.id;
+ 
+       const member = await Member.findByPk(memberId);
+ 
+       if(!member){
+         return res.status(404).json({ success: false, message: 'member not found'});
+       }
+ 
+       await member.destroy();
+ 
+       return res.redirect("/admin/cms")
+   } catch (error) {
+     console.error('Error deleting member:', error);
+     res.status(500).json({ success: false, message: 'Failed to delete member' });
+   }
+ }
+ module.exports = {addAboutpage,getAboutUpdateForm,addMember,getMemberUpdateForm,updateMember,updateAbout,deleteMember}

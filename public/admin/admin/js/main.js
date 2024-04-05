@@ -137,30 +137,31 @@ function editAboutForm(about_id) {
 	});
 }
 
-function resetyoutubeForm() {
-	$('#youtubecmsModalLabel').text('add youtube content');
-	$('#youtube-cmsform').trigger('reset');
+function resetMemberForm() {
+	$('#memberAddModalLabel').text('add Member content');
+	$('#member-cmsform').trigger('reset');
 }
 
-function addYoutubeDetail() {
-	resetyoutubeForm();
-	$('#youtubecmsModal').modal('show');
+function addMember() {
+	resetMemberForm();
+	$('#memberAddModal').modal('show');
 
 }
-function editYoutubeDetail(youtube_id) {
-	resetyoutubeForm();
+function editMembers(member_id) {
+	resetMemberForm();
 
-	$('#youtube-cmsform').attr('action', '/admin/youtuberecord/' + youtube_id);
+	$('#member-cmsform').attr('action', '/admin/member/' + member_id);
 	$.ajax({
-		url: '/admin/youtuberecord/' + youtube_id,
+		url: '/admin/member/' + member_id,
 		method: 'GET',
 		success: function (res) {
 			console.log(res);
 			if (res.success) {
-				const youtuberecord = res.data;
-				const parent = $('#youtubecmsModal');
-				$('#youtubecmsModalLabel').text("update youtube records");
-				$('[name="youtubeLink"]', parent).val(youtuberecord.youtubeLink);
+				const members = res.data;
+				const parent = $('#memberAddModal');
+				$('#memberAddModalLabel').text("update member records");
+				$('[name="membername"]', parent).val(members.membername);
+				$('[name="position"]', parent).val(members.position);
 
 
 				parent.modal('show');
@@ -183,6 +184,31 @@ function resetAboutCmsForm() {
 function addAboutcms() {
 	resetAboutCmsForm();
 	$('#aboutcmsModal').modal('show');
+}
+
+function confirmDeleteMember(memberId) {
+	if (confirm('Are you sure you want to delete this member?')) {
+		deleteMember(memberId);
+	}
+}
+
+async function deleteMember(memberId) {
+	try {
+
+		const response = await fetch(`/admin/delete-member/${memberId}`, {
+			method: 'POST',
+		});
+
+		if (response.ok) {
+
+			window.location.href = '/admin/cms';
+		} else {
+
+			console.error('Error deleting member:', response.statusText);
+		}
+	} catch (error) {
+		console.error('Error deleting member:', error);
+	}
 }
 
 function editAboutDetail(about_id) {
