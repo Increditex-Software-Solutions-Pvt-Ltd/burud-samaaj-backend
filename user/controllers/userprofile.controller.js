@@ -103,19 +103,35 @@ async function saveUserProfile(req, res) {
 async function editUserProfile(req, res) {
     try {
         let userId = req.cookies.userId
-      
+
         let userprofile = await Userprofile.findOne({
-            where:{userId}})
-        console.log(userprofile.id,"profile id for update");
-        
+            where: { userId }
+        })
+        console.log(userprofile.id, "profile id for update");
+
         const updateuserProfile = await userprofile.update(req.body);
         updateuserProfile.save()
-       
+
         return res.redirect('/uploadphoto');
 
     } catch (error) {
         // Handle errors
         console.error('Error editing user profile:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+const getProfileid = async (req, res) => {
+    try {
+        console.log("Hii from profile id");
+        const id = req.query.id;
+        console.log(id,"checking id of user from request");
+        const profile = await Userprofile.findOne({ where: { userId: id } })
+        console.log(profile,"checking the profile i got from db");
+        return res.status(201).send({ profileId: profile.id })
+
+    } catch (error) {
+        console.error('Error getting user profile:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }
@@ -150,7 +166,7 @@ const saveUserImages = async (req, res) => {
 
 const updateProfilephotos = async (req, res) => {
     try {
-        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopic1', maxCount: 1 },{ name: 'biopic2', maxCount: 1 },{ name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
+        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopic1', maxCount: 1 }, { name: 'biopic2', maxCount: 1 }, { name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
             if (err) {
                 return res.status(400).json({ message: 'File upload failed.' });
             }
@@ -168,7 +184,7 @@ const updateProfilephotos = async (req, res) => {
                 return res.status(404).json({ message: 'Profile images not found' });
             }
 
-          
+
 
             if (profilepic) {
                 profilephoto.profilepic = profilepic;
@@ -277,5 +293,23 @@ const getProfileUpdateform = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to retrieve profile' });
     }
 }
+const deleteProfile=async(req,res)=>{
+    try {
+        const profileId = req.params.id;
+  
+        const profile = await Userprofile.findOne({where:{id:profileId}});
+  
+        if(!profile){
+          return res.status(404).json({ success: false, message: 'profile not found'});
+        }
+  
+        await profile.destroy();
+  
+        return res.send({message:"successfully deleted profile"})
+    } catch (error) {
+      console.error('Error deleting profile:', error);
+      res.status(500).json({ success: false, message: 'Failed to delete profile' });
+    }
+  }
 
-module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile ,updateProfilephotos};
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid,deleteProfile };

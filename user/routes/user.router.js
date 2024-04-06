@@ -1,6 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user.controller");
-const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos } = require("../controllers/userprofile.controller");
+const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid, deleteProfile } = require("../controllers/userprofile.controller");
 const { userActions } = require("../middleware/user.middleware");
 const userRouter = express.Router();
 
@@ -15,7 +15,8 @@ userRouter.get('/success-stories', userController.getsuccessStories);
 userRouter.get('/profiles/:id', userController.getEditProfilepage);
 userRouter.get('/photos/:id', userController.getEditPhotospage);
 userRouter.get('/success-videos', userController.getsuccessVideos);
-userRouter.get("/requests", userController.getRequestsPage)
+userRouter.get("/requests", userController.getRequestsPage);
+userRouter.get("/connections", userController.getConnectionsPage);
 
 
 userRouter.get('/signup', userActions.checkLoggedIn, userController.getsignupform);
@@ -43,5 +44,8 @@ userRouter.get('/checkfriendrequests', userController.checkFriendRequests);
 userRouter.post('/handleAccept', userController.handleReqAccept);
 userRouter.post('/handleReject', userController.handleReqReject);
 userRouter.get('/getListofRequests', userController.getListofRequests);
+userRouter.get('/getListofConections', userController.getListofConections);
+userRouter.get("/getProfileid",getProfileid);
+userRouter.post("/delete-profile/:id",deleteProfile);
 
 module.exports = userRouter;

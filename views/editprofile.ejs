@@ -75,9 +75,11 @@
                         <div class="col-md-12">
                             <label for="mother-name">Profile Visibility</label>
                             <select name="profilevisibility" class="form-control" id="profilevisibility" disabled>
-                                <option selected disabled value="<%= userprofile.profilevisibility%>">Status <%= userprofile.profilevisibility%></option>
-                                <option  value="private">Private</option>
-                                <option  value="public">Public</option>
+                                <option selected disabled value="<%= userprofile.profilevisibility%>">Status <%=
+                                        userprofile.profilevisibility%>
+                                </option>
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -302,11 +304,13 @@
                         <div class="mt-4 position-sticky bg-white w-100" style="bottom: 0px;">
                             <div class="border-top d-flex justify-content-between">
                                 <div>
-                                    <a href="/" class="btn btn-lg btn-primary mt-4">Back</a>
+                                    <a href="/" class="btn  btn-primary mt-4">Back</a>
                                 </div>
                                 <div>
-                                    <button id="editBtn" class="btn btn-lg btn-secondary mt-4">Edit</button>
-                                    <button id="saveBtn" class="btn btn-lg btn-dark mt-4 ms-3"
+                                    <button id="deleteBtn" onclick="confirmDeleteProfile('<%= userprofile.id%>')"
+                                        class="btn  btn-danger me-2 mt-4">Delete profile</button>
+                                    <button id="editBtn" class="btn  btn-secondary mt-4">Edit</button>
+                                    <button id="saveBtn" class="btn  btn-dark mt-4 ms-3"
                                         style="display: none;">Save</button>
                                 </div>
                             </div>
@@ -400,7 +404,7 @@
                 }
             }
 
-            // Re-enable the disabled attribute on form fields
+           // Re-enable the disabled attribute on form fields
             var formElements = document.getElementById("profileForm").elements;
             for (var i = 0; i < formElements.length; i++) {
                 var element = formElements[i];
@@ -428,7 +432,39 @@
                 }
             });
         });
+        function confirmDeleteProfile(profileId) {
+                if (confirm('Are you sure you want to delete your profile ?')) {
+                    deleteProfile(profileId);
+                }
+            }
 
+            async function deleteProfile(profileId) {
+                console.log("From delete profile", profileId);
+                try {
+                   
+                        await $.ajax({
+                            type: 'POST',
+                            url: `/delete-profile/${profileId}`,
+                            success: function (response) {
+                                // Handle success response
+                                console.log(response);
+                                window.location.href = '/';
+
+                            },
+                            error: function (xhr, status, error) {
+                                // Handle error
+                                console.error(error);
+                                console.error('Error deleting profile:', response.statusText);
+                            }
+                        });
+                    
+
+                } catch (error) {
+                    console.error('Error deleting profile:', error);
+                }
+            }
+
+           
 
     </script>
 </body>

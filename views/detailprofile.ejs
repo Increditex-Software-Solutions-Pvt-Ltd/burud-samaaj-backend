@@ -76,7 +76,10 @@
                                         </div>
 
                                     </div>
+                                   
                                 </div>
+                               
+
                                 <div class="col-md-8 d-flex align-items-center">
 
                                 </div>
@@ -161,7 +164,27 @@
 
 
                         </div>
+                        <div class="collapse mt-3" id="contact-collapse">
+                            <div class="card card-body bg-light text-center">
+                                <span class="" style="font-size: 20px; font-weight: 600;">contact details</span>
+                                 
+                                <div class="d-flex flex-column">
+                                    <div class="justify-content-between mt-3">
+                                        <div>
+                                            <span class="text-danger">Mobile :</span>
+                                            <span class="text-dark"><%= profile.mobile%></span>
+                                        </div>
+                                        <div>
+                                            <span class="text-danger">Email :</span>
+                                            <span class="text-dark"><%= profile.email%></span>
+                                        </div>
+                                   </div>
+                                </div>
+                               
+                            </div>
+                        </div>
                     </div>
+                   
                 </div>
 
                 <div class="col-md-8" id="main_section">
@@ -664,7 +687,7 @@
         </div>
     </div>
 
-
+   
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="js/registration.js"></script> -->
@@ -676,7 +699,7 @@
         async function checkReq() {
             // send request validation
             const profileBtn = document.querySelectorAll(".ProfileBtn")
-            
+
             let message
             await $.ajax({
                 type: 'GET',
@@ -692,7 +715,7 @@
             })
             console.log(message);
             profileBtn.forEach((profile) => {
-                profile.innerHTML=""
+                profile.innerHTML = ""
                 if (message === "Request already sent") {
                     let atag = document.createElement("a")
                     atag.href = "javascript:void(0)"
@@ -707,6 +730,10 @@
                     atag.classList = "btn btn-outline-danger"
                     atag.innerText = "Show Contact Form"
                     profile.appendChild(atag)
+
+                    atag.addEventListener('click', () => {
+                        $('#contact-collapse').collapse('toggle');
+                    })
                 }
                 else if (message === "User has sent you Friend Request") {
                     let smsTag = document.createElement("h5")
@@ -783,7 +810,7 @@
                 .from(element)
                 .save()
         }
-       
+
         async function addProfile() {
             try {
                 await $.ajax({
@@ -999,7 +1026,7 @@
                 hudda: document.getElementById('hudda').value,
                 fatheroccupation: document.getElementById('fatheroccupation').value,
                 motheroccupation: document.getElementById('motheroccupation').value,
-                profilevisibility:document.getElementById("profilevisibility").value,
+                profilevisibility: document.getElementById("profilevisibility").value,
                 expectation: document.getElementById('expectation').value,
                 // agedifference: document.getElementById('agedifference').value,
                 // preferredcity: document.getElementById('preferredcity').value,

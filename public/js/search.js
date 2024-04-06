@@ -45,7 +45,7 @@ async function advanceFilter(data) {
 	const backendData = await getDataFromBackend();
 
 	let filteredData = backendData.filter(item => {
-		return item.occupation.split(" ").join("").toLowerCase().includes(data) || item.city.split(" ").join("").toLowerCase().includes(data) || item.fullname.split(" ").join("").toLowerCase().includes(data) || item.education.split(" ").join("").toLowerCase().includes(data) || item.gotra.split(" ").join("").toLowerCase().includes(data) || item.birthplace.split(" ").join("").toLowerCase().includes(data) || item.fathername.split(" ").join("").toLowerCase().includes(data) || item.mothername.split(" ").join("").toLowerCase().includes(data)
+		return item.occupation.split(" ").join("").toLowerCase().includes(data) || item.city.split(" ").join("").toLowerCase().includes(data) || item.fullname.split(" ").join("").toLowerCase().includes(data) || item.education.split(" ").join("").toLowerCase().includes(data) || item.birthplace.split(" ").join("").toLowerCase().includes(data) || item.fathername.split(" ").join("").toLowerCase().includes(data) || item.mothername.split(" ").join("").toLowerCase().includes(data)
 
 	});
 	searchFilterData = [...filteredData]
@@ -107,27 +107,27 @@ function showProfiles(filteredData) {
 		filterContainer.classList = "row m-0 mt-4"
 		filterContainer.innerHTML = ""
 
-		filteredData.forEach(async(item, i) => {
-			let picId = {id:item.userphoto}
-      console.log("userphotos", picId);
-      let profilepics;
-      try {
-        const response = await $.ajax({
-          type: 'GET',
-          url: '/getuserphotos',
-          data: picId
-        });
-        if (response.pics) {
-          profilepics = response.pics;
-        } else {
-          profilepics = [];
-        }
-      } catch (error) {
-        console.error(error);
-        profilepics = [];
-      }
+		filteredData.forEach(async (item, i) => {
+			let picId = { id: item.userphoto }
+			console.log("userphotos", picId);
+			let profilepics;
+			try {
+				const response = await $.ajax({
+					type: 'GET',
+					url: '/getuserphotos',
+					data: picId
+				});
+				if (response.pics) {
+					profilepics = response.pics;
+				} else {
+					profilepics = [];
+				}
+			} catch (error) {
+				console.error(error);
+				profilepics = [];
+			}
 
-      console.log(item);
+			console.log(item);
 			let user = `
 		<div class="col-md-4 column nature">
 		<div class="image_body">

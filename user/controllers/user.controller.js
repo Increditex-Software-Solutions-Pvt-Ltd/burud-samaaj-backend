@@ -337,6 +337,15 @@ const userController = {
             res.status(500).send('Internal Server Error');
         }
     },
+    getConnectionsPage: async (req, res) => {
+        try {
+            return res.render('connections');
+
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
     getListofRequests: async (req, res) => {
         try {
             let userId = req.cookies.userId;
@@ -353,8 +362,6 @@ const userController = {
             if (user.friendRequestsReceived !== null) {
                 receivedReq = [...user.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(num => num !== "")]
             }
-
-            console.log(sentReq, receivedReq, "list of requests of user");
 
             let sentArr = [];
             let receivedArr = [];
@@ -375,8 +382,39 @@ const userController = {
                 }));
             }
 
-            console.log(sentArr, receivedArr, "Users info got in arr");
             return res.send({ message: "list of requests", sentArr, receivedArr });
+
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+    getListofConections: async (req, res) => {
+        try {
+            let userId = req.cookies.userId;
+
+            let user = await User.findOne({ where: { id: userId } })
+
+            let connection = []
+
+            if (user.friendLists !== null) {
+                connection = [...user.friendLists.replace(/["\\/]/g, '').split(" ").filter(num => num !== "")]
+            }
+            let connectionsArr = [];
+
+            if (connection.length) {
+                connectionsArr = await Promise.all(connection.map(async (req) => {
+                    let id = parseInt(req);
+                    let user = await User.findOne({ where: { id } });
+                    console.log(user,"checking user is null");
+                    if(user!==null){
+                        return user;
+                    }
+                    else return
+                }));
+            }
+           
+            return res.send({ message: "list of connections", connectionsArr });
 
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);

@@ -309,29 +309,17 @@
     transition: .5s;
 }
 
-.team-item:hover img {
-    top: -30px;
-}
 
-.team-item .team-text {
-    position: relative;
-    height: 100px;
-    transition: .5s;
-}
 
-.team-item:hover .team-text {
-    margin-top: -60px;
-    height: 160px;
-}
+
+
 
 .team-item .team-text .team-social {
     opacity: 0;
     transition: .5s;
 }
 
-.team-item:hover .team-text .team-social {
-    opacity: 1;
-}
+
 
 .team-item .team-social .btn {
     display: inline-flex;

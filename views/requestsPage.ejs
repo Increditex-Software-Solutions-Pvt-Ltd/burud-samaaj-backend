@@ -83,13 +83,11 @@
                                             Full name
                                         </th>
                                         <th>
-                                            status
+                                            District
                                         </th>
-
                                         <th>
-                                            action
+                                            Action
                                         </th>
-
                                     </tr>
                                 </thead>
                                 <tbody id="sentBody">
@@ -107,11 +105,10 @@
                                             Full name
                                         </th>
                                         <th>
-                                            status
+                                            District
                                         </th>
-
                                         <th>
-                                            action
+                                            Action
                                         </th>
 
                                     </tr>
@@ -192,36 +189,108 @@
                 sentBody.innerHTML = ""
                 for (user of sentArr) {
                     let createrow = document.createElement("tr")
-                    let nametd = document.createElement("td")
-                    nametd.innerText = `${user.firstname} ${user.lastname}`
-                    let statustd = document.createElement("td")
-                    statustd.innerText = "Pending"
-                    let actiontd = document.createElement("td")
-                    actiontd.innerText = "actions"
 
+                    let nametd = document.createElement("td")
+                    nametd.innerText = `${user.firstname} ${user.middlename} ${user.lastname}`
+
+                    let statustd = document.createElement("td")
+                    statustd.innerText = `${user.district}`
+
+                    let actiontd = document.createElement("td")
+                    let viewbtn = document.createElement("button")
+                    viewbtn.style.color="white"
+                    viewbtn.style.backgroundColor="#dc3545"
+                    viewbtn.style.border="none"
+                    viewbtn.style.padding="6px 10px"
+                    viewbtn.innerText = "View Profile"
+                    
+                    let profileId=undefined
+                    await $.ajax({
+                        type: 'GET',
+                        url: '/getProfileid',
+                        data: { id: user.id },
+                        success: function (response) {
+                            // Handle success response
+                            profileId = response.profileId
+                            console.log(response.profileId)
+
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle error
+                            console.error(error);
+                        }
+                    });
+
+                    viewbtn.addEventListener('click', async () => {
+                        window.location.href = `/detailprofile/${profileId}`
+                    })
+                    actiontd.appendChild(viewbtn)
                     createrow.append(nametd, statustd, actiontd)
                     sentBody.appendChild(createrow)
                 }
             } else {
-                sentBody.innerHTML = "<h2>No Requests Sent</h2>"
+                sentBody.innerHTML = ""
+                let noData = document.createElement("tr")
+                noData.classList="text-center text-danger fs-4"
+                let noDatatd = document.createElement("td")
+                noDatatd.colSpan="3"
+                noDatatd.innerText="No Requests Sent"
+                noData.appendChild(noDatatd)
+                sentBody.append(noData)
             }
 
             if (receivedArr.length) {
                 receivedBody.innerHTML = ""
                 for (user of receivedArr) {
                     let createrow = document.createElement("tr")
+
                     let nametd = document.createElement("td")
-                    nametd.innerText = `${user.firstname} ${user.lastname}`
+                    nametd.innerText = `${user.firstname} ${user.middlename} ${user.lastname}`
+
                     let statustd = document.createElement("td")
-                    statustd.innerText = "Pending"
+                    statustd.innerText = `${user.district}`
+
                     let actiontd = document.createElement("td")
-                    actiontd.innerText = "actions"
+                    let viewbtn = document.createElement("button")
+                    viewbtn.style.color="white"
+                    viewbtn.style.backgroundColor="#dc3545"
+                    viewbtn.style.border="none"
+                    viewbtn.style.padding="6px 10px"
+                    viewbtn.innerText = "View Profile"
+                    let profileId=undefined
+                    await $.ajax({
+                        type: 'GET',
+                        url: '/getProfileid',
+                        data: { id: user.id },
+                        success: function (response) {
+                            // Handle success response
+                            profileId = response.profileId
+                            console.log(response.profileId)
+
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle error
+                            console.error(error);
+                        }
+                    });
+
+                    viewbtn.addEventListener('click', async () => {
+                        window.location.href = `/detailprofile/${profileId}`
+                    })
+                    actiontd.appendChild(viewbtn)
 
                     createrow.append(nametd, statustd, actiontd)
                     receivedBody.appendChild(createrow)
                 }
             } else {
-                receivedBody.innerHTML = "<h2>No Requests Received</h2>"
+                receivedBody.innerHTML = ""
+                let noData = document.createElement("tr")
+                noData.classList="text-center text-danger fs-4"
+                let noDatatd = document.createElement("td")
+                noDatatd.colSpan="3"
+                noDatatd.innerText="No Requests Received"
+                noData.appendChild(noDatatd)
+                receivedBody.append(noData)
             }
 
         }

@@ -301,49 +301,54 @@
 					<div class="row align-items-center">
 						<div class="col">
 							<h1 class="page-header-title">
-								Success videos</h1>
+								Success Videos</h1>
 						</div>
-					
-								<!-- End Col -->
-
+						<!-- End Col -->
+						<div class="col-auto">
+						
+							<a class="btn btn-sm btn-success ms-2" href="javascript:void(0)" onclick="addSuccessStory()">
+								<i class="bi-plus-circle me-1"></i>
+								Add Success Videos
+							</a>
+						</div>
 								<!-- End Col -->
 					</div>
 					<!-- End Row -->
 				</div>
 				<!-- End Page Header -->
 
-				<div class="purchase-table-filters">
-					<div class="row g-3">
+				<div class="successvideo-table-filters">
+					<div class="row g-3 ">
 						<div class="col-12 col-md-3">
 							<div class="input-group input-group-sm">
 								<div class="input-group-text">
 									<i class="bi-search"></i>
 								</div>
-								<input type="search" class="form-control purchase-table-search"
+								<input type="search" class="form-control add-successvideo-table-search"
 									placeholder="Search here">
 							</div>
 						</div>
 
-
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table id="bef-germination-table"
-						class="w-100 table table-bordered table-nowrap table-align-middle">
-						<thead class="thead-light" align="left">
+					<table id="successvideo-table" class="table table-bordered  table-nowrap table-align-middle">
+						<thead class="thead-light " align="left">
 							<tr>
 								<th>Action</th>
-								<th>About company</th>
-								<th>About Founder</th>
-								<th>Founder image</th>
+								<th>Youtube Url</th>
+								<th>Year</th>
+								<th>description</th>
+								
+
 							</tr>
 						</thead>
-					     <tbody>
+					    <tbody>
 
-						 </tbody>
+						</tbody>
 					</table>
 				</div>
-				<div class="bef-germination-table-footer"></div>
+				<div class="successvideo-table-footer"></div>
 			</div>
 		
 
@@ -458,59 +463,61 @@
 				}],
 			});
 		</script>
-
-		
-		<script>
-			let supplierListTable = false;
-			supplierListTable = $('#after-germination-table').DataTable({
-				//data: {},
-				lengthChange: true,
-				columnDefs: [{
-					// targets: [0,],
-					// orderable: false,
-				}],
-				order: [
-					[1, 'desc'],
-					[0, 'desc']
-				],
-				initComplete: function (settings, json) {
-					$('.dataTables_filter').hide();
-					$('.after-germination-table-footer').append($('#after-germination-table_wrapper .row:last-child()')).find('.previous').addClass('ms-md-auto');
-					$('.after-germination-table-footer .dataTables_info').before($('.dataTables_length').find('label').attr('class', 'd-inline-flex text-nowrap align-items-center gap-2'));
-					$('.after-germination-table-search').on('input', function () {
-						bookingListTable.search(this.value).draw();
-					});
-					this.api().table().buttons().container().find('.btn-secondary').removeClass('btn-secondary');
-					this.api().table().buttons().container().appendTo($('.after-germination-table-filters .export-buttons'));
-				},
-				buttons: [{
-					extend: 'collection',
-					text: '<i class="bi bi-cloud-download-fill"></i>',
-					className: 'btn-sm btn-outline-primary',
-					buttons: [{
-						extend: 'copy',
-						text: '<i class="bi-clipboard2-check dropdown-item-icon"></i> Copy'
-					},
-					{
-						extend: 'excel',
-						text: '<i class="bi-filetype-xlsx dropdown-item-icon"></i> Excel'
-					},
-					{
-						extend: 'csv',
-						text: '<i class="bi-filetype-csv dropdown-item-icon"></i> CSV'
-					},
-					{
-						extend: 'pdf',
-						text: '<i class="bi-filetype-pdf dropdown-item-icon"></i> PDF'
-					},
-					{
-						extend: 'print',
-						text: '<i class="bi-printer dropdown-item-icon"></i> Print'
-					}
-					]
-				}]
+<script>
+	let videoTable = false;
+	videoTable = $('#successvideo-table').DataTable({
+		lengthChange: true,
+		columnDefs: [{
+			columnDefs: [{ width: 200, targets: 0 }],
+			fixedColumns: true,
+			paging: false,
+			scrollCollapse: true,
+			scrollX: true,
+		}],
+		order: [
+			[1, 'desc'],
+			[0, 'desc']
+		],
+		initComplete: function (settings, json) {
+			$('.dataTables_filter').hide();
+			$('.successvideo-table-footer').append($('#successvideo-table_wrapper .row:last-child()')).find('.previous').addClass('ms-md-auto');
+			$('.dataTables_info').before($('.dataTables_length').find('label').attr('class', 'd-inline-flex text-nowrap align-items-center gap-2'));
+			$('.successvideo-table-search').on('input', function () {
+				videoTable.search(this.value).draw();
 			});
-		</script>
+			this.api().table().buttons().container().find('.btn-secondary').removeClass('btn-secondary');
+			this.api().table().buttons().container().appendTo($('.successvideo-table-filters .export-buttons'));
+		},
+		buttons: [{
+			extend: 'collection',
+			text: '<i class="bi bi-cloud-download-fill"></i>',
+			className: 'btn-sm btn-outline-primary',
+			buttons: [{
+				extend: 'copy',
+				text: '<i class="bi-clipboard2-check dropdown-item-icon"></i> Copy'
+			},
+			{
+				extend: 'excel',
+				text: '<i class="bi-filetype-xlsx dropdown-item-icon"></i> Excel'
+			},
+			{
+				extend: 'csv',
+				text: '<i class="bi-filetype-csv dropdown-item-icon"></i> CSV'
+			},
+			{
+				extend: 'pdf',
+				text: '<i class="bi-filetype-pdf dropdown-item-icon"></i> PDF'
+			},
+			{
+				extend: 'print',
+				text: '<i class="bi-printer dropdown-item-icon"></i> Print'
+			}
+			]
+		}],
+	});
+</script>
+		
+	
 			<script>
 				let memberTable = false;
 				memberTable = $('#member-table').DataTable({
