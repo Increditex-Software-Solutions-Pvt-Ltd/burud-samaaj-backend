@@ -26,6 +26,12 @@ userRouter.get('/login', userActions.checkLoggedIn, userController.getloginform)
 userRouter.post('/login', userController.login);
 userRouter.get('/logout', userController.userlogout);
 
+userRouter.get('/emailReset', userController.getResetEmailform);
+userRouter.post('/sendResetLink', userController.sendResetLink);
+userRouter.get('/resetpassword', userController.resetPassCheck)
+userRouter.get('/updatepasswordform/:id', userController.getupdatePassform)
+userRouter.post('/updatepassword', userController.updatePassword)
+
 userRouter.post('/addprofile', saveUserProfile);
 userRouter.post('/addimages', saveUserImages);
 userRouter.get('/checkprofile', checkProfile);
@@ -45,7 +51,7 @@ userRouter.post('/handleAccept', userController.handleReqAccept);
 userRouter.post('/handleReject', userController.handleReqReject);
 userRouter.get('/getListofRequests', userController.getListofRequests);
 userRouter.get('/getListofConections', userController.getListofConections);
-userRouter.get("/getProfileid",getProfileid);
-userRouter.post("/delete-profile/:id",deleteProfile);
+userRouter.get("/getProfileid", getProfileid);
+userRouter.post("/delete-profile/:id", deleteProfile);
 
 module.exports = userRouter;

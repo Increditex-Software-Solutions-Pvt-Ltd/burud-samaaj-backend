@@ -12,6 +12,7 @@ const { About } = require('../../admin/models/Aboutcms.model');
 const { Member } = require('../../admin/models/Membercms.model');
 const { Successstory } = require('../../admin/models/Successstory.model');
 const { Successvideo } = require('../../admin/models/Successvideo.model');
+const rs = require('random-strings');
 
 const userController = {
     gethome: async (req, res) => {
@@ -259,7 +260,7 @@ const userController = {
                     const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
 
-                        return res.render('success-stories', { user, userprofile,allstories });
+                        return res.render('success-stories', { user, userprofile, allstories });
                     }
                 } catch (err) {
 
@@ -267,7 +268,7 @@ const userController = {
                 }
             }
 
-            return res.render('success-stories', { user: null,allstories }); // Render without user information
+            return res.render('success-stories', { user: null, allstories }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
@@ -289,7 +290,7 @@ const userController = {
                     const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
 
-                        return res.render('success-videos', { user, userprofile,allvideos });
+                        return res.render('success-videos', { user, userprofile, allvideos });
                     }
                 } catch (err) {
 
@@ -297,7 +298,7 @@ const userController = {
                 }
             }
 
-            return res.render('success-videos', { user: null ,allvideos}); // Render without user information
+            return res.render('success-videos', { user: null, allvideos }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
@@ -310,18 +311,18 @@ const userController = {
             const about = await About.findAll();
             const aboutwebsite = about.length > 0 ? about[0].aboutwebsite : "अखिल बुरुड समाज वधूवर सूचक समिती हि २०१७ पासून social media च्या माध्यमातून कार्य समाजामध्ये काम करत असते. मुख्यतः whatapp च्या माध्यमातून तर हा प्रवास चालूच आहे. जेणेकरून सर्व समाजबांधवाना सोपे व्हावे. नवीन तंत्रज्ञानाचा फायदा घेत “धरूया तंत्रज्ञानाची कस करूया समाजाच्या विकास” ह्या ब्रीदवाक्यानुसार आपली संस्था काम करत आहे. आता सध्या संस्थेच्या समितीमध्ये ११ पदाधिकारी महाराष्ट्र आणि कर्नाटका ह्या राज्यांमध्ये कार्यरत आहे. आजतागायत ह्या संस्थेच्या माध्यमातून दरवर्षी १००-१५० पेक्षा जास्त लग्न जोडले जातात. तसेच उमेदवाराच्या माहितीची योग्य शहनिशा करून मगच ती माहिती इतरांपर्यंत पोहचवत असतो. समितीने सर्व माहिती संकलित केली असून तो एकाच व्यासपीठावर उपलब्ध करून देण्याच काम ह्या संस्थेमार्फत केले आहे. whatsapp ग्रुप, facebook, youtube channel च्या माध्यमातून सुरु झालेला हा प्रवास matrimony website आणि app पर्यंत येऊन पोहचला आहे. समाजातील लोकांना घर बसल्या योग्य सुविधा देऊन समाजातील कुटुंबसंस्था विकसित कशी होईल ह्याकडे संस्थेचा मानस असतो. दिवसांपूर्वी कोरोनाच्या काळामध्ये ONLINE वधू-वर सूचक मेळावा घेतला होता. त्याला भरगोस प्रतिसाद मिळाला होता आणि तो कार्यक्रम यशस्वी झाला आहे. सदर संस्थेला समाजातून सकारात्मक नजरेने पहिले जाते. समाजासाठी होणार्या कुठल्याही महत्वाच्या कार्याला संस्थेकडून प्रोत्साहन दिले जाते. समाजाचा मानस आणि आजची ओळख लक्षात घेऊन पिंपरी चिंचवड बुरुड समाज समिती जो मेळावा आयोजित केला आहे त्यासाठीदेखील अखिल महाराष्ट्र बुरुड समाज वधूवर सूचक समितीने सहकार्याची भूमिका बजावली आहे.";
 
-            const preseident = await Member.findOne({where:{position:"अध्यक्ष "}});
+            const preseident = await Member.findOne({ where: { position: "अध्यक्ष " } });
 
             const preseidentimage = preseident.memberpic;
 
-            const adhykshmanogat = about.length > 0 ? about[0].adhykshmanogat :""
-            const sachivmanogat = about.length > 0 ? about[0].sachivmanogat :""
-           
+            const adhykshmanogat = about.length > 0 ? about[0].adhykshmanogat : ""
+            const sachivmanogat = about.length > 0 ? about[0].sachivmanogat : ""
+
 
             const allmembers = await Member.findAll();
             if (token) {
                 try {
-                    
+
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     const userId = decoded.userId;
 
@@ -330,7 +331,7 @@ const userController = {
                     const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
 
-                        return res.render('about', { user, userprofile,aboutwebsite,allmembers,preseidentimage ,adhykshmanogat,sachivmanogat});
+                        return res.render('about', { user, userprofile, aboutwebsite, allmembers, preseidentimage, adhykshmanogat, sachivmanogat });
                     }
                 } catch (err) {
 
@@ -338,7 +339,7 @@ const userController = {
                 }
             }
 
-            return res.render('about', { user: null ,aboutwebsite,allmembers,preseidentimage ,adhykshmanogat,sachivmanogat}); // Render without user information
+            return res.render('about', { user: null, aboutwebsite, allmembers, preseidentimage, adhykshmanogat, sachivmanogat }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
@@ -422,14 +423,14 @@ const userController = {
                 connectionsArr = await Promise.all(connection.map(async (req) => {
                     let id = parseInt(req);
                     let user = await User.findOne({ where: { id } });
-                    console.log(user,"checking user is null");
-                    if(user!==null){
+                    console.log(user, "checking user is null");
+                    if (user !== null) {
                         return user;
                     }
                     else return
                 }));
             }
-           
+
             return res.send({ message: "list of connections", connectionsArr });
 
         } catch (error) {
@@ -469,9 +470,115 @@ const userController = {
 
             res.status(404).send({ "message": "Error", error })
         }
+    },
+    getResetEmailform: async (req, res) => {
+        try {
+            return res.render("resetEmail")
+        } catch (error) {
+            res.status(404).send({ "message": "Error", error })
+        }
+    },
+    sendResetLink: async (req, res) => {
+        try {
+            const email = req.body.email
 
+            const user = await User.findOne({ where: { email } })
+            console.log(user, "user found using email");
 
+            if (user) {
 
+                const resetToken = await rs.alphaNumMixed(20);
+                const resetLink = `http://localhost:5000/resetpassword?resetToken=${resetToken}`
+
+                const EMAIL_PASS = process.env.EMAIL_PASS;
+
+                const transporter = await nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'nishantphule12@gmail.com',
+                        pass: EMAIL_PASS
+                    }
+                });
+
+                const mailOptions = {
+                    from: 'nishantphule12@gmail.com', // sender address
+                    to: email, // list of receivers
+                    text: ` Click the link to reset password ${resetLink}`,
+                    html: ` Click the link to reset password <a href=${resetLink}>Click here</a></h2>`
+                };
+
+                await transporter.sendMail(mailOptions, function (err, info) {
+                    if (err)
+                        console.log(err)
+                    else
+                        console.log(info);
+                });
+
+                user.resetToken = resetToken;
+                await user.save()
+                res.status(201).json({ message: 'Check your email' });
+            } else {
+                res.status(201).send({ message: "Email Not found" })
+            }
+
+        } catch (error) {
+            res.status(404).send({ "message": "Error", error })
+        }
+    },
+    resetPassCheck: async (req, res) => {
+        try {
+
+            const resetToken = req.query.resetToken;
+
+            const user = await User.findOne({ where: { resetToken: resetToken } });
+            console.log(resetToken, user, "Matching the token in db from email");
+
+            if (user) {
+                res.cookie('passId', user.id, { httpOnly: true, secure: true });
+                res.redirect(`http://localhost:5000/updatepasswordform/${user.id}`)
+            }
+            else {
+                res.redirect("/")
+            }
+        } catch (error) {
+            res.status(504).json({ message: "Internal Server Error" })
+            alert({ message: "Invalid Token" })
+        }
+
+    },
+    getupdatePassform: async (req, res) => {
+        try {
+            return res.render("updatePassForm")
+        } catch (error) {
+            res.status(504).json({ message: "Internal Server Error" })
+        }
+    },
+    updatePassword: async (req, res) => {
+        try {
+            const data = req.body;
+            const id = req.cookies.passId;
+
+            console.log((data, id, "Getting the updated pass info in controller"));
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+
+            let user = await User.findOne({ where: { id: id } })
+
+            let editUser = {
+                ...user,
+                password: hashedPassword,
+                updatedAt: Date.now(),
+                resetToken: null
+            }
+
+            let updateUser = await user.update(editUser)
+            await updateUser.save()
+
+            res.clearCookie('passId');
+            res.status(201).json({ message: "Password Reset was Successful" });
+        } catch (error) {
+            res.status(504).json({ message: "Internal Server Error" })
+        }
     },
     login: async (req, res) => {
         try {
@@ -536,6 +643,7 @@ const userController = {
                 senderArr += ` ${receiver.id}`
                 const createSent = {
                     ...sender,
+                    updatedAt: Date.now(),
                     friendRequestsSent: senderArr
                 }
                 const updatesender = await sender.update(createSent)
@@ -545,6 +653,7 @@ const userController = {
             else {
                 const createSent = {
                     ...sender,
+                    updatedAt: Date.now(),
                     friendRequestsSent: sender.friendRequestsSent += ` ${receiver.id}`
                 }
                 const updatesender = await sender.update(createSent)
@@ -556,6 +665,7 @@ const userController = {
                 receiverArr += ` ${sender.id}`
                 const createReceived = {
                     ...receiver,
+                    updatedAt: Date.now(),
                     friendRequestsReceived: receiverArr
                 }
                 const updatereceiver = await receiver.update(createReceived)
@@ -586,6 +696,7 @@ const userController = {
             else {
                 const createReceived = {
                     ...receiver,
+                    updatedAt: Date.now(),
                     friendRequestsReceived: receiver.friendRequestsReceived += ` ${sender.id}`
                 }
                 const updatereceiver = await receiver.update(createReceived)
@@ -658,8 +769,6 @@ const userController = {
                 }
 
             }
-
-            console.log(sms, "sms sending");
             return res.send({ message: sms })
 
 
@@ -705,7 +814,7 @@ const userController = {
                         console.log(info);
                 });
 
-                console.log(otp)
+                console.log(otp, "OTP for signing")
                 res.cookie('signupOtp', otp, { httpOnly: true, secure: true });
                 // sessionStorage.setItem("signupObj", JSON.stringify(req.body))
                 return res.status(201).json({ message: 'Check your email', userData });
@@ -734,6 +843,7 @@ const userController = {
             if (sender.friendLists !== null) {
                 let editSender = {
                     ...sender,
+                    updatedAt: Date.now(),
                     friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter((id) => id != receiver.id).join(" "),
                     friendLists: sender.friendLists += ` ${receiver.id}`
                 }
@@ -770,6 +880,7 @@ const userController = {
                 friendListsArr += ` ${receiver.id}`
                 let editSender = {
                     ...sender,
+                    updatedAt: Date.now(),
                     friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter((id) => id != receiver.id).join(" "),
                     friendLists: friendListsArr
                 }
@@ -803,6 +914,7 @@ const userController = {
             if (receiver.friendLists !== null) {
                 let editReceiver = {
                     ...receiver,
+                    updatedAt: Date.now(),
                     friendRequestsReceived: receiver.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(id => id != sender.id).join(" "),
                     friendLists: receiver.friendLists += ` ${sender.id}`
                 }
@@ -814,6 +926,7 @@ const userController = {
                 friendListsArr += ` ${sender.id}`
                 let editReceiver = {
                     ...receiver,
+                    updatedAt: Date.now(),
                     friendRequestsReceived: receiver.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(id => id != sender.id).join(" "),
                     friendLists: friendListsArr
                 }
@@ -841,6 +954,7 @@ const userController = {
 
             let editSenderRej = {
                 ...sender,
+                updatedAt: Date.now(),
                 friendRequestsSent: sender.friendRequestsSent.replace(/["\\/]/g, '').split(" ").filter(id => id != receiver.id).join(" ")
             }
             console.log(editSenderRej, "Sender");
@@ -871,6 +985,7 @@ const userController = {
 
             let editReceiverRej = {
                 ...receiver,
+                updatedAt: Date.now(),
                 friendRequestsReceived: receiver.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter(id => id != sender.id).join(" ")
             }
             console.log(editReceiverRej, "Receiver");
@@ -887,4 +1002,4 @@ const userController = {
 
 }
 
-module.exports = userController;
+module.exports = userController; 

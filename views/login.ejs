@@ -15,7 +15,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -33,27 +35,29 @@
     <link href="css/style.css" rel="stylesheet">
 
 
-    
-    
+
+
     <!-- bs4 links here -->
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- font icon links -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8iN17SmeVH6qyuqF7rTlM6HAPB4l+K5cI8PTq5FfF5s2r0dAizPj7b" crossorigin="anonymous">
+    <!-- font icon links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-GLhlTQ8iN17SmeVH6qyuqF7rTlM6HAPB4l+K5cI8PTq5FfF5s2r0dAizPj7b" crossorigin="anonymous">
 
-    
- 
-   
+
+
+
 
 </head>
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -63,8 +67,10 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
-        <a  class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span> <span class="text-danger">BANDHAN</span></h2>
+        <a class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span>
+                <span class="text-danger">BANDHAN</span>
+            </h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -80,23 +86,24 @@
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0" style="border-top: 1px solid blue;">
                         <a href="/success-stories" class="dropdown-item">Sucess Stories</a>
                         <a href="/success-videos" class="dropdown-item">Success videos</a>
-                       
+
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="/profile" class="nav-item nav-link">profile</a>
                 </div>
-              
+
             </div>
-            <a href="/signup" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">Register here<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="/signup" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">Register here<i
+                    class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
 
     <!-- middle portion start here -->
     <div class="p-1 mt-5 position-absolute top-0 end-0">
-        <% if (messages.error && messages.error.length > 0) { %>
-            <% messages.error.forEach((item, index) => { %>
+        <% if (messages.error && messages.error.length> 0) { %>
+            <% messages.error.forEach((item, index)=> { %>
                 <div class="toast fade text-bg-danger show" id="alert-<%= index %>" role="alert">
                     <div class="toast-header py-1">
                         <strong class="me-auto"></strong>
@@ -104,30 +111,32 @@
                     </div>
                     <div class="toast-body text-danger"><%- item %></div>
                 </div>
-            <% }); %>
-        <% } %>
-      
-        <% if (messages.success && messages.success.length > 0) { %>
-            <% messages.success.forEach((item, index) => { %>
-                <div class="toast fade  text-success show" style="z-index: 999;" id="alert-<%= index %>" role="alert">
-                    <div class="toast-header py-1">
-                        <strong class="me-auto"></strong>
-                        <button class="btn-close btn-sm" data-bs-dismiss="toast"></button>
-                    </div>
-                    <div class="toast-body"><%- item %></div>
-                </div>
-            <% }); %>
-        <% } %>
-      </div>
+                <% }); %>
+                    <% } %>
+
+                        <% if (messages.success && messages.success.length> 0) { %>
+                            <% messages.success.forEach((item, index)=> { %>
+                                <div class="toast fade  text-success show" style="z-index: 999;" id="alert-<%= index %>"
+                                    role="alert">
+                                    <div class="toast-header py-1">
+                                        <strong class="me-auto"></strong>
+                                        <button class="btn-close btn-sm" data-bs-dismiss="toast"></button>
+                                    </div>
+                                    <div class="toast-body"><%- item %></div>
+                                </div>
+                                <% }); %>
+                                    <% } %>
+    </div>
     <div class="container-fluid  py-5 wow fadeIn" data-wow-delay="0.1s">
-        
+
         <div class="container">
             <div class="row m-0 p-3">
-                <div class="col-md-6 text-center mb-5 main_img" >
+                <div class="col-md-6 text-center mb-5 main_img">
                     <img src="/img/features1.jpg" alt="">
                 </div>
                 <div class="col-md-6 mt-5">
-                    <div class="card wow fadeInRight" style="box-shadow: 3px 4px 9px black; border: none;" data-wow-delay="0.5s">
+                    <div class="card wow fadeInRight" style="box-shadow: 3px 4px 9px black; border: none;"
+                        data-wow-delay="0.5s">
                         <div class="card-header">
                             <h4 class="card-title text-center">Welcome to Burud Bhandan</h4>
                         </div>
@@ -135,28 +144,36 @@
                             <form id="login-form" action="/login" method="post">
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    <input type="email" class="form-control shadow" name="email"   id="email" aria-describedby="emailHelp" style="outline: none;border: none; border-bottom: 1px solid black;" placeholder="Enter email address">
+                                    <input type="email" class="form-control shadow" name="email" id="email"
+                                        aria-describedby="emailHelp"
+                                        style="outline: none;border: none; border-bottom: 1px solid black;"
+                                        placeholder="Enter email address">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control shadow" name="password" id="password" style="outline: none;
+                                    <input type="password" class="form-control shadow" name="password" id="password"
+                                        style="outline: none;
                                     border: none; border-bottom: 1px solid black;" placeholder="Enter Password ">
                                 </div>
-                                <div class="text-center mb-3">
-                                    <h6 class="text-danger">Forget password</h6>
+
+                                <button type="submit" class="btn btn-danger btn-block mb-3">LOGIN</button>
+                                <div class="text-center">
+                                    <h6 class="text-danger">
+                                        <a type="submit" class="btn btn-danger btn-block" href="/emailReset">Forget
+                                            password</a>
+                                    </h6>
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-block">LOGIN</button>
                                 <br>
                                 <div class="text-center">
-                                    <p> 
+                                    <p>
                                         <span style="color: gray;">New Member?</span>
-                                    <!-- <button type="button"  data-toggle="modal" data-target=".bd-example-modal-lg" style="border: none; outline: none; background-color:white;">
+                                        <!-- <button type="button"  data-toggle="modal" data-target=".bd-example-modal-lg" style="border: none; outline: none; background-color:white;">
                                         signUp
                                     </button>    -->
-                                
+
                                         <a href="/signup" style="text-decoration: none; " class="text-danger">signup</a>
-                                
-                                    </p> 
+
+                                    </p>
                                 </div>
                             </form>
                         </div>
@@ -165,111 +182,115 @@
             </div>
         </div>
     </div>
-          
-  
-   
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content justify-content-center d-flex">
-        <main class="card-container slideUp-animation">
-            <div class="image-container">
-                <h1 class="company">Basket <sup>&trade;</sup></h1>
-                <img src="./assets/images/signUp.svg" class="illustration" alt="">
-                <p class="quote">Sign up today to get exciting offers..!</p>
-                <a href="#btm" class="mobile-btm-nav">
-                    <img src="./assets/images/dbl-arrow.png" alt="">
-                </a>
+
+
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content justify-content-center d-flex">
+                <main class="card-container slideUp-animation">
+                    <div class="image-container">
+                        <h1 class="company">Basket <sup>&trade;</sup></h1>
+                        <img src="./assets/images/signUp.svg" class="illustration" alt="">
+                        <p class="quote">Sign up today to get exciting offers..!</p>
+                        <a href="#btm" class="mobile-btm-nav">
+                            <img src="./assets/images/dbl-arrow.png" alt="">
+                        </a>
+                    </div>
+                    <form action="" method="">
+                        <div class="form-container slideRight-animation">
+
+                            <h1 class="form-header">
+                                Get started
+                            </h1>
+
+                            <div class="input-container">
+                                <label for="f-name"></label>
+                                <input type="text" name="f-name" id="f-name" required>
+                                <span>
+                                    First name
+                                </span>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="input-container">
+                                <label for="l-name"></label>
+                                <input type="text" name="l-name" id="l-name" required>
+                                <span>
+                                    Last name
+                                </span>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="input-container">
+                                <label for="mail">
+                                </label>
+                                <input type="email" name="mail" id="mail" required>
+                                <span>
+                                    E-mail
+                                </span>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="input-container">
+                                <label for="phone">
+                                </label>
+                                <input type="tel" name="phone" id="phone" required>
+                                <span>Phone</span>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="input-container">
+                                <label for="user-password"></label>
+                                <input type="password" name="user-password" id="user-password" class="user-password"
+                                    required>
+                                <span>Password</span>
+                                <div class="error"></div>
+                            </div>
+
+                            <div class="input-container">
+                                <label for="user-password-confirm"></label>
+                                <input type="password" name="user-password-confirm" id="user-password-confirm"
+                                    class="password-confirmation" required>
+                                <span>
+                                    Confirm Password
+                                </span>
+                                <div class="error"></div>
+                            </div>
+
+                            <div id="btm">
+                                <button type="submit" class="submit-btn">Create Account</button>
+                                <p class="btm-text">
+                                    Already have an account..? <span class="btm-text-highlighted"> Log in</span>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </main>
+                <section class="outro-overlay disabled slideUp-animation">
+                    <h1 class="company">Basket <sup>&trade;</sup></h1>
+                    <h1 class="outro-greeting">Thank's for signing up..!</h1>
+                    <img src="./assets/images/shape.svg" alt="" class="shape">
+                    <img src="./assets/images/signedUp.svg" alt="" id="signedUp-illustration"
+                        class="slideRight-animation">
+                    <div class="author-link">
+                        &copy;&nbsp;
+                        <a href="https://www.0xabdulkhalid.ml/">0xabdulkhalid</a> |
+                        <a href="https://www.github.com/0xabdulkhalid/basket-sign-up-form/">Source Code</a>
+                    </div>
+                </section>
             </div>
-            <form action="" method="">
-                <div class="form-container slideRight-animation">
-        
-                    <h1 class="form-header">
-                        Get started
-                    </h1>
-        
-                    <div class="input-container">
-                        <label for="f-name"></label>
-                        <input type="text" name="f-name" id="f-name" required>
-                        <span>
-                            First name
-                        </span>
-                        <div class="error"></div>
-                    </div>
-        
-                    <div class="input-container">
-                        <label for="l-name"></label>
-                        <input type="text" name="l-name" id="l-name" required>
-                        <span>
-                            Last name
-                        </span>
-                        <div class="error"></div>
-                    </div>
-        
-                    <div class="input-container">
-                        <label for="mail">
-                        </label>
-                        <input type="email" name="mail" id="mail" required>
-                        <span>
-                            E-mail
-                        </span>
-                        <div class="error"></div>
-                    </div>
-        
-                    <div class="input-container">
-                        <label for="phone">
-                        </label>
-                        <input type="tel" name="phone" id="phone" required>
-                        <span>Phone</span>
-                        <div class="error"></div>
-                    </div>
-        
-                    <div class="input-container">
-                        <label for="user-password"></label>
-                        <input type="password" name="user-password" id="user-password" class="user-password" required>
-                        <span>Password</span>
-                        <div class="error"></div>
-                    </div>
-    
-                    <div class="input-container">
-                        <label for="user-password-confirm"></label>
-                        <input type="password" name="user-password-confirm" id="user-password-confirm" class="password-confirmation" required>
-                        <span>
-                            Confirm Password
-                        </span>
-                        <div class="error"></div>
-                    </div>
-    
-                    <div id="btm">
-                        <button type="submit" class="submit-btn">Create Account</button>
-                        <p class="btm-text">
-                            Already have an account..? <span class="btm-text-highlighted">  Log in</span>
-                        </p>
-                    </div>
-                </div>
-            </form>
-        </main>
-        <section class="outro-overlay disabled slideUp-animation">
-            <h1 class="company">Basket <sup>&trade;</sup></h1>
-            <h1 class="outro-greeting">Thank's for signing up..!</h1>
-            <img src="./assets/images/shape.svg" alt="" class="shape">
-            <img src="./assets/images/signedUp.svg" alt="" id="signedUp-illustration" class="slideRight-animation">
-            <div class="author-link">
-                &copy;&nbsp;
-                <a href="https://www.0xabdulkhalid.ml/">0xabdulkhalid</a> |
-                <a href="https://www.github.com/0xabdulkhalid/basket-sign-up-form/">Source Code</a>
-            </div>
-        </section>
+        </div>
     </div>
-  </div>
-</div>
-            
+
     <!-- Footer Start -->
     <footer class="footer bg-danger">
         <div class="container">
             <div class="row m-0">
-             
-              
+
+
                 <div class="col-md-3">
                     <div class="widget3">
                         <h5>
@@ -348,10 +369,11 @@
                         </ul>
                     </div>
                 </div>
-                 <div class="col-md-6 ">
+                <div class="col-md-6 ">
                     <div class="widget1">
                         <div class="logo">
-                            <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span>BANDHAN</h2>
+                            <h2 style="font-family:fantasy;"><span class="text-warning"
+                                    style="text-decoration:underline;">BURUD</span>BANDHAN</h2>
                         </div>
                         <p>
                             In eu libero ligula. Fusce eget metus lorem, ac viverra
@@ -391,7 +413,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <p>© Copyright Burud-bhanden.com. Designed by @Increditex software solutions pvt ltd. All right reserved</p>
+                        <p>© Copyright Burud-bhanden.com. Designed by @Increditex software solutions pvt ltd. All right
+                            reserved</p>
                     </div>
                 </div>
             </div>
@@ -401,7 +424,8 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

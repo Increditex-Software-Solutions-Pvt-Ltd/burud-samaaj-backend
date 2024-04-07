@@ -198,13 +198,13 @@
 
                     let actiontd = document.createElement("td")
                     let viewbtn = document.createElement("button")
-                    viewbtn.style.color="white"
-                    viewbtn.style.backgroundColor="#dc3545"
-                    viewbtn.style.border="none"
-                    viewbtn.style.padding="6px 10px"
+                    viewbtn.style.color = "white"
+                    viewbtn.style.backgroundColor = "#dc3545"
+                    viewbtn.style.border = "none"
+                    viewbtn.style.padding = "6px 10px"
                     viewbtn.innerText = "View Profile"
-                    
-                    let profileId=undefined
+
+                    let profileId = undefined
                     await $.ajax({
                         type: 'GET',
                         url: '/getProfileid',
@@ -231,10 +231,10 @@
             } else {
                 sentBody.innerHTML = ""
                 let noData = document.createElement("tr")
-                noData.classList="text-center text-danger fs-4"
+                noData.classList = "text-center text-danger fs-4"
                 let noDatatd = document.createElement("td")
-                noDatatd.colSpan="3"
-                noDatatd.innerText="No Requests Sent"
+                noDatatd.colSpan = "3"
+                noDatatd.innerText = "No Requests Sent"
                 noData.appendChild(noDatatd)
                 sentBody.append(noData)
             }
@@ -252,12 +252,12 @@
 
                     let actiontd = document.createElement("td")
                     let viewbtn = document.createElement("button")
-                    viewbtn.style.color="white"
-                    viewbtn.style.backgroundColor="#dc3545"
-                    viewbtn.style.border="none"
-                    viewbtn.style.padding="6px 10px"
+                    viewbtn.style.color = "white"
+                    viewbtn.style.backgroundColor = "#dc3545"
+                    viewbtn.style.border = "none"
+                    viewbtn.style.padding = "6px 10px"
                     viewbtn.innerText = "View Profile"
-                    let profileId=undefined
+                    let profileId = undefined
                     await $.ajax({
                         type: 'GET',
                         url: '/getProfileid',
@@ -285,10 +285,10 @@
             } else {
                 receivedBody.innerHTML = ""
                 let noData = document.createElement("tr")
-                noData.classList="text-center text-danger fs-4"
+                noData.classList = "text-center text-danger fs-4"
                 let noDatatd = document.createElement("td")
-                noDatatd.colSpan="3"
-                noDatatd.innerText="No Requests Received"
+                noDatatd.colSpan = "3"
+                noDatatd.innerText = "No Requests Received"
                 noData.appendChild(noDatatd)
                 receivedBody.append(noData)
             }

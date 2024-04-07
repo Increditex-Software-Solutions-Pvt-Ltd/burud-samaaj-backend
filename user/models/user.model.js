@@ -80,8 +80,12 @@ const User = sequelize.define('user', {
     },
     friendLists: {
         type: DataTypes.JSON,
-        allowNull:true
-    }
+        allowNull: true
+    },
+    resetToken: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
 
 })
 
