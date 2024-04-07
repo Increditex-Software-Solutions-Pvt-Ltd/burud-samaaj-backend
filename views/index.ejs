@@ -492,7 +492,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--end of /.row-->
+                          
                             <div class="form-group">
                                 <label for="feedback" class="sr-only">Message</label>
                                 <textarea class="form-control" id="feedback" name="feedback" required rows="7"
@@ -1013,8 +1013,8 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="age-difference"> Email id </label>
-                                        <input class="form-control" type="email" id="email" name="email" required>
+                                        <label for="emailid"> Email id </label>
+                                        <input class="form-control" type="email" id="emailid" name="emailid" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="age-difference">Mobile number</label>
@@ -1067,7 +1067,7 @@
                                 <input type="hidden" name="occupationcity" id="occupationcityinput" value="">
                                 <input type="hidden" name="disabled" id="disabledinput" value="">
                                 <input type="hidden" name="address" id="addressinput" value="">
-                                <input type="hidden" name="email" id="emailinput" value="">
+                                <input type="hidden" name="emailid" id="emailinput" value="">
                                 <input type="hidden" name="mobile" id="mobileinput" value="">
 
 
@@ -1112,7 +1112,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="mother-name">Profile Visibility</label>
-                                    <select name="profilevisibility" class="form-control" id="profilevisibility">
+                                    <select name="profilevisibility" class="form-control" id="profilevisibility" required>
                                         <option selected disabled value="">Select</option>
                                         <option value="private">Private</option>
                                         <option value="public">Public</option>
@@ -1126,47 +1126,47 @@
                                     <label for="">Expectations</label>
                                     <textarea name="expectation" id="expectation" class="form-control"></textarea>
                                     <!-- <div class="row">
-                                                <div class="col-md-4">
-                                                    <label for="age-difference">Age Difference Upto:(In Year) </label>
-                                                    <input class="form-control" type="text" id="agedifference"
-                                                        name="agedifference" required>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="preferred-city">Preferred City:</label>
-                                                    <select class="form-control" id="preferredcity" name="preferredcity"
-                                                        required>
-                                                        <option disabled selected value="">Select</option>
-                                                        <option value="Nashik">Nashik</option>
-                                                        <option value="Pune">Pune</option>
-                                                        <option value="Jalgaon">Jalgaon</option>
-                                                        <option value="Kolhapur">Kolhapur</option>
-                                                        <option value="Sambhajinanagr">Sambhajinanagr</option>
-                                                        <option value="Chalisgaon">Chalisgaon</option>
-        
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="expected-height">Expected Height:</label>
-                                                    <input class="form-control" type="number" id="expectedheight"
-                                                        name="expectedheight" required>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="education-dropdown">Education:</label>
-                                                    <select class="form-control" id="herhiseducation" name="herhiseducation"
-                                                        required>
-                                                        <option disabled selected value="">Select</option>
-                                                        <option value="Diploma">Diploma</option>
-                                                        <option value="Master Degree">Master Degree</option>
-                                                        <option value="Graduation">Graduation</option>
-                                                        <option value="12Th">12Th</option>
-                                                        <option value="10Th">10Th</option>
-                                                        <option value="Chalisgaon">Engineering</option>
-        
-                                                    </select>
-                                                </div>
-                                            
-                                                
-                                            </div> -->
+                                                        <div class="col-md-4">
+                                                            <label for="age-difference">Age Difference Upto:(In Year) </label>
+                                                            <input class="form-control" type="text" id="agedifference"
+                                                                name="agedifference" required>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="preferred-city">Preferred City:</label>
+                                                            <select class="form-control" id="preferredcity" name="preferredcity"
+                                                                required>
+                                                                <option disabled selected value="">Select</option>
+                                                                <option value="Nashik">Nashik</option>
+                                                                <option value="Pune">Pune</option>
+                                                                <option value="Jalgaon">Jalgaon</option>
+                                                                <option value="Kolhapur">Kolhapur</option>
+                                                                <option value="Sambhajinanagr">Sambhajinanagr</option>
+                                                                <option value="Chalisgaon">Chalisgaon</option>
+                
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="expected-height">Expected Height:</label>
+                                                            <input class="form-control" type="number" id="expectedheight"
+                                                                name="expectedheight" required>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="education-dropdown">Education:</label>
+                                                            <select class="form-control" id="herhiseducation" name="herhiseducation"
+                                                                required>
+                                                                <option disabled selected value="">Select</option>
+                                                                <option value="Diploma">Diploma</option>
+                                                                <option value="Master Degree">Master Degree</option>
+                                                                <option value="Graduation">Graduation</option>
+                                                                <option value="12Th">12Th</option>
+                                                                <option value="10Th">10Th</option>
+                                                                <option value="Chalisgaon">Engineering</option>
+                
+                                                            </select>
+                                                        </div>
+                                                    
+                                                        
+                                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -1192,14 +1192,6 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script src="js/home.js"></script>
-
-    <script src="js/faq.js"></script>
-    <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
-
     <script>
         async function addProfile() {
             try {
@@ -1279,7 +1271,7 @@
 
             //  basicDetails['horoimage']=horoimage
 
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('emailid').value;
             const mobile = document.getElementById('mobile').value;
             //  basicDetails['residentcity']=residentcity
 
@@ -1330,7 +1322,7 @@
             const occupationcity = $('#occupationcity').val();
             const complexion = $('#complexion').val();
 
-            const email = $('#email').val();
+            const email = $('#emailid').val();
             const mobile = $('#mobile').val();
 
 
@@ -1446,7 +1438,16 @@
             });
         }
 
+
     </script>
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+
+    <script src="js/faq.js"></script>
+    <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+
+
 
 
 </body>
