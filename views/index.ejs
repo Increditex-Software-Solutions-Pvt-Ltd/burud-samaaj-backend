@@ -492,7 +492,7 @@
                                     </div>
                                 </div>
                             </div>
-                          
+
                             <div class="form-group">
                                 <label for="feedback" class="sr-only">Message</label>
                                 <textarea class="form-control" id="feedback" name="feedback" required rows="7"
@@ -1112,7 +1112,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="mother-name">Profile Visibility</label>
-                                    <select name="profilevisibility" class="form-control" id="profilevisibility" required>
+                                    <select name="profilevisibility" class="form-control" id="profilevisibility"
+                                        required>
                                         <option selected disabled value="">Select</option>
                                         <option value="private">Private</option>
                                         <option value="public">Public</option>
@@ -1208,7 +1209,13 @@
                                 type: 'PUT',
                                 url: '/sendRequest', // Endpoint to send friend request
                                 success: function (response) {
-                                    console.log('Friend request sent successfully');
+                                    if (response.message === "You have Already Received Request") {
+                                        alert("You have Already Received Request")
+                                        window.location.reload()
+                                    } else {
+                                        alert('Friend request sent successfully');
+                                        window.location.reload()
+                                    }
                                 },
                                 error: function (xhr, status, error) {
                                     console.error('Error sending friend request:', error);

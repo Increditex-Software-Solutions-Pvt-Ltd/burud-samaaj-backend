@@ -638,6 +638,27 @@ const userController = {
                 throw new Error('Sender or receiver not found');
             }
 
+            function checkIfAlreadyreceived() {
+                let flag = false
+
+                if (sender.friendRequestsReceived === null) {
+                    flag = false
+                }
+                else {
+                    let receivedCheckArr = sender.friendRequestsReceived.replace(/["\\/]/g, '').split(" ").filter((profile) => profile == profileId)
+                    if (receivedCheckArr.length) {
+                        flag = true
+                    }
+                }
+
+                return flag
+            }
+
+            if (checkIfAlreadyreceived()) {
+                return res.send({ message: "You have Already Received Request" });
+            }
+
+
             if (sender.friendRequestsSent === null) {
                 let senderArr = ""
                 senderArr += ` ${receiver.id}`
