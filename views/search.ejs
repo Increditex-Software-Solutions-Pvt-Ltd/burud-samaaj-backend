@@ -111,13 +111,15 @@
                             <% if(userprofile){ %>
                                 <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
                                             class="bi bi-person-circle me-1"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i class="bi bi-image-fill me-1"></i> Profile photos</a></li>
+                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
+                                            class="bi bi-image-fill me-1"></i> Profile photos</a></li>
                                 <li>
-                                      <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
+                                    <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
                                         Requests</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/connections"><i class="bi bi-people me-1"></i>Connections</a>
+                                    <a class="dropdown-item" href="/connections"><i
+                                            class="bi bi-people me-1"></i>Connections</a>
                                 </li>
                                 <%} else{%>
                                     <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i
@@ -678,7 +680,13 @@
                                 type: 'PUT',
                                 url: '/sendRequest', // Endpoint to send friend request
                                 success: function (response) {
-                                    console.log('Friend request sent successfully');
+                                    if (response.message === "You have Already Received Request") {
+                                        alert("You have Already Received Request")
+                                        window.location.reload()
+                                    } else {
+                                        alert('Friend request sent successfully');
+                                        window.location.reload()
+                                    }
                                 },
                                 error: function (xhr, status, error) {
                                     console.error('Error sending friend request:', error);

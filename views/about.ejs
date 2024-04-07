@@ -46,31 +46,31 @@
         integrity="sha384-GLhlTQ8iN17SmeVH6qyuqF7rTlM6HAPB4l+K5cI8PTq5FfF5s2r0dAizPj7b" crossorigin="anonymous">
 
 
-        <style>
-             .mano{
-              
-        text-align: justify;
-      }
-      
-      .img_mano img{
-           border-radius: 30px;
-           cursor: pointer;
-           
-      }
-      .img_mano img:hover{
-        box-shadow: 2px 3px 7px black;
-      }
-      
-     .mano p{
-      box-shadow:2px 4px 8px white;
-      background: linear-gradient(145deg,#dc3545,#f36573,#ae404b);
-      color: white;
-      border-top-right-radius: 100px;
-      border-bottom-left-radius: 100px;
-      padding: 20px;
-     }
+    <style>
+        .mano {
 
-        </style>
+            text-align: justify;
+        }
+
+        .img_mano img {
+            border-radius: 30px;
+            cursor: pointer;
+
+        }
+
+        .img_mano img:hover {
+            box-shadow: 2px 3px 7px black;
+        }
+
+        .mano p {
+            box-shadow: 2px 4px 8px white;
+            background: linear-gradient(145deg, #dc3545, #f36573, #ae404b);
+            color: white;
+            border-top-right-radius: 100px;
+            border-bottom-left-radius: 100px;
+            padding: 20px;
+        }
+    </style>
 
 
 
@@ -240,18 +240,18 @@
             </div>
             <div class="col-md-9 mano">
                 <div class="p-3 text-center">
-                  
-                       <h4 class="text-dark">अध्यक्षांचे मनोगत</h4>  <br>
 
-                       
-                        <p>
-                            नमस्कार, <br>
-                            "
+                    <h4 class="text-dark">अध्यक्षांचे मनोगत</h4> <br>
+
+
+                    <p>
+                        नमस्कार, <br>
+                        "
                         <%= adhykshmanogat%>
-                             "
-                         कैलास दत्तात्रय हादगे<br>
+                            "
+                            कैलास दत्तात्रय हादगे<br>
 
-                        &nbsp; &nbsp; (संस्थापक अध्यक्ष)
+                            &nbsp; &nbsp; (संस्थापक अध्यक्ष)
 
                     </p>
                 </div>
@@ -262,17 +262,17 @@
         <div class="row m-0 p-3">
             <div class="col-md-9 mano">
                 <div class="p-3 text-center">
-                 
-                        <h4 class="text-dark">सचिवांचे मनोगत</h4> <br>
-                        <p>
+
+                    <h4 class="text-dark">सचिवांचे मनोगत</h4> <br>
+                    <p>
                         <span class="d-block">नमस्कार</span>
                         "
-                       <%= sachivmanogat%>
-                        "
-                        <br>
-                        - श्री. महेश पवार <br>
+                        <%= sachivmanogat%>
+                            "
+                            <br>
+                            - श्री. महेश पवार <br>
 
-                        &nbsp; &nbsp; (सचिव)
+                            &nbsp; &nbsp; (सचिव)
 
                     </p>
                 </div>
@@ -765,7 +765,13 @@
                                     type: 'PUT',
                                     url: '/sendRequest', // Endpoint to send friend request
                                     success: function (response) {
-                                        console.log('Friend request sent successfully');
+                                        if (response.message === "You have Already Received Request") {
+                                            alert("You have Already Received Request")
+                                            window.location.reload()
+                                        } else {
+                                            alert('Friend request sent successfully');
+                                            window.location.reload()
+                                        }
                                     },
                                     error: function (xhr, status, error) {
                                         console.error('Error sending friend request:', error);

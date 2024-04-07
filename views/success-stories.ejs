@@ -66,7 +66,8 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
         <a class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span>
-                <span class="text-danger">BANDHAN</span></h2>
+                <span class="text-danger">BANDHAN</span>
+            </h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -164,7 +165,9 @@
                                         </div>
                                         <div class="flip-card-back">
                                             <div class="main">
-                                                <h2><%= story.groomname%> & <%= story.bridename%></h2>
+                                                <h2>
+                                                    <%= story.groomname%> & <%= story.bridename%>
+                                                </h2>
                                                 <h3 class="text-white">(<%= story.city%>)</h3>
                                             </div>
                                         </div>
@@ -173,13 +176,14 @@
                             </div>
                             <div class="card-footer">
                                 <p>
-                                    <%= story.description%></p>
+                                    <%= story.description%>
+                                </p>
                             </div>
                         </div>
                     </div>
-                <%}) %>
-              
-               
+                    <%}) %>
+
+
 
             </div>
 
@@ -188,7 +192,7 @@
         <br>
         <br>
 
-        
+
 
 
     </div>
@@ -668,7 +672,13 @@
                                 type: 'PUT',
                                 url: '/sendRequest', // Endpoint to send friend request
                                 success: function (response) {
-                                    console.log('Friend request sent successfully');
+                                    if (response.message === "You have Already Received Request") {
+                                        alert("You have Already Received Request")
+                                        window.location.reload()
+                                    } else {
+                                        alert('Friend request sent successfully');
+                                        window.location.reload()
+                                    }
                                 },
                                 error: function (xhr, status, error) {
                                     console.error('Error sending friend request:', error);
