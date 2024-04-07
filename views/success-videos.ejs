@@ -154,83 +154,23 @@
         </div>
 
         <div class="videos-container p-3">
-
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/1lxmIO_vTsY?si=GhBQ7w6ZdBCbEfHb"
-                    title="YouTube video player" frameborder="0"
+            <% if (allvideos && allvideos.length > 0) { %>
+              <% allvideos.forEach((video) => { %>
+                <div class="video-wrapper">
+                  <iframe width="560" height="315" src="<%= video.videourl %>"  frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
-                <p class="text-center">
-                <h4 class="text-center">ऑनलाईन मेळावा-२०२१</h4>
-                <p>अखिल बुरुड समाज सेवाभावी संस्था सन २०१७ पासून समाजसेवेत संपूर्ण महाराष्ट्र व कर्नाटक या राज्यात
-                    सक्रिय रित्या कार्यरत आहे.......
-                    विशेषतः वधुवर सूचक समिती तर्फे समाजातील उपवर व उपवधू यांना योग्य दिशा देण्याचे कार्य करण्यात येत आहे
-                    व प्रत्येक वेळी आपल्या समाज्यासाठी काही तरी नवीन करण्याचा संस्थेचा मानस असतो.</p>
-                </p>
-            </div>
-            <div class="video-wrapper">
-                <iframe width="426" height="315" src="https://www.youtube.com/embed/2WunVgB7xAA" title=""
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen="true"></iframe>
-                <p class="text-center">
-                <h4 class="text-center">ऑनलाईन मेळावा-२०२१</h4>
-                <p>अखिल बुरुड समाज सेवाभावी संस्था सन २०१७ पासून समाजसेवेत संपूर्ण महाराष्ट्र व कर्नाटक या राज्यात
-                    सक्रिय रित्या कार्यरत आहे.......
-                    विशेषतः वधुवर सूचक समिती तर्फे समाजातील उपवर व उपवधू यांना योग्य दिशा देण्याचे कार्य करण्यात येत आहे
-                    व प्रत्येक वेळी आपल्या समाज्यासाठी काही तरी नवीन करण्याचा संस्थेचा मानस असतो.</p>
-                </p>
-            </div>
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/1lzl0LeH3C0?si=4vca5sKSAcw1T8Zn"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
-                <p class="text-center">
-                <h4 class="text-center">ऑनलाईन मेळावा-२०२१</h4>
-                <p>अखिल बुरुड समाज सेवाभावी संस्था सन २०१७ पासून समाजसेवेत संपूर्ण महाराष्ट्र व कर्नाटक या राज्यात
-                    सक्रिय रित्या कार्यरत आहे.......
-                    विशेषतः वधुवर सूचक समिती तर्फे समाजातील उपवर व उपवधू यांना योग्य दिशा देण्याचे कार्य करण्यात येत आहे
-                    व प्रत्येक वेळी आपल्या समाज्यासाठी काही तरी नवीन करण्याचा संस्थेचा मानस असतो.</p>
-                </p>
-            </div>
-        </div>
-        <div class="videos-container p-5">
-
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Kq9HAtK7hVk?si=l-ZpXyRqsGIps-cz"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
-                <p class="text-center">
-                <h4 class="text-center">ऑनलाईन मेळावा-२०२१</h4>
-                <p>अखिल बुरुड समाज सेवाभावी संस्था सन २०१७ पासून समाजसेवेत संपूर्ण महाराष्ट्र व कर्नाटक या राज्यात
-                    सक्रिय रित्या कार्यरत आहे.......
-                    विशेषतः वधुवर सूचक समिती तर्फे समाजातील उपवर व उपवधू यांना योग्य दिशा देण्याचे कार्य करण्यात येत आहे
-                    व प्रत्येक वेळी आपल्या समाज्यासाठी काही तरी नवीन करण्याचा संस्थेचा मानस असतो.</p>
-                </p>
-            </div>
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/8ttqbRCRNqQ?si=TcQl52qjiQ0qpc_K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <p class="text-center">
-                <h4 class="text-center">ऑनलाईन मेळावा-२०२१</h4>
-                <p>अखिल बुरुड समाज सेवाभावी संस्था सन २०१७ पासून समाजसेवेत संपूर्ण महाराष्ट्र व कर्नाटक या राज्यात
-                    सक्रिय रित्या कार्यरत आहे.......
-                    विशेषतः वधुवर सूचक समिती तर्फे समाजातील उपवर व उपवधू यांना योग्य दिशा देण्याचे कार्य करण्यात येत आहे
-                    व प्रत्येक वेळी आपल्या समाज्यासाठी काही तरी नवीन करण्याचा संस्थेचा मानस असतो.</p>
-                </p>
-            </div>
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/paOmedt0xWA?si=l0UB0uJPfA57mdmS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <p class="text-center">
-                <h4 class="text-center">ऑनलाईन मेळावा-२०२१</h4>
-                <p>अखिल बुरुड समाज सेवाभावी संस्था सन २०१७ पासून समाजसेवेत संपूर्ण महाराष्ट्र व कर्नाटक या राज्यात
-                    सक्रिय रित्या कार्यरत आहे.......
-                    विशेषतः वधुवर सूचक समिती तर्फे समाजातील उपवर व उपवधू यांना योग्य दिशा देण्याचे कार्य करण्यात येत आहे
-                    व प्रत्येक वेळी आपल्या समाज्यासाठी काही तरी नवीन करण्याचा संस्थेचा मानस असतो.</p>
-                </p>
-            </div>
-        </div>
+                  <p class="text-center">
+                    <h4 class="text-center"><%= video.year %></h4>
+                    <p><%= video.description %></p>
+                  </p>
+                </div>
+              <% }); %>
+            <% } else { %>
+              <h3 class="mx-auto">No videos to display</h3>
+            <% } %>
+          </div>
+        
 
     </div>
 

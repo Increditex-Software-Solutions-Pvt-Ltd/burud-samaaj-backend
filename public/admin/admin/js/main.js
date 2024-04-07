@@ -277,291 +277,55 @@ async function deleteStory(storyId) {
 		console.error('Error deleting story:', error);
 	}
 }
-
-function resetTopdishForm() {
-	$('#topdishAddModalLabel').text('add top dish');
-	$('#topdish-form').trigger('reset');
+function resetVideoForm() {
+	$('#successVideoAddModalLabel').text('add success video');
+	$('#successvideo-form').trigger('reset');
 }
 
-function addTopDish() {
-	resetTopdishForm();
-	$('#topdishAddModal').modal('show');
+function addSuccessVideo() {
+	resetVideoForm();
+	$('#successVideoAddModal').modal('show');
 }
 
-function editTopdish(dish_id) {
-	resetTopdishForm();
+function editSuccessVideo(video_id) {
+	resetVideoForm();
 
-	$('#topdish-form').attr('action', '/admin/dishrecord/' + dish_id);
+	$('#successvideo-form').attr('action', '/admin/video/' + video_id);
 	$.ajax({
-		url: '/admin/dishrecord/' + dish_id,
+		url: '/admin/video/' + video_id,
 		method: 'GET',
 		success: function (res) {
 			console.log(res);
 			if (res.success) {
-				const aboutrecord = res.data;
-				const parent = $('#topdishAddModal');
-				$('#topdishAddModalLabel').text("update top dish records");
-				$('[name="dishname"]', parent).val(aboutrecord.dishname);
-				$('[name="dishprice"]', parent).val(aboutrecord.dishprice);
-
+				const story = res.data;
+				const parent = $('#successVideoAddModal');
+				$('#successVideoAddModalLabel').text("update success video");
+				$('[name="videourl"]', parent).val(story.videourl);
+				$('[name="year"]', parent).val(story.year);
+				$('[name="description"]', parent).val(story.description);
 
 				parent.modal('show');
 			}
 			else {
-				console.error('Failed to retrieve dishRecord:', res.message);
+				console.error('Failed to retrieve story:', res.message);
 			}
 		},
 		error: function (xhr, status, error) {
-			console.error('Error retrieving menu:', error);
+			console.error('Error retrieving story:', error);
 		}
 	})
 }
 
-function addCategory() {
-	resetCategoryForm();
-	$('#categoryAddModal').modal('show');
-	$('#category-form').attr('action', '/admin/addcategory');
-}
-
-function resetCategoryForm() {
-	$('#categoryAddModalLabel').text('add category');
-	$('#category-form-action').attr('name', 'add category');
-	$('#category-form').trigger('reset');
-}
-
-$('#category-form').on('submit', function (e) {
-	e.preventDefault();
-
-	const form = $(this);
-	const modal = $('#categoryAddModal');
-	const btn = $('button[type="submit"]', modal);
-
-	// Disable the button to prevent multiple submissions
-	btn.prop('disabled', true);
-
-	$.ajax({
-		url: '/admin/addcategory',
-		method: 'POST',
-		data: form.serialize(),
-		success: (res) => {
-			modal.modal('hide');
-		},
-		complete: () => {
-			// Re-enable the button after the AJAX request is complete
-			btn.prop('disabled', false);
-			updateSelect();
-		}
-	});
-});
-
-
-function viewMoreMenu(id) {
-	$.ajax({
-		url: '/admin/get-single-menu/' + id,
-		method: 'GET',
-		success: function (res) {
-			if (res) {
-				const parent = $('#viewMoreModal');
-
-				$('[id="menu_desc"]', parent).text('Description');
-				$('[id="menu_longdesc"]', parent).val(res.description);
-
-				const baseUrl = 'http://localhost:8000/';
-
-				let imageUrl = baseUrl + 'path-to-default-image.png'; // Replace with your default image URL
-
-				if (res.image) {
-					// Replace backslashes with forward slashes
-					imageUrl = baseUrl + res.image.replace(/\\/g, '/');
-					console.log('Image URL:', imageUrl);
-
-					// Log image loading status
-					$('<img>', { src: imageUrl }).on('load', function () {
-						console.log('Image loaded successfully.');
-					}).on('error', function (error) {
-						console.error('Error loading image:', error);
-					});
-				}
-
-				$('[id="menuImage"]', parent).attr('src', imageUrl);
-
-				parent.modal('show');
-			} else {
-				console.error('Failed to retrieve Product details:', res.message);
-			}
-		},
-		error: function (xhr, status, error) {
-			console.error('Error retrieving Product details:', error);
-		}
-	});
-}
-
-function viewExploreDishes(id) {
-	$.ajax({
-		url: '/admin/get-single-homerecord/' + id,
-		method: 'GET',
-		success: function (res) {
-			if (res) {
-				const parent = $('#viewExploreDishes');
-				const cardBody = $('.card-body', parent);
-
-				// Clear previous content
-				cardBody.html('');
-
-				if (typeof res.populardish === 'string') {
-
-					const imagePathArray = res.populardish.replace(/\[|\]|"/g, '').replace(/\\/g, '/').replace(/\/\//g, '/').split(',');
-
-					// Add images to the modal body
-					imagePathArray.forEach(imagePath => {
-						// Prepend the base URL to each image path
-						const fullImagePath = 'http://localhost:8000/' + imagePath.trim();
-
-						const imgElement = $('<img>', {
-							src: fullImagePath,
-							class: 'img-fluid mb-3',
-							alt: 'Dish Image'
-						});
-						cardBody.append(imgElement);
-					});
-				} else {
-					console.error('populardish is not a string:', res.populardish);
-				}
-				parent.modal('show');
-			} else {
-				console.error('Failed to retrieve Product details:', res.message);
-			}
-		},
-		error: function (xhr, status, error) {
-			console.error('Error retrieving Product details:', error);
-		}
-	});
-}
-
-
-
-
-
-
-
-function updateSelect() {
-	let details = [
-		{
-			dataurl: '/admin/categories',
-			select: '#selectCategory'
-		}
-
-	];
-	var emptyOption = $('<option></option>')
-		.val('')
-		.text('select');
-
-	details.forEach((el) => {
-		$.ajax({
-			url: el.dataurl,
-			method: 'GET',
-			success: function (data) {
-				const selectElement = $(el.select);
-				selectElement.empty();
-
-				selectElement.append(
-					$('<option></option>').val('').text('Select')
-				);
-				data.forEach(function (item) {
-					var optionElement = $('<option></option>')
-						.val(item.id)
-						.text(item.name);
-					if (el.dataurl == '/admin/categories') {
-						var optionElement = $('<option></option>')
-							.val(item.id)
-							.text(item.name);
-					}
-					selectElement.append(optionElement);
-				});
-			},
-			error: function (xhr, status, error) {
-				console.error('Error fetching :' + el.dataurl, error);
-			}
-		})
-	})
-}
-updateSelect()
-
-
-function viewMoreProduct(id) {
-	$.ajax({
-		url: '/admin/get-single-menu/' + id,
-		method: 'GET',
-		success: function (res) {
-			if (res) {
-				console.log(res);
-				const parent = $('#viewMoreModal');
-				$('[id="pro_desc"]', parent).text('Description');
-				$('[id="pro_longdesc"]', parent).val(res.description);
-
-				const baseUrl = 'http://localhost:8000/';
-
-
-				let imageUrl = baseUrl + 'path-to-default-image.png'; // Replace with your default image URL
-
-				if (res.image) {
-					// If primary image is provided in the response, use it
-					imageUrl = baseUrl + res.image.replace(/\\/g, '/');
-				}
-
-				const hoverImageUrl = baseUrl + (res.hoverimage || 'path-to-default-hover-image.png'); // Replace with your default hover image URL
-
-				$('[id="productImage"]', parent).attr('src', imageUrl);
-				$('[id="hoverProductImage"]', parent).attr('src', hoverImageUrl);
-
-				console.log('res.hoverImage:', res.hoverImage);
-				console.log('hoverImageUrl:', hoverImageUrl);
-
-				parent.modal('show');
-			} else {
-				console.error('Failed to retrieve Product details:', res.message);
-			}
-		},
-		error: function (xhr, status, error) {
-			console.error('Error retrieving Product details:', error);
-		}
-	});
-}
-
-function confirmDelete(menuId) {
-	if (confirm('Are you sure you want to delete this menu?')) {
-		deleteMenu(menuId);
+function confirmDeleteVideo(videoId) {
+	if (confirm('Are you sure you want to delete this success video?')) {
+		deleteVideo(videoId);
 	}
 }
 
-async function deleteMenu(menuId) {
+async function deleteVideo(videoId) {
 	try {
 
-		const response = await fetch(`/admin/menu-delete/${menuId}`, {
-			method: 'POST',
-		});
-
-		if (response.ok) {
-
-			window.location.href = '/admin/menu';
-		} else {
-
-			console.error('Error deleting menu:', response.statusText);
-		}
-	} catch (error) {
-		console.error('Error deleting menu:', error);
-	}
-}
-function confirmDeletetopdish(dishId) {
-	if (confirm('Are you sure you want to delete this top dish?')) {
-		deleteTopdish(dishId);
-	}
-}
-
-async function deleteTopdish(dishId) {
-	try {
-
-		const response = await fetch(`/admin/dish-delete/${dishId}`, {
+		const response = await fetch(`/admin/delete-video/${videoId}`, {
 			method: 'POST',
 		});
 
@@ -570,32 +334,22 @@ async function deleteTopdish(dishId) {
 			window.location.href = '/admin/cms';
 		} else {
 
-			console.error('Error deleting menu:', response.statusText);
+			console.error('Error deleting story:', response.statusText);
 		}
 	} catch (error) {
-		console.error('Error deleting menu:', error);
+		console.error('Error deleting story:', error);
 	}
 }
 
-function confirmDeleteEnquiry(enquiryId) {
-	if (confirm('Are you sure you want to delete this enquiry?')) {
-		deleteEnquiry(enquiryId);
-	}
-}
 
-async function deleteEnquiry(enquiryId) {
-	try {
-		const response = await fetch(`/admin/enquiry-delete/${enquiryId}`, {
-			method: 'POST',
-		});
 
-		if (response.ok) {
-			window.location.href = '/admin/enquiry';
-		} else {
 
-			console.error('Error deleting enquiry:', response.statusText);
-		}
-	} catch (error) {
-		console.error('Error deleting enquiry:', error);
-	}
-}
+
+
+
+
+
+
+
+
+

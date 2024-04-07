@@ -13,8 +13,10 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -31,26 +33,28 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/suc_s.css">
-    
+
     <!-- bs4 links here -->
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <!-- css link -->
     <link rel="stylesheet" href="login.css">
 
-<!-- font icon links -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8iN17SmeVH6qyuqF7rTlM6HAPB4l+K5cI8PTq5FfF5s2r0dAizPj7b" crossorigin="anonymous">
+    <!-- font icon links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-GLhlTQ8iN17SmeVH6qyuqF7rTlM6HAPB4l+K5cI8PTq5FfF5s2r0dAizPj7b" crossorigin="anonymous">
 
-    
- 
-   
+
+
+
 
 </head>
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -61,7 +65,8 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
         <a class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span> <span class="text-danger">BANDHAN</span></h2>
+            <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span>
+                <span class="text-danger">BANDHAN</span></h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -77,64 +82,66 @@
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0" style="border-top: 1px solid blue;">
                         <a href="/success-stories" class="dropdown-item">Sucess Stories</a>
                         <a href="/success-videos" class="dropdown-item">Success videos</a>
-                       
+
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="/profile" class="nav-item nav-link">profile</a>
                 </div>
-                
+
                 <% if (user) { %>
-                  <a href="/login" class="nav-item nav-link" style="display: none;">Login</a>
-                  <% } else { %>
-                      <a href="/login" class="nav-item nav-link">Login</a>
-                      <% } %>
-          </div>
+                    <a href="/login" class="nav-item nav-link" style="display: none;">Login</a>
+                    <% } else { %>
+                        <a href="/login" class="nav-item nav-link">Login</a>
+                        <% } %>
+            </div>
 
 
-          <div class="profile">
-              <% if (user) { %>
-                  <div class="dropdown d-none d-lg-block">
-                      <a href="#"
-                          class="btn btn-danger rounded-0 py-4 px-lg-5 d-flex align-items-center dropdown-toggle"
-                          data-bs-toggle="dropdown">
-                          <span class="me-2">
-                              <img src="/img/logo/avatar.svg" width="25px" class="img-fluid" alt="">
-                          </span>
-                          <%=user.firstname%>
+            <div class="profile">
+                <% if (user) { %>
+                    <div class="dropdown d-none d-lg-block">
+                        <a href="#"
+                            class="btn btn-danger rounded-0 py-4 px-lg-5 d-flex align-items-center dropdown-toggle"
+                            data-bs-toggle="dropdown">
+                            <span class="me-2">
+                                <img src="/img/logo/avatar.svg" width="25px" class="img-fluid" alt="">
+                            </span>
+                            <%=user.firstname%>
 
-                      </a>
-                      <ul class="dropdown-menu shadow">
+                        </a>
+                        <ul class="dropdown-menu shadow">
 
-                        <% if(userprofile){ %>
-                            <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
-                                        class="bi bi-person-circle me-1"></i> Profile</a></li>
-                            <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i class="bi bi-image-fill me-1"></i> Profile photos</a></li>
-                            <li>
-                             <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
+                            <% if(userprofile){ %>
+                                <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
+                                            class="bi bi-person-circle me-1"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
+                                            class="bi bi-image-fill me-1"></i> Profile photos</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
                                         Requests</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/connections"><i class="bi bi-people me-1"></i>Connections</a>
-                            </li>
-                            <%} else{%>
-                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i
-                                            class="bi bi-person-circle me-1"></i> Create profile</a></li>
-                                <%}%>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="/logout"><i
-                                                class="bi bi-box-arrow-right me-1"></i> Logout</a>
-                                    </li>
-                    </ul>
-                  </div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/connections"><i
+                                            class="bi bi-people me-1"></i>Connections</a>
+                                </li>
+                                <%} else{%>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i
+                                                class="bi bi-person-circle me-1"></i> Create profile</a></li>
+                                    <%}%>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="/logout"><i
+                                                    class="bi bi-box-arrow-right me-1"></i> Logout</a>
+                                        </li>
+                        </ul>
+                    </div>
 
-                  <% } else { %>
-                      <a href="/signup" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">Register
-                          here<i class="fa fa-arrow-right ms-3"></i></a>
-                      <% } %>
-          </div>
+                    <% } else { %>
+                        <a href="/signup" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">Register
+                            here<i class="fa fa-arrow-right ms-3"></i></a>
+                        <% } %>
+            </div>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -144,347 +151,182 @@
     </div>
     <!--sucess stories start here here -->
     <div class="mt-5">
-    <div>
-    <div class="row m-0">
-        <div class="col-md-3 mt-2">
-        <div class="card " style="box-shadow: 1px 5px 3px black; width: fit-content;">
-          <div class="card-body d-flex justify-content-center">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <img src="./img/tevarebandhu.com.jpg" alt="Avatar" class="ci">
-                  </div>
-                  <div class="flip-card-back">
-                    <div class="main">
-                    <h2>Uttam & Seema</h2>
-                    <h3 class="text-white">(सिंधुदुर्ग)</h3>
-                </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="card-footer">
-            <p>
-              श्री. अनिल परशुराम तेवरे रा. सागंली यांची सुकन्या चि.सौ.का.नेहा तेवरे
-              श्री. सुखदेव दगडुजी सुर्यवंशी यांचे जेष्ठ चिरंजीव. अक्षय सूर्यवंशी 
-              यांचा शुभविवाह दि.14/2/2023 रोजी राहुरी ,अहमदनगर येथे संपन्न झाला. सदर विवाह करिता अखिल महाराष्ट्र बुरूड समाज वधूवर सुचक यांचे मोलाचे सहकार्य लाभले.</p>
-          </div>
-        </div>
-    </div>
-    <div class="col-md-3 mt-2">
-        <div class="card " style="box-shadow: 1px 5px 3px black;width: fit-content;">
-          <div class="card-body d-flex justify-content-center">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <img src="./img/vadtile.jpg" alt="Avatar" class="ci" >
-                  </div>
-                  <div class="flip-card-back">
-                    <div class="main">
-                    <h2>neha & Akshay</h2>
-                    <h3 class="text-white">(सिंधुदुर्ग)</h3>
-                </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="card-footer">
-            <p> सोलापूर मध्ये 09 डिसेंबर 2022 रोजी  सौ. सुस्मिता आणि श्री. श्रीधर यांचा विवाह सोहळा मोठ्या उत्साहात आणि थाटामाटात पार पडला. यावेळी अनेक मोठ्या मान्यवरांची आणि बेळगावच्या माधुरी अँटी यांची उपस्थिती होती. सर्व वर वधू कमिटीचे मनःपूर्वक धन्यवाद.🙏🏻
+        <div>
+            <div class="row m-0">
+                <% allstories.forEach((story)=>{ %>
+                    <div class="col-md-3 mt-2">
+                        <div class="card " style="box-shadow: 1px 5px 3px black; width: fit-content;">
+                            <div class="card-body d-flex justify-content-center">
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="<%= story.weddingpic%>" alt="Avatar" class="ci">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <div class="main">
+                                                <h2><%= story.groomname%> & <%= story.bridename%></h2>
+                                                <h3 class="text-white">(<%= story.city%>)</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <p>
+                                    <%= story.description%></p>
+                            </div>
+                        </div>
+                    </div>
+                <%}) %>
+              
+               
 
-              - वडतिले परिवार, सोलापू</p>
-          </div>
+            </div>
+
+
         </div>
-    </div>
-    <div class="col-md-3 mt-2">
-        <div class="card" style="box-shadow: 1px 5px 3px black; width: fit-content;">
-          <div class="card-body d-flex justify-content-center">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <img src="img/prajakta_shrikant.jpg" alt="Avatar" class="ci">
-                  </div>
-                  <div class="flip-card-back">
-                    <div class="main">
-                    <h2>Prajakta & Shrikant</h2>
-                    <h3 class="text-white">(अक्कलकोट
-                      )</h3>
-                </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="card-footer">
-            <p> श्री उल्हास शंकरराव सुर्यवंशी यांची सुकन्या 
-              कु. प्राजक्ता उल्हास सुर्यवंशी
-  हिचा साखरपुडा सांगली येथील श्री प्रकाश सिद्धपा पळसे यांचे सुपुत्र 
-            चि. श्रीकांत प्रकाश पळसे 
- यांच्याशि दि. 16/12/2022 रोजी अक्कलकोट येथे झाला.यासाठी आपल्या अखिल महाराष्ट्र बुरूड समाज वधू वर सूचक समितीचे आभार.
- </p>
-          </div>
-        </div>
-    </div>
-    <div class="col-md-3 mt-2">
-        <div class="card" style="box-shadow: 1px 5px 3px black; width: fit-content;">
-          <div class="card-body d-flex justify-content-center">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <img src="./img/manoj_rekha.jpg" alt="Avatar"class="ci">
-                  </div>
-                  <div class="flip-card-back">
-                    <div class="main">
-                    <h2>Uttam & Seema</h2>
-                    <h3 class="text-white">(सिंधुदुर्ग)</h3>
-                </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="card-footer">
-            <p>      मी रेखा  होणगेकर    
-              सर्व समाज बांधवांना सांगण्यास अत्यंत आनंद होत आहे,
-              की माझा पुनर्विवाह 30 डिसेंबर ला मुंबई चे श्री. मनोज प्रकाश महाले ह्यांच्याशी विवाह बेळगावला संपन्न झाला.यासाठी आपल्या अखिल महाराष्ट्र बुरूड समाज वधू वर सूचक समितीचे आभार.
-              </p>
-          </div>
-        </div>
-    </div>
+        <br>
+        <br>
+
         
-      </div>
-      
-      
+
+
     </div>
-     <br>
-     <br>
-     
-        <div class="row m-0 mb-3">
-            <div class="col-md-3 mt-2">
-            <div class="card " style="box-shadow: 1px 5px 3px black; width: fit-content;">
-              <div class="card- d-flex justify-content-center">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="./img/tejas_ankita.jpg" alt="Avatar" class="ci">
-                      </div>
-                      <div class="flip-card-back">
-                        <div class="main">
-                        <h2>Tejas & Ankita</h2>
-                        <h3 class="text-white">(सिंधुदुर्ग)</h3>
-                    </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="card-footer">
-                <p>
-                  तेजस यशवंत सपकाळ व अंकिता ज्ञानेश्वर पवार यांची सुपारी 23/7/23 रोजी झाला  आहे हा विवाह अखिल महाराष्ट्र बुरुड समाज वर वधू समिती  महाराष्ट्र श्री.महेंद्र पवार हडपसर यांची आम्हाला खूप मदत मिळाली व हा विवाह वर वधू समिती माध्यमातून जुळला आहे. सर्व वर वधू समिती चे धन्यवा</p>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-3 mt-2">
-            <div class="card " style="box-shadow: 1px 5px 3px black; width: fit-content;">
-              <div class="card-body">
-                <div class="flip-card d-flex justify-content-center">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://file.oyephoto.com/uploads/preview/couple-wedding-photoshoot-pose-wallpapers-hd-11634648289tlelqnvcyh.jpg" alt="Avatar" class="ci" >
-                      </div>
-                      <div class="flip-card-back">
-                        <div class="main">
-                        <h2>Uttam & Seema</h2>
-                        <h3 class="text-white">(सिंधुदुर्ग)</h3>
-                    </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="card-footer">
-                <p>  लग्नाचे बंध तर स्वर्गात जुळतात. पण माझे आणि सीमा चे बंध जुळण्यासाठी लग्नठरले.कॉम ने आमची मदत केली. त्यासाठी लग्नठरले.कॉम चे आभार.</p>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-3 mt-2">
-            <div class="card" style="box-shadow: 1px 5px 3px black; width: fit-content;">
-              <div class="card-body d-flex justify-content-center">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://images.pexels.com/photos/6685151/pexels-photo-6685151.jpeg?cs=srgb&dl=pexels-skg-photography-6685151.jpg&fm=jpg" alt="Avatar" class="ci">
-                      </div>
-                      <div class="flip-card-back">
-                        <div class="main">
-                        <h2>Uttam & Seema</h2>
-                        <h3 class="text-white">(सिंधुदुर्ग)</h3>
-                    </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="card-footer">
-                <p> लग्नाचे बंध तर स्वर्गात जुळतात. पण माझे आणि सीमा चे बंध जुळण्यासाठी लग्नठरले.कॉम ने आमची मदत केली. त्यासाठी लग्नठरले.कॉम चे आभार.</p>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-3 mt-2">
-            <div class="card" style="box-shadow: 1px 5px 3px black; width: fit-content;">
-              <div class="card-body d-flex justify-content-center">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="https://www.gethucinema.com/wp-content/uploads/2018/11/Ranveer-Singh-Deepika-Padukone-wedding-marriage-couples-hd.jpg" alt="Avatar"class="ci">
-                      </div>
-                      <div class="flip-card-back">
-                        <div class="main">
-                        <h2>Uttam & Seema</h2>
-                        <h3 class="text-white">(सिंधुदुर्ग)</h3>
-                    </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="card-footer">
-                <p>  लग्नाचे बंध तर स्वर्गात जुळतात. पण माझे आणि सीमा चे बंध जुळण्यासाठी लग्नठरले.कॉम ने आमची मदत केली. त्यासाठी लग्नठरले.कॉम चे आभार.</p>
-              </div>
-            </div>
-        </div>
-            
-          </div>
-          
-          
-        </div>
     </div>
-  
- <!-- success stories end here -->
+
+    <!-- success stories end here -->
     <!-- Footer Start -->
     <footer class="footer bg-danger">
-      <div class="container">
-          <div class="row m-0">
+        <div class="container">
+            <div class="row m-0">
 
 
-              <div class="col-md-3">
-                  <div class="widget3">
-                      <h5>
-                          Quick Links
-                      </h5>
-                      <ul>
-                          <li>
-                              <a href="./index.html" class="text-decoration-none word-hover">
-                                  Home
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./about.html" class="text-decoration-none word-hover">
-                                  about
-                              </a>
-                          </li>
-                          <li>
-                              <a href="#" class="text-decoration-none word-hover">
-                                  contact
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./profile.html" class="text-decoration-none word-hover">
-                                  Profile
-                              </a>
-                          </li>
-                          <li>
-                              <a href="" class="text-decoration-none word-hover">
-                                  Create Profile
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./login.html" class="text-decoration-none word-hover">
-                                  login
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="widget4">
-                      <h5>
-                          Other Links
-                      </h5>
-                      <ul>
-                          <li>
-                              <a href="./search.html" class="text-decoration-none word-hover">
-                                  Simple search
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./search.html" class="text-decoration-none word-hover">
-                                  Advance search
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./suc_s.html" class="text-decoration-none word-hover">
-                                  Success stories
-                              </a>
-                          </li>
-                          <li>
-                              <a href="./suc_v.html" class="text-decoration-none word-hover">
-                                  Success vidios
-                              </a>
-                          </li>
-                         
-                      </ul>
-                  </div>
-              </div>
-              <div class="col-md-6 ">
-                  <div class="widget1">
-                      <div class="logo">
-                          <h2 style="font-family:fantasy;"><span class="text-warning"
-                                  style="text-decoration:underline;">BURUD</span>BANDHAN</h2>
-                      </div>
-                      <p>
-                          In eu libero ligula. Fusce eget metus lorem, ac viverra
-                          leo. Nullam convallis, arcu vel pellentesque sodales,
-                          nisi est varius diam, ac ultrices sem ante quis sem.
-                          Proin ultricies volutpat sapien.
-                      </p>
-                      <div class="socialLinks">
-                          <ul>
-                              <li>
-                                  <a href="#" class="text-decoration-none word-hover">
-                                      <i class="fab fa-facebook-f"></i>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" class="text-decoration-none word-hover">
-                                      <i class="fab fa-youtube"></i>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" class="text-decoration-none word-hover">
-                                      <i class="fab fa-linkedin-in"></i>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="#" class="text-decoration-none word-hover">
-                                      <i class="fab fa-google-plus-g"></i>
-                                  </a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="copyRightArea">
-          <div class="container">
-              <div class="row">
-                  <div class="col-12 text-center">
-                      <p>© Copyright Burud-bhanden.com. Designed by @Increditex software solutions pvt ltd. All right
-                          reserved</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </footer>
+                <div class="col-md-3">
+                    <div class="widget3">
+                        <h5>
+                            Quick Links
+                        </h5>
+                        <ul>
+                            <li>
+                                <a href="./index.html" class="text-decoration-none word-hover">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./about.html" class="text-decoration-none word-hover">
+                                    about
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-decoration-none word-hover">
+                                    contact
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./profile.html" class="text-decoration-none word-hover">
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="text-decoration-none word-hover">
+                                    Create Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./login.html" class="text-decoration-none word-hover">
+                                    login
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="widget4">
+                        <h5>
+                            Other Links
+                        </h5>
+                        <ul>
+                            <li>
+                                <a href="./search.html" class="text-decoration-none word-hover">
+                                    Simple search
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./search.html" class="text-decoration-none word-hover">
+                                    Advance search
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./suc_s.html" class="text-decoration-none word-hover">
+                                    Success stories
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./suc_v.html" class="text-decoration-none word-hover">
+                                    Success vidios
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="widget1">
+                        <div class="logo">
+                            <h2 style="font-family:fantasy;"><span class="text-warning"
+                                    style="text-decoration:underline;">BURUD</span>BANDHAN</h2>
+                        </div>
+                        <p>
+                            In eu libero ligula. Fusce eget metus lorem, ac viverra
+                            leo. Nullam convallis, arcu vel pellentesque sodales,
+                            nisi est varius diam, ac ultrices sem ante quis sem.
+                            Proin ultricies volutpat sapien.
+                        </p>
+                        <div class="socialLinks">
+                            <ul>
+                                <li>
+                                    <a href="#" class="text-decoration-none word-hover">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-decoration-none word-hover">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-decoration-none word-hover">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-decoration-none word-hover">
+                                        <i class="fab fa-google-plus-g"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyRightArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>© Copyright Burud-bhanden.com. Designed by @Increditex software solutions pvt ltd. All right
+                            reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- Footer End -->
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-warning text-white btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-warning text-white btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
     <div class="modal fade" id="basicInfoAddModal">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">

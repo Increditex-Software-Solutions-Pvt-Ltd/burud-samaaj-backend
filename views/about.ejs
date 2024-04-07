@@ -46,6 +46,31 @@
         integrity="sha384-GLhlTQ8iN17SmeVH6qyuqF7rTlM6HAPB4l+K5cI8PTq5FfF5s2r0dAizPj7b" crossorigin="anonymous">
 
 
+        <style>
+             .mano{
+              
+        text-align: justify;
+      }
+      
+      .img_mano img{
+           border-radius: 30px;
+           cursor: pointer;
+           
+      }
+      .img_mano img:hover{
+        box-shadow: 2px 3px 7px black;
+      }
+      
+     .mano p{
+      box-shadow:2px 4px 8px white;
+      background: linear-gradient(145deg,#dc3545,#f36573,#ae404b);
+      color: white;
+      border-top-right-radius: 100px;
+      border-bottom-left-radius: 100px;
+      padding: 20px;
+     }
+
+        </style>
 
 
 
@@ -115,13 +140,15 @@
                             <% if(userprofile){ %>
                                 <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
                                             class="bi bi-person-circle me-1"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i class="bi bi-image-fill me-1"></i> Profile photos</a></li>
+                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
+                                            class="bi bi-image-fill me-1"></i> Profile photos</a></li>
                                 <li>
-                                      <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
+                                    <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
                                         Requests</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/connections"><i class="bi bi-people me-1"></i>Connections</a>
+                                    <a class="dropdown-item" href="/connections"><i
+                                            class="bi bi-people me-1"></i>Connections</a>
                                 </li>
                                 <%} else{%>
                                     <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i
@@ -173,602 +200,485 @@
     <div class="bg-light">
         <p class="text-center fs-7 p-5 wow fadeInUp"
             style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
-            अखिल बुरुड समाज वधूवर सूचक समिती हि २०१७ पासून social media च्या माध्यमातून कार्य समाजामध्ये काम करत असते.
-            मुख्यतः whatapp च्या माध्यमातून तर हा प्रवास चालूच आहे. जेणेकरून सर्व समाजबांधवाना सोपे व्हावे. नवीन
-            तंत्रज्ञानाचा फायदा घेत “धरूया तंत्रज्ञानाची कस करूया समाजाच्या विकास” ह्या ब्रीदवाक्यानुसार आपली संस्था काम
-            करत आहे. आता सध्या संस्थेच्या समितीमध्ये ११ पदाधिकारी महाराष्ट्र आणि कर्नाटका ह्या राज्यांमध्ये कार्यरत आहे.
-            <span class="text-danger">आजतागायत ह्या संस्थेच्या माध्यमातून दरवर्षी १००-१५० पेक्षा जास्त लग्न जोडले
-                जातात.</span> तसेच उमेदवाराच्या माहितीची योग्य शहनिशा करून मगच ती माहिती इतरांपर्यंत पोहचवत असतो.
-            समितीने सर्व माहिती संकलित केली असून तो एकाच व्यासपीठावर उपलब्ध करून देण्याच काम ह्या संस्थेमार्फत केले आहे.
-            <mark class="bg-warning">whatsapp ग्रुप, facebook, youtube channel च्या माध्यमातून सुरु झालेला हा प्रवास
-                matrimony website आणि app पर्यंत येऊन पोहचला आहे. </mark> समाजातील लोकांना घर बसल्या योग्य सुविधा देऊन
-            समाजातील कुटुंबसंस्था विकसित कशी होईल ह्याकडे संस्थेचा मानस असतो.
-            दिवसांपूर्वी कोरोनाच्या काळामध्ये ONLINE वधू-वर सूचक मेळावा घेतला होता. त्याला भरगोस प्रतिसाद मिळाला होता
-            आणि तो कार्यक्रम यशस्वी झाला आहे. सदर संस्थेला समाजातून सकारात्मक नजरेने पहिले जाते. समाजासाठी होणार्या
-            कुठल्याही महत्वाच्या कार्याला संस्थेकडून प्रोत्साहन दिले जाते.
-            समाजाचा मानस आणि आजची ओळख लक्षात घेऊन पिंपरी चिंचवड बुरुड समाज समिती जो मेळावा आयोजित केला आहे त्यासाठीदेखील
-            अखिल महाराष्ट्र बुरुड समाज वधूवर सूचक समितीने सहकार्याची भूमिका बजावली आहे.
+            <%= aboutwebsite%>
         </p>
     </div>
 
     <div class=" p-4">
         <div class="row m-0">
-            <div class="col-md-3 text-center mt-4 wow fadeInUp">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/kailsahadage_2.jpg);">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white text-center">श्री.कैलास दत्तात्रय हादगे
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">अध्यक्ष</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4 wow fadeInUp">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/raghunath_savanth.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <button class="btn btn-danger text-white">श्री. रघुनाथ गणपती सावंत
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning">कार्याध्यक्ष</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4 wow fadeInUp">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/mahendra_palase.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title d-flex justify-content-center text-center">
-                            <button class="btn btn-danger text-white">श्री. महेंद्र रामचंद्र पळसे
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning">उपाध्यक्ष</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4 wow fadeInUp">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head"
-                        style="background-image: url(/img/WhatsApp\ Image\ 2024-02-18\ at\ 21.57.35_dd0cf2d7.jpg);">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">श्री.महेश लक्ष्मण पवार</button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सचिव</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row m-0 mt-3">
-            <div class="col-md-3 text-center mt-4 wow fadeInUp">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/krushana\ khaire.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">श्री. कृष्णा खैरे
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सचिव</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/madhuri_hongenakar.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">सौ. माधुरी महेश होनगेकर
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सचिव</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/mahendra_pawar.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">श्री.महेश लक्ष्मण पवार</button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सचिव</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/balasaheb_barud.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">श्री.बाळासाहेब बरुड
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सचिव</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row m-0 mt-3">
-            <div class="col-md-4 text-center mt-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/vinod_chilbalawar.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">श्री.विनोद चिलबलवार
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सचिव</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 text-center mt-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/shravan_sonawane.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">श्री. श्रावण सोनवणे
-
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सदस्य</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="card m-auto" style="width: 15rem;">
-                    <div class="pseudo1"></div>
-                    <div class="pseudo2"></div>
-                    <div class="pseudo3"></div>
-                    <div class="card-head" style="background-image: url(/img/amrute_khaire.jpg);"></div>
-                    <div class="card-body">
-                        <h5 class="card-title text-white fs-4">
-                            <button class="btn btn-danger text-white">डॉ. अमृत रतिलाल खैरे
-                            </button>
-                        </h5>
-
-                        <a href="#" class="btn btn-warning text-white">सदस्य</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- Footer Start -->
-    <footer class="footer bg-danger">
-        <div class="container">
-            <div class="row m-0">
-
-
-                <div class="col-md-3">
-                    <div class="widget3">
-                        <h5>
-                            Quick Links
-                        </h5>
-                        <ul>
-                            <li>
-                                <a href="/index" class="text-decoration-none word-hover">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/about" class="text-decoration-none word-hover">
-                                    about
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-decoration-none word-hover">
-                                    contact
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/profile" class="text-decoration-none word-hover">
-                                    Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class="text-decoration-none word-hover">
-                                    Create Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/login" class="text-decoration-none word-hover">
-                                    login
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="widget4">
-                        <h5>
-                            Other Links
-                        </h5>
-                        <ul>
-                            <li>
-                                <a href="/search" class="text-decoration-none word-hover">
-                                    Simple search
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/search" class="text-decoration-none word-hover">
-                                    Advance search
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/suc_s" class="text-decoration-none word-hover">
-                                    Success stories
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/suc_v" class="text-decoration-none word-hover">
-                                    Success vidios
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 ">
-                    <div class="widget1">
-                        <div class="logo">
-                            <h2 style="font-family:fantasy;"><span class="text-warning"
-                                    style="text-decoration:underline;">BURUD</span>BANDHAN</h2>
+            <% allmembers.forEach((member)=>{%>
+                <div class="col-md-3 text-center mt-4 wow fadeInUp">
+                    <div class="card membercard position-relative" style="height: 320px;">
+                        <div class="pseudo1"></div>
+                        <div class="pseudo2"></div>
+                        <div class="pseudo3"></div>
+                        <img src="<%= member.memberpic%>" class="img-fluid h-100" style="object-fit: cover;" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <button class="btn btn-danger text-white">
+                                    <%= member.membername%>
+                                </button>
+                            </h5>
+                            <a href="#" class="btn btn-warning">
+                                <%= member.position%>
+                            </a>
                         </div>
+                    </div>
+                </div>
+                <%}) %>
+
+
+        </div>
+
+    </div>
+    <div class="mano_main">
+        <div class="row m-0 p-3">
+            <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                <div class="img_mano">
+                    <img src="<%=preseidentimage%>">
+                </div>
+            </div>
+            <div class="col-md-9 mano">
+                <div class="p-3 text-center">
+                  
+                       <h4 class="text-dark">अध्यक्षांचे मनोगत</h4>  <br>
+
+                       
                         <p>
-                            In eu libero ligula. Fusce eget metus lorem, ac viverra
-                            leo. Nullam convallis, arcu vel pellentesque sodales,
-                            nisi est varius diam, ac ultrices sem ante quis sem.
-                            Proin ultricies volutpat sapien.
-                        </p>
-                        <div class="socialLinks">
+                            नमस्कार, <br>
+                            "
+                        <%= adhykshmanogat%>
+                             "
+                         कैलास दत्तात्रय हादगे<br>
+
+                        &nbsp; &nbsp; (संस्थापक अध्यक्ष)
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- second section stsart here -->
+        <div class="row m-0 p-3">
+            <div class="col-md-9 mano">
+                <div class="p-3 text-center">
+                 
+                        <h4 class="text-dark">सचिवांचे मनोगत</h4> <br>
+                        <p>
+                        <span class="d-block">नमस्कार</span>
+                        "
+                       <%= sachivmanogat%>
+                        "
+                        <br>
+                        - श्री. महेश पवार <br>
+
+                        &nbsp; &nbsp; (सचिव)
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                <div class="img_mano">
+                    <img src="https://i.pinimg.com/236x/6b/7e/d6/6b7ed698713c09ad9e6afc7dcb996a09.jpg">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer Start -->
+        <footer class="footer bg-danger">
+            <div class="container">
+                <div class="row m-0">
+
+
+                    <div class="col-md-3">
+                        <div class="widget3">
+                            <h5>
+                                Quick Links
+                            </h5>
                             <ul>
                                 <li>
-                                    <a href="#" class="text-decoration-none word-hover">
-                                        <i class="fab fa-facebook-f"></i>
+                                    <a href="/index" class="text-decoration-none word-hover">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/about" class="text-decoration-none word-hover">
+                                        about
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="text-decoration-none word-hover">
-                                        <i class="fab fa-youtube"></i>
+                                        contact
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-decoration-none word-hover">
-                                        <i class="fab fa-linkedin-in"></i>
+                                    <a href="/profile" class="text-decoration-none word-hover">
+                                        Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-decoration-none word-hover">
-                                        <i class="fab fa-google-plus-g"></i>
+                                    <a href="" class="text-decoration-none word-hover">
+                                        Create Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/login" class="text-decoration-none word-hover">
+                                        login
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="widget4">
+                            <h5>
+                                Other Links
+                            </h5>
+                            <ul>
+                                <li>
+                                    <a href="/search" class="text-decoration-none word-hover">
+                                        Simple search
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/search" class="text-decoration-none word-hover">
+                                        Advance search
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/suc_s" class="text-decoration-none word-hover">
+                                        Success stories
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/suc_v" class="text-decoration-none word-hover">
+                                        Success vidios
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="widget1">
+                            <div class="logo">
+                                <h2 style="font-family:fantasy;"><span class="text-warning"
+                                        style="text-decoration:underline;">BURUD</span>BANDHAN</h2>
+                            </div>
+                            <p>
+                                In eu libero ligula. Fusce eget metus lorem, ac viverra
+                                leo. Nullam convallis, arcu vel pellentesque sodales,
+                                nisi est varius diam, ac ultrices sem ante quis sem.
+                                Proin ultricies volutpat sapien.
+                            </p>
+                            <div class="socialLinks">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="text-decoration-none word-hover">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-decoration-none word-hover">
+                                            <i class="fab fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-decoration-none word-hover">
+                                            <i class="fab fa-linkedin-in"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-decoration-none word-hover">
+                                            <i class="fab fa-google-plus-g"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="copyRightArea">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <p>© Copyright Burud-bhanden.com. Designed by @Increditex software solutions pvt ltd. All right
-                            reserved</p>
+            <div class="copyRightArea">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p>© Copyright Burud-bhanden.com. Designed by @Increditex software solutions pvt ltd. All
+                                right
+                                reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-warning text-white btn-lg-square rounded-circle back-to-top"><i
+                class="bi bi-arrow-up"></i></a>
+
+        <div class="modal fade" id="basicInfoAddModal">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="text-dark">Add Personal Information</h6>
+                        <button type="button" class="close" data-bs-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-4" id="basicInfo-form">
+
+
+                            <div class="col-md-4">
+                                <label for="">Create Profile for</label>
+                                <select class="form-control" id="profilefor" name="profilefor" required>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Groom">Groom</option>
+                                    <option value="Bride">Bride</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="full-name">Full Name</label>
+                                <input class="form-control" type="text" id="fullname" name="fullname" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="full-name">Birth Name</label>
+                                <input class="form-control" type="text" id="birthname" name="birthname" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="birth-place">Birth Place(जन्म ठिकाण )</label>
+                                <input class="form-control" type="text" id="birthplace" name="birthplace" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="dob">Date of Birth(जन्म तारीख)</label>
+                                <input type="date" class="form-control" id="dob" name="dateofbirth" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="tob">Time of Birth(जन्म वेळ)</label>
+                                <input type="time" class="form-control" id="tob" name="timeofbirth" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="city">City</label>
+                                <select class="form-control" id="city" name="city" required>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Nashik">Nashik</option>
+                                    <option value="Pune">Pune</option>
+                                    <option value="Jalgaon">Jalgaon</option>
+                                    <option value="Kolhapur">Kolhapur</option>
+                                    <option value="Sambhajinanagr">Sambhajinanagr</option>
+                                    <option value="Chalisgaon">Chalisgaon</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="education">Education</label>
+                                <select class="form-control" id="education" name="education" required>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="Master Degree">Master Degree</option>
+                                    <option value="Graduation">Graduation</option>
+                                    <option value="12Th">12Th</option>
+                                    <option value="10Th">10Th</option>
+                                    <option value="Chalisgaon">Engineering</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="income">Annual Income(वार्षिक उत्पन्न )</label>
+                                <input type="number" class="form-control" id="income" name="income"
+                                    placeholder="per annum" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="blood-group">Blood Group</label>
+                                <select class="form-control" id="bloodgroup" name="bloodgroup" required>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="A positive (A+)">A positive (A+)</option>
+                                    <option value="A negative (A-)">A negative (A-)</option>
+                                    <option value="B positive (B+)">B positive (B+)</option>
+                                    <option value="B negative (B-)">B negative (B-)</option>
+                                    <option value="AB positive (AB+)">AB positive (AB+)</option>
+                                    <option value="AB negative (AB-)">AB negative (AB-)</option>
+                                    <option value="O positive (O+)">O positive (O+)</option>
+                                    <option value="O positive (O+)">O negative (O-)</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="spectacles">Spectacles (चष्मा )</label>
+                                <select class="form-control" id="spectacles" name="spectacles" required>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+
+
+
+
+                            <div class="col-md-4">
+                                <label for="occupation">Occupation(व्यवसाय/नोकरी )</label>
+                                <input class="form-control" type="text" id="occupation" name="occupation" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="marital-status">Marital Status</label>
+                                <select class="form-control" id="maritalstatus" name="maritalstatus" required>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="single">Single</option>
+                                    <option value="divorced">Divorced</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="height">Height in cm (उंची सेंटी)</label>
+                                <input class="form-control" type="number" id="height" name="height" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="occupation-city">Occupation City(व्यवसाय शहर )</label>
+                                <input class="form-control" type="text" id="occupationcity" name="occupationcity"
+                                    required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="complexion">Complexion(वर्ण)</label>
+                                <input class="form-control" type="text" id="complexion" name="complexion" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="complexion">Disabled(अपंग )</label>
+                                <select class="form-control" id="disabled" name="disabled" required>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="yes">yes</option>
+                                    <option value="no">no</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="complexion">Address(पत्ता )</label>
+                                <textarea class="form-control" id="address" name="address"></textarea>
+                            </div>
+
+
+
+                            <div class="row border-top">
+                                <h6 class="text-dark p-3">Your contact details</h6>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="age-difference"> Email id </label>
+                                            <input class="form-control" type="email" id="email" name="email" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="age-difference">Mobile number</label>
+                                            <input class="form-control" type="number" id="mobile" name="mobile"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                        <button class="btn btn-primary" type="submit"
+                            onclick="captureBasicDetails(); addFamilyBackground();" id="proceedToSecondModal"
+                            disabled>next</button>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- Footer End -->
+        <div class="modal fade" id="familyinfoAddModal">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="text-dark">Add Family Information</h6>
+                        <button type="button" class="close" data-bs-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="" class="row" id="familyInfo-form" enctype="multipart/form-data">
+                            <div class="col-md-12">
+                                <div class="row my-4">
+
+                                    <input type="hidden" name="profilefor" id="profileforinput" value="">
+                                    <input type="hidden" name="fullname" id="fullnameinput" value="">
+                                    <input type="hidden" name="birthname" id="birthnameinput" value="">
+                                    <input type="hidden" name="birthplace" id="birthplaceinput" value="">
+                                    <input type="hidden" name="city" id="cityinput" value="">
+                                    <input type="hidden" name="dob" id="dobinput" value="">
+                                    <input type="hidden" name="tob" id="tobinput" value="">
+                                    <input type="hidden" name="income" id="incomeinput" value="">
+                                    <input type="hidden" name="education" id="educationinput" value="">
+                                    <input type="hidden" name="bloodgroup" id="bloodgroupinput" value="">
+                                    <input type="hidden" name="spectacles" id="spectaclesinput" value="">
+                                    <input type="hidden" name="occupation" id="occupationinput" value="">
+                                    <input type="hidden" name="complexion" id="complexioninput" value="">
+                                    <input type="hidden" name="maritalstatus" id="maritalstatusinput" value="">
+                                    <input type="hidden" name="height" id="heightinput" value="">
+                                    <input type="hidden" name="occupationcity" id="occupationcityinput" value="">
+                                    <input type="hidden" name="disabled" id="disabledinput" value="">
+                                    <input type="hidden" name="address" id="addressinput" value="">
+                                    <input type="hidden" name="email" id="emailinput" value="">
+                                    <input type="hidden" name="mobile" id="mobileinput" value="">
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-warning text-white btn-lg-square rounded-circle back-to-top"><i
-            class="bi bi-arrow-up"></i></a>
 
-            <div class="modal fade" id="basicInfoAddModal">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h6 class="text-dark">Add Personal Information</h6>
-                            <button type="button" class="close" data-bs-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="row g-4" id="basicInfo-form">
-        
-        
-                                <div class="col-md-4">
-                                    <label for="">Create Profile for</label>
-                                    <select class="form-control" id="profilefor" name="profilefor" required>
-                                        <option disabled selected value="">Select</option>
-                                        <option value="Groom">Groom</option>
-                                        <option value="Bride">Bride</option>
-                                    </select>
+                                    <div class="col-md-4">
+                                        <label for="father-name">Father's full Name</label>
+                                        <input class="form-control" type="text" id="fathername" name="fathername"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Mother's maher full Name</label>
+                                        <input class="form-control" type="text" id="mothername" name="mothername"
+                                            required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Father occupation</label>
+                                        <input class="form-control" type="text" id="fatheroccupation"
+                                            name="fatheroccupation" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Mother occupation</label>
+                                        <input class="form-control" type="text" id="motheroccupation"
+                                            name="motheroccupation" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Hudda</label>
+                                        <input class="form-control" type="text" id="hudda" name="hudda" required>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
+                                        <input class="form-control" type="text" id="maternaluncle" name="maternaluncle"
+                                            required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Family members</label>
+                                        <input class="form-control" type="number" id="familymembers"
+                                            name="familymembers" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="mother-name">Parents Address</label>
+                                        <textarea name="parentaddress" id="parentaddress"
+                                            class="form-control"></textarea>
+                                    </div>
+
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="full-name">Full Name</label>
-                                    <input class="form-control" type="text" id="fullname" name="fullname" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="full-name">Birth Name</label>
-                                    <input class="form-control" type="text" id="birthname" name="birthname" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="birth-place">Birth Place(जन्म ठिकाण )</label>
-                                    <input class="form-control" type="text" id="birthplace" name="birthplace" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="dob">Date of Birth(जन्म तारीख)</label>
-                                    <input type="date" class="form-control" id="dob" name="dateofbirth" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="tob">Time of Birth(जन्म वेळ)</label>
-                                    <input type="time" class="form-control" id="tob" name="timeofbirth" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="city">City</label>
-                                    <select class="form-control" id="city" name="city" required>
-                                        <option disabled selected value="">Select</option>
-                                        <option value="Nashik">Nashik</option>
-                                        <option value="Pune">Pune</option>
-                                        <option value="Jalgaon">Jalgaon</option>
-                                        <option value="Kolhapur">Kolhapur</option>
-                                        <option value="Sambhajinanagr">Sambhajinanagr</option>
-                                        <option value="Chalisgaon">Chalisgaon</option>
-                                    </select>
-                                </div>
-        
-                                <div class="col-md-4">
-                                    <label for="education">Education</label>
-                                    <select class="form-control" id="education" name="education" required>
-                                        <option disabled selected value="">Select</option>
-                                        <option value="Diploma">Diploma</option>
-                                        <option value="Master Degree">Master Degree</option>
-                                        <option value="Graduation">Graduation</option>
-                                        <option value="12Th">12Th</option>
-                                        <option value="10Th">10Th</option>
-                                        <option value="Chalisgaon">Engineering</option>
-        
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="income">Annual Income(वार्षिक उत्पन्न )</label>
-                                    <input type="number" class="form-control" id="income" name="income" placeholder="per annum"
-                                        required>
-                                </div>
-        
-                                <div class="col-md-4">
-                                    <label for="blood-group">Blood Group</label>
-                                    <select class="form-control" id="bloodgroup" name="bloodgroup" required>
-                                        <option disabled selected value="">Select</option>
-                                        <option value="A positive (A+)">A positive (A+)</option>
-                                        <option value="A negative (A-)">A negative (A-)</option>
-                                        <option value="B positive (B+)">B positive (B+)</option>
-                                        <option value="B negative (B-)">B negative (B-)</option>
-                                        <option value="AB positive (AB+)">AB positive (AB+)</option>
-                                        <option value="AB negative (AB-)">AB negative (AB-)</option>
-                                        <option value="O positive (O+)">O positive (O+)</option>
-                                        <option value="O positive (O+)">O negative (O-)</option>
-        
-                                    </select>
-                                </div>
-        
-                                <div class="col-md-4">
-                                    <label for="spectacles">Spectacles (चष्मा )</label>
-                                    <select class="form-control" id="spectacles" name="spectacles" required>
-                                        <option disabled selected value="">Select</option>
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </div>
-        
-        
-        
-        
-                                <div class="col-md-4">
-                                    <label for="occupation">Occupation(व्यवसाय/नोकरी )</label>
-                                    <input class="form-control" type="text" id="occupation" name="occupation" required>
-                                </div>
-        
-                                <div class="col-md-4">
-                                    <label for="marital-status">Marital Status</label>
-                                    <select class="form-control" id="maritalstatus" name="maritalstatus" required>
-                                        <option disabled selected value="">Select</option>
-                                        <option value="single">Single</option>
-                                        <option value="divorced">Divorced</option>
-                                    </select>
-                                </div>
-        
-                                <div class="col-md-4">
-                                    <label for="height">Height in cm (उंची सेंटी)</label>
-                                    <input class="form-control" type="number" id="height" name="height" required>
-                                </div>
-        
-                                <div class="col-md-4">
-                                    <label for="occupation-city">Occupation City(व्यवसाय शहर )</label>
-                                    <input class="form-control" type="text" id="occupationcity" name="occupationcity" required>
-                                </div>
-        
-                                <div class="col-md-4">
-                                    <label for="complexion">Complexion(वर्ण)</label>
-                                    <input class="form-control" type="text" id="complexion" name="complexion" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="complexion">Disabled(अपंग )</label>
-                                    <select class="form-control" id="disabled" name="disabled" required>
-                                        <option disabled selected value="">Select</option>
-                                        <option value="yes">yes</option>
-                                        <option value="no">no</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="complexion">Address(पत्ता )</label>
-                                    <textarea class="form-control" id="address" name="address"></textarea>
-                                </div>
-        
-        
-        
+
                                 <div class="row border-top">
-                                    <h6 class="text-dark p-3">Your contact details</h6>
+                                    <h6 class="text-dark p-3">Add Expectations</h6>
                                     <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="age-difference"> Email id </label>
-                                                <input class="form-control" type="email" id="email" name="email" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="age-difference">Mobile number</label>
-                                                <input class="form-control" type="number" id="mobile" name="mobile" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                            <button class="btn btn-primary" type="submit"
-                                onclick="captureBasicDetails(); addFamilyBackground();" id="proceedToSecondModal"
-                                disabled>next</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="familyinfoAddModal">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h6 class="text-dark">Add Family Information</h6>
-                            <button type="button" class="close" data-bs-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="" class="row" id="familyInfo-form" enctype="multipart/form-data">
-                                <div class="col-md-12">
-                                    <div class="row my-4">
-        
-                                        <input type="hidden" name="profilefor" id="profileforinput" value="">
-                                        <input type="hidden" name="fullname" id="fullnameinput" value="">
-                                        <input type="hidden" name="birthname" id="birthnameinput" value="">
-                                        <input type="hidden" name="birthplace" id="birthplaceinput" value="">
-                                        <input type="hidden" name="city" id="cityinput" value="">
-                                        <input type="hidden" name="dob" id="dobinput" value="">
-                                        <input type="hidden" name="tob" id="tobinput" value="">
-                                        <input type="hidden" name="income" id="incomeinput" value="">
-                                        <input type="hidden" name="education" id="educationinput" value="">
-                                        <input type="hidden" name="bloodgroup" id="bloodgroupinput" value="">
-                                        <input type="hidden" name="spectacles" id="spectaclesinput" value="">
-                                        <input type="hidden" name="occupation" id="occupationinput" value="">
-                                        <input type="hidden" name="complexion" id="complexioninput" value="">
-                                        <input type="hidden" name="maritalstatus" id="maritalstatusinput" value="">
-                                        <input type="hidden" name="height" id="heightinput" value="">
-                                        <input type="hidden" name="occupationcity" id="occupationcityinput" value="">
-                                        <input type="hidden" name="disabled" id="disabledinput" value="">
-                                        <input type="hidden" name="address" id="addressinput" value="">
-                                        <input type="hidden" name="email" id="emailinput" value="">
-                                        <input type="hidden" name="mobile" id="mobileinput" value="">
-        
-        
-        
-                                        <div class="col-md-4">
-                                            <label for="father-name">Father's full Name</label>
-                                            <input class="form-control" type="text" id="fathername" name="fathername" required>
-                                        </div>
-        
-                                        <div class="col-md-4">
-                                            <label for="mother-name">Mother's maher full Name</label>
-                                            <input class="form-control" type="text" id="mothername" name="mothername" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="mother-name">Father occupation</label>
-                                            <input class="form-control" type="text" id="fatheroccupation"
-                                                name="fatheroccupation" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="mother-name">Mother occupation</label>
-                                            <input class="form-control" type="text" id="motheroccupation"
-                                                name="motheroccupation" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="mother-name">Hudda</label>
-                                            <input class="form-control" type="text" id="hudda" name="hudda" required>
-                                        </div>
-        
-                                        <div class="col-md-4">
-                                            <label for="maternal-uncle">Maternal Uncle(मामकूल )</label>
-                                            <input class="form-control" type="text" id="maternaluncle" name="maternaluncle"
-                                                required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="mother-name">Family members</label>
-                                            <input class="form-control" type="number" id="familymembers" name="familymembers"
-                                                required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="mother-name">Parents Address</label>
-                                            <textarea name="parentaddress" id="parentaddress" class="form-control"></textarea>
-                                        </div>
-        
-                                    </div>
-        
-                                    <div class="row border-top">
-                                        <h6 class="text-dark p-3">Add Expectations</h6>
-                                        <div class="col-md-12">
-                                            <label for="">Expectations</label>
-                                            <textarea name="expectation" id="expectation" class="form-control"></textarea>
-                                            <!-- <div class="row">
+                                        <label for="">Expectations</label>
+                                        <textarea name="expectation" id="expectation" class="form-control"></textarea>
+                                        <!-- <div class="row">
                                                         <div class="col-md-4">
                                                             <label for="age-difference">Age Difference Upto:(In Year) </label>
                                                             <input class="form-control" type="text" id="agedifference"
@@ -810,282 +720,282 @@
                                                     
                                                         
                                                     </div> -->
-                                        </div>
                                     </div>
                                 </div>
-        
-        
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                            <button class="btn btn-danger" type="submit" onclick="submitFormData();">submit</button>
-                        </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                        <button class="btn btn-danger" type="submit" onclick="submitFormData();">submit</button>
                     </div>
                 </div>
             </div>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        </div>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <!-- <script src="js/about.js"></script> -->
-    <script>
-        async function addProfile() {
-            try {
-                await $.ajax({
-                    type: 'GET',
-                    url: '/checkprofile', // Endpoint to check user profile existence
-                    success: async function (response) {
-                        if (response.message === 'User Profile Found') {
-                            $('#basicInfoAddModal').modal('hide');
-                            console.log("send request");
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <!-- <script src="js/about.js"></script> -->
+        <script>
+            async function addProfile() {
+                try {
+                    await $.ajax({
+                        type: 'GET',
+                        url: '/checkprofile', // Endpoint to check user profile existence
+                        success: async function (response) {
+                            if (response.message === 'User Profile Found') {
+                                $('#basicInfoAddModal').modal('hide');
+                                console.log("send request");
 
-                            // Add AJAX request to send friend request
-                            await $.ajax({
-                                type: 'PUT',
-                                url: '/sendRequest', // Endpoint to send friend request
-                                success: function (response) {
-                                    console.log('Friend request sent successfully');
-                                },
-                                error: function (xhr, status, error) {
-                                    console.error('Error sending friend request:', error);
-                                }
-                            });
-                        } else {
-                            $('#basicInfo-form').trigger('reset');
-                            $('#basicInfoAddModal').modal('show');
+                                // Add AJAX request to send friend request
+                                await $.ajax({
+                                    type: 'PUT',
+                                    url: '/sendRequest', // Endpoint to send friend request
+                                    success: function (response) {
+                                        console.log('Friend request sent successfully');
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.error('Error sending friend request:', error);
+                                    }
+                                });
+                            } else {
+                                $('#basicInfo-form').trigger('reset');
+                                $('#basicInfoAddModal').modal('show');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
                         }
+                    });
+                } catch (error) {
+                    console.error('Error adding profile:', error);
+                }
+            }
+
+            function captureBasicDetails() {
+
+
+                const profilefor = document.getElementById('profilefor').value;
+                //  basicDetails['profilefor']=profilefor
+                const fullname = document.getElementById('fullname').value;
+                const birthname = document.getElementById('birthname').value;
+                const birthplace = document.getElementById('birthplace').value;
+                const disabled = document.getElementById('disabled').value;
+                const address = document.getElementById('address').value;
+                //  basicDetails['fullname']=fullname
+                const city = document.getElementById('city').value;
+                //  basicDetails['city']=city
+                const dob = document.getElementById('dob').value;
+                const tob = document.getElementById('tob').value;
+                //  basicDetails['dob']=dob
+                const income = document.getElementById('income').value;
+                //  basicDetails['income']=income
+                const education = document.getElementById('education').value;
+                //  basicDetails['education']=education
+                const bloodgroup = document.getElementById('bloodgroup').value;
+                //  basicDetails['bloodgroup']=bloodgroup
+                const spectacles = document.getElementById('spectacles').value;
+                //  basicDetails['spectacles']=spectacles
+
+                //  basicDetails['gotradevak']=gotradevak
+
+                //  basicDetails['birthplace']=birthplace
+                const occupation = document.getElementById('occupation').value;
+                //  basicDetails['occupation']=occupation
+                const maritalstatus = document.getElementById('maritalstatus').value;
+                //  basicDetails['maritalstatus']=maritalstatus
+                const height = document.getElementById('height').value;
+                //  basicDetails['height']=height
+                const occupationcity = document.getElementById('occupationcity').value;
+                //  basicDetails['occupationcity']=occupationcity
+                const complexion = document.getElementById('complexion').value;
+                //  basicDetails['complexion']=complexion
+
+                //  basicDetails['mangal']=mangal
+
+                //  basicDetails['horoimage']=horoimage
+
+                const email = document.getElementById('email').value;
+                const mobile = document.getElementById('mobile').value;
+                //  basicDetails['residentcity']=residentcity
+
+
+
+                document.getElementById("profileforinput").value = profilefor;
+                document.getElementById("fullnameinput").value = fullname;
+                document.getElementById("birthnameinput").value = birthname;
+                document.getElementById("birthplaceinput").value = birthplace;
+                document.getElementById("cityinput").value = city;
+                document.getElementById("dobinput").value = dob;
+                document.getElementById("tobinput").value = tob;
+                document.getElementById("disabledinput").value = disabled;
+                document.getElementById("addressinput").value = address;
+                document.getElementById("incomeinput").value = income;
+                document.getElementById("educationinput").value = education;
+                document.getElementById("bloodgroupinput").value = bloodgroup;
+                document.getElementById("spectaclesinput").value = spectacles;
+                document.getElementById("birthplaceinput").value = birthplace;
+                document.getElementById("occupationinput").value = occupation;
+                document.getElementById("complexioninput").value = complexion;
+                document.getElementById("maritalstatusinput").value = maritalstatus;
+                document.getElementById("heightinput").value = height;
+                document.getElementById("occupationcityinput").value = occupationcity;
+                document.getElementById("emailinput").value = email;
+                document.getElementById("mobileinput").value = mobile;
+            }
+
+            // Function to update the Next button state
+            function updateNextbuttonstate() {
+
+                const profilefor = $('#profilefor').val();
+                const fullname = $('#fullname').val();
+                const birthname = $('#birthname').val();
+                const birthplace = $('#birthplace').val();
+                const city = $('#city').val();
+                const dob = $('#dob').val();
+                const tob = $('#tob').val();
+                const disabled = $('#disabled').val();
+                const address = $('#address').val();
+                const income = $('#income').val();
+                const education = $('#education').val();
+                const bloodgroup = $('#bloodgroup').val();
+                const spectacles = $('#spectacles').val();
+                const occupation = $('#occupation').val();
+                const maritalstatus = $('#maritalstatus').val();
+                const height = $('#height').val();
+                const occupationcity = $('#occupationcity').val();
+                const complexion = $('#complexion').val();
+
+                const email = $('#email').val();
+                const mobile = $('#mobile').val();
+
+
+
+                if (
+                    profilefor &&
+                    fullname &&
+                    birthname &&
+                    birthplace &&
+                    city &&
+                    dob &&
+                    tob &&
+                    disabled &&
+                    address &&
+                    income &&
+                    education &&
+                    bloodgroup &&
+                    spectacles &&
+                    birthplace &&
+                    occupation &&
+                    maritalstatus &&
+                    height &&
+                    occupationcity &&
+                    complexion &&
+                    email &&
+                    mobile
+                ) {
+                    $('#proceedToSecondModal').prop('disabled', false);
+                } else {
+                    $('#proceedToSecondModal').prop('disabled', true);
+                }
+            }
+
+
+            $('#basicInfoAddModal').on('show.bs.modal', function () {
+                $('#proceedToSecondModal').prop('disabled', true);
+            });
+
+
+            $('#basicInfo-form input, #basicInfo-form select').on('input change', function () {
+                updateNextbuttonstate();
+            });
+
+
+            function addFamilyBackground() {
+                $('#familyInfo-form').trigger('reset');
+                $('#familyinfoAddModal').modal('show');
+            }
+
+            function submitFormData() {
+
+                const basicInfo = {
+                    profilefor: document.getElementById('profileforinput').value,
+                    fullname: document.getElementById('fullnameinput').value,
+                    birthname: document.getElementById('birthnameinput').value,
+                    birthplace: document.getElementById("birthplaceinput").value,
+                    city: document.getElementById("cityinput").value,
+                    dateofbirth: document.getElementById("dobinput").value,
+                    timeofbirth: document.getElementById("tobinput").value,
+                    disabled: document.getElementById("disabledinput").value,
+                    address: document.getElementById("addressinput").value,
+                    income: document.getElementById("incomeinput").value,
+                    education: document.getElementById("educationinput").value,
+                    bloodgroup: document.getElementById("bloodgroupinput").value,
+                    spectacles: document.getElementById("spectaclesinput").value,
+                    occupation: document.getElementById("occupationinput").value,
+                    complexion: document.getElementById("complexioninput").value,
+                    maritalstatus: document.getElementById("maritalstatusinput").value,
+                    height: document.getElementById("heightinput").value,
+                    occupationcity: document.getElementById("occupationcityinput").value,
+                    email: document.getElementById("emailinput").value,
+                    mobile: document.getElementById("mobileinput").value,
+                };
+
+                // Gather data from the second modal
+                const familyInfo = {
+                    fathername: document.getElementById('fathername').value,
+                    mothername: document.getElementById('mothername').value,
+                    maternaluncle: document.getElementById('maternaluncle').value,
+                    parentaddress: document.getElementById('parentaddress').value,
+                    familymembers: document.getElementById('familymembers').value,
+                    hudda: document.getElementById('hudda').value,
+                    fatheroccupation: document.getElementById('fatheroccupation').value,
+                    motheroccupation: document.getElementById('motheroccupation').value,
+                    expectation: document.getElementById('expectation').value,
+                    // agedifference: document.getElementById('agedifference').value,
+                    // preferredcity: document.getElementById('preferredcity').value,
+                    // expectedheight: document.getElementById('expectedheight').value,
+                    // herhiseducation: document.getElementById('herhiseducation').value,
+                    // Add other fields as needed
+                };
+                // Combine data from both modals
+                const formData = { ...basicInfo, ...familyInfo };
+
+                // Send data to the server using AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/addprofile', // Update the URL with your server endpoint
+                    data: formData,
+                    success: function (response) {
+                        // Handle success response
+                        console.log(response);
+                        $('#basicInfoAddModal').modal('hide');
+                        $('#familyinfoAddModal').modal('hide');
+                        $('.toast').toast('show');
+                        window.location.href = '/uploadphoto';
                     },
                     error: function (xhr, status, error) {
+                        // Handle error
                         console.error(error);
                     }
                 });
-            } catch (error) {
-                console.error('Error adding profile:', error);
             }
-        }
-
-        function captureBasicDetails() {
 
 
-            const profilefor = document.getElementById('profilefor').value;
-            //  basicDetails['profilefor']=profilefor
-            const fullname = document.getElementById('fullname').value;
-            const birthname = document.getElementById('birthname').value;
-            const birthplace = document.getElementById('birthplace').value;
-            const disabled = document.getElementById('disabled').value;
-            const address = document.getElementById('address').value;
-            //  basicDetails['fullname']=fullname
-            const city = document.getElementById('city').value;
-            //  basicDetails['city']=city
-            const dob = document.getElementById('dob').value;
-            const tob = document.getElementById('tob').value;
-            //  basicDetails['dob']=dob
-            const income = document.getElementById('income').value;
-            //  basicDetails['income']=income
-            const education = document.getElementById('education').value;
-            //  basicDetails['education']=education
-            const bloodgroup = document.getElementById('bloodgroup').value;
-            //  basicDetails['bloodgroup']=bloodgroup
-            const spectacles = document.getElementById('spectacles').value;
-            //  basicDetails['spectacles']=spectacles
-
-            //  basicDetails['gotradevak']=gotradevak
-
-            //  basicDetails['birthplace']=birthplace
-            const occupation = document.getElementById('occupation').value;
-            //  basicDetails['occupation']=occupation
-            const maritalstatus = document.getElementById('maritalstatus').value;
-            //  basicDetails['maritalstatus']=maritalstatus
-            const height = document.getElementById('height').value;
-            //  basicDetails['height']=height
-            const occupationcity = document.getElementById('occupationcity').value;
-            //  basicDetails['occupationcity']=occupationcity
-            const complexion = document.getElementById('complexion').value;
-            //  basicDetails['complexion']=complexion
-
-            //  basicDetails['mangal']=mangal
-
-            //  basicDetails['horoimage']=horoimage
-
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
-            //  basicDetails['residentcity']=residentcity
-
-
-
-            document.getElementById("profileforinput").value = profilefor;
-            document.getElementById("fullnameinput").value = fullname;
-            document.getElementById("birthnameinput").value = birthname;
-            document.getElementById("birthplaceinput").value = birthplace;
-            document.getElementById("cityinput").value = city;
-            document.getElementById("dobinput").value = dob;
-            document.getElementById("tobinput").value = tob;
-            document.getElementById("disabledinput").value = disabled;
-            document.getElementById("addressinput").value = address;
-            document.getElementById("incomeinput").value = income;
-            document.getElementById("educationinput").value = education;
-            document.getElementById("bloodgroupinput").value = bloodgroup;
-            document.getElementById("spectaclesinput").value = spectacles;
-            document.getElementById("birthplaceinput").value = birthplace;
-            document.getElementById("occupationinput").value = occupation;
-            document.getElementById("complexioninput").value = complexion;
-            document.getElementById("maritalstatusinput").value = maritalstatus;
-            document.getElementById("heightinput").value = height;
-            document.getElementById("occupationcityinput").value = occupationcity;
-            document.getElementById("emailinput").value = email;
-            document.getElementById("mobileinput").value = mobile;
-        }
-
-        // Function to update the Next button state
-        function updateNextbuttonstate() {
-
-            const profilefor = $('#profilefor').val();
-            const fullname = $('#fullname').val();
-            const birthname = $('#birthname').val();
-            const birthplace = $('#birthplace').val();
-            const city = $('#city').val();
-            const dob = $('#dob').val();
-            const tob = $('#tob').val();
-            const disabled = $('#disabled').val();
-            const address = $('#address').val();
-            const income = $('#income').val();
-            const education = $('#education').val();
-            const bloodgroup = $('#bloodgroup').val();
-            const spectacles = $('#spectacles').val();
-            const occupation = $('#occupation').val();
-            const maritalstatus = $('#maritalstatus').val();
-            const height = $('#height').val();
-            const occupationcity = $('#occupationcity').val();
-            const complexion = $('#complexion').val();
-
-            const email = $('#email').val();
-            const mobile = $('#mobile').val();
-
-
-
-            if (
-                profilefor &&
-                fullname &&
-                birthname &&
-                birthplace &&
-                city &&
-                dob &&
-                tob &&
-                disabled &&
-                address &&
-                income &&
-                education &&
-                bloodgroup &&
-                spectacles &&
-                birthplace &&
-                occupation &&
-                maritalstatus &&
-                height &&
-                occupationcity &&
-                complexion &&
-                email &&
-                mobile
-            ) {
-                $('#proceedToSecondModal').prop('disabled', false);
-            } else {
-                $('#proceedToSecondModal').prop('disabled', true);
-            }
-        }
-
-
-        $('#basicInfoAddModal').on('show.bs.modal', function () {
-            $('#proceedToSecondModal').prop('disabled', true);
-        });
-
-
-        $('#basicInfo-form input, #basicInfo-form select').on('input change', function () {
-            updateNextbuttonstate();
-        });
-
-
-        function addFamilyBackground() {
-            $('#familyInfo-form').trigger('reset');
-            $('#familyinfoAddModal').modal('show');
-        }
-
-        function submitFormData() {
-
-            const basicInfo = {
-                profilefor: document.getElementById('profileforinput').value,
-                fullname: document.getElementById('fullnameinput').value,
-                birthname: document.getElementById('birthnameinput').value,
-                birthplace: document.getElementById("birthplaceinput").value,
-                city: document.getElementById("cityinput").value,
-                dateofbirth: document.getElementById("dobinput").value,
-                timeofbirth: document.getElementById("tobinput").value,
-                disabled: document.getElementById("disabledinput").value,
-                address: document.getElementById("addressinput").value,
-                income: document.getElementById("incomeinput").value,
-                education: document.getElementById("educationinput").value,
-                bloodgroup: document.getElementById("bloodgroupinput").value,
-                spectacles: document.getElementById("spectaclesinput").value,
-                occupation: document.getElementById("occupationinput").value,
-                complexion: document.getElementById("complexioninput").value,
-                maritalstatus: document.getElementById("maritalstatusinput").value,
-                height: document.getElementById("heightinput").value,
-                occupationcity: document.getElementById("occupationcityinput").value,
-                email: document.getElementById("emailinput").value,
-                mobile: document.getElementById("mobileinput").value,
-            };
-
-            // Gather data from the second modal
-            const familyInfo = {
-                fathername: document.getElementById('fathername').value,
-                mothername: document.getElementById('mothername').value,
-                maternaluncle: document.getElementById('maternaluncle').value,
-                parentaddress: document.getElementById('parentaddress').value,
-                familymembers: document.getElementById('familymembers').value,
-                hudda: document.getElementById('hudda').value,
-                fatheroccupation: document.getElementById('fatheroccupation').value,
-                motheroccupation: document.getElementById('motheroccupation').value,
-                expectation: document.getElementById('expectation').value,
-                // agedifference: document.getElementById('agedifference').value,
-                // preferredcity: document.getElementById('preferredcity').value,
-                // expectedheight: document.getElementById('expectedheight').value,
-                // herhiseducation: document.getElementById('herhiseducation').value,
-                // Add other fields as needed
-            };
-            // Combine data from both modals
-            const formData = { ...basicInfo, ...familyInfo };
-
-            // Send data to the server using AJAX
-            $.ajax({
-                type: 'POST',
-                url: '/addprofile', // Update the URL with your server endpoint
-                data: formData,
-                success: function (response) {
-                    // Handle success response
-                    console.log(response);
-                    $('#basicInfoAddModal').modal('hide');
-                    $('#familyinfoAddModal').modal('hide');
-                    $('.toast').toast('show');
-                    window.location.href = '/uploadphoto';
-                },
-                error: function (xhr, status, error) {
-                    // Handle error
-                    console.error(error);
-                }
-            });
-        }
-
-
-    </script>
+        </script>
 
 </body>
 

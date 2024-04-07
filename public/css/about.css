@@ -27,16 +27,19 @@
     display: none;
     color: #eee;
     transition: all 0.6s ease;
+    position: absolute;
+    top: 50%;
+    right: 15px;
   }
 
-  .card-body .btn-warning {
+  /* .card-body .btn-warning {
     position: absolute;
     bottom: -70px;
   }
   .card:hover .card-body .btn-warning {
     position: relative;
     bottom: 0px;
-  }
+  } */
   
   .card > div.pseudo1 {
     content: "";

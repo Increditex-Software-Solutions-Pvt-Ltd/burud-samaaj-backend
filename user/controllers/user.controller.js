@@ -8,6 +8,10 @@ const { Userphoto } = require('../models/userphotos.model');
 const { otpGen } = require('otp-gen-agent');
 const nodemailer = require('nodemailer');
 const { UserApproval } = require('../../admin/models/Userapproval.model');
+const { About } = require('../../admin/models/Aboutcms.model');
+const { Member } = require('../../admin/models/Membercms.model');
+const { Successstory } = require('../../admin/models/Successstory.model');
+const { Successvideo } = require('../../admin/models/Successvideo.model');
 
 const userController = {
     gethome: async (req, res) => {
@@ -242,6 +246,7 @@ const userController = {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
+            const allstories = await Successstory.findAll();
 
             if (token) {
                 try {
@@ -254,7 +259,7 @@ const userController = {
                     const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
 
-                        return res.render('success-stories', { user, userprofile });
+                        return res.render('success-stories', { user, userprofile,allstories });
                     }
                 } catch (err) {
 
@@ -262,7 +267,7 @@ const userController = {
                 }
             }
 
-            return res.render('success-stories', { user: null }); // Render without user information
+            return res.render('success-stories', { user: null,allstories }); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
@@ -272,7 +277,7 @@ const userController = {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
-
+            const allvideos = await Successvideo.findAll();
             if (token) {
                 try {
 
@@ -284,7 +289,7 @@ const userController = {
                     const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
 
-                        return res.render('success-videos', { user, userprofile });
+                        return res.render('success-videos', { user, userprofile,allvideos });
                     }
                 } catch (err) {
 
@@ -292,7 +297,7 @@ const userController = {
                 }
             }
 
-            return res.render('success-videos', { user: null }); // Render without user information
+            return res.render('success-videos', { user: null ,allvideos}); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');
@@ -302,10 +307,21 @@ const userController = {
         try {
             // Check if the user is authenticated
             const token = req.cookies.userJwt;
+            const about = await About.findAll();
+            const aboutwebsite = about.length > 0 ? about[0].aboutwebsite : "अखिल बुरुड समाज वधूवर सूचक समिती हि २०१७ पासून social media च्या माध्यमातून कार्य समाजामध्ये काम करत असते. मुख्यतः whatapp च्या माध्यमातून तर हा प्रवास चालूच आहे. जेणेकरून सर्व समाजबांधवाना सोपे व्हावे. नवीन तंत्रज्ञानाचा फायदा घेत “धरूया तंत्रज्ञानाची कस करूया समाजाच्या विकास” ह्या ब्रीदवाक्यानुसार आपली संस्था काम करत आहे. आता सध्या संस्थेच्या समितीमध्ये ११ पदाधिकारी महाराष्ट्र आणि कर्नाटका ह्या राज्यांमध्ये कार्यरत आहे. आजतागायत ह्या संस्थेच्या माध्यमातून दरवर्षी १००-१५० पेक्षा जास्त लग्न जोडले जातात. तसेच उमेदवाराच्या माहितीची योग्य शहनिशा करून मगच ती माहिती इतरांपर्यंत पोहचवत असतो. समितीने सर्व माहिती संकलित केली असून तो एकाच व्यासपीठावर उपलब्ध करून देण्याच काम ह्या संस्थेमार्फत केले आहे. whatsapp ग्रुप, facebook, youtube channel च्या माध्यमातून सुरु झालेला हा प्रवास matrimony website आणि app पर्यंत येऊन पोहचला आहे. समाजातील लोकांना घर बसल्या योग्य सुविधा देऊन समाजातील कुटुंबसंस्था विकसित कशी होईल ह्याकडे संस्थेचा मानस असतो. दिवसांपूर्वी कोरोनाच्या काळामध्ये ONLINE वधू-वर सूचक मेळावा घेतला होता. त्याला भरगोस प्रतिसाद मिळाला होता आणि तो कार्यक्रम यशस्वी झाला आहे. सदर संस्थेला समाजातून सकारात्मक नजरेने पहिले जाते. समाजासाठी होणार्या कुठल्याही महत्वाच्या कार्याला संस्थेकडून प्रोत्साहन दिले जाते. समाजाचा मानस आणि आजची ओळख लक्षात घेऊन पिंपरी चिंचवड बुरुड समाज समिती जो मेळावा आयोजित केला आहे त्यासाठीदेखील अखिल महाराष्ट्र बुरुड समाज वधूवर सूचक समितीने सहकार्याची भूमिका बजावली आहे.";
 
+            const preseident = await Member.findOne({where:{position:"अध्यक्ष "}});
+
+            const preseidentimage = preseident.memberpic;
+
+            const adhykshmanogat = about.length > 0 ? about[0].adhykshmanogat :""
+            const sachivmanogat = about.length > 0 ? about[0].sachivmanogat :""
+           
+
+            const allmembers = await Member.findAll();
             if (token) {
                 try {
-
+                    
                     const decoded = jwt.verify(token, process.env.user_secret_key);
                     const userId = decoded.userId;
 
@@ -314,7 +330,7 @@ const userController = {
                     const userprofile = await Userprofile.findOne({ where: { userId } })
                     if (user) {
 
-                        return res.render('about', { user, userprofile });
+                        return res.render('about', { user, userprofile,aboutwebsite,allmembers,preseidentimage ,adhykshmanogat,sachivmanogat});
                     }
                 } catch (err) {
 
@@ -322,7 +338,7 @@ const userController = {
                 }
             }
 
-            return res.render('about', { user: null }); // Render without user information
+            return res.render('about', { user: null ,aboutwebsite,allmembers,preseidentimage ,adhykshmanogat,sachivmanogat}); // Render without user information
         } catch (error) {
             console.error('Error executing Sequelize query: ', error);
             res.status(500).send('Internal Server Error');

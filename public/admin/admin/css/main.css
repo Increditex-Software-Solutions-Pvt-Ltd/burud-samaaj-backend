@@ -392,6 +392,30 @@ label.required::after {
   .border-left-primary{
 	border-left: 0.23rem solid #f0cc86 !important;
   }
+  .bg-gredient-primary{
+	background: linear-gradient(145deg,#dc3545,#da3c4c,#e16470);
+	box-shadow: 0 0 7px rgba(224, 99, 166, 0.15) !important;
+  }
+  .anibubble{
+	   height: 70px;
+	   width: 70px;
+	   background:linear-gradient(145deg,#ca3746,#cb616a,#cf1d2f);
+	   bottom: 10px;
+	   right: 2px;
+	   border-radius: 50%;
+	   animation: bounce 2s infinite linear;
+  }
+  @keyframes bounce{
+	 0%{
+		transform: translateY(0px);
+	 }
+	 50%{
+		transform: translateY(5px);
+	 }
+	 100%{
+		transform: translateY(0px);
+	 }
+  }
   .text-blind{
 	color: #e8cb91 !important;
   }

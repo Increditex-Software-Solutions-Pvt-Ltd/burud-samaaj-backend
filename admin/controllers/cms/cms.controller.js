@@ -2,6 +2,7 @@ const { uploadMember } = require("../../../config/multerconfig");
 const { About } = require("../../models/Aboutcms.model");
 const { Member } = require("../../models/Membercms.model");
 const { Successstory } = require("../../models/Successstory.model");
+const { Successvideo } = require("../../models/Successvideo.model");
 
 const addAboutpage=async(req,res)=>{
     try { 
@@ -124,7 +125,7 @@ const updateMember = async (req, res) => {
 
           await existingMember.save();
 
-          return res.redirect('/admin/cms'); // Redirect to appropriate page
+          return res.redirect('/admin/cms'); 
       });
   } catch (error) {
       console.error(error);
@@ -251,4 +252,77 @@ const deleteStory=async(req,res)=>{
    }
  }
 
- module.exports = {addAboutpage,getAboutUpdateForm,addMember,getMemberUpdateForm,updateMember,updateAbout,deleteMember,addSuccessStory,getStoryUpdateForm,updateStory,deleteStory}
+ const addSuccessVideo=async(req,res)=>{
+    try { 
+       const formData = req.body;
+      
+       const successvideorecord = await Successvideo.create({
+          videourl:formData.videourl,
+          year:formData.year,
+          description:formData.description       
+       })
+      
+     
+       res.redirect('/admin/cms');
+    } catch (error) {
+         console.error('Error adding video page:', error);
+         res.status(500).send('Internal Server Error');
+    }
+ }
+
+ const getVideoUpdateForm=async(req,res)=>{
+
+    const {id} = req.params;
+   try {
+       const videocontent = await Successvideo.findByPk(id);
+       
+       if(videocontent){
+         res.json({success:true,data:videocontent})
+       }
+       else{
+        res.json({success:false,message:"video record not found"});
+       }
+   } catch (error) {
+    console.error('Error updating video', error);
+    res.status(500).json({ success: false, message: 'Failed to update video' });
+   }
+}
+
+const updateVideo = async (req, res) => {
+   let videoId = req.params.id;
+   try {
+       const video = await Successvideo.findByPk(videoId);
+       if (video) {
+           const updatedVideo = await video.update(req.body);
+           updatedVideo.save();
+           res.redirect('/admin/cms');
+       }
+       else {
+           res.json({ success: false, message: 'success video not found' });
+       }
+   } catch (error) {
+       console.error('Error updating success video:', error);
+       res.status(500).json({ success: false, message: 'Failed to update success video' });
+   }
+}
+
+const deleteVideo=async(req,res)=>{
+    try {
+        const videoId = req.params.id;
+  
+        const video = await Successvideo.findByPk(videoId);
+  
+        if(!video){
+          return res.status(404).json({ success: false, message: 'video not found'});
+        }
+  
+        await video.destroy();
+  
+        return res.redirect("/admin/cms")
+    } catch (error) {
+      console.error('Error deleting story:', error);
+      res.status(500).json({ success: false, message: 'Failed to delete story' });
+    }
+  }
+
+ module.exports = {addAboutpage,getAboutUpdateForm,addMember,getMemberUpdateForm,updateMember,updateAbout,deleteMember,addSuccessStory,getStoryUpdateForm,updateStory,deleteStory,addSuccessVideo,getVideoUpdateForm,updateVideo,deleteVideo}
