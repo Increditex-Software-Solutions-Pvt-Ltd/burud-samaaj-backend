@@ -50,12 +50,13 @@
 
 </head>
 
-<body>
+<body style="background-color: #f5e4e7;">
     <div class="container mt-3">
-        <form id="registration-form" onsubmit="formDataValidation(event)">
+        <form id="registration-form" style="background-color: rgba(0, 0, 0, 0.4); box-shadow: 10px 10px 10 black;"
+            onsubmit="formDataValidation(event)">
             <div class="row jumbotron box8">
                 <div class="col-sm-12 mx-t3 mb-4">
-                    <h2 class="text-center text-info">Register</h2>
+                    <h2 class="text-center text-danger">Registration Form</h2>
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="name-f">First Name</label>
@@ -69,8 +70,8 @@
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="name-l">Last name</label>
-                    <input type="text" class="form-control" name="lastname" id="name-l" placeholder="Enter your last name."
-                        required>
+                    <input type="text" class="form-control" name="lastname" id="name-l"
+                        placeholder="Enter your last name." required>
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="email">Email</label>
