@@ -76,7 +76,8 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
         <a class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span>
-                <span class="text-danger">BANDHAN</span></h2>
+                <span class="text-danger">BANDHAN</span>
+            </h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -94,7 +95,7 @@
                         <a href="/success-videos" class="dropdown-item">Success videos</a>
                     </div>
                 </div>
-          
+
                 <% if (user) { %>
                     <a href="/login" class="nav-item nav-link" style="display: none;">Login</a>
                     <% } else { %>
@@ -120,13 +121,15 @@
                             <% if(userprofile){ %>
                                 <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
                                             class="bi bi-person-circle me-1"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i class="bi bi-image-fill me-1"></i> Profile photos</a></li>
+                                <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
+                                            class="bi bi-image-fill me-1"></i> Profile photos</a></li>
                                 <li>
-                                      <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
+                                    <a class="dropdown-item" href="/requests"><i class="bi bi-app-indicator me-1"></i>
                                         Requests</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/connections"><i class="bi bi-people me-1"></i>Connections</a>
+                                    <a class="dropdown-item" href="/connections"><i
+                                            class="bi bi-people me-1"></i>Connections</a>
                                 </li>
                                 <%} else{%>
                                     <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i
@@ -174,11 +177,11 @@
 
         <!-- Portfolio Gallery Grid -->
         <div id="profileContainer" class="row mt-2">
-             
+
         </div>
 
         <!-- pagination start here -->
-        <div id="pagination" class="mb-5"></div> 
+        <div id="pagination" class="mb-5"></div>
 
 
         <!-- END MAIN -->
@@ -261,7 +264,7 @@
                                     Success vidios
                                 </a>
                             </li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -575,8 +578,8 @@
                                     <label for="mother-name">Profile Visibility</label>
                                     <select name="profilevisibility" class="form-control" id="profilevisibility">
                                         <option selected disabled value="">Select</option>
-                                        <option  value="private">Private</option>
-                                        <option  value="public">Public</option>
+                                        <option value="private">Private</option>
+                                        <option value="public">Public</option>
                                     </select>
                                 </div>
                             </div>
@@ -658,7 +661,13 @@
                                 type: 'PUT',
                                 url: '/sendRequest', // Endpoint to send friend request
                                 success: function (response) {
-                                    console.log('Friend request sent successfully');
+                                    if (response.message === "You have Already Received Request") {
+                                        alert("You have Already Received Request")
+                                        window.location.reload()
+                                    } else {
+                                        alert('Friend request sent successfully');
+                                        window.location.reload()
+                                    }
                                 },
                                 error: function (xhr, status, error) {
                                     console.error('Error sending friend request:', error);
@@ -857,7 +866,7 @@
                 hudda: document.getElementById('hudda').value,
                 fatheroccupation: document.getElementById('fatheroccupation').value,
                 motheroccupation: document.getElementById('motheroccupation').value,
-                profilevisibility:document.getElementById("profilevisibility").value,
+                profilevisibility: document.getElementById("profilevisibility").value,
                 expectation: document.getElementById('expectation').value,
                 // agedifference: document.getElementById('agedifference').value,
                 // preferredcity: document.getElementById('preferredcity').value,
