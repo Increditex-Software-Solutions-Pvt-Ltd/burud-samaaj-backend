@@ -47,7 +47,61 @@
 
 
 
+    <style>
+        .formthree {
+            background: #f7f7f7;
+        }
 
+        .ptb-100 {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .formthree .form-control {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            font-size: 13px;
+            border-bottom: 1px solid #d3d3d3;
+            background: transparent;
+            font-family: 'Roboto';
+        }
+
+        form button[type="submit"] {
+            border-radius: 0 !important;
+        }
+
+        .formthree form button.btn {
+            margin: 30px auto;
+            display: block;
+            padding: 11px 32px;
+            background: #4285f4;
+            border: 1px solid #4285f4;
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+        }
+
+
+        .formthree .btn-primary.focus,
+        .formthree .btn-primary:hover {
+            background-color: transparent;
+            color: #4285f4;
+            border: 1px solid #4285f4 !important;
+        }
+    </style>
 
 </head>
 
@@ -121,7 +175,8 @@
                                         Requests</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/connections"><i class="bi bi-people me-1"></i>Connections</a>
+                                    <a class="dropdown-item" href="/connections"><i
+                                            class="bi bi-people me-1"></i>Connections</a>
                                 </li>
                                 <%} else{%>
                                     <li><a class="dropdown-item" href="javascript:void(0)" onclick="addProfile()"><i
@@ -390,6 +445,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 m-0">
+
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <p class="d-inline-block border rounded-pill py-1 px-4">Appointment</p>
                     <h1 class="mb-4">Make An Appointment To Visit Our </h1>
@@ -419,51 +475,33 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-light rounded h-100 d-flex align-items-center p-5">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name"
-                                        style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email"
-                                        style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Mobile"
-                                        style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select border-0" style="height: 55px;">
-                                        <option selected>Choose one</option>
-                                        <option value="1">Doctor 1</option>
-                                        <option value="2">Doctor 2</option>
-                                        <option value="3">Doctor 3</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="date" id="date" data-target-input="nearest">
-                                        <input type="text" class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker"
-                                            style="height: 55px;">
+                        <form action="https://formsubmit.co/nishantphule08@gmail.com" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name" class="sr-only">Name</label>
+                                        <input type="text" class="form-control" required id="name" name="name"
+                                            placeholder="Your Name">
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="time" id="time" data-target-input="nearest">
-                                        <input type="text" class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#time" data-toggle="datetimepicker"
-                                            style="height: 55px;">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email" class="sr-only">Email</label>
+                                        <input type="email" class="form-control" required id="email" name="email"
+                                            placeholder="Email Address">
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control border-0" rows="5"
-                                        placeholder="Describe your problem"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-danger w-100 py-3" type="submit">Book Appointment</button>
                                 </div>
                             </div>
+                            <!--end of /.row-->
+                            <div class="form-group">
+                                <label for="feedback" class="sr-only">Message</label>
+                                <textarea class="form-control" id="feedback" name="feedback" required rows="7"
+                                    placeholder="Write your Feedback here"></textarea>
+                            </div>
+                            <input type="hidden" name="_next" value="http://localhost:5000/">
+                            <button type="submit" class="btn btn-danger">Send Feedback</button>
                         </form>
+
                     </div>
                 </div>
             </div>
