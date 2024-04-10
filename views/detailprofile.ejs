@@ -93,9 +93,9 @@
                                     </h3>
                                     <h5>City:<%= profile.city %>
                                     </h5>
-                                    <button class="btn btn-danger side_button mt-3" onclick="generatePdf()">
-                                        <i class="fa fa-address-book mr-2"></i>Print PDF
-                                    </button>
+                                    <a href="/viewpdf/<%= profile.id%>" class="btn btn-danger side_button mt-3">
+                                        <i class="fa fa-address-book mr-2"></i>View PDF
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -170,14 +170,14 @@
 
                                 <div class="d-flex flex-column">
                                     <div class="justify-content-between mt-3">
-                                        <div>
-                                            <span class="text-danger">Mobile :</span>
+                                        <div class="d-flex flex-column">
+                                            <span class="text-danger">Mobile </span>
                                             <span class="text-dark">
                                                 <%= profile.mobile%>
                                             </span>
                                         </div>
-                                        <div>
-                                            <span class="text-danger">Email :</span>
+                                        <div class="d-flex flex-column">
+                                            <span class="text-danger">Email </span>
                                             <span class="text-dark">
                                                 <%= profile.email%>
                                             </span>

@@ -48,13 +48,77 @@
     <link rel="stylesheet" href="/css/signup.css">
 
 
+    <style>
+        label {
+            color: white;
+            font-weight: 400;
+        }
+
+        input,
+        select {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            color: white !important;
+            border: 0.7px solid #efa1af !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            color: white !important;
+           
+        }
+
+        input::placeholder {
+            color: white !important;
+            font-size: 13px !important;
+        }
+
+        .signupbtn {
+            color: #dc3545;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid #dc3545;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-weight: bold;
+            background: transparent;
+            position: relative;
+            transition: all 1s;
+            overflow: hidden;
+        }
+
+        .signupbtn:hover {
+            color: white;
+        }
+
+        .signupbtn::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 0%;
+            top: 0;
+            left: -40px;
+            transform: skewX(45deg);
+            background-color: #dc3545 !important;
+            z-index: -1;
+            transition: all 1s;
+        }
+
+        .btn:hover::before {
+            width: 160%;
+        }
+    </style>
 </head>
 
 <body style="background-color: #f5e4e7;">
     <div class="container mt-3">
-        <form id="registration-form" style="background-color: rgba(0, 0, 0, 0.4); box-shadow: 10px 10px 10 black;"
-            onsubmit="formDataValidation(event)">
-            <div class="row jumbotron box8">
+        <form id="registration-form" style="background-color: rgba(0, 0, 0, 0.9); box-shadow: 10px 10px 10 black;"
+            class="rounded-5" onsubmit="formDataValidation(event)">
+            <div class="row p-5 box8">
                 <div class="col-sm-12 mx-t3 mb-4">
                     <h2 class="text-center text-danger">Registration Form</h2>
                 </div>
@@ -629,7 +693,7 @@
                 </div>
 
                 <div class="col-sm-12 form-group mb-0 mt-3">
-                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    <button type="submit" class="btn signupbtn float-right">Submit</button>
                 </div>
 
             </div>

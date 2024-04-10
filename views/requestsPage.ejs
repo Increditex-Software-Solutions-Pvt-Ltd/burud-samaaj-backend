@@ -47,21 +47,48 @@
     <style>
         .box {
             height: 100%;
-            border: 0.5px solid #b8b6b6;
             padding: 25px;
-            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-button {
+            background: #dfdcdc
+        }
+
+        ::-webkit-scrollbar-track-piece {
+            background: #a4a3a3
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #eee
+        }
+
+        .nav-tabs .nav-item.show .nav-link,
+        .nav-tabs .nav-link.active {
+            color: #fff;
+            background-color: #343a40;
+            transition: all 0.4s ease;
+            border-radius: 0;
+        }
+        .nav-tabs .nav-link{
+            color:  #343a40;;
+            background-color: #fff;
+            border-radius: 0;
         }
     </style>
 </head>
 
 <body>
 
-    <section class="mt-3">
+    <section class="mt-2">
         <div class="container">
-            <h4 class="text-dark text-center mb-5">Requests</h4>
-            <div class="box shadow">
+            <h4 class="text-dark text-center mb-3">Requests</h4>
+            <div class="box shadow-sm border w-50 m-auto" style="max-height: 400px; overflow-y: scroll;">
                 <!-- tabs -->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs d-flex justify-content-center border-0" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="sent-tab" data-toggle="tab" href="#sent" role="tab"
                             aria-controls="sent" aria-selected="true">Sent</a>
@@ -73,11 +100,11 @@
                 </ul>
 
                 <!-- tabs content -->
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content mt-3" id="myTabContent">
                     <div class="tab-pane fade show active" id="sent" role="tabpanel" aria-labelledby="sent-tab">
                         <div class="table-responsive">
-                            <table id="pending-table" class="table table-bordered table-nowrap table-align-middle">
-                                <thead class="thead-light" align="left">
+                            <table id="pending-table" class="table ">
+                                <thead class="thead-dark">
                                     <tr>
                                         <th>
                                             Full name
@@ -98,8 +125,8 @@
                     </div>
                     <div class="tab-pane fade" id="received" role="tabpanel" aria-labelledby="received-tab">
                         <div class="table-responsive">
-                            <table id="pending-table" class="table table-bordered table-nowrap table-align-middle">
-                                <thead class="thead-light" align="left">
+                            <table class="table">
+                                <thead class="thead-dark">
                                     <tr>
                                         <th>
                                             Full name
@@ -124,9 +151,9 @@
 
                 <!-- buttons -->
                 <div class="mt-4 position-sticky bg-white w-100" style="bottom: 0px;">
-                    <div class="border-top d-flex justify-content-between">
+                    <div class="d-flex justify-content-center">
                         <div>
-                            <a href="/" class="btn btn-lg btn-primary mt-4">Back</a>
+                            <a href="/" class="btn  btn-link mt-4">Back</a>
                         </div>
                     </div>
                 </div>
@@ -199,10 +226,11 @@
                     let actiontd = document.createElement("td")
                     let viewbtn = document.createElement("button")
                     viewbtn.style.color = "white"
-                    viewbtn.style.backgroundColor = "#dc3545"
+                    viewbtn.style.backgroundColor = "#343a40"
                     viewbtn.style.border = "none"
-                    viewbtn.style.padding = "6px 10px"
+                    viewbtn.style.padding = "3px 7px"
                     viewbtn.innerText = "View Profile"
+                    viewbtn.style.fontSize = "13px"
 
                     let profileId = undefined
                     await $.ajax({
@@ -253,10 +281,11 @@
                     let actiontd = document.createElement("td")
                     let viewbtn = document.createElement("button")
                     viewbtn.style.color = "white"
-                    viewbtn.style.backgroundColor = "#dc3545"
+                    viewbtn.style.backgroundColor = "#343a40"
                     viewbtn.style.border = "none"
-                    viewbtn.style.padding = "6px 10px"
+                    viewbtn.style.padding = "3px 7px"
                     viewbtn.innerText = "View Profile"
+                    viewbtn.style.fontSize = "13px"
                     let profileId = undefined
                     await $.ajax({
                         type: 'GET',

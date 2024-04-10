@@ -46,11 +46,31 @@
     <link href="css/about.css" rel="stylesheet">
     <style>
         .box {
-            height: 100%;
+            max-height:480px;
             border: 0.5px solid #b8b6b6;
             padding: 25px;
-            border-radius: 20px;
+            border-radius: 0 !important;
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-button {
+            background: #dfdcdc
+        }
+
+        ::-webkit-scrollbar-track-piece {
+            background: #edecec
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #b2b1b1
+        }
+
+     
+      
     </style>
 </head>
 
@@ -68,7 +88,7 @@
 
     <section class="mt-3">
         <div class="container">
-            <h4 class="text-dark text-center mb-5">Edit profile</h4>
+            <h4 class="text-danger text-center mb-5">My profile</h4>
             <div class="box shadow">
                 <div class="">
                     <form class="row g-4" id="profileForm">
@@ -301,7 +321,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-4 position-sticky bg-white w-100" style="bottom: 0px;">
+                        <div class="mt-4 position-sticky bg-white w-100"  style="bottom: -23px;">
                             <div class="border-top d-flex justify-content-between">
                                 <div>
                                     <a href="/" class="btn  btn-primary mt-4">Back</a>

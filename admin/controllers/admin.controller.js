@@ -11,10 +11,30 @@ const { About } = require("../models/Aboutcms.model");
 const { Member } = require("../models/Membercms.model");
 const { Successstory } = require("../models/Successstory.model");
 const { Successvideo } = require("../models/Successvideo.model");
+const { Userprofile } = require("../../user/models/userprofile.model");
 
 const adminController = {
     getDashboardpage: async (req, res) => {
-        return res.render('admin/')
+        try {
+            const alluserscount = await User.count();
+            const profilescount = await Userprofile.count();
+            const bridecount = await Userprofile.count({
+                where:{
+                    profilefor:'bride'
+                }
+            });
+            const groomcount = await Userprofile.count({
+                where:{
+                    profilefor:'groom'
+                }
+            });
+        
+            return res.render('admin/',{alluserscount,groomcount,bridecount,profilescount})
+            
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
     },
     getCmspage: async (req, res) => {
         try {

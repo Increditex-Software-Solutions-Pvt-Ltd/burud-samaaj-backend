@@ -7,6 +7,7 @@ const userRouter = express.Router();
 userRouter.get('/', userController.gethome);
 userRouter.get('/profile', userController.getprofilepage);
 userRouter.get('/detailprofile/:id', userActions.checkLogged, userController.getdetailprofile);
+userRouter.get('/viewpdf/:id', userActions.checkLogged,userController.getviewpdf);
 // userRouter.get('/createprofile',userController.getcreateprofile);
 userRouter.get('/search', userController.getserach);
 userRouter.get('/about', userController.getaboutpage);

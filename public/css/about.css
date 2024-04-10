@@ -2,8 +2,6 @@
   
   .card {
     position: relative;
-    height: 320px;
-    box-shadow: 3px 7px 10px 1px black;
     overflow: hidden;
     
   }

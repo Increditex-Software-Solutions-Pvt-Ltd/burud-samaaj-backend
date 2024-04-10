@@ -26,7 +26,7 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,6 +48,44 @@
 
 
     <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 99;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: end;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+
         .formthree {
             background: #f7f7f7;
         }
@@ -106,6 +144,18 @@
 </head>
 
 <body>
+    <div id="myModal" class="modal animate__animated animate__bounceInDown">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="d-flex justify-content-center flex-row align-items-center">
+                <span class="mr-2 text-danger" style="font-size: 21px; font-weight: 600;">BURUD</span>
+                <img src="/img/burud_logo.png" class="img-fluid" width="120px" alt="">
+                <span class="ml-2 text-success" style="font-size: 21px; font-weight: 600;">BANDHAN</span>
+            </div>
+            <p id="wishText"></p>
+        </div>
+    </div>
+
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -167,7 +217,8 @@
 
                             <% if(userprofile){ %>
                                 <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
-                                            class="bi bi-person-circle me-1"></i> Profile</a></li>
+                                            class="bi bi-person-circle me-1"></i> 
+My profile</a></li>
                                 <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
                                             class="bi bi-image-fill me-1"></i> Profile photos</a></li>
                                 <li>
@@ -1194,6 +1245,48 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
+        // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Array of wishes
+var wishes = [
+  "Have a great day!",
+  "Enjoy your time!",
+  "Stay positive!",
+  "Keep smiling!",
+  // Add more wishes here as needed
+];
+
+// Function to display a random wish
+function displayWish() {
+  var randomIndex = Math.floor(Math.random() * wishes.length);
+  var wish = wishes[randomIndex];
+  document.getElementById("wishText").textContent = wish;
+  modal.style.display = "block";
+
+  // Hide the modal after 5 seconds
+  setTimeout(function() {
+    modal.style.display = "none";
+  }, 10000);
+}
+
+// Function to close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Display a wish every 1 minute
+setInterval(function() {
+  displayWish();
+}, 20000);
+
+
+
+
+
         async function addProfile() {
             try {
                 await $.ajax({

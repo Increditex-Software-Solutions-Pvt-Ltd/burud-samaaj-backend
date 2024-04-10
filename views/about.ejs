@@ -70,6 +70,18 @@
             border-bottom-left-radius: 100px;
             padding: 20px;
         }
+        .mainmebercard{
+            height: 335px;
+            width: 260px;
+            box-shadow: none;
+            border: 6px ridge grey;
+        }
+         .mainmebercard img{
+            height: 340px;
+         }
+        .bg-main-gred{
+            background: linear-gradient(145deg, #dc3545, #f36573, #ae404b);
+        }
     </style>
 
 
@@ -139,7 +151,8 @@
 
                             <% if(userprofile){ %>
                                 <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
-                                            class="bi bi-person-circle me-1"></i> Profile</a></li>
+                                            class="bi bi-person-circle me-1"></i> 
+My profile</a></li>
                                 <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
                                             class="bi bi-image-fill me-1"></i> Profile photos</a></li>
                                 <li>
@@ -178,7 +191,7 @@
     <div class="row m-0 aboutus p-4 bg-danger">
         <div class="col-md-4">
             <div class="d-flex justify-content-center">
-                <img src="/img/burud_logo.jpeg" alt="" height="300" width="300">
+                <img src="/img/burud_logo.png" alt="" height="300" width="300">
             </div>
         </div>
         <div class="col-md-8 d-flex justify-content-center">
@@ -204,11 +217,55 @@
         </p>
     </div>
 
+<section class="bg-main-gred py-5  mt-4"  >
+    <div class="container">
+        <h3 class="text-white text-center pb-5">अखिल महाराष्ट्र बुरूड समाज कार्यकारिणी मंडळ </h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mainmebercard position-relative">
+                            <div class="p-3">
+                                <img src="<%=preseidentimage%>" class="img-fluid shadow-lg" style="object-fit: cover;" alt="">
+                            </div>
+                        </div>
+                        <div class="text-center pr-5">
+                            <h5 class="text-white mt-2">
+                                <%= preseidentname%>
+                            </h5>
+                            <a href="#" class="btn btn-lg btn-light">
+                                <%= preseidentposition%>
+                            </a>
+                        </div>
+                    
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mainmebercard position-relative">
+                            <div class="p-3">
+                                <img src="<%= vicepreseidentimage%>" class="img-fluid shadow-lg" style="object-fit: cover;" alt="">
+                            </div>
+                        </div>
+                        <div class="text-center pr-5">
+                            <h5 class="text-white mt-2">
+                                <%= vicepreseidentname%>
+                            </h5>
+                            <a href="#" class="btn btn-lg btn-light">
+                                <%= vicepreseidentposition%>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+   
+
     <div class=" p-4">
         <div class="row m-0">
             <% allmembers.forEach((member)=>{%>
                 <div class="col-md-3 text-center mt-4 wow fadeInUp">
-                    <div class="card membercard position-relative" style="height: 320px;">
+                    <div class="card membercard position-relative shadow" style="height: 320px;">
                         <div class="pseudo1"></div>
                         <div class="pseudo2"></div>
                         <div class="pseudo3"></div>
@@ -235,7 +292,7 @@
         <div class="row m-0 p-3">
             <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
                 <div class="img_mano">
-                    <img src="<%=preseidentimage%>">
+                    <img src="<%=preseidentimage%>" class="img-fluid" height="300">
                 </div>
             </div>
             <div class="col-md-9 mano">
@@ -279,7 +336,7 @@
             </div>
             <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
                 <div class="img_mano">
-                    <img src="https://i.pinimg.com/236x/6b/7e/d6/6b7ed698713c09ad9e6afc7dcb996a09.jpg">
+                    <img src="<%= sachivimage%>" class="img-fluid" height="300">
                 </div>
             </div>
         </div>

@@ -39,6 +39,48 @@ document.getElementById("searchButton").addEventListener("click", async function
 	}
 });
 
+document.getElementById("searchInput").addEventListener("keypress", function(event) {
+	if (event.key === "Enter") {
+	  // keyCode 13 corresponds to the Enter key
+	  var searchInput = document.getElementById("searchInput").value.split(" ").join("").trim().toLowerCase();
+
+	// Make sure search input is not empty
+	if (searchInput !== "") {
+		console.log(searchInput);
+		advanceFilter(searchInput)
+	} else {
+		// If search input is empty, clear search results
+		const filteredDataDiv = document.getElementById('filteredData');
+		const filterContainer = document.getElementById("filterContainer")
+		filteredDataDiv.classList = "mt-5"
+
+		filterContainer.innerHTML = ""
+		filterContainer.innerHTML += `<h1 class="text-center">Type something to search</h1>`
+
+	}
+	}
+})
+
+document.getElementById("searchButton").addEventListener("click", async function () {
+	var searchInput = document.getElementById("searchInput").value.split(" ").join("").trim().toLowerCase();
+
+	// Make sure search input is not empty
+	if (searchInput !== "") {
+		console.log(searchInput);
+		advanceFilter(searchInput)
+	} else {
+		// If search input is empty, clear search results
+		const filteredDataDiv = document.getElementById('filteredData');
+		const filterContainer = document.getElementById("filterContainer")
+		filteredDataDiv.classList = "mt-5"
+
+		filterContainer.innerHTML = ""
+		filterContainer.innerHTML += `<h1 class="text-center">Type something to search</h1>`
+
+	}
+});
+
+
 let searchFilterData
 
 async function advanceFilter(data) {
