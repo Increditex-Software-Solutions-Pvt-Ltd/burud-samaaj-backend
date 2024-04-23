@@ -38,6 +38,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    
     <!-- css link -->
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="css/profile.css">
@@ -139,6 +140,225 @@
             color: #4285f4;
             border: 1px solid #4285f4 !important;
         }
+
+        
+        .cinzelfont {
+            font-family: "Cinzel Decorative", serif;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .servcard1#card1{
+            background-image: url('/img/couple.jpg');
+            min-height: 440px;
+            object-fit: cover;
+            background-size: cover;
+            width: 100%;
+            border-radius: 20px !important;
+        }
+        .servcard1#card2{
+            background-image: url('/img/couple2.jpg');
+            min-height: 440px;
+            object-fit: cover;
+            background-size: cover;
+            width: 100%;
+            border-radius: 20px !important;
+        }
+        .servcard1#card3{
+            background-image: url('/img/couple3.jpg');
+            min-height: 440px;
+            object-fit: cover;
+            background-size: cover;
+            width: 100%;
+            border-radius: 20px !important;
+        }
+
+        .servcard1::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            inset: 0px;
+            transition: all 0.4s ease 0s;
+            background: linear-gradient(to top, rgb(37, 24, 8), rgba(215, 154, 78, 0));
+
+        }
+
+        .servcard1 .con {
+            padding: 90px 20px 0px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease-in-out 0s;
+        }
+
+        .con img {
+            border: 3px solid rgb(0, 0, 0);
+            width: 140px;
+            padding: 20px;
+            border-radius: 25%;
+            filter: invert(1);
+            margin-bottom: 35px;
+            transition: all 0.5s ease-in-out 0s;
+            opacity: 0.8;
+        }
+
+        .servcard1::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 230px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            border-radius: 50px 50px 0px 0px;
+            transition: all 0.4s ease-in-out 0s;
+            background:rgb(36, 35, 35);
+            transform: scale(0);
+            transform-origin: right bottom;
+            z-index: 0;
+        }
+
+        .servcard1:hover:after {
+            width: 100%;
+            transform: scaleY(1.09);
+            transform-origin: right bottom;
+           
+        }
+        .servcard1:hover .con{
+            transform: translateY(-10px);
+        }
+        .servcard1:hover .con img{
+            border: 3px solid rgb(0, 0, 0);
+            width: 100px;
+            padding: 20px;
+            border-radius: 25%;
+        }
+        .otlinewhite{
+            color: white;
+            border: 1px solid white;
+            padding: 5px 20px;
+            border-radius: 0;
+            opacity: 0;
+        }
+        .servcard1:hover .otlinewhite{
+            opacity: 1;
+            color: white;
+        }
+        .specierfont{
+            font-family: "Playfair Display", serif;
+        }
+        .button {
+            position: relative;
+            padding: 19px 32px;
+            border-radius: 8px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: #ff7f50;
+            transition: all 0.2s ease;
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+        .button:before,
+        .button:after {
+            position: absolute;
+            content: "";
+            width: 150%;
+            left: 50%;
+            height: 100%;
+            transform: translateX(-50%);
+            z-index: -1000;
+            background-repeat: no-repeat;
+        }
+
+        .button:hover:before {
+            top: -70%;
+            background-image: radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, transparent 20%, #ff7f50 20%, transparent 30%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, transparent 10%, #ff7f50 15%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%);
+            background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+                10% 10%, 18% 18%;
+            background-position: 50% 120%;
+            animation: orangeTopBubbles 0.6s ease;
+        }
+
+        @keyframes orangeTopBubbles {
+            0% {
+                background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+                    40% 90%, 55% 90%, 70% 90%;
+            }
+
+            50% {
+                background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+                    50% 50%, 65% 20%, 90% 30%;
+            }
+
+            100% {
+                background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+                    50% 40%, 65% 10%, 90% 20%;
+                background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+            }
+        }
+
+        .button:hover::after {
+            bottom: -70%;
+            background-image: radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, transparent 10%, #ff7f50 15%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%),
+                radial-gradient(circle, #ff7f50 20%, transparent 20%);
+            background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+            background-position: 50% 0%;
+            animation: orangeBottomBubbles 0.6s ease;
+        }
+
+        @keyframes orangeBottomBubbles {
+            0% {
+                background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+                    70% -10%, 70% 0%;
+            }
+
+            50% {
+                background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+                    105% 0%;
+            }
+
+            100% {
+                background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+                    110% 10%;
+                background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+            }
+        }
+.aboutweb ul{
+   width: 100%;
+   float: left;
+}
+.aboutweb ul li{
+    width: 25%;
+   float: left;
+}
+.about-col{
+    position: relative;
+    border: 2px solid #de7580;
+    border-left: 0;
+    padding: 20px;
+}
+.about-col img{
+    filter: invert(0.8);
+}
     </style>
 
 </head>
@@ -168,7 +388,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 style="font-family:fantasy;"><span class="text-warning" style="text-decoration:underline;">BURUD</span>
                 <span class="text-danger">BANDHAN</span>
             </h2>
@@ -217,8 +437,8 @@
 
                             <% if(userprofile){ %>
                                 <li><a class="dropdown-item" href="profiles/<%=userprofile.id%>"><i
-                                            class="bi bi-person-circle me-1"></i> 
-My profile</a></li>
+                                            class="bi bi-person-circle me-1"></i>
+                                        My profile</a></li>
                                 <li><a class="dropdown-item" href="photos/<%=userprofile.id%>"><i
                                             class="bi bi-image-fill me-1"></i> Profile photos</a></li>
                                 <li>
@@ -253,7 +473,8 @@ My profile</a></li>
 
 
     <!-- Header Start -->
-    <div class="container-fluid header pd p-0 mb-0 bg-danger">
+  
+    <div class="container-fluid header pd p-0 mb-0 bg-danger position-relative">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row m-0">
             <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
                 <div>
@@ -311,11 +532,90 @@ My profile</a></li>
                 </div>
             </div>
         </div>
+        <%if(user){%>
+            <div class="py-3 px-4 position-absolute top-0 start-0 w-100"
+                style="background-color: rgba(26, 3, 3, 0.4);z-index: 991;" id="message">
+                <div class="d-flex justify-content-between">
+                    <span class="fs-5 text-white">Welcome <span class="text-warning">
+                            <%=user.firstname %>
+                        </span> to Burud Bandhan</span>
+                    <span class="text-white cursor-pointer" id="close-icon"><i class="fas fa-times"></i></span>
+                </div>
+            </div>
+            <%}%>
     </div>
+
     <!-- Header End -->
 
 
     <!-- Feature Start -->
+    <%if(!user){%>
+    <section style="background:linear-gradient(to left,#a4a3a3,#d33645,#dc3545)">
+        <div class="container">
+            <div class="row gy-3">
+                <h2 class="text-white cinzelfont text-center my-3 pb-4">Quick Access Our Services</h2>
+                <div class="col-md-4">
+                    <div class="card servcard1 border-0 rounded-5 overflow-hidden position-relative" id="card1">
+                        <!-- <img src="/img/couple.jpg" class="img-fluid object-fit-cover servimg " alt=""> -->
+                        <div class="con">
+                            <img src="/img/icon/group.png" width="90" alt="" loading="lazy">
+                            <h4 class="text-white" style="letter-spacing: .6px;">All profiles</h4>
+                            <p class="text-white" style="letter-spacing: .6px;">300 + profiles</p>
+                            <a href="/login" class="btn otlinewhite">View profiles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card servcard1 border-0 rounded-5 overflow-hidden position-relative" id="card2">
+                        <!-- <img src="/img/couple.jpg" class="img-fluid object-fit-cover servimg " alt=""> -->
+                        <div class="con">
+                            <img src="/img/icon/add-user.png" width="90" alt="" loading="lazy">
+                            <h4 class="text-white" style="letter-spacing: .6px;">Friend Requests</h4>
+                            <p class="text-white" style="letter-spacing: .6px;">Unlimited Requests</p>
+                            <a href="/login" class="btn otlinewhite">View profiles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card servcard1 border-0 rounded-5 overflow-hidden position-relative" id="card3">
+                        <!-- <img src="/img/couple.jpg" class="img-fluid object-fit-cover servimg " alt=""> -->
+                        <div class="con">
+                            <img src="/img/icon/hand-in.png" width="90" alt="" loading="lazy">
+                            <h4 class="text-white" style="letter-spacing: .6px;">Wedding profiles</h4>
+                            <p class="text-white" style="letter-spacing: .6px;">100 + profiles</p>
+                            <a href="/login" class="btn otlinewhite">View profiles</a>
+                        </div>
+                    </div>
+                </div>
+ 
+                <h1 class="text-white text-center py-5 specierfont" style="letter-spacing: 1px;">Create Your Account Now....</h1>
+                <div class="text-center">
+                    <a href="/signup" class="button text-decoration-none text-white">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%}%>
+    <section class="py-3" style="background-color: #dc3545;">
+        <div class="container-fluid">
+            <div class="row aboutweb">
+                 <ul>
+                     <li>
+                         <div class="about-col">
+                             <div class="d-flex flex-row align-items-center">
+                                 <img src="/img/icon/man.png" class="img-fluid" style="width: 60px;" alt="">
+                                 <div class="flex-column">
+                                     <h5 class="" style="color: #ecc6c9;">Grooms Registered</h5>
+                                     <p class="text-white mb-0 fs-4" data-toggle="counter-up">55 + </p>
+                                 </div>
+                             </div>
+                            
+                         </div>
+                     </li>
+                 </ul>
+            </div>
+        </div>
+   </section>
     <div class="container-fluid bg-danger overflow-hidden px-lg-0">
         <div class="container feature px-lg-0">
             <div class="row g-0 mx-lg-0 m-0">
@@ -323,8 +623,13 @@ My profile</a></li>
                     <div class="position-relative h-100">
                         <img class="position-absolute img-fluid w-100 h-100" src="/img/features1.jpg"
                             style="object-fit: cover;" alt="">
+
                     </div>
+
                 </div>
+
+
+
                 <div class="col-md-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
                     <div class="p-lg-5 ps-lg-0">
                         <p class="d-inline-block border rounded-pill text-light py-1 px-4">Features</p>
@@ -371,6 +676,7 @@ My profile</a></li>
 
                         </div>
                     </div>
+                  
                 </div>
             </div>
         </div>
@@ -1246,42 +1552,42 @@ My profile</a></li>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
         // Get the modal
-var modal = document.getElementById("myModal");
+        var modal = document.getElementById("myModal");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-// Array of wishes
-var wishes = [
-  "Have a great day!",
-  "Enjoy your time!",
-  "Stay positive!",
-  "Keep smiling!",
-  // Add more wishes here as needed
-];
+        // Array of wishes
+        var wishes = [
+            "Have a great day!",
+            "Enjoy your time!",
+            "Stay positive!",
+            "Keep smiling!",
+            // Add more wishes here as needed
+        ];
 
-// Function to display a random wish
-function displayWish() {
-  var randomIndex = Math.floor(Math.random() * wishes.length);
-  var wish = wishes[randomIndex];
-  document.getElementById("wishText").textContent = wish;
-  modal.style.display = "block";
+        // Function to display a random wish
+        function displayWish() {
+            var randomIndex = Math.floor(Math.random() * wishes.length);
+            var wish = wishes[randomIndex];
+            document.getElementById("wishText").textContent = wish;
+            modal.style.display = "block";
 
-  // Hide the modal after 5 seconds
-  setTimeout(function() {
-    modal.style.display = "none";
-  }, 10000);
-}
+            // Hide the modal after 5 seconds
+            setTimeout(function () {
+                modal.style.display = "none";
+            }, 10000);
+        }
 
-// Function to close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+        // Function to close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
 
-// Display a wish every 1 minute
-setInterval(function() {
-  displayWish();
-}, 20000);
+        // Display a wish every 1 minute
+        setInterval(function () {
+            displayWish();
+        }, 20000);
 
 
 
@@ -1538,7 +1844,29 @@ setInterval(function() {
             });
         }
 
+        function closeMessage() {
+            var message = document.getElementById("message");
+            message.style.display = "none";
+            localStorage.setItem("messageClosed", "true");
+        }
 
+        // Close message when clicking on the close icon
+        document.getElementById("close-icon").addEventListener("click", function () {
+            closeMessage();
+        });
+
+        // Check if message was previously closed
+
+
+        // Close message automatically after 12 seconds
+        var timer = setTimeout(function () {
+            closeMessage();
+        }, 12000); // 12 seconds = 12000 milliseconds
+
+        // Clear timeout if the message is closed before auto-closing
+        document.getElementById("message").addEventListener("click", function () {
+            clearTimeout(timer);
+        });
     </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

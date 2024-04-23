@@ -520,7 +520,7 @@ const userController = {
             const email = req.body.email
 
             const user = await User.findOne({ where: { email } })
-            console.log(user, "user found using email");
+            console.log(user.email, "user found using email");
 
             if (user) {
 
