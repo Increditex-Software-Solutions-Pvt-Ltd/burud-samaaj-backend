@@ -34,6 +34,36 @@ const getCreateProfile=async(req,res)=>{
     return res.render('createprofile', { user: null }); 
 }
 
+const getUserDashboard=async(req,res)=>{
+    const token = req.cookies.userJwt;
+
+    if (token) {
+        try {
+
+            const decoded = jwt.verify(token, process.env.user_secret_key);
+            const userId = decoded.userId;
+
+
+            const user = await User.findOne({ where: { id: userId } });
+            const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                {
+                    model: Userphoto,
+                    as: 'userImage'
+                }
+            ] })
+            if (user) {
+
+                return res.render('dashboard', { user, userprofile });
+            }
+        } catch (err) {
+
+            console.error('Token verification error:', err);
+        }
+    }
+
+    return res.render('dashboard', { user: null }); 
+}
+
 async function saveUserProfile(req, res) {
     try {
         let userId = req.cookies.userId;
@@ -343,4 +373,4 @@ const deleteProfile=async(req,res)=>{
     }
   }
 
-module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid,deleteProfile ,getCreateProfile};
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid,deleteProfile ,getCreateProfile,getUserDashboard};
