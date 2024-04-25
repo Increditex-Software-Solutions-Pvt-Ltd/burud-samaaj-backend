@@ -1,7 +1,38 @@
 const { upload } = require('../../config/multerconfig');
+const { User } = require('../models/user.model');
 const { Userphoto } = require('../models/userphotos.model');
 const { Userprofile } = require('../models/userprofile.model');
+const jwt = require('jsonwebtoken');
 
+const getCreateProfile=async(req,res)=>{
+    const token = req.cookies.userJwt;
+
+    if (token) {
+        try {
+
+            const decoded = jwt.verify(token, process.env.user_secret_key);
+            const userId = decoded.userId;
+
+
+            const user = await User.findOne({ where: { id: userId } });
+            const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                {
+                    model: Userphoto,
+                    as: 'userImage'
+                }
+            ] })
+            if (user) {
+
+                return res.render('createprofile', { user, userprofile });
+            }
+        } catch (err) {
+
+            console.error('Token verification error:', err);
+        }
+    }
+
+    return res.render('createprofile', { user: null }); 
+}
 
 async function saveUserProfile(req, res) {
     try {
@@ -312,4 +343,4 @@ const deleteProfile=async(req,res)=>{
     }
   }
 
-module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid,deleteProfile };
+module.exports = { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid,deleteProfile ,getCreateProfile};

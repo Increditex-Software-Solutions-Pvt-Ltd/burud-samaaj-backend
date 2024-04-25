@@ -1,6 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user.controller");
-const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid, deleteProfile } = require("../controllers/userprofile.controller");
+const { saveUserProfile, checkProfile, getAllProfiles, getSingleProfile, saveUserImages, getAllUserpics, getProfileUpdateform, editUserProfile, updateProfilephotos, getProfileid, deleteProfile, getCreateProfile } = require("../controllers/userprofile.controller");
 const { userActions } = require("../middleware/user.middleware");
 const userRouter = express.Router();
 
@@ -33,6 +33,7 @@ userRouter.get('/resetpassword', userController.resetPassCheck)
 userRouter.get('/updatepasswordform/:id', userController.getupdatePassform)
 userRouter.post('/updatepassword', userController.updatePassword)
 
+userRouter.get('/createprofile',getCreateProfile);
 userRouter.post('/addprofile', saveUserProfile);
 userRouter.post('/addimages', saveUserImages);
 userRouter.get('/checkprofile', checkProfile);

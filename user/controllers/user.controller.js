@@ -30,7 +30,12 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                        {
+                            model: Userphoto,
+                            as: 'userImage'
+                        }
+                    ] })
                     if (user) {
 
                         return res.render('index', { user, userprofile });
