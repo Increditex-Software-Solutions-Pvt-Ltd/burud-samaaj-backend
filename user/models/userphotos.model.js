@@ -11,11 +11,11 @@ const Userphoto = sequelize.define('userphoto',{
         type:DataTypes.STRING,
         allowNull:true
     },
-    biopic1:{
+    biopicOne:{
         type:DataTypes.STRING,
         allowNull:true
     },
-    biopic2:{
+    biopicTwo:{
         type:DataTypes.STRING,
         allowNull:true
     },

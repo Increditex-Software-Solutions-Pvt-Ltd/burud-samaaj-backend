@@ -9,7 +9,6 @@ const getCreateProfile=async(req,res)=>{
 
     if (token) {
         try {
-
             const decoded = jwt.verify(token, process.env.user_secret_key);
             const userId = decoded.userId;
 
@@ -21,9 +20,11 @@ const getCreateProfile=async(req,res)=>{
                     as: 'userImage'
                 }
             ] })
-            if (user) {
-
-                return res.render('createprofile', { user, userprofile });
+            if (userprofile) {
+                return res.render('dashboard', { user, userprofile });
+            }
+            else{
+                return res.render('createprofile', { user: null }); 
             }
         } catch (err) {
 
@@ -31,7 +32,7 @@ const getCreateProfile=async(req,res)=>{
         }
     }
 
-    return res.render('createprofile', { user: null }); 
+    return res.render('login'); 
 }
 
 const getUserDashboard=async(req,res)=>{
@@ -201,17 +202,18 @@ const saveUserImages = async (req, res) => {
     try {
         let userId = req.cookies.userId;
         // Handle profile picture upload
-        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopic1', maxCount: 1 }, { name: 'biopic2', maxCount: 1 }, { name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
+        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopicOne', maxCount: 1 }, { name: 'biopicTwo', maxCount: 1 }, { name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
             if (err) {
                 return res.status(400).json({ message: 'Files upload failed.' });
             }
             const profilepic = req.files['profilepic'] ? req.files['profilepic'][0].path : null;
-            const biopic1 = req.files['biopic1'] ? req.files['biopic1'][0].path : null;
-            const biopic2 = req.files['biopic2'] ? req.files['biopic1'][0].path : null;
+            const biopicOne = req.files['biopicOne'] ? req.files['biopicOne'][0].path : null;
+            const biopicTwo = req.files['biopicTwo'] ? req.files['biopicTwo'][0].path : null;
             const horoimage = req.files['horoimage'] ? req.files['horoimage'][0].path : null;
 
             const newImage = await Userphoto.create({
-                profilepic, biopic1, biopic2, horoimage
+                profilepic, biopicOne,
+                biopicTwo, horoimage
             })
 
             const userPhotoId = newImage.id;
@@ -227,15 +229,15 @@ const saveUserImages = async (req, res) => {
 
 const updateProfilephotos = async (req, res) => {
     try {
-        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopic1', maxCount: 1 }, { name: 'biopic2', maxCount: 1 }, { name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
+        upload.fields([{ name: 'profilepic', maxCount: 1 }, { name: 'biopicOne', maxCount: 1 }, { name: 'biopicTwo', maxCount: 1 }, { name: 'horoimage', maxCount: 1 }])(req, res, async function (err) {
             if (err) {
                 return res.status(400).json({ message: 'File upload failed.' });
             }
 
             const profileId = req.params.id;
             const profilepic = req.files['profilepic'] ? req.files['profilepic'][0].path : null;
-            const biopic1 = req.files['biopic1'] ? req.files['biopic1'][0].path : null;
-            const biopic2 = req.files['biopic2'] ? req.files['biopic2'][0].path : null;
+            const biopicOne = req.files['biopicOne'] ? req.files['biopicOne'][0].path : null;
+            const biopicTwo = req.files['biopicTwo'] ? req.files['biopicTwo'][0].path : null;
             const horoimage = req.files['horoimage'] ? req.files['horoimage'][0].path : null;
 
             const profilephoto = await Userphoto.findByPk(profileId);
@@ -251,11 +253,11 @@ const updateProfilephotos = async (req, res) => {
                 profilephoto.profilepic = profilepic;
             }
 
-            if (biopic1) {
-                profilephoto.biopic1 = biopic1;
+            if (biopicOne) {
+                profilephoto.biopicOne = biopicOne;
             }
-            if (biopic2) {
-                profilephoto.biopic2 = biopic2;
+            if (biopicTwo) {
+                profilephoto.biopicTwo = biopicTwo;
             }
             if (horoimage) {
                 profilephoto.horoimage = horoimage;
@@ -263,7 +265,7 @@ const updateProfilephotos = async (req, res) => {
 
             await profilephoto.save();
 
-            return res.redirect('/');
+            return res.redirect('/dashboard');
         });
     } catch (error) {
         console.error(error);

@@ -66,7 +66,7 @@
                             <div class="row m-0 ">
                                 <div class="col-md-4 ">
                                     <div class=" main_img">
-                                        <img src="http://localhost:5000/<%= profile.userImage.biopic1.replace(/\\/g, '/')%>"
+                                        <img src="http://localhost:5000/<%= profile.userImage.biopicOne.replace(/\\/g, '/')%>"
                                             class="" style="border-radius: 16px; object-fit: cover;" id="myImg"
                                             alt="Cinque Terre" width="220" height="216">
                                         <div id="myModal" class="modal">
@@ -132,7 +132,7 @@
                             <div class="carousel-inner mt-3 mb-5">
                                 <div class="carousel-item active">
                                     <img class="img-fluid object-fit-cover"
-                                        src="http://localhost:5000/<%= profile.userImage.biopic2.replace(/\\/g, '/')%>"
+                                        src="http://localhost:5000/<%= profile.userImage.biopicTwo.replace(/\\/g, '/')%>"
                                         alt="Los Angeles">
                                 </div>
                                 <div class="carousel-item">
@@ -798,11 +798,7 @@
                 }
                 else {
                     let atag = document.createElement("a")
-                    atag.href = "javascript:void(0)"
-                    atag.addEventListener("click", () => {
-                        addProfile()
-                        checkReq()
-                    })
+                    atag.href = "/createprofile"
                     atag.classList = "btn btn-outline-danger"
                     atag.innerText = "Send Interest to view contact info"
                     profile.appendChild(atag)

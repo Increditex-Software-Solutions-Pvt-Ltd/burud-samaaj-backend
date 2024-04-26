@@ -104,22 +104,27 @@
         .playfairfont {
             font-family: "Playfair Display", serif;
         }
-        #profileForm{
+
+        #profileForm {
             font-size: 14px;
-        
+
         }
-        .form-control:disabled{
+
+        .form-control:disabled {
             background-color: transparent !important;
         }
-        .form-control,.form-select{
+
+        .form-control,
+        .form-select {
             color: #66451c;
             border-radius: 20px !important;
             font-size: 15px !important;
         }
-        textarea{
+
+        textarea {
             border-radius: 30px !important;
         }
-    
+
         ::-webkit-scrollbar {
             width: 5px;
         }
@@ -135,7 +140,6 @@
         ::-webkit-scrollbar-thumb {
             background: #b2b1b1
         }
-
     </style>
 </head>
 
@@ -292,7 +296,8 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-12">
                     <div class="card border-0 shadow position-sticky" style="top: 45px;">
                         <div class="card-header border-bottom-0">
-                             <img src="<%= userprofile.userImage.profilepic %>" class="img-fluid rounded-4" style="object-fit: cover; height: 160px; width: 100%;" alt="">
+                            <img src="<%= userprofile.userImage.profilepic %>" class="img-fluid rounded-4"
+                                style="object-fit: cover; height: 160px; width: 100%;" alt="">
                         </div>
                         <div class="card-body">
                             <div class="nav flex-column nav-pills" id="v-pills-tab">
@@ -389,13 +394,15 @@
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">
                                             <h6 class="mainhead mt-2">Profile Information</h6>
-                                            <button  id="editBtn" class="btn btn-sm btn-outline-dark px-4 rounded-pill"><i
+                                            <button id="editBtn"
+                                                class="btn btn-sm btn-outline-dark px-4 rounded-pill"><i
                                                     class="bi bi-pencil-square me-1"></i>Edit</button>
-                                                    <button id="saveBtn" class="btn btn-sm btn-dark px-4 rounded-pill"
-                                        style="display: none;"><i class="bi bi-save me-1"></i>Save</button>
+                                            <button id="saveBtn" class="btn btn-sm btn-dark px-4 rounded-pill"
+                                                style="display: none;"><i class="bi bi-save me-1"></i>Save</button>
                                         </div>
 
-                                        <div class="mt-3 editprofile" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+                                        <div class="mt-3 editprofile"
+                                            style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
                                             <form class="row g-4 mainhead" id="profileForm">
                                                 <div class="col-md-4">
                                                     <label for="mother-name">Profile Visibility</label>
@@ -651,22 +658,131 @@
                                                     </div>
                                                 </div>
 
-                                               
+
                                             </form>
-                                            
+
                                         </div>
-                                       
+
                                     </div>
-                                 
+
                                 </div>
                                 <div class="d-flex justify-content-between mt-4">
-                                                <p class="text-dark mb-0">I want to delete my profile</p>
-                                                <button id="deleteBtn" onclick="confirmDeleteProfile('<%= userprofile.id%>')" class="btn btn-sm btn-danger px-3 rounded-pill">Delete</button>
-                                            </div>
+                                    <p class="text-dark mb-0">I want to delete my profile</p>
+                                    <button id="deleteBtn" onclick="confirmDeleteProfile('<%= userprofile.id%>')"
+                                        class="btn btn-sm btn-danger px-3 rounded-pill">Delete</button>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-profilephoto" role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab">3</div>
+                            aria-labelledby="v-pills-messages-tab">
+                            <div class="mt-2">
+                                <span class="mainhead fs-6 playfairfont" style="font-weight: 600;">Profile
+                                    Photos</span>
+                                <div class="card bg-transparent border-0 mt-4 shadow-sm">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="card rounded-3 overflow-hidden border-0 shadow h-100">
+                                                    <div class="card-body p-0">
+                                                        <img src="<%= userprofile.userImage.profilepic%>"
+                                                            class="img-fluid"
+                                                            style="object-fit: contain; height: 180px; width: 100%;"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <h6 class="text-center mb-0">Profile photo</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card rounded-3 overflow-hidden border-0 shadow h-100">
+                                                    <div class="card-body p-0">
+                                                        <img src="<%= userprofile.userImage.biopicOne%>"
+                                                            class="img-fluid"
+                                                            style="object-fit: contain; height: 180px; width: 100%;"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <h6 class="text-center mb-0">Bio pic 1</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card rounded-3 overflow-hidden border-0 shadow h-100">
+                                                    <div class="card-body p-0">
+                                                        <img src="<%= userprofile.userImage.biopicTwo%>"
+                                                            class="img-fluid"
+                                                            style="object-fit: contain; height: 180px; width: 100%;"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <h6 class="text-center mb-0">Bio pic 2</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card rounded-3 overflow-hidden border-0 shadow h-100">
+                                                    <div class="card-body p-0">
+                                                        <img src="<%= userprofile.userImage.horoimage%>"
+                                                            class="img-fluid"
+                                                            style="object-fit: contain; height: 180px; width: 100%;"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <h6 class="text-center mb-0">Horo image</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="mainhead" style="text-align: center;">Edit Images</h5>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-12">
+                                                <form class="row d-flex align-items-center"
+                                                    action="/editphotos/<%= userprofile.id %>" method="post"
+                                                    enctype="multipart/form-data">
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label mainhead">profile photo</label>
+                                                        <input type="file" class="form-control" name="profilepic"
+                                                            accept="image/*">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="" class="form-label mainhead">first bio pic</label>
+                                                        <input type="file" class="form-control" name="biopicOne"
+                                                            accept="image/*">
+
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row mt-5">
+                                                            <div class="col-md-6">
+                                                                <label for="" class="form-label mainhead">second bio
+                                                                    pic</label>
+                                                                <input type="file" class="form-control" name="biopicTwo"
+                                                                    accept="image/*">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="" class="form-label mainhead">horo
+                                                                    image</label>
+                                                                <input type="file" class="form-control" name="horoimage"
+                                                                    accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <button class="btn btn-sm btn-dark rounded-pill px-3"
+                                                            type="submit"><i class="bi bi-save me-1"></i>Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
                         <div class="tab-pane fade" id="v-pills-requests" role="tabpanel"
                             aria-labelledby="v-pills-settings-tab">4</div>
                         <div class="tab-pane fade" id="v-pills-connections" role="tabpanel"
@@ -1137,95 +1253,95 @@
     </div>
     <script>
 
-let editBtn = document.getElementById("editBtn")
-let saveBtn = document.getElementById("saveBtn")
-editBtn.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent default form submission behavior
-    var formElements = document.getElementById("profileForm").elements;
-    for (var i = 0; i < formElements.length; i++) {
-        var element = formElements[i];
-        // Remove disabled attribute from input, select, and textarea elements
-        if (element.tagName === "INPUT" || element.tagName === "SELECT" || element.tagName === "TEXTAREA") {
-            element.removeAttribute("disabled");
-        }
-    }
-    editBtn.style.display = "none"
-    saveBtn.style.display = "inline-block"
-});
+        let editBtn = document.getElementById("editBtn")
+        let saveBtn = document.getElementById("saveBtn")
+        editBtn.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            var formElements = document.getElementById("profileForm").elements;
+            for (var i = 0; i < formElements.length; i++) {
+                var element = formElements[i];
+                // Remove disabled attribute from input, select, and textarea elements
+                if (element.tagName === "INPUT" || element.tagName === "SELECT" || element.tagName === "TEXTAREA") {
+                    element.removeAttribute("disabled");
+                }
+            }
+            editBtn.style.display = "none"
+            saveBtn.style.display = "inline-block"
+        });
 
 
-saveBtn.addEventListener("click", async function (event) {
-    event.preventDefault(); // Prevent default form submission behavior
-    saveBtn.style.display = "none"
-    editBtn.style.display = "inline-block"
-    var object = {};
-    var formElements = document.getElementById("profileForm").elements;
-    for (var i = 0; i < formElements.length; i++) {
-        var element = formElements[i];
-        function capitalizeFirstLetters(str) {
-            // Split the string into an array of words
-            const words = str.split(" ");
+        saveBtn.addEventListener("click", async function (event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            saveBtn.style.display = "none"
+            editBtn.style.display = "inline-block"
+            var object = {};
+            var formElements = document.getElementById("profileForm").elements;
+            for (var i = 0; i < formElements.length; i++) {
+                var element = formElements[i];
+                function capitalizeFirstLetters(str) {
+                    // Split the string into an array of words
+                    const words = str.split(" ");
 
-            // Iterate through each word in the array
-            const capitalizedWords = words.map(word => {
-                // Capitalize the first letter of each word and lowercase the rest
-                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    // Iterate through each word in the array
+                    const capitalizedWords = words.map(word => {
+                        // Capitalize the first letter of each word and lowercase the rest
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    });
+
+                    // Join the capitalized words back into a single string
+                    return capitalizedWords.join(" ");
+                }
+                // Remove disabled attribute from input, select, and textarea elements
+                if (element.tagName === "INPUT" || element.tagName === "SELECT" || element.tagName === "TEXTAREA") {
+                    if (element.name === "fullname") {
+
+                        object[element.name] = capitalizeFirstLetters(element.value)
+                    }
+                    else {
+                        object[element.name] = element.value
+                    }
+
+                }
+            }
+
+            // Re-enable the disabled attribute on form fields
+            var formElements = document.getElementById("profileForm").elements;
+            for (var i = 0; i < formElements.length; i++) {
+                var element = formElements[i];
+                // Add disabled attribute back to input, select, and textarea elements
+                if (element.tagName === "INPUT" || element.tagName === "SELECT" || element.tagName === "TEXTAREA") {
+                    element.setAttribute("disabled", "disabled");
+                }
+            }
+
+            console.log(object);
+
+            // Send the data to the backend using AJAX
+            await $.ajax({
+                type: 'POST',
+                url: '/editprofile', // Update the URL with your server endpoint
+                data: object,
+                success: function (response) {
+                    // Handle success response
+                    console.log(response);
+
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(error);
+                }
             });
-
-            // Join the capitalized words back into a single string
-            return capitalizedWords.join(" ");
-        }
-        // Remove disabled attribute from input, select, and textarea elements
-        if (element.tagName === "INPUT" || element.tagName === "SELECT" || element.tagName === "TEXTAREA") {
-            if (element.name === "fullname") {
-
-                object[element.name] = capitalizeFirstLetters(element.value)
+        });
+        function confirmDeleteProfile(profileId) {
+            if (confirm('Are you sure you want to delete your profile ?')) {
+                deleteProfile(profileId);
             }
-            else {
-                object[element.name] = element.value
-            }
-
         }
-    }
 
-   // Re-enable the disabled attribute on form fields
-    var formElements = document.getElementById("profileForm").elements;
-    for (var i = 0; i < formElements.length; i++) {
-        var element = formElements[i];
-        // Add disabled attribute back to input, select, and textarea elements
-        if (element.tagName === "INPUT" || element.tagName === "SELECT" || element.tagName === "TEXTAREA") {
-            element.setAttribute("disabled", "disabled");
-        }
-    }
+        async function deleteProfile(profileId) {
+            console.log("From delete profile", profileId);
+            try {
 
-    console.log(object);
-
-    // Send the data to the backend using AJAX
-    await $.ajax({
-        type: 'POST',
-        url: '/editprofile', // Update the URL with your server endpoint
-        data: object,
-        success: function (response) {
-            // Handle success response
-            console.log(response);
-
-        },
-        error: function (xhr, status, error) {
-            // Handle error
-            console.error(error);
-        }
-    });
-});
-function confirmDeleteProfile(profileId) {
-        if (confirm('Are you sure you want to delete your profile ?')) {
-            deleteProfile(profileId);
-        }
-    }
-
-    async function deleteProfile(profileId) {
-        console.log("From delete profile", profileId);
-        try {
-           
                 await $.ajax({
                     type: 'POST',
                     url: `/delete-profile/${profileId}`,
@@ -1241,16 +1357,16 @@ function confirmDeleteProfile(profileId) {
                         console.error('Error deleting profile:', response.statusText);
                     }
                 });
-            
 
-        } catch (error) {
-            console.error('Error deleting profile:', error);
+
+            } catch (error) {
+                console.error('Error deleting profile:', error);
+            }
         }
-    }
 
-   
 
-</script>
+
+    </script>
     <script>
         async function addProfile() {
             try {

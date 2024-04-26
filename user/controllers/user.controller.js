@@ -102,7 +102,12 @@ const userController = {
                     const userId = decoded.userId;
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                        {
+                            model: Userphoto,
+                            as: 'userImage'
+                        }
+                    ]  })
 
                     const userRecords = await Userprofile.findAll({
                         include: [
@@ -254,7 +259,12 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                        {
+                            model: Userphoto,
+                            as: 'userImage'
+                        }
+                    ] })
                     if (user) {
 
                         return res.render('search', { user, userprofile });
@@ -285,7 +295,12 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                        {
+                            model: Userphoto,
+                            as: 'userImage'
+                        }
+                    ] })
                     if (user) {
 
                         return res.render('success-stories', { user, userprofile, allstories });
@@ -315,7 +330,12 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                        {
+                            model: Userphoto,
+                            as: 'userImage'
+                        }
+                    ] })
                     if (user) {
 
                         return res.render('success-videos', { user, userprofile, allvideos });
@@ -370,7 +390,12 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
-                    const userprofile = await Userprofile.findOne({ where: { userId } })
+                    const userprofile = await Userprofile.findOne({ where: { userId },include:[
+                        {
+                            model: Userphoto,
+                            as: 'userImage'
+                        }
+                    ] })
                     if (user) {
 
                         return res.render('about', { user, userprofile, aboutwebsite, allmembers, preseidentimage, adhykshmanogat, sachivmanogat,preseidentname,vicepreseidentimage,vicepreseidentname ,preseidentposition,vicepreseidentposition,sachivimage});

@@ -56,6 +56,29 @@ const userActions = {
             return res.status(500).send('Internal Server Error');
         }
 
+    },
+    checkprofileExist:async(req,res)=>{
+        try {
+            const token = req.cookies.userJwt;
+            const profileId = req.cookies.profileId;
+    
+            if (token && profileId) {
+                const userProfile = await Userprofile.findOne({ where: { id: profileId } });
+                if (userProfile) {
+                    // User has a profile, proceed to the next middleware
+                    next();
+                } else {
+                    // User does not have a profile
+                    res.redirect('/createprofile'); 
+                }
+            } else {
+                // No token or profileId, redirect user to login page
+                res.redirect('/');
+            }
+        } catch (error) {
+            console.error('Error executing Sequelize query: ', error);
+            res.status(500).send('Internal Server Error');
+        }
     }
 
 }
