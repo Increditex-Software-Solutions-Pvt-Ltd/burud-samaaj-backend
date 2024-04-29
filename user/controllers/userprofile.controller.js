@@ -43,8 +43,7 @@ const getUserDashboard=async(req,res)=>{
 
             const decoded = jwt.verify(token, process.env.user_secret_key);
             const userId = decoded.userId;
-
-
+            
             const user = await User.findOne({ where: { id: userId } });
             const userprofile = await Userprofile.findOne({ where: { userId },include:[
                 {
@@ -52,8 +51,10 @@ const getUserDashboard=async(req,res)=>{
                     as: 'userImage'
                 }
             ] })
-            if (user) {
 
+        
+            if (user) {
+                 
                 return res.render('dashboard', { user, userprofile });
             }
         } catch (err) {

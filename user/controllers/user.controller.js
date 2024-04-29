@@ -30,6 +30,7 @@ const userController = {
 
 
                     const user = await User.findOne({ where: { id: userId } });
+                    const successStories = await Successstory.findAll();
                     const userprofile = await Userprofile.findOne({ where: { userId },include:[
                         {
                             model: Userphoto,
@@ -38,7 +39,7 @@ const userController = {
                     ] })
                     if (user) {
 
-                        return res.render('index', { user, userprofile });
+                        return res.render('index', { user, userprofile,successStories });
                     }
                 } catch (err) {
 

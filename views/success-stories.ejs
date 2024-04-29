@@ -79,29 +79,43 @@
             <% if (user) { %>
                 <div class="dropdown d-block d-lg-none">
                     <%if(userprofile){%>
-                        <a href="/dashboard"
-                            class="btn btn-danger rounded-0 py-4 px-lg-5 d-flex align-items-center dropdown-toggle"
-                            data-bs-toggle="dropdown">
+                        <a href="/dashboard" class="btn btn-danger rounded-0 py-4 px-lg-5 d-flex align-items-center">
                             <span class="me-2">
-                                <img src="<%= user.profilepic%>" width="25px" class="img-fluid" alt="">
+                                <% if(userprofile && userprofile.userImage && userprofile.userImage.profilepic) { %>
+                                    <div class="overflow-hidden rounded-circle" style="height: 30px; width: 30px;">
+                                        <img src="<%= userprofile.userImage.profilepic %>" class="img-fluid"
+                                            style="object-fit: cover;" alt="">
+                                    </div>
+
+                                    <% } else { %>
+                                        <img src="/img/logo/avatar.svg" width="30px" height="50px"
+                                            class="img-fluid rounded-circle" style="object-fit: cover;" alt="">
+                                        <% } %>
                             </span>
-                            <%=user.firstname%>
+
+                            <%= user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1); %>
                         </a>
                         <%} else {%>
                             <a href="/createprofile"
-                                class="btn btn-danger rounded-0 py-4 px-lg-5 d-flex align-items-center dropdown-toggle"
-                                data-bs-toggle="dropdown">
+                                class="btn btn-danger rounded-0 py-4 px-lg-5 d-flex align-items-center">
                                 <span class="me-2">
-                                    <img src="/img/logo/avatar.svg" width="25px" class="img-fluid" alt="">
+                                    <% if(userprofile && userprofile.userImage && userprofile.userImage.profilepic) { %>
+                                        <div style="width: 50px;" class="overflow-hidden">
+                                            <img src="<%= userprofile.userImage.profilepic %>" class="img-fluid" alt="">
+                                        </div>
+
+                                        <% } else { %>
+                                            <img src="/img/logo/avatar.svg" width="30px" height="50px"
+                                                class="img-fluid rounded-circle" style="object-fit: cover;" alt="">
+                                            <% } %>
                                 </span>
-                                <%=user.firstname%>
+                                <%= user.firstname %>
                             </a>
                             <%}%>
 
                 </div>
-
                 <% } else { %>
-                    <a href="/login" class="btn btn-danger rounded-0 py-4 px-4 px-lg-5 d-block d-lg-none">Login</a>
+                    <a href="/login" class="btn btn-danger rounded-0 py-4 px-lg-5 d-block d-lg-none">Login<i class="fa fa-arrow-right ms-3"></i></a>
                     <% } %>
         </div>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -699,6 +713,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="/js/preventinspect.js"></script>
     <script>
         async function addProfile() {
             try {

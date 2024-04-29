@@ -331,8 +331,7 @@
 
                     </div>
                     <% } else { %>
-                        <a href="/signup" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">Register
-                            here<i class="fa fa-arrow-right ms-3"></i></a>
+                        <a href="/login" class="btn btn-danger rounded-0 py-4 px-lg-5 d-block d-lg-none">Login<i class="fa fa-arrow-right ms-3"></i></a>
                         <% } %>
             </div>
 
@@ -381,7 +380,7 @@
                         <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel">
                             <div class="mt-2">
                             
-                                <div class="row">
+                                <div class="row g-3">
                                     <div class="col-md-4">
                                         <div class="card">
                                             <div class="card-header"
@@ -390,7 +389,7 @@
                                             </div>
                                             <div class="card-body"
                                                 style=" background: linear-gradient(to left, #ffffff, #edbfc4 70%);">
-                                                <span class="fs-2 mainhead">12</span>
+                                                <span id="receivedCount" class="fs-2 mainhead">12</span>
                                             </div>
                                         </div>
                                     </div>
@@ -402,7 +401,7 @@
                                             </div>
                                             <div class="card-body"
                                                 style=" background: linear-gradient(to left, #ffffff, #edbfc4 70%);">
-                                                <span class="fs-2 mainhead">14</span>
+                                                <span id="sentCount" class="fs-2 mainhead">14</span>
                                             </div>
                                         </div>
                                     </div>
@@ -414,7 +413,7 @@
                                             </div>
                                             <div class="card-body"
                                                 style=" background: linear-gradient(to left, #ffffff, #edbfc4 70%);">
-                                                <span class="fs-2 mainhead">6</span>
+                                                <span id="connectionCount" class="fs-2 mainhead">6</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1300,13 +1299,17 @@
 
     <script src="js/main.js"></script>
     <script src="js/profile.js"></script>
-
+    <script src="/js/preventinspect.js"></script>
 
 
 
     <script>
         const sentBody = document.getElementById("sentBody")
         const receivedBody = document.getElementById("receivedBody")
+        const connectionCount = document.getElementById("connectionCount")
+        const receivedCount = document.getElementById("receivedCount")
+        const sentCount = document.getElementById("sentCount")
+
 
         async function getList() {
             let sentArr, receivedArr
@@ -1327,9 +1330,9 @@
                     console.error(error);
                 }
             });
-            console.log(sentArr, receivedArr);
 
             if (sentArr.length) {
+                sentCount.innerText = sentArr.length
                 sentBody.innerHTML = ""
                 for (user of sentArr) {
                     let createrow = document.createElement("tr")
@@ -1374,6 +1377,7 @@
                     sentBody.appendChild(createrow)
                 }
             } else {
+                sentCount.innerText="0"
                 sentBody.innerHTML = ""
                 let noData = document.createElement("tr")
                 noData.classList = "text-center fs-5"
@@ -1386,6 +1390,8 @@
             }
 
             if (receivedArr.length) {
+                console.log(receivedArr,"Received Array of User...");
+                receivedCount.innerText=receivedArr.length
                 receivedBody.innerHTML = ""
                 for (user of receivedArr) {
                     let createrow = document.createElement("tr")
@@ -1430,6 +1436,7 @@
                     receivedBody.appendChild(createrow)
                 }
             } else {
+                receivedCount.innerText="0"
                 receivedBody.innerHTML = ""
                 let noData = document.createElement("tr")
                 noData.classList = "text-center fs-5"
@@ -1463,6 +1470,7 @@
             });
             const connectionBody = document.getElementById("connectionBody")
             if (connectionsArr.length) {
+                connectionCount.innerText=connectionsArr.length
                 connectionBody.innerHTML = ""
                 for (user of connectionsArr) {
                     if (user !== null) {
@@ -1515,6 +1523,7 @@
 
                 }
             } else {
+                connectionCount.innerText="0"
                 connectionBody.innerHTML = ""
                 let noData = document.createElement("tr")
                 noData.classList = "text-center fs-5"
